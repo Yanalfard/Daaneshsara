@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1c904c7f99224e6b8acd105f4e50bf11" Name="Diagram1">
+        <EntityTypeShape EntityType="AminWebModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AminWebModel.TblChat" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AminWebModel.TblDocs" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AminWebModel.TblPlaylist" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AminWebModel.TblRole" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AminWebModel.TblUser" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AminWebModel.TblUserPlaylistRel" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AminWebModel.TblUserVideoRel" Width="1.5" PointX="12.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AminWebModel.TblVideo" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AminWebModel.TblVideoPlaylistKeyword" Width="1.5" PointX="12.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AminWebModel.TblWithdraw" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
+        <AssociationConnector Association="AminWebModel.FK_Reciever" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_Sender" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblUser_TblDocs" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblPlaylist_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblUserPackRel_TblPack" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblVideo_TblPack" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblVideoPlaylistKeyword_TblPlaylist" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblUser_TblRole" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblUserPackRel_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblUserVideoRel_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblWithdraw_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_WhoUploadedVideo" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblUserVideoRel_TblVideo" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblVideoKeyword_TblVideo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
