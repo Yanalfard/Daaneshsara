@@ -1,10 +1,10 @@
 ﻿using System;
 using DataLayer.Models;
-using DataLayer.Repositiries;
+using DataLayer.Repositories;
 
-namespace DataLayer.UnitOfWork
+namespace DataLayer.Services
 {
-    public class UnitOfWork : IDisposable
+    public class Heart : IDisposable
     {
         private readonly AminWebEntities _db = new AminWebEntities();
 

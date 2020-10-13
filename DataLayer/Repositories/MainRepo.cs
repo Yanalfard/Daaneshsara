@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using DataLayer.Models;
 
-namespace DataLayer.Repositiries
+namespace DataLayer.Repositories
 {
     public class MainRepo<TEntity> where TEntity : class
     {

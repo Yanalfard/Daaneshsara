@@ -109,12 +109,10 @@
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositiries\MainRepo.cs" />
-    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Repositories\MainRepo.cs" />
+    <Compile Include="Services\Heart.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EntityDeploy Include="Models\AminWeb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
