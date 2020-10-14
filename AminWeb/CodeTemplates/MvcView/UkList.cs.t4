@@ -1,0 +1,175 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ include file="Imports.include.t4" #>
+@model IEnumerable<#=								"<" + ViewDataTypeName + ">" #>
+<#
+				// The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
+				if(IsPartialView) {
+#>
+//Do nothing when the view is partial
+<#
+				} else if(IsLayoutPageSelected) {
+#>
+
+@{
+    ViewBag.Title = "<#=												ViewName#>";
+<#
+								if (!String.IsNullOrEmpty(LayoutPageFile)) {
+#>
+    Layout = "<#=																LayoutPageFile#>";
+<#
+								}
+#>
+}
+
+
+<#
+				} 				else {
+#>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title><#=												ViewName #></title>
+</head>
+<body>
+<#
+								PushIndent("    ");
+				}
+#>
+
+
+<!-- Delete Confirmation Modal -->
+<div id="modal-confirm-delete" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">
+            آیا مطمئن هستید؟
+        </h2>
+        <p>
+            آیا از حذف شدن گزینه مورد نظر اطمینان دارید؟
+        </p>
+        <div class="row" dir="rtl">
+            @*<a class="uk-button uk-button-danger uk-margin-left" href="/Delete/">تایید</a>*@
+            <button class="uk-button uk-button-danger uk-modal-close uk-margin-small-left" onclick="DeleteItem()" type="button">تایید</button>
+            <button class="uk-button uk-button-default uk-modal-close" type="button">لغو</button>
+        </div>
+
+        <script>
+            function DeleteItem()
+            {
+                const id = localStorage.getItem("ToBeDeletedId");
+                $.ajax(
+                    {
+                        url: '/#ControllerName/Delete?id=' + id,
+                        method: 'Post',
+                        contentType: 'application/json',
+                        dataType: 'json',
+                        async: false,
+                        success: function (data)
+                        {
+                            //deleted
+                            const element = document.getElementById(id);
+                            element.parentElement.parentElement.parentElement.removeChild(element.parentElement.parentElement);
+                        },
+                        error: function ()
+                        {
+                            //error
+                            UIkit.notification('مشکلی رخ داده است، لطفا از اتصال اینترنت خود مطمئن شوید');
+                        }
+                    });
+            }
+        </script>
+
+    </div>
+</div>
+
+<p class="uk-margin-auto-left uk-margin-right uk-margin-medium-top">
+        @Html.ActionLink("افزودن", "Create")
+</p>
+<table class="uk-table-striped uk-table" dir="rtl">
+    <tr>
+<#
+				IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
+				foreach (PropertyMetadata property in properties) {
+								if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+#>
+<#
+												// We do not want to show any association properties for which there is
+												// no associated foreign key.
+												if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+																continue;
+												}
+#>
+        <th>
+            @Html.DisplayNameFor(model => model.<#=																GetValueExpression(property) #>)
+        </th>
+<#
+								}
+				}
+#>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+<#
+				foreach (PropertyMetadata property in properties) {
+								if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+#>
+<#
+												// We do not want to show any association properties for which there is
+												// no associated foreign key.
+												if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+																continue;
+												}
+#>
+        <td>
+            @Html.DisplayFor(modelItem => <#=																"item." + GetValueExpression(property) #>)
+        </td>
+<#
+								}
+				}
+
+				string pkName = GetPrimaryKeyName();
+				if (pkName != null) {
+#>
+        <td>
+			@Html.ActionLink(" ", "Edit", new {  /* id=item.PrimaryKey */ },   new { uk_icon = "file-edit", uk_tooltip = "ویرایش" })
+			@Html.ActionLink(" ", "Details", new { /* id=item.PrimaryKey */ }, new { uk_icon = "list", uk_tooltip = "جزئیات" })
+			<a href="#modal-confirm-delete" id="@item.id" onclick="localStorage.setItem('ToBeDeletedId','@item.id')" class="padding-icon" uk-tooltip="حذف" uk-icon="trash" uk-toggle></a>
+        </td>
+<#
+				} else {
+#>
+        <td>
+			@Html.ActionLink(" ", "Edit", new {   id=item.PrimaryKey  },   new { uk_icon = "file-edit", uk_tooltip = "ویرایش" })
+			@Html.ActionLink(" ", "Details", new {  id=item.PrimaryKey  }, new { uk_icon = "list", uk_tooltip = "جزئیات" })
+			<a href="#modal-confirm-delete" id="@item.id" onclick="localStorage.setItem('ToBeDeletedId','@item.id')" class="padding-icon" uk-tooltip="حذف" uk-icon="trash" uk-toggle></a>
+        </td>
+
+<#
+				}
+#>
+    </tr>
+}
+
+</table>
+<#
+				// The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
+#>
+<#
+				if(!IsPartialView && !IsLayoutPageSelected) {
+								ClearIndent();
+#>
+</body>
+</html>
+<#
+				}
+#>
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>
