@@ -12,8 +12,10 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using MetaData;
+    using DataLayer.MetaData;
     
+    
+    [MetadataType(typeof(Mdsysdiagrams))]
     public partial class sysdiagrams
     {
         public string name { get; set; }

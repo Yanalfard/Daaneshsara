@@ -12,12 +12,13 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using MetaData;
+    using DataLayer.MetaData;
+    
     
     [MetadataType(typeof(MdTblWithdraw))]
     public partial class TblWithdraw
     {
-        public int id { get; set; }
+        public int WithdrawId { get; set; }
         public int UserId { get; set; }
         public int Value { get; set; }
         public bool IsDone { get; set; }

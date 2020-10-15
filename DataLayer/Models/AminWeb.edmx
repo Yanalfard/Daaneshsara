@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AminWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="arvintav_AminWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -17,25 +17,27 @@
         </EntityType>
         <EntityType Name="TblChat">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ChatId" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChatId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SenderId" Type="int" Nullable="false" />
           <Property Name="RecieverId" Type="int" Nullable="false" />
           <Property Name="Message" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="TimeSent" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="TblConfig">
+          <Key>
+            <PropertyRef Name="ConfigId" />
+          </Key>
+          <Property Name="ConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DarsadeSud" Type="smallint" />
           <Property Name="SaqfeBardasht" Type="int" />
-        </EntityType>-->
-        <EntityType Name="TblDocs">
+        </EntityType>
+        <EntityType Name="TblDoc">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="DocId" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TellSabet" Type="nvarchar" MaxLength="10" />
           <Property Name="ParvaneAmuzeshgahUrl" Type="nvarchar" MaxLength="500" />
           <Property Name="MojavezTasisUrl" Type="nvarchar" MaxLength="500" />
@@ -45,9 +47,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblPlaylist">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="PlaylistId" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlaylistId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
           <Property Name="DateSubmited" Type="nvarchar" MaxLength="20" Nullable="false" />
@@ -62,17 +64,17 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblRole">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TblUser">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TellNo" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" />
@@ -85,27 +87,27 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblUserPlaylistRel">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="UserPlaylistRelId" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserPlaylistRelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="PlaylistId" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TblUserVideoRel">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="UserVideoRelId" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserVideoRelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="VideoId" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TblVideo">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="VideoId" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VideoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VideoUrl" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="VidioDemoUrl" Type="nvarchar" MaxLength="500" />
           <Property Name="MainImage" Type="nvarchar" MaxLength="300" Nullable="false" />
@@ -124,29 +126,29 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblVideoPlaylistKeyword">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="VideoPlaylistKeywordId" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="VideoPlaylistKeywordId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="VideoId" Type="int" />
           <Property Name="PlaylistId" Type="int" />
         </EntityType>
         <EntityType Name="TblWithdraw">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="WithdrawId" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WithdrawId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Value" Type="int" Nullable="false" />
           <Property Name="IsDone" Type="bit" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK_Reciever">
           <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
           <End Role="TblChat" Type="Self.TblChat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblChat">
               <PropertyRef Name="RecieverId" />
@@ -158,7 +160,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblChat" Type="Self.TblChat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblChat">
               <PropertyRef Name="SenderId" />
@@ -170,7 +172,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblPlaylist" Type="Self.TblPlaylist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblPlaylist">
               <PropertyRef Name="UserId" />
@@ -178,11 +180,11 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TblUser_TblDocs">
-          <End Role="TblDocs" Type="Self.TblDocs" Multiplicity="0..1" />
+          <End Role="TblDoc" Type="Self.TblDoc" Multiplicity="0..1" />
           <End Role="TblUser" Type="Self.TblUser" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TblDocs">
-              <PropertyRef Name="id" />
+            <Principal Role="TblDoc">
+              <PropertyRef Name="DocId" />
             </Principal>
             <Dependent Role="TblUser">
               <PropertyRef Name="DocsId" />
@@ -194,7 +196,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblUser" Type="Self.TblUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblRole">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="RoleId" />
             </Principal>
             <Dependent Role="TblUser">
               <PropertyRef Name="RoleId" />
@@ -206,7 +208,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblUserPlaylistRel" Type="Self.TblUserPlaylistRel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblPlaylist">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="PlaylistId" />
             </Principal>
             <Dependent Role="TblUserPlaylistRel">
               <PropertyRef Name="PlaylistId" />
@@ -218,7 +220,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblUserPlaylistRel" Type="Self.TblUserPlaylistRel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblUserPlaylistRel">
               <PropertyRef Name="UserId" />
@@ -230,7 +232,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblUserVideoRel" Type="Self.TblUserVideoRel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblUserVideoRel">
               <PropertyRef Name="UserId" />
@@ -242,7 +244,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblUserVideoRel" Type="Self.TblUserVideoRel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblVideo">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="VideoId" />
             </Principal>
             <Dependent Role="TblUserVideoRel">
               <PropertyRef Name="VideoId" />
@@ -254,7 +256,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblVideo" Type="Self.TblVideo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblPlaylist">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="PlaylistId" />
             </Principal>
             <Dependent Role="TblVideo">
               <PropertyRef Name="PlaylistId" />
@@ -266,7 +268,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblVideoPlaylistKeyword" Type="Self.TblVideoPlaylistKeyword" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblVideo">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="VideoId" />
             </Principal>
             <Dependent Role="TblVideoPlaylistKeyword">
               <PropertyRef Name="VideoId" />
@@ -278,7 +280,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblVideoPlaylistKeyword" Type="Self.TblVideoPlaylistKeyword" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblPlaylist">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="PlaylistId" />
             </Principal>
             <Dependent Role="TblVideoPlaylistKeyword">
               <PropertyRef Name="PlaylistId" />
@@ -290,7 +292,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblWithdraw" Type="Self.TblWithdraw" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblWithdraw">
               <PropertyRef Name="UserId" />
@@ -304,7 +306,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblVideo" Type="Self.TblVideo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblVideo">
               <PropertyRef Name="UserId" />
@@ -313,10 +315,11 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="AminWebModelStoreContainer">
+        <EntityContainer Name="arvintav_AminWebModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblChat" EntityType="Self.TblChat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TblDocs" EntityType="Self.TblDocs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblConfig" EntityType="Self.TblConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblDoc" EntityType="Self.TblDoc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblPlaylist" EntityType="Self.TblPlaylist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblRole" EntityType="Self.TblRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUser" EntityType="Self.TblUser" Schema="dbo" store:Type="Tables" />
@@ -338,7 +341,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             <End Role="TblPlaylist" EntitySet="TblPlaylist" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUser_TblDocs" Association="Self.FK_TblUser_TblDocs">
-            <End Role="TblDocs" EntitySet="TblDocs" />
+            <End Role="TblDoc" EntitySet="TblDoc" />
             <End Role="TblUser" EntitySet="TblUser" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUser_TblRole" Association="Self.FK_TblUser_TblRole">
@@ -382,10 +385,11 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             <End Role="TblVideo" EntitySet="TblVideo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="AminWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="arvintav_AminWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -398,9 +402,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblChat">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ChatId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SenderId" Type="Int32" Nullable="false" />
           <Property Name="RecieverId" Type="Int32" Nullable="false" />
           <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
@@ -408,24 +412,32 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <NavigationProperty Name="TblUser" Relationship="Self.FK_Reciever" FromRole="TblChat" ToRole="TblUser" />
           <NavigationProperty Name="TblUser1" Relationship="Self.FK_Sender" FromRole="TblChat" ToRole="TblUser" />
         </EntityType>
-        <EntityType Name="TblDocs">
+        <EntityType Name="TblConfig">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ConfigId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DarsadeSud" Type="Int16" />
+          <Property Name="SaqfeBardasht" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TblDoc">
+          <Key>
+            <PropertyRef Name="DocId" />
+          </Key>
+          <Property Name="DocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TellSabet" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ParvaneAmuzeshgahUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="MojavezTasisUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ShenasnameSahebEmtiazUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="KarteMeliSahebEmtiazUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TblUser" Relationship="Self.FK_TblUser_TblDocs" FromRole="TblDocs" ToRole="TblUser" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_TblUser_TblDocs" FromRole="TblDoc" ToRole="TblUser" />
         </EntityType>
         <EntityType Name="TblPlaylist">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="PlaylistId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlaylistId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="DateSubmited" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
@@ -444,18 +456,18 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblRole">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblUser_TblRole" FromRole="TblRole" ToRole="TblUser" />
         </EntityType>
         <EntityType Name="TblUser">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TellNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
@@ -467,7 +479,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TblChat" Relationship="Self.FK_Reciever" FromRole="TblUser" ToRole="TblChat" />
           <NavigationProperty Name="TblChat1" Relationship="Self.FK_Sender" FromRole="TblUser" ToRole="TblChat" />
-          <NavigationProperty Name="TblDocs" Relationship="Self.FK_TblUser_TblDocs" FromRole="TblUser" ToRole="TblDocs" />
+          <NavigationProperty Name="TblDoc" Relationship="Self.FK_TblUser_TblDocs" FromRole="TblUser" ToRole="TblDoc" />
           <NavigationProperty Name="TblPlaylist" Relationship="Self.FK_TblPlaylist_TblUser" FromRole="TblUser" ToRole="TblPlaylist" />
           <NavigationProperty Name="TblRole" Relationship="Self.FK_TblUser_TblRole" FromRole="TblUser" ToRole="TblRole" />
           <NavigationProperty Name="TblUserPlaylistRel" Relationship="Self.FK_TblUserPackRel_TblUser" FromRole="TblUser" ToRole="TblUserPlaylistRel" />
@@ -477,9 +489,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblUserPlaylistRel">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="UserPlaylistRelId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserPlaylistRelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="PlaylistId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
@@ -488,9 +500,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblUserVideoRel">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="UserVideoRelId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserVideoRelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="VideoId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
@@ -499,9 +511,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblVideo">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="VideoId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VideoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VideoUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="VidioDemoUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="MainImage" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
@@ -524,9 +536,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblVideoPlaylistKeyword">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="VideoPlaylistKeywordId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="VideoPlaylistKeywordId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="VideoId" Type="Int32" />
           <Property Name="PlaylistId" Type="Int32" />
@@ -535,13 +547,13 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         </EntityType>
         <EntityType Name="TblWithdraw">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="WithdrawId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WithdrawId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="Value" Type="Int32" Nullable="false" />
           <Property Name="IsDone" Type="Boolean" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblWithdraw_TblUser" FromRole="TblWithdraw" ToRole="TblUser" />
         </EntityType>
         <Association Name="FK_Reciever">
@@ -549,7 +561,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblChat" Type="Self.TblChat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblChat">
               <PropertyRef Name="RecieverId" />
@@ -561,7 +573,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblChat" Type="Self.TblChat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblChat">
               <PropertyRef Name="SenderId" />
@@ -569,11 +581,11 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TblUser_TblDocs">
-          <End Role="TblDocs" Type="Self.TblDocs" Multiplicity="0..1" />
+          <End Role="TblDoc" Type="Self.TblDoc" Multiplicity="0..1" />
           <End Role="TblUser" Type="Self.TblUser" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TblDocs">
-              <PropertyRef Name="id" />
+            <Principal Role="TblDoc">
+              <PropertyRef Name="DocId" />
             </Principal>
             <Dependent Role="TblUser">
               <PropertyRef Name="DocsId" />
@@ -585,7 +597,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblPlaylist" Type="Self.TblPlaylist" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblPlaylist">
               <PropertyRef Name="UserId" />
@@ -597,7 +609,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblUserPlaylistRel" Type="Self.TblUserPlaylistRel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblPlaylist">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="PlaylistId" />
             </Principal>
             <Dependent Role="TblUserPlaylistRel">
               <PropertyRef Name="PlaylistId" />
@@ -609,7 +621,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblVideo" Type="Self.TblVideo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblPlaylist">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="PlaylistId" />
             </Principal>
             <Dependent Role="TblVideo">
               <PropertyRef Name="PlaylistId" />
@@ -621,7 +633,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblVideoPlaylistKeyword" Type="Self.TblVideoPlaylistKeyword" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblPlaylist">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="PlaylistId" />
             </Principal>
             <Dependent Role="TblVideoPlaylistKeyword">
               <PropertyRef Name="PlaylistId" />
@@ -633,7 +645,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblUser" Type="Self.TblUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblRole">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="RoleId" />
             </Principal>
             <Dependent Role="TblUser">
               <PropertyRef Name="RoleId" />
@@ -645,7 +657,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblUserPlaylistRel" Type="Self.TblUserPlaylistRel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblUserPlaylistRel">
               <PropertyRef Name="UserId" />
@@ -657,7 +669,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblUserVideoRel" Type="Self.TblUserVideoRel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblUserVideoRel">
               <PropertyRef Name="UserId" />
@@ -669,7 +681,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblWithdraw" Type="Self.TblWithdraw" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblWithdraw">
               <PropertyRef Name="UserId" />
@@ -683,7 +695,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblVideo" Type="Self.TblVideo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblUser">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="TblVideo">
               <PropertyRef Name="UserId" />
@@ -695,7 +707,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblUserVideoRel" Type="Self.TblUserVideoRel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblVideo">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="VideoId" />
             </Principal>
             <Dependent Role="TblUserVideoRel">
               <PropertyRef Name="VideoId" />
@@ -707,7 +719,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
           <End Role="TblVideoPlaylistKeyword" Type="Self.TblVideoPlaylistKeyword" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblVideo">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="VideoId" />
             </Principal>
             <Dependent Role="TblVideoPlaylistKeyword">
               <PropertyRef Name="VideoId" />
@@ -717,7 +729,8 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
         <EntityContainer Name="AminWebEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TblChat" EntityType="Self.TblChat" />
-          <EntitySet Name="TblDocs" EntityType="Self.TblDocs" />
+          <EntitySet Name="TblConfig" EntityType="Self.TblConfig" />
+          <EntitySet Name="TblDoc" EntityType="Self.TblDoc" />
           <EntitySet Name="TblPlaylist" EntityType="Self.TblPlaylist" />
           <EntitySet Name="TblRole" EntityType="Self.TblRole" />
           <EntitySet Name="TblUser" EntityType="Self.TblUser" />
@@ -735,7 +748,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             <End Role="TblChat" EntitySet="TblChat" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUser_TblDocs" Association="Self.FK_TblUser_TblDocs">
-            <End Role="TblDocs" EntitySet="TblDocs" />
+            <End Role="TblDoc" EntitySet="TblDoc" />
             <End Role="TblUser" EntitySet="TblUser" />
           </AssociationSet>
           <AssociationSet Name="FK_TblPlaylist_TblUser" Association="Self.FK_TblPlaylist_TblUser">
@@ -789,9 +802,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AminWebModelStoreContainer" CdmEntityContainer="AminWebEntities">
+        <EntityContainerMapping StorageEntityContainer="arvintav_AminWebModelStoreContainer" CdmEntityContainer="AminWebEntities">
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="AminWebModel.sysdiagrams">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -802,9 +815,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblChat">
-            <EntityTypeMapping TypeName="AminWebModel.TblChat">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblChat">
               <MappingFragment StoreEntitySet="TblChat">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ChatId" ColumnName="ChatId" />
                 <ScalarProperty Name="SenderId" ColumnName="SenderId" />
                 <ScalarProperty Name="RecieverId" ColumnName="RecieverId" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
@@ -812,10 +825,19 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblDocs">
-            <EntityTypeMapping TypeName="AminWebModel.TblDocs">
-              <MappingFragment StoreEntitySet="TblDocs">
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="TblConfig">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblConfig">
+              <MappingFragment StoreEntitySet="TblConfig">
+                <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
+                <ScalarProperty Name="DarsadeSud" ColumnName="DarsadeSud" />
+                <ScalarProperty Name="SaqfeBardasht" ColumnName="SaqfeBardasht" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblDoc">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblDoc">
+              <MappingFragment StoreEntitySet="TblDoc">
+                <ScalarProperty Name="DocId" ColumnName="DocId" />
                 <ScalarProperty Name="TellSabet" ColumnName="TellSabet" />
                 <ScalarProperty Name="ParvaneAmuzeshgahUrl" ColumnName="ParvaneAmuzeshgahUrl" />
                 <ScalarProperty Name="MojavezTasisUrl" ColumnName="MojavezTasisUrl" />
@@ -826,9 +848,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblPlaylist">
-            <EntityTypeMapping TypeName="AminWebModel.TblPlaylist">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblPlaylist">
               <MappingFragment StoreEntitySet="TblPlaylist">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PlaylistId" ColumnName="PlaylistId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="DateSubmited" ColumnName="DateSubmited" />
@@ -844,18 +866,18 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblRole">
-            <EntityTypeMapping TypeName="AminWebModel.TblRole">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblRole">
               <MappingFragment StoreEntitySet="TblRole">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblUser">
-            <EntityTypeMapping TypeName="AminWebModel.TblUser">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblUser">
               <MappingFragment StoreEntitySet="TblUser">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="TellNo" ColumnName="TellNo" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -869,9 +891,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblUserPlaylistRel">
-            <EntityTypeMapping TypeName="AminWebModel.TblUserPlaylistRel">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblUserPlaylistRel">
               <MappingFragment StoreEntitySet="TblUserPlaylistRel">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UserPlaylistRelId" ColumnName="UserPlaylistRelId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="PlaylistId" ColumnName="PlaylistId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -879,9 +901,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblUserVideoRel">
-            <EntityTypeMapping TypeName="AminWebModel.TblUserVideoRel">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblUserVideoRel">
               <MappingFragment StoreEntitySet="TblUserVideoRel">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UserVideoRelId" ColumnName="UserVideoRelId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -889,9 +911,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblVideo">
-            <EntityTypeMapping TypeName="AminWebModel.TblVideo">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblVideo">
               <MappingFragment StoreEntitySet="TblVideo">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
                 <ScalarProperty Name="VidioDemoUrl" ColumnName="VidioDemoUrl" />
                 <ScalarProperty Name="MainImage" ColumnName="MainImage" />
@@ -911,9 +933,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblVideoPlaylistKeyword">
-            <EntityTypeMapping TypeName="AminWebModel.TblVideoPlaylistKeyword">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblVideoPlaylistKeyword">
               <MappingFragment StoreEntitySet="TblVideoPlaylistKeyword">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="VideoPlaylistKeywordId" ColumnName="VideoPlaylistKeywordId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="PlaylistId" ColumnName="PlaylistId" />
@@ -921,9 +943,9 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblWithdraw">
-            <EntityTypeMapping TypeName="AminWebModel.TblWithdraw">
+            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblWithdraw">
               <MappingFragment StoreEntitySet="TblWithdraw">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="WithdrawId" ColumnName="WithdrawId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="IsDone" ColumnName="IsDone" />
@@ -931,7 +953,7 @@ warning 6013: The table/view 'arvintav_AminWeb.dbo.TblConfig' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="AminWebModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="arvintav_AminWebModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

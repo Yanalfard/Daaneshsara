@@ -9,7 +9,7 @@ namespace DataLayer.Services
         private readonly AminWebEntities _db = new AminWebEntities();
 
         private MainRepo<TblChat> _chat;
-        private MainRepo<TblDocs> _docs;
+        private MainRepo<TblDoc> _docs;
         private MainRepo<TblPlaylist> _playlist;
         private MainRepo<TblRole> _role;
         private MainRepo<TblUser> _user;
@@ -21,7 +21,7 @@ namespace DataLayer.Services
 
         public MainRepo<TblChat> Chat => _chat ?? (_chat = new MainRepo<TblChat>(_db));
 
-        public MainRepo<TblDocs> Docs => _docs ?? (_docs = new MainRepo<TblDocs>(_db));
+        public MainRepo<TblDoc> Docs => _docs ?? (_docs = new MainRepo<TblDoc>(_db));
 
         public MainRepo<TblPlaylist> Playlist => _playlist ?? (_playlist = new MainRepo<TblPlaylist>(_db));
 

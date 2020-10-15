@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MetaData\MdTblChat.cs" />
-    <Compile Include="MetaData\MdTblDocs.cs" />
+    <Compile Include="MetaData\MdTblDoc.cs" />
     <Compile Include="MetaData\MdTblPlaylist.cs" />
     <Compile Include="MetaData\MdTblRole.cs" />
     <Compile Include="MetaData\MdTblUser.cs" />
@@ -81,7 +81,10 @@
     <Compile Include="Models\TblChat.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TblDocs.cs">
+    <Compile Include="Models\TblConfig.cs">
+      <DependentUpon>AminWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblDoc.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblPlaylist.cs">
@@ -114,32 +117,30 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Models\AminWeb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AminWeb.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Models\AminWeb.edmx.diagram">
       <DependentUpon>AminWeb.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Models\AminWeb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AminWeb.Context.cs</LastGenOutput>
       <DependentUpon>AminWeb.edmx</DependentUpon>
+      <LastGenOutput>AminWeb.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\AminWeb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AminWeb.edmx</DependentUpon>
       <LastGenOutput>AminWeb.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -428,7 +428,7 @@ public class CodeStringGenerator
                 CultureInfo.InvariantCulture,
                 "{0}using System;{1}" + Environment.NewLine +
                 "using System.ComponentModel.DataAnnotations;" + Environment.NewLine +
-                "using MetaData;" +
+                "using DataLayer.MetaData;" + Environment.NewLine +
                 "{2}",
                 inHeader ? Environment.NewLine : "",
                 includeCollections ? (Environment.NewLine + "using System.Collections.Generic;") : "",

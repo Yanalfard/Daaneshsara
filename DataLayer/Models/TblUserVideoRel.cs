@@ -12,12 +12,13 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using MetaData;
+    using DataLayer.MetaData;
+    
     
     [MetadataType(typeof(MdTblUserVideoRel))]
     public partial class TblUserVideoRel
     {
-        public int id { get; set; }
+        public int UserVideoRelId { get; set; }
         public int UserId { get; set; }
         public int VideoId { get; set; }
         public System.DateTime Date { get; set; }

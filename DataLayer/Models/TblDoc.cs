@@ -12,18 +12,19 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using MetaData;
+    using DataLayer.MetaData;
     
-    [MetadataType(typeof(MdTblDocs))]
-    public partial class TblDocs
+    
+    [MetadataType(typeof(MdTblDoc))]
+    public partial class TblDoc
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TblDocs()
+        public TblDoc()
         {
             this.TblUser = new HashSet<TblUser>();
         }
     
-        public int id { get; set; }
+        public int DocId { get; set; }
         public string TellSabet { get; set; }
         public string ParvaneAmuzeshgahUrl { get; set; }
         public string MojavezTasisUrl { get; set; }

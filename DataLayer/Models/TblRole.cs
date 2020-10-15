@@ -12,7 +12,8 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using MetaData;
+    using DataLayer.MetaData;
+    
     
     [MetadataType(typeof(MdTblRole))]
     public partial class TblRole
@@ -23,7 +24,7 @@ namespace DataLayer.Models
             this.TblUser = new HashSet<TblUser>();
         }
     
-        public int id { get; set; }
+        public int RoleId { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
     

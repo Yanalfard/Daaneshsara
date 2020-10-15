@@ -12,12 +12,13 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using MetaData;
+    using DataLayer.MetaData;
+    
     
     [MetadataType(typeof(MdTblUserPlaylistRel))]
     public partial class TblUserPlaylistRel
     {
-        public int id { get; set; }
+        public int UserPlaylistRelId { get; set; }
         public int UserId { get; set; }
         public int PlaylistId { get; set; }
         public System.DateTime Date { get; set; }

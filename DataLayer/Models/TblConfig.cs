@@ -15,15 +15,10 @@ namespace DataLayer.Models
     using DataLayer.MetaData;
     
     
-    [MetadataType(typeof(MdTblVideoPlaylistKeyword))]
-    public partial class TblVideoPlaylistKeyword
+    public partial class TblConfig
     {
-        public int VideoPlaylistKeywordId { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> VideoId { get; set; }
-        public Nullable<int> PlaylistId { get; set; }
-    
-        public virtual TblPlaylist TblPlaylist { get; set; }
-        public virtual TblVideo TblVideo { get; set; }
+        public int ConfigId { get; set; }
+        public Nullable<short> DarsadeSud { get; set; }
+        public Nullable<int> SaqfeBardasht { get; set; }
     }
 }

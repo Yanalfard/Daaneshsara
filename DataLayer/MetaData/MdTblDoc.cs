@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    public class MdTblDocs
+    public class MdTblDoc
     {
         [Key]
         public int id { get; set; }

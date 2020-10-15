@@ -12,7 +12,8 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using MetaData;
+    using DataLayer.MetaData;
+    
     
     [MetadataType(typeof(MdTblVideo))]
     public partial class TblVideo
@@ -24,7 +25,7 @@ namespace DataLayer.Models
             this.TblVideoPlaylistKeyword = new HashSet<TblVideoPlaylistKeyword>();
         }
     
-        public int id { get; set; }
+        public int VideoId { get; set; }
         public string VideoUrl { get; set; }
         public string VidioDemoUrl { get; set; }
         public string MainImage { get; set; }
