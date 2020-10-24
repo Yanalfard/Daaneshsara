@@ -40,7 +40,9 @@ namespace DataLayer.Services
         public MainRepo<TblVideoPlaylistKeyword> VideoPlaylistKeyword => _videoPlaylistKeyword ?? (_videoPlaylistKeyword = new MainRepo<TblVideoPlaylistKeyword>(_db));
 
         public MainRepo<TblWithdraw> Withdraw => _withdraw ?? (_withdraw = new MainRepo<TblWithdraw>(_db));
+
         public MainRepo<TblTicket> Ticket => _ticket ?? (_ticket = new MainRepo<TblTicket>(_db));
+
         public MainRepo<TblReport> Report => _report ?? (_report = new MainRepo<TblReport>(_db));
 
         public void Dispose()
