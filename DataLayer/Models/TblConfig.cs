@@ -15,10 +15,13 @@ namespace DataLayer.Models
     using DataLayer.MetaData;
     
     
+    [MetadataType(typeof(TblConfig))]
     public partial class TblConfig
     {
         public int ConfigId { get; set; }
         public Nullable<short> DarsadeSud { get; set; }
         public Nullable<int> SaqfeBardasht { get; set; }
+        public string AboutUsBody { get; set; }
+        public string Rules { get; set; }
     }
 }

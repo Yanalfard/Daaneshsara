@@ -315,7 +315,7 @@ public class CodeStringGenerator
     {
         return string.Format(
             CultureInfo.InvariantCulture,
-            "[MetadataType(typeof(Md{2}))]" + Environment.NewLine +
+            "[MetadataType(typeof({2}))]" + Environment.NewLine +
             "{0} {1}partial class {2}{3}",
             Accessibility.ForType(entity),
             _code.SpaceAfter(_code.AbstractOption(entity)),

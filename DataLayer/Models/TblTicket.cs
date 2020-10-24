@@ -15,15 +15,16 @@ namespace DataLayer.Models
     using DataLayer.MetaData;
     
     
-    [MetadataType(typeof(TblUserVideoRel))]
-    public partial class TblUserVideoRel
+    [MetadataType(typeof(TblTicket))]
+    public partial class TblTicket
     {
-        public int UserVideoRelId { get; set; }
-        public int UserId { get; set; }
-        public int VideoId { get; set; }
-        public System.DateTime Date { get; set; }
+        public int id { get; set; }
+        public int SenderId { get; set; }
+        public string Title { get; set; }
+        public string Text { get; set; }
+        public string AttachmentUrl { get; set; }
+        public System.DateTime DateSent { get; set; }
     
         public virtual TblUser TblUser { get; set; }
-        public virtual TblVideo TblVideo { get; set; }
     }
 }

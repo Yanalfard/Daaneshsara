@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="arvintav_AminWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AminWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -32,6 +32,8 @@
           <Property Name="ConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DarsadeSud" Type="smallint" />
           <Property Name="SaqfeBardasht" Type="int" />
+          <Property Name="AboutUsBody" Type="nvarchar(max)" />
+          <Property Name="Rules" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="TblDoc">
           <Key>
@@ -62,6 +64,15 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CertificateURL" Type="nvarchar" MaxLength="256" />
         </EntityType>
+        <EntityType Name="TblReport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VideoId" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateSent" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="TblRole">
           <Key>
             <PropertyRef Name="RoleId" />
@@ -69,6 +80,17 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblTicket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SenderId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="AttachmentUrl" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateSent" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TblUser">
           <Key>
@@ -176,6 +198,34 @@
             </Principal>
             <Dependent Role="TblPlaylist">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblReport_TblVideo">
+          <End Role="TblVideo" Type="Self.TblVideo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TblReport" Type="Self.TblReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblVideo">
+              <PropertyRef Name="VideoId" />
+            </Principal>
+            <Dependent Role="TblReport">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblTicket_TblUser">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TblTicket" Type="Self.TblTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TblTicket">
+              <PropertyRef Name="SenderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -314,14 +364,45 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="arvintav_AminWebModelStoreContainer">
+        <EntityContainer Name="AminWebModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblChat" EntityType="Self.TblChat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblConfig" EntityType="Self.TblConfig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDoc" EntityType="Self.TblDoc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblPlaylist" EntityType="Self.TblPlaylist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblReport" EntityType="Self.TblReport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblRole" EntityType="Self.TblRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblTicket" EntityType="Self.TblTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUser" EntityType="Self.TblUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUserPlaylistRel" EntityType="Self.TblUserPlaylistRel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblUserVideoRel" EntityType="Self.TblUserVideoRel" Schema="dbo" store:Type="Tables" />
@@ -339,6 +420,14 @@
           <AssociationSet Name="FK_TblPlaylist_TblUser" Association="Self.FK_TblPlaylist_TblUser">
             <End Role="TblUser" EntitySet="TblUser" />
             <End Role="TblPlaylist" EntitySet="TblPlaylist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblReport_TblVideo" Association="Self.FK_TblReport_TblVideo">
+            <End Role="TblVideo" EntitySet="TblVideo" />
+            <End Role="TblReport" EntitySet="TblReport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblTicket_TblUser" Association="Self.FK_TblTicket_TblUser">
+            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="TblTicket" EntitySet="TblTicket" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUser_TblDocs" Association="Self.FK_TblUser_TblDocs">
             <End Role="TblDoc" EntitySet="TblDoc" />
@@ -389,8 +478,8 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="arvintav_AminWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="sysdiagrams">
+      <Schema Namespace="AminWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -419,6 +508,8 @@
           <Property Name="ConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DarsadeSud" Type="Int16" />
           <Property Name="SaqfeBardasht" Type="Int32" />
+          <Property Name="AboutUsBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rules" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TblDoc">
           <Key>
@@ -431,7 +522,7 @@
           <Property Name="ShenasnameSahebEmtiazUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="KarteMeliSahebEmtiazUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TblUser" Relationship="Self.FK_TblUser_TblDocs" FromRole="TblDoc" ToRole="TblUser" />
+          <NavigationProperty Name="TblUsers" Relationship="Self.FK_TblUser_TblDocs" FromRole="TblDoc" ToRole="TblUser" />
         </EntityType>
         <EntityType Name="TblPlaylist">
           <Key>
@@ -450,9 +541,19 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CertificateURL" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblPlaylist_TblUser" FromRole="TblPlaylist" ToRole="TblUser" />
-          <NavigationProperty Name="TblUserPlaylistRel" Relationship="Self.FK_TblUserPackRel_TblPack" FromRole="TblPlaylist" ToRole="TblUserPlaylistRel" />
-          <NavigationProperty Name="TblVideo" Relationship="Self.FK_TblVideo_TblPack" FromRole="TblPlaylist" ToRole="TblVideo" />
-          <NavigationProperty Name="TblVideoPlaylistKeyword" Relationship="Self.FK_TblVideoPlaylistKeyword_TblPlaylist" FromRole="TblPlaylist" ToRole="TblVideoPlaylistKeyword" />
+          <NavigationProperty Name="TblUserPlaylistRels" Relationship="Self.FK_TblUserPackRel_TblPack" FromRole="TblPlaylist" ToRole="TblUserPlaylistRel" />
+          <NavigationProperty Name="TblVideos" Relationship="Self.FK_TblVideo_TblPack" FromRole="TblPlaylist" ToRole="TblVideo" />
+          <NavigationProperty Name="TblVideoPlaylistKeywords" Relationship="Self.FK_TblVideoPlaylistKeyword_TblPlaylist" FromRole="TblPlaylist" ToRole="TblVideoPlaylistKeyword" />
+        </EntityType>
+        <EntityType Name="TblReport">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VideoId" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateSent" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TblVideo" Relationship="Self.FK_TblReport_TblVideo" FromRole="TblReport" ToRole="TblVideo" />
         </EntityType>
         <EntityType Name="TblRole">
           <Key>
@@ -461,7 +562,19 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="TblUser" Relationship="Self.FK_TblUser_TblRole" FromRole="TblRole" ToRole="TblUser" />
+          <NavigationProperty Name="TblUsers" Relationship="Self.FK_TblUser_TblRole" FromRole="TblRole" ToRole="TblUser" />
+        </EntityType>
+        <EntityType Name="TblTicket">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AttachmentUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateSent" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TblUser" Relationship="Self.FK_TblTicket_TblUser" FromRole="TblTicket" ToRole="TblUser" />
         </EntityType>
         <EntityType Name="TblUser">
           <Key>
@@ -477,15 +590,16 @@
           <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DocsId" Type="Int32" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TblChat" Relationship="Self.FK_Reciever" FromRole="TblUser" ToRole="TblChat" />
-          <NavigationProperty Name="TblChat1" Relationship="Self.FK_Sender" FromRole="TblUser" ToRole="TblChat" />
+          <NavigationProperty Name="TblChats" Relationship="Self.FK_Reciever" FromRole="TblUser" ToRole="TblChat" />
+          <NavigationProperty Name="TblChats1" Relationship="Self.FK_Sender" FromRole="TblUser" ToRole="TblChat" />
           <NavigationProperty Name="TblDoc" Relationship="Self.FK_TblUser_TblDocs" FromRole="TblUser" ToRole="TblDoc" />
-          <NavigationProperty Name="TblPlaylist" Relationship="Self.FK_TblPlaylist_TblUser" FromRole="TblUser" ToRole="TblPlaylist" />
+          <NavigationProperty Name="TblPlaylists" Relationship="Self.FK_TblPlaylist_TblUser" FromRole="TblUser" ToRole="TblPlaylist" />
           <NavigationProperty Name="TblRole" Relationship="Self.FK_TblUser_TblRole" FromRole="TblUser" ToRole="TblRole" />
-          <NavigationProperty Name="TblUserPlaylistRel" Relationship="Self.FK_TblUserPackRel_TblUser" FromRole="TblUser" ToRole="TblUserPlaylistRel" />
-          <NavigationProperty Name="TblUserVideoRel" Relationship="Self.FK_TblUserVideoRel_TblUser" FromRole="TblUser" ToRole="TblUserVideoRel" />
-          <NavigationProperty Name="TblWithdraw" Relationship="Self.FK_TblWithdraw_TblUser" FromRole="TblUser" ToRole="TblWithdraw" />
-          <NavigationProperty Name="TblVideo" Relationship="Self.FK_WhoUploadedVideo" FromRole="TblUser" ToRole="TblVideo" />
+          <NavigationProperty Name="TblTickets" Relationship="Self.FK_TblTicket_TblUser" FromRole="TblUser" ToRole="TblTicket" />
+          <NavigationProperty Name="TblUserPlaylistRels" Relationship="Self.FK_TblUserPackRel_TblUser" FromRole="TblUser" ToRole="TblUserPlaylistRel" />
+          <NavigationProperty Name="TblUserVideoRels" Relationship="Self.FK_TblUserVideoRel_TblUser" FromRole="TblUser" ToRole="TblUserVideoRel" />
+          <NavigationProperty Name="TblWithdraws" Relationship="Self.FK_TblWithdraw_TblUser" FromRole="TblUser" ToRole="TblWithdraw" />
+          <NavigationProperty Name="TblVideos" Relationship="Self.FK_WhoUploadedVideo" FromRole="TblUser" ToRole="TblVideo" />
         </EntityType>
         <EntityType Name="TblUserPlaylistRel">
           <Key>
@@ -530,9 +644,10 @@
           <Property Name="PlaylistId" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TblPlaylist" Relationship="Self.FK_TblVideo_TblPack" FromRole="TblVideo" ToRole="TblPlaylist" />
+          <NavigationProperty Name="TblReports" Relationship="Self.FK_TblReport_TblVideo" FromRole="TblVideo" ToRole="TblReport" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_WhoUploadedVideo" FromRole="TblVideo" ToRole="TblUser" />
-          <NavigationProperty Name="TblUserVideoRel" Relationship="Self.FK_TblUserVideoRel_TblVideo" FromRole="TblVideo" ToRole="TblUserVideoRel" />
-          <NavigationProperty Name="TblVideoPlaylistKeyword" Relationship="Self.FK_TblVideoKeyword_TblVideo" FromRole="TblVideo" ToRole="TblVideoPlaylistKeyword" />
+          <NavigationProperty Name="TblUserVideoRels" Relationship="Self.FK_TblUserVideoRel_TblVideo" FromRole="TblVideo" ToRole="TblUserVideoRel" />
+          <NavigationProperty Name="TblVideoPlaylistKeywords" Relationship="Self.FK_TblVideoKeyword_TblVideo" FromRole="TblVideo" ToRole="TblVideoPlaylistKeyword" />
         </EntityType>
         <EntityType Name="TblVideoPlaylistKeyword">
           <Key>
@@ -640,6 +755,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TblReport_TblVideo">
+          <End Role="TblVideo" Type="Self.TblVideo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TblReport" Type="Self.TblReport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblVideo">
+              <PropertyRef Name="VideoId" />
+            </Principal>
+            <Dependent Role="TblReport">
+              <PropertyRef Name="VideoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TblUser_TblRole">
           <End Role="TblRole" Type="Self.TblRole" Multiplicity="1" />
           <End Role="TblUser" Type="Self.TblUser" Multiplicity="*" />
@@ -649,6 +778,20 @@
             </Principal>
             <Dependent Role="TblUser">
               <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblTicket_TblUser">
+          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TblTicket" Type="Self.TblTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblUser">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="TblTicket">
+              <PropertyRef Name="SenderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -727,84 +870,134 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AminWebEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TblChat" EntityType="Self.TblChat" />
-          <EntitySet Name="TblConfig" EntityType="Self.TblConfig" />
-          <EntitySet Name="TblDoc" EntityType="Self.TblDoc" />
-          <EntitySet Name="TblPlaylist" EntityType="Self.TblPlaylist" />
-          <EntitySet Name="TblRole" EntityType="Self.TblRole" />
-          <EntitySet Name="TblUser" EntityType="Self.TblUser" />
-          <EntitySet Name="TblUserPlaylistRel" EntityType="Self.TblUserPlaylistRel" />
-          <EntitySet Name="TblUserVideoRel" EntityType="Self.TblUserVideoRel" />
-          <EntitySet Name="TblVideo" EntityType="Self.TblVideo" />
-          <EntitySet Name="TblVideoPlaylistKeyword" EntityType="Self.TblVideoPlaylistKeyword" />
-          <EntitySet Name="TblWithdraw" EntityType="Self.TblWithdraw" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TblChats" EntityType="Self.TblChat" />
+          <EntitySet Name="TblConfigs" EntityType="Self.TblConfig" />
+          <EntitySet Name="TblDocs" EntityType="Self.TblDoc" />
+          <EntitySet Name="TblPlaylists" EntityType="Self.TblPlaylist" />
+          <EntitySet Name="TblReports" EntityType="Self.TblReport" />
+          <EntitySet Name="TblRoles" EntityType="Self.TblRole" />
+          <EntitySet Name="TblTickets" EntityType="Self.TblTicket" />
+          <EntitySet Name="TblUsers" EntityType="Self.TblUser" />
+          <EntitySet Name="TblUserPlaylistRels" EntityType="Self.TblUserPlaylistRel" />
+          <EntitySet Name="TblUserVideoRels" EntityType="Self.TblUserVideoRel" />
+          <EntitySet Name="TblVideos" EntityType="Self.TblVideo" />
+          <EntitySet Name="TblVideoPlaylistKeywords" EntityType="Self.TblVideoPlaylistKeyword" />
+          <EntitySet Name="TblWithdraws" EntityType="Self.TblWithdraw" />
           <AssociationSet Name="FK_Reciever" Association="Self.FK_Reciever">
-            <End Role="TblUser" EntitySet="TblUser" />
-            <End Role="TblChat" EntitySet="TblChat" />
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="TblChat" EntitySet="TblChats" />
           </AssociationSet>
           <AssociationSet Name="FK_Sender" Association="Self.FK_Sender">
-            <End Role="TblUser" EntitySet="TblUser" />
-            <End Role="TblChat" EntitySet="TblChat" />
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="TblChat" EntitySet="TblChats" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUser_TblDocs" Association="Self.FK_TblUser_TblDocs">
-            <End Role="TblDoc" EntitySet="TblDoc" />
-            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="TblDoc" EntitySet="TblDocs" />
+            <End Role="TblUser" EntitySet="TblUsers" />
           </AssociationSet>
           <AssociationSet Name="FK_TblPlaylist_TblUser" Association="Self.FK_TblPlaylist_TblUser">
-            <End Role="TblUser" EntitySet="TblUser" />
-            <End Role="TblPlaylist" EntitySet="TblPlaylist" />
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="TblPlaylist" EntitySet="TblPlaylists" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUserPackRel_TblPack" Association="Self.FK_TblUserPackRel_TblPack">
-            <End Role="TblPlaylist" EntitySet="TblPlaylist" />
-            <End Role="TblUserPlaylistRel" EntitySet="TblUserPlaylistRel" />
+            <End Role="TblPlaylist" EntitySet="TblPlaylists" />
+            <End Role="TblUserPlaylistRel" EntitySet="TblUserPlaylistRels" />
           </AssociationSet>
           <AssociationSet Name="FK_TblVideo_TblPack" Association="Self.FK_TblVideo_TblPack">
-            <End Role="TblPlaylist" EntitySet="TblPlaylist" />
-            <End Role="TblVideo" EntitySet="TblVideo" />
+            <End Role="TblPlaylist" EntitySet="TblPlaylists" />
+            <End Role="TblVideo" EntitySet="TblVideos" />
           </AssociationSet>
           <AssociationSet Name="FK_TblVideoPlaylistKeyword_TblPlaylist" Association="Self.FK_TblVideoPlaylistKeyword_TblPlaylist">
-            <End Role="TblPlaylist" EntitySet="TblPlaylist" />
-            <End Role="TblVideoPlaylistKeyword" EntitySet="TblVideoPlaylistKeyword" />
+            <End Role="TblPlaylist" EntitySet="TblPlaylists" />
+            <End Role="TblVideoPlaylistKeyword" EntitySet="TblVideoPlaylistKeywords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblReport_TblVideo" Association="Self.FK_TblReport_TblVideo">
+            <End Role="TblVideo" EntitySet="TblVideos" />
+            <End Role="TblReport" EntitySet="TblReports" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUser_TblRole" Association="Self.FK_TblUser_TblRole">
-            <End Role="TblRole" EntitySet="TblRole" />
-            <End Role="TblUser" EntitySet="TblUser" />
+            <End Role="TblRole" EntitySet="TblRoles" />
+            <End Role="TblUser" EntitySet="TblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblTicket_TblUser" Association="Self.FK_TblTicket_TblUser">
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="TblTicket" EntitySet="TblTickets" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUserPackRel_TblUser" Association="Self.FK_TblUserPackRel_TblUser">
-            <End Role="TblUser" EntitySet="TblUser" />
-            <End Role="TblUserPlaylistRel" EntitySet="TblUserPlaylistRel" />
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="TblUserPlaylistRel" EntitySet="TblUserPlaylistRels" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUserVideoRel_TblUser" Association="Self.FK_TblUserVideoRel_TblUser">
-            <End Role="TblUser" EntitySet="TblUser" />
-            <End Role="TblUserVideoRel" EntitySet="TblUserVideoRel" />
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="TblUserVideoRel" EntitySet="TblUserVideoRels" />
           </AssociationSet>
           <AssociationSet Name="FK_TblWithdraw_TblUser" Association="Self.FK_TblWithdraw_TblUser">
-            <End Role="TblUser" EntitySet="TblUser" />
-            <End Role="TblWithdraw" EntitySet="TblWithdraw" />
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="TblWithdraw" EntitySet="TblWithdraws" />
           </AssociationSet>
           <AssociationSet Name="FK_WhoUploadedVideo" Association="Self.FK_WhoUploadedVideo">
-            <End Role="TblUser" EntitySet="TblUser" />
-            <End Role="TblVideo" EntitySet="TblVideo" />
+            <End Role="TblUser" EntitySet="TblUsers" />
+            <End Role="TblVideo" EntitySet="TblVideos" />
           </AssociationSet>
           <AssociationSet Name="FK_TblUserVideoRel_TblVideo" Association="Self.FK_TblUserVideoRel_TblVideo">
-            <End Role="TblVideo" EntitySet="TblVideo" />
-            <End Role="TblUserVideoRel" EntitySet="TblUserVideoRel" />
+            <End Role="TblVideo" EntitySet="TblVideos" />
+            <End Role="TblUserVideoRel" EntitySet="TblUserVideoRels" />
           </AssociationSet>
           <AssociationSet Name="FK_TblVideoKeyword_TblVideo" Association="Self.FK_TblVideoKeyword_TblVideo">
-            <End Role="TblVideo" EntitySet="TblVideo" />
-            <End Role="TblVideoPlaylistKeyword" EntitySet="TblVideoPlaylistKeyword" />
+            <End Role="TblVideo" EntitySet="TblVideos" />
+            <End Role="TblVideoPlaylistKeyword" EntitySet="TblVideoPlaylistKeywords" />
           </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(AminWebModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(AminWebModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="arvintav_AminWebModelStoreContainer" CdmEntityContainer="AminWebEntities">
+        <EntityContainerMapping StorageEntityContainer="AminWebModelStoreContainer" CdmEntityContainer="AminWebEntities">
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.sysdiagrams">
+            <EntityTypeMapping TypeName="AminWebModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -814,8 +1007,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblChat">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblChat">
+          <EntitySetMapping Name="TblChats">
+            <EntityTypeMapping TypeName="AminWebModel.TblChat">
               <MappingFragment StoreEntitySet="TblChat">
                 <ScalarProperty Name="ChatId" ColumnName="ChatId" />
                 <ScalarProperty Name="SenderId" ColumnName="SenderId" />
@@ -825,17 +1018,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblConfig">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblConfig">
+          <EntitySetMapping Name="TblConfigs">
+            <EntityTypeMapping TypeName="AminWebModel.TblConfig">
               <MappingFragment StoreEntitySet="TblConfig">
                 <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
                 <ScalarProperty Name="DarsadeSud" ColumnName="DarsadeSud" />
                 <ScalarProperty Name="SaqfeBardasht" ColumnName="SaqfeBardasht" />
+                <ScalarProperty Name="AboutUsBody" ColumnName="AboutUsBody" />
+                <ScalarProperty Name="Rules" ColumnName="Rules" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblDoc">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblDoc">
+          <EntitySetMapping Name="TblDocs">
+            <EntityTypeMapping TypeName="AminWebModel.TblDoc">
               <MappingFragment StoreEntitySet="TblDoc">
                 <ScalarProperty Name="DocId" ColumnName="DocId" />
                 <ScalarProperty Name="TellSabet" ColumnName="TellSabet" />
@@ -847,8 +1042,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblPlaylist">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblPlaylist">
+          <EntitySetMapping Name="TblPlaylists">
+            <EntityTypeMapping TypeName="AminWebModel.TblPlaylist">
               <MappingFragment StoreEntitySet="TblPlaylist">
                 <ScalarProperty Name="PlaylistId" ColumnName="PlaylistId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -865,8 +1060,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblRole">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblRole">
+          <EntitySetMapping Name="TblReports">
+            <EntityTypeMapping TypeName="AminWebModel.TblReport">
+              <MappingFragment StoreEntitySet="TblReport">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="DateSent" ColumnName="DateSent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblRoles">
+            <EntityTypeMapping TypeName="AminWebModel.TblRole">
               <MappingFragment StoreEntitySet="TblRole">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -874,8 +1079,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblUser">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblUser">
+          <EntitySetMapping Name="TblTickets">
+            <EntityTypeMapping TypeName="AminWebModel.TblTicket">
+              <MappingFragment StoreEntitySet="TblTicket">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="AttachmentUrl" ColumnName="AttachmentUrl" />
+                <ScalarProperty Name="DateSent" ColumnName="DateSent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUsers">
+            <EntityTypeMapping TypeName="AminWebModel.TblUser">
               <MappingFragment StoreEntitySet="TblUser">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -890,8 +1107,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblUserPlaylistRel">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblUserPlaylistRel">
+          <EntitySetMapping Name="TblUserPlaylistRels">
+            <EntityTypeMapping TypeName="AminWebModel.TblUserPlaylistRel">
               <MappingFragment StoreEntitySet="TblUserPlaylistRel">
                 <ScalarProperty Name="UserPlaylistRelId" ColumnName="UserPlaylistRelId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -900,8 +1117,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblUserVideoRel">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblUserVideoRel">
+          <EntitySetMapping Name="TblUserVideoRels">
+            <EntityTypeMapping TypeName="AminWebModel.TblUserVideoRel">
               <MappingFragment StoreEntitySet="TblUserVideoRel">
                 <ScalarProperty Name="UserVideoRelId" ColumnName="UserVideoRelId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -910,8 +1127,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblVideo">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblVideo">
+          <EntitySetMapping Name="TblVideos">
+            <EntityTypeMapping TypeName="AminWebModel.TblVideo">
               <MappingFragment StoreEntitySet="TblVideo">
                 <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
@@ -932,8 +1149,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblVideoPlaylistKeyword">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblVideoPlaylistKeyword">
+          <EntitySetMapping Name="TblVideoPlaylistKeywords">
+            <EntityTypeMapping TypeName="AminWebModel.TblVideoPlaylistKeyword">
               <MappingFragment StoreEntitySet="TblVideoPlaylistKeyword">
                 <ScalarProperty Name="VideoPlaylistKeywordId" ColumnName="VideoPlaylistKeywordId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -942,8 +1159,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblWithdraw">
-            <EntityTypeMapping TypeName="arvintav_AminWebModel.TblWithdraw">
+          <EntitySetMapping Name="TblWithdraws">
+            <EntityTypeMapping TypeName="AminWebModel.TblWithdraw">
               <MappingFragment StoreEntitySet="TblWithdraw">
                 <ScalarProperty Name="WithdrawId" ColumnName="WithdrawId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -953,7 +1170,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="arvintav_AminWebModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="AminWebModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="AminWebModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="AminWebModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="AminWebModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AminWebModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="AminWebModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AminWebModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="AminWebModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="AminWebModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -968,7 +1208,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

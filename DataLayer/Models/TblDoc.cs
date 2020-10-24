@@ -15,13 +15,13 @@ namespace DataLayer.Models
     using DataLayer.MetaData;
     
     
-    [MetadataType(typeof(MdTblDoc))]
+    [MetadataType(typeof(TblDoc))]
     public partial class TblDoc
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TblDoc()
         {
-            this.TblUser = new HashSet<TblUser>();
+            this.TblUsers = new HashSet<TblUser>();
         }
     
         public int DocId { get; set; }
@@ -33,6 +33,6 @@ namespace DataLayer.Models
         public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblUser> TblUser { get; set; }
+        public virtual ICollection<TblUser> TblUsers { get; set; }
     }
 }

@@ -75,7 +75,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AminWeb.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>AminWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>AminWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblChat.cs">
@@ -90,7 +96,13 @@
     <Compile Include="Models\TblPlaylist.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TblReport.cs">
+      <DependentUpon>AminWeb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TblRole.cs">
+      <DependentUpon>AminWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblTicket.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblUser.cs">

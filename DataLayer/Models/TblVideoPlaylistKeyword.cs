@@ -15,7 +15,7 @@ namespace DataLayer.Models
     using DataLayer.MetaData;
     
     
-    [MetadataType(typeof(MdTblVideoPlaylistKeyword))]
+    [MetadataType(typeof(TblVideoPlaylistKeyword))]
     public partial class TblVideoPlaylistKeyword
     {
         public int VideoPlaylistKeywordId { get; set; }

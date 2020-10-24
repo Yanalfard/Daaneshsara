@@ -18,6 +18,8 @@ namespace DataLayer.Services
         private MainRepo<TblVideo> _video;
         private MainRepo<TblVideoPlaylistKeyword> _videoPlaylistKeyword;
         private MainRepo<TblWithdraw> _withdraw;
+        private MainRepo<TblTicket> _ticket;
+        private MainRepo<TblReport> _report;
 
         public MainRepo<TblChat> Chat => _chat ?? (_chat = new MainRepo<TblChat>(_db));
 
@@ -38,6 +40,8 @@ namespace DataLayer.Services
         public MainRepo<TblVideoPlaylistKeyword> VideoPlaylistKeyword => _videoPlaylistKeyword ?? (_videoPlaylistKeyword = new MainRepo<TblVideoPlaylistKeyword>(_db));
 
         public MainRepo<TblWithdraw> Withdraw => _withdraw ?? (_withdraw = new MainRepo<TblWithdraw>(_db));
+        public MainRepo<TblTicket> Ticket => _ticket ?? (_ticket = new MainRepo<TblTicket>(_db));
+        public MainRepo<TblReport> Report => _report ?? (_report = new MainRepo<TblReport>(_db));
 
         public void Dispose()
         {

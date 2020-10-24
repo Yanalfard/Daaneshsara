@@ -10,20 +10,13 @@
 namespace DataLayer.Models
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using DataLayer.MetaData;
     
     
-    [MetadataType(typeof(TblUserVideoRel))]
-    public partial class TblUserVideoRel
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int UserVideoRelId { get; set; }
-        public int UserId { get; set; }
-        public int VideoId { get; set; }
-        public System.DateTime Date { get; set; }
-    
-        public virtual TblUser TblUser { get; set; }
-        public virtual TblVideo TblVideo { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

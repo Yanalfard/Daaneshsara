@@ -15,15 +15,15 @@ namespace DataLayer.Models
     using DataLayer.MetaData;
     
     
-    [MetadataType(typeof(MdTblPlaylist))]
+    [MetadataType(typeof(TblPlaylist))]
     public partial class TblPlaylist
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TblPlaylist()
         {
-            this.TblUserPlaylistRel = new HashSet<TblUserPlaylistRel>();
-            this.TblVideo = new HashSet<TblVideo>();
-            this.TblVideoPlaylistKeyword = new HashSet<TblVideoPlaylistKeyword>();
+            this.TblUserPlaylistRels = new HashSet<TblUserPlaylistRel>();
+            this.TblVideos = new HashSet<TblVideo>();
+            this.TblVideoPlaylistKeywords = new HashSet<TblVideoPlaylistKeyword>();
         }
     
         public int PlaylistId { get; set; }
@@ -41,10 +41,10 @@ namespace DataLayer.Models
     
         public virtual TblUser TblUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblUserPlaylistRel> TblUserPlaylistRel { get; set; }
+        public virtual ICollection<TblUserPlaylistRel> TblUserPlaylistRels { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblVideo> TblVideo { get; set; }
+        public virtual ICollection<TblVideo> TblVideos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblVideoPlaylistKeyword> TblVideoPlaylistKeyword { get; set; }
+        public virtual ICollection<TblVideoPlaylistKeyword> TblVideoPlaylistKeywords { get; set; }
     }
 }

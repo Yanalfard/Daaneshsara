@@ -15,7 +15,7 @@ namespace DataLayer.Models
     using DataLayer.MetaData;
     
     
-    [MetadataType(typeof(MdTblWithdraw))]
+    [MetadataType(typeof(TblWithdraw))]
     public partial class TblWithdraw
     {
         public int WithdrawId { get; set; }

@@ -15,7 +15,7 @@ namespace DataLayer.Models
     using DataLayer.MetaData;
     
     
-    [MetadataType(typeof(MdTblUserPlaylistRel))]
+    [MetadataType(typeof(TblUserPlaylistRel))]
     public partial class TblUserPlaylistRel
     {
         public int UserPlaylistRelId { get; set; }

@@ -15,7 +15,7 @@ namespace DataLayer.Models
     using DataLayer.MetaData;
     
     
-    [MetadataType(typeof(MdTblChat))]
+    [MetadataType(typeof(TblChat))]
     public partial class TblChat
     {
         public int ChatId { get; set; }
