@@ -11,24 +11,21 @@ namespace DataLayer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using DataLayer.MetaData;
     
-    
-    [MetadataType(typeof(TblUser))]
     public partial class TblUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TblUser()
         {
-            this.TblChats = new HashSet<TblChat>();
-            this.TblChats1 = new HashSet<TblChat>();
-            this.TblPlaylists = new HashSet<TblPlaylist>();
-            this.TblTickets = new HashSet<TblTicket>();
-            this.TblUserPlaylistRels = new HashSet<TblUserPlaylistRel>();
-            this.TblUserVideoRels = new HashSet<TblUserVideoRel>();
-            this.TblWithdraws = new HashSet<TblWithdraw>();
-            this.TblVideos = new HashSet<TblVideo>();
+            this.TblChat = new HashSet<TblChat>();
+            this.TblChat1 = new HashSet<TblChat>();
+            this.TblLog = new HashSet<TblLog>();
+            this.TblPlaylist = new HashSet<TblPlaylist>();
+            this.TblTicket = new HashSet<TblTicket>();
+            this.TblUserPlaylistRel = new HashSet<TblUserPlaylistRel>();
+            this.TblUserVideoRel = new HashSet<TblUserVideoRel>();
+            this.TblWithdraw = new HashSet<TblWithdraw>();
+            this.TblVideo = new HashSet<TblVideo>();
         }
     
         public int UserId { get; set; }
@@ -43,22 +40,24 @@ namespace DataLayer.Models
         public int RoleId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblChat> TblChats { get; set; }
+        public virtual ICollection<TblChat> TblChat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblChat> TblChats1 { get; set; }
+        public virtual ICollection<TblChat> TblChat1 { get; set; }
         public virtual TblDoc TblDoc { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblPlaylist> TblPlaylists { get; set; }
+        public virtual ICollection<TblLog> TblLog { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblPlaylist> TblPlaylist { get; set; }
         public virtual TblRole TblRole { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblTicket> TblTickets { get; set; }
+        public virtual ICollection<TblTicket> TblTicket { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblUserPlaylistRel> TblUserPlaylistRels { get; set; }
+        public virtual ICollection<TblUserPlaylistRel> TblUserPlaylistRel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblUserVideoRel> TblUserVideoRels { get; set; }
+        public virtual ICollection<TblUserVideoRel> TblUserVideoRel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblWithdraw> TblWithdraws { get; set; }
+        public virtual ICollection<TblWithdraw> TblWithdraw { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblVideo> TblVideos { get; set; }
+        public virtual ICollection<TblVideo> TblVideo { get; set; }
     }
 }

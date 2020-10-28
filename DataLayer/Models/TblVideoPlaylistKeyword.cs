@@ -11,11 +11,7 @@ namespace DataLayer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using DataLayer.MetaData;
     
-    
-    [MetadataType(typeof(TblVideoPlaylistKeyword))]
     public partial class TblVideoPlaylistKeyword
     {
         public int VideoPlaylistKeywordId { get; set; }

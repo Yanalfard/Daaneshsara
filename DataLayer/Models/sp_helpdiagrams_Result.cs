@@ -10,9 +10,6 @@
 namespace DataLayer.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-    using DataLayer.MetaData;
-    
     
     public partial class sp_helpdiagrams_Result
     {

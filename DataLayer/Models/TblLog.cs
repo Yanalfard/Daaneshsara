@@ -11,17 +11,15 @@ namespace DataLayer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using DataLayer.MetaData;
     
-    
-    [MetadataType(typeof(sysdiagram))]
-    public partial class sysdiagram
+    public partial class TblLog
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public int LogId { get; set; }
+        public int UserId { get; set; }
+        public int Amount { get; set; }
+        public short Status { get; set; }
+        public System.DateTime Date { get; set; }
+    
+        public virtual TblUser TblUser { get; set; }
     }
 }

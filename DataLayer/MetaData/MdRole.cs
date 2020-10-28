@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdTblRole
+    class MdRole
     {
         [Key]
         public int id { get; set; }
@@ -21,5 +21,11 @@ namespace DataLayer.MetaData
         [Required]
         [MaxLength(length: 50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
         public string Title { get; set; }
+    }
+
+    [MetadataType(typeof(MdRole))]
+    public class TblRole
+    {
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdTblVideo
+    class MdVideo
     {    
         [Key]
         public int id { get; set; }
@@ -68,5 +68,11 @@ namespace DataLayer.MetaData
         public Nullable<int> PlaylistId { get; set; }
         
         public bool IsActive { get; set; }
+    }
+
+    [MetadataType(typeof(MdVideo))]
+    public class TblVideo
+    {
+
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdTblUser
+    class MdUser
     {
         [Key]
         public int id { get; set; }
@@ -47,5 +47,11 @@ namespace DataLayer.MetaData
         public Nullable<int> DocsId { get; set; }
         
         public int RoleId { get; set; }
+    }
+
+    [MetadataType(typeof(MdUser))]
+    public class TblUser
+    {
+
     }
 }

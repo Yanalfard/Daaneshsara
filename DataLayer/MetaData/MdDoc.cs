@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    public class MdTblDoc
+    public class MdDoc
     {
         [Key]
         public int id { get; set; }
@@ -41,5 +41,11 @@ namespace DataLayer.MetaData
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(length: 500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         public string Address { get; set; }
+    }
+
+    [MetadataType(typeof(MdDoc))]
+    public class TblDoc
+    {
+
     }
 }

@@ -50,16 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MetaData\MdTblChat.cs" />
-    <Compile Include="MetaData\MdTblDoc.cs" />
-    <Compile Include="MetaData\MdTblPlaylist.cs" />
-    <Compile Include="MetaData\MdTblRole.cs" />
-    <Compile Include="MetaData\MdTblUser.cs" />
-    <Compile Include="MetaData\MdTblUserPlaylistRel.cs" />
-    <Compile Include="MetaData\MdTblUserVideoRel.cs" />
-    <Compile Include="MetaData\MdTblVideo.cs" />
-    <Compile Include="MetaData\MdTblVideoPlaylistKeyword.cs" />
-    <Compile Include="MetaData\MdTblWithdraw.cs" />
+    <Compile Include="MetaData\MdChat.cs" />
+    <Compile Include="MetaData\MdDoc.cs" />
+    <Compile Include="MetaData\MdPlaylist.cs" />
+    <Compile Include="MetaData\MdRole.cs" />
+    <Compile Include="MetaData\MdUser.cs" />
+    <Compile Include="MetaData\MdUserPlaylistRel.cs" />
+    <Compile Include="MetaData\MdUserVideoRel.cs" />
+    <Compile Include="MetaData\MdVideo.cs" />
+    <Compile Include="MetaData\MdVideoPlaylistKeyword.cs" />
+    <Compile Include="MetaData\MdWithdraw.cs" />
     <Compile Include="Models\AminWeb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,7 +81,7 @@
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblChat.cs">
@@ -91,6 +91,9 @@
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblDoc.cs">
+      <DependentUpon>AminWeb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TblLog.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblPlaylist.cs">

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdTblPlaylist
+    class MdPlaylist
     {
         [Key]
         public int id { get; set; }
@@ -52,5 +52,11 @@ namespace DataLayer.MetaData
         [Display(Name = "مدرک",Description = "مدرک در انتهای دیدن تمام ویدیو های موجود در لیست به دانشجو داده میشود")]
         [MaxLength(length: 256, ErrorMessage = "طول بیش از 256 کاراکتر مجاز نیست")]
         public string CertificateURL { get; set; }
+    }
+
+    [MetadataType(typeof(MdPlaylist))]
+    public class TblPlaylist
+    {
+
     }
 }

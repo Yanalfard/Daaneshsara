@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdTblChat
+    class MdChat
     {
         [Key]
         public int id { get; set; }
@@ -26,5 +26,11 @@ namespace DataLayer.MetaData
 
         [DataType(DataType.DateTime)]
         public System.DateTime TimeSent { get; set; }
+    }
+
+    [MetadataType(typeof(MdChat))]
+    public class TblChat
+    {
+
     }
 }

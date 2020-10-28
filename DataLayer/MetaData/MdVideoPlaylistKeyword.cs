@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdTblVideoPlaylistKeyword
+    class MdVideoPlaylistKeyword
     {
         [Key]
         public int id { get; set; }
@@ -23,5 +23,11 @@ namespace DataLayer.MetaData
 
         [ForeignKey("PlaylistId")]
         public Nullable<int> PlaylistId { get; set; }
+    }
+
+    [MetadataType(typeof(MdVideoPlaylistKeyword))]
+    public class TblVideoPlaylistKeyword
+    {
+
     }
 }

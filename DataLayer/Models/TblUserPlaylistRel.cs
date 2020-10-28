@@ -11,11 +11,7 @@ namespace DataLayer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using DataLayer.MetaData;
     
-    
-    [MetadataType(typeof(TblUserPlaylistRel))]
     public partial class TblUserPlaylistRel
     {
         public int UserPlaylistRelId { get; set; }

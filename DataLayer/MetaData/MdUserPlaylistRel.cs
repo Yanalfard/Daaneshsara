@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdTblUserPlaylistRel
+    class MdUserPlaylistRel
     {
         [Key]
         public int id { get; set; }
@@ -21,5 +21,11 @@ namespace DataLayer.MetaData
 
         [DataType(DataType.DateTime)]
         public System.DateTime Date { get; set; }
+    }
+
+    [MetadataType(typeof(MdUserPlaylistRel))]
+    public class TblUserPlaylistRel
+    {
+
     }
 }

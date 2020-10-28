@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdTblWithdraw
+    class MdWithdraw
     {
         [Key]
         public int id { get; set; }
@@ -25,6 +25,12 @@ namespace DataLayer.MetaData
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(length: 500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         public string Description { get; set; }
+
+    }
+
+    [MetadataType(typeof(MdWithdraw))]
+    public class TblWithdraw
+    {
 
     }
 }

@@ -20,6 +20,7 @@ namespace DataLayer.Services
         private MainRepo<TblWithdraw> _withdraw;
         private MainRepo<TblTicket> _ticket;
         private MainRepo<TblReport> _report;
+        private MainRepo<TblLog> _log;
 
         public MainRepo<TblChat> Chat => _chat ?? (_chat = new MainRepo<TblChat>(_db));
 
@@ -44,6 +45,8 @@ namespace DataLayer.Services
         public MainRepo<TblTicket> Ticket => _ticket ?? (_ticket = new MainRepo<TblTicket>(_db));
 
         public MainRepo<TblReport> Report => _report ?? (_report = new MainRepo<TblReport>(_db));
+
+        public MainRepo<TblLog> Log => _log ?? (_log = new MainRepo<TblLog>(_db));
 
         public void Dispose()
         {

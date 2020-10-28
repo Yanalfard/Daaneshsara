@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataLayer
+namespace DataLayer.Models
 {
     using System;
     using System.Data.Entity;
@@ -27,20 +27,21 @@ namespace DataLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<TblChat> TblChats { get; set; }
-        public virtual DbSet<TblConfig> TblConfigs { get; set; }
-        public virtual DbSet<TblDoc> TblDocs { get; set; }
-        public virtual DbSet<TblPlaylist> TblPlaylists { get; set; }
-        public virtual DbSet<TblReport> TblReports { get; set; }
-        public virtual DbSet<TblRole> TblRoles { get; set; }
-        public virtual DbSet<TblTicket> TblTickets { get; set; }
-        public virtual DbSet<TblUser> TblUsers { get; set; }
-        public virtual DbSet<TblUserPlaylistRel> TblUserPlaylistRels { get; set; }
-        public virtual DbSet<TblUserVideoRel> TblUserVideoRels { get; set; }
-        public virtual DbSet<TblVideo> TblVideos { get; set; }
-        public virtual DbSet<TblVideoPlaylistKeyword> TblVideoPlaylistKeywords { get; set; }
-        public virtual DbSet<TblWithdraw> TblWithdraws { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TblChat> TblChat { get; set; }
+        public virtual DbSet<TblConfig> TblConfig { get; set; }
+        public virtual DbSet<TblDoc> TblDoc { get; set; }
+        public virtual DbSet<TblLog> TblLog { get; set; }
+        public virtual DbSet<TblPlaylist> TblPlaylist { get; set; }
+        public virtual DbSet<TblReport> TblReport { get; set; }
+        public virtual DbSet<TblRole> TblRole { get; set; }
+        public virtual DbSet<TblTicket> TblTicket { get; set; }
+        public virtual DbSet<TblUser> TblUser { get; set; }
+        public virtual DbSet<TblUserPlaylistRel> TblUserPlaylistRel { get; set; }
+        public virtual DbSet<TblUserVideoRel> TblUserVideoRel { get; set; }
+        public virtual DbSet<TblVideo> TblVideo { get; set; }
+        public virtual DbSet<TblVideoPlaylistKeyword> TblVideoPlaylistKeyword { get; set; }
+        public virtual DbSet<TblWithdraw> TblWithdraw { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

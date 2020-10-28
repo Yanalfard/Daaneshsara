@@ -11,14 +11,10 @@ namespace DataLayer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using DataLayer.MetaData;
     
-    
-    [MetadataType(typeof(TblReport))]
     public partial class TblReport
     {
-        public int id { get; set; }
+        public int ReportId { get; set; }
         public int VideoId { get; set; }
         public string Text { get; set; }
         public System.DateTime DateSent { get; set; }

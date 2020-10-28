@@ -11,14 +11,10 @@ namespace DataLayer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using DataLayer.MetaData;
     
-    
-    [MetadataType(typeof(TblTicket))]
     public partial class TblTicket
     {
-        public int id { get; set; }
+        public int TicketId { get; set; }
         public int SenderId { get; set; }
         public string Title { get; set; }
         public string Text { get; set; }
