@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Content/Styles/Controls.css",
+    "inputFile": "Content/Styles/Controls.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Global.css",
+    "inputFile": "Content/Styles/Global.scss"
+  }
+]

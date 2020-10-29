@@ -1,0 +1,145 @@
+﻿@import '_colors.scss';
+@import '_layout.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    float: none;
+    font-family: IRANYekan, 'A Iranian Sans', 'numbers','Segoe UI';
+    /*    font-family: 'Segoe UI';*/
+    list-style: none;
+    text-decoration: none;
+    text-align: right;
+    outline: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden !important;
+    min-height: 100vh;
+    background: $Background !important;
+    /*ScrollBar*/
+    /* width */
+    ::-webkit-scrollbar {
+        width: 14px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: lighten($Background,12%);
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: lighten($Background,20%);
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: lighten($Background,32%);
+    }
+}
+
+body {
+    background: $Background;
+    overflow-x: hidden !important;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $Text;
+    padding-bottom: 1px;
+    margin: 0,0,4px,0;
+}
+
+p {
+    direction: rtl;
+    text-align: justify;
+    -ms-text-justify: inter-word;
+    text-justify: inter-word;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    color: $Text;
+}
+
+.center {
+    text-align: center;
+    align-content: center;
+    align-self: center;
+    margin: 0 auto;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.collapsed {
+    visibility: collapse;
+    height: 0;
+    width: 0;
+    flex: 0;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.unselectable {
+    user-select: none !important;
+    -moz-user-select: none !important;
+    -webkit-user-drag: none !important;
+    -webkit-user-select: none !important;
+    -ms-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+}
+
+img {
+    user-select: none !important;
+    -moz-user-select: none !important;
+    -webkit-user-drag: none !important;
+    -webkit-user-select: none !important;
+    -ms-user-select: none !important;
+    pointer-events: none !important;
+}
+
+.dummy {
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+
+.mat {
+    @include mat();
+}
+ 
+.white {
+    background: $white;
+}
+
+.white-mid {
+    background: $white-mid;
+}
+
+.white-dark {
+    background: $white-dark;
+}
+
+.black {
+    background: $black;
+}
+
+.black-mid {
+    background: $black-mid;
+}
+
+.black-light {
+    background: $black-light;
+}

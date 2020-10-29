@@ -1,0 +1,159 @@
+﻿/*#region name*/
+
+$Background: #EDEDED;
+
+$white: #fff;
+$white-mid: #EBEBEB;
+$white-dark: #D1D1D1;
+
+$black: #404040;
+$black-mid: #5B5B5B;
+$black-light: #848484;
+
+$primary: #F94646;
+$primary-dark: #e53434;
+$primary-light: #ff6767;
+$accent: #55ACEE;
+$accent-light: #85c7f8;
+
+/*#endregion */
+
+/*#region Global */
+$NavBackground: transparent;
+$link: $accent;
+$Title: #424242;
+$Title-secondary: #6B6B6B;
+$Text: #505050;
+$White-text: #fff;
+$Alert: #f32121;
+
+$PlaceholderColor: #ccc;
+$CardBackground: #fff;
+
+/*#endregion */
+/*#region difficulty */
+$dif-easy: #97E435;
+$dif-easy: #E4D335;
+$dif-easy: #E45F35;
+$dif-online: #2F90C7;
+
+/*#endregion */
+
+/*#region Card*/
+
+@mixin Cardbackground() {
+    $c1: rgba(48,48,48,1);
+    $c2: rgba(33,33,33,1);
+
+    background: -moz-linear-gradient(135deg, $c1 0%, $c2 100%);
+    background: -webkit-linear-gradient(135deg, $c1 0%, $c2 100%);
+    background: linear-gradient(135deg, $c1 0%, $c2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#303030",endColorstr="#212121",GradientType=1);
+}
+
+/*#endregion */
+
+/*#region Scrollbar */
+
+$ScrollbarTrack: $white-mid;
+$ScrollbarHandle: $white-dark;
+
+/*#endregion */
+/*#region shadow */
+@mixin shadow-mild {
+    $shadowColor: rgba(0, 0, 0, 0.38);
+    -moz-box-shadow: $shadowColor 0 0px .4vw;
+    -webkit-box-shadow: $shadowColor 0 0px .4vw;
+    box-shadow: $shadowColor 0 0px .4vw;
+}
+
+@mixin shadow-medium {
+    $shadowColor: rgba(0, 0, 0, 0.54);
+    -moz-box-shadow: $shadowColor 0 0px .6vw;
+    -webkit-box-shadow: $shadowColor 0 0px .6vw;
+    box-shadow: $shadowColor 0 0px .6vw;
+}
+
+@mixin shadow-more {
+    $shadowColor: rgba(0,0,0,.20);
+    -moz-box-shadow: $shadowColor 0 0 1.0vw;
+    -webkit-box-shadow: $shadowColor 0 0 1.0vw;
+    box-shadow: $shadowColor 0 0 1.0vw;
+}
+
+@mixin shadow-more-hov {
+    $shadowColor: rgba(0, 0, 0, 0.32);
+    -moz-box-shadow: $shadowColor 0 0 2.0vw;
+    -webkit-box-shadow: $shadowColor 0 0 2.0vw;
+    box-shadow: $shadowColor 0 0 2.0vw;
+}
+
+@mixin shadow-mega {
+    $shadowColor: rgba(0, 0, 0, 0.38);
+    -moz-box-shadow: $shadowColor 0 0px 2vw;
+    -webkit-box-shadow: $shadowColor 0 0px 2vw;
+    box-shadow: $shadowColor 0 0px 2vw;
+}
+
+/*#endregion */
+
+@mixin subtle-glow($rgba) {
+    -moz-box-shadow: $rgba 0 6px 16px;
+    -webkit-box-shadow: $rgba 0 6px 16px;
+    box-shadow: $rgba 0 6px 16px;
+}
+
+@mixin border-radius($tl, $tr, $bl, $br) {
+    -moz-border-radius: $tl $tr $bl $br;
+    -webkit-border-radius: $tl $tr $bl $br;
+    border-radius: $tl $tr $bl $br;
+    /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/
+}
+
+@mixin gradient($primary,$secondary,$angle) {
+    background-color: $primary;
+    background-image: -moz-linear-gradient($angle, $primary, $secondary);
+    background-image: -o-linear-gradient($angle, $primary, $secondary);
+    background-image: -webkit-gradient($angle, left top, left bottom, from($primary), to($secondary));
+    background-image: -webkit-linear-gradient($angle, $primary, $secondary);
+    background-image: linear-gradient($angle, $primary, $secondary);
+}
+
+@mixin trans($seconds) {
+    -moz-transition: all ease $seconds;
+    -o-transition: all ease $seconds;
+    -webkit-transition: all ease $seconds;
+    transition: all ease $seconds;
+}
+
+
+/*#region Material  */
+
+@mixin mat() {
+    background: $CardBackground;
+    @include shadow-medium();
+}
+
+@mixin cancel() {
+    background: rgb(208,72,72);
+    background: -moz-linear-gradient(-45deg, rgba(208,72,72,1) 0%, rgba(255,192,0,1) 100%);
+    background: -webkit-linear-gradient(-45deg, rgba(208,72,72,1) 0%, rgba(255,192,0,1) 100%);
+    background: linear-gradient(-45deg, rgba(208,72,72,1) 0%, rgba(255,192,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d04848",endColorstr="#ffc000",GradientType=1);
+}
+/*#endregion */
+
+/*
+backdrop-filter: blur(2px);
+backdrop-filter: brightness(60%);
+backdrop-filter: contrast(40%);
+backdrop-filter: drop-shadow(4px 4px 10px blue);
+backdrop-filter: grayscale(30%);
+backdrop-filter: hue-rotate(120deg);
+backdrop-filter: invert(70%);
+backdrop-filter: opacity(20%);
+backdrop-filter: sepia(90%);
+backdrop-filter: saturate(80%);
+*/
