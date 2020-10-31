@@ -1,3 +1,46 @@
 ﻿@import '_colors.scss';
 @import '_starRating.scss';
+@import '_layout.scss';
 
+.top-nav {
+    padding: 15px 20px;
+
+    > nav {
+
+        a {
+            margin: auto 0;
+            margin-right: 16px;
+            color: #505050;
+            @include trans(.3s);
+        }
+
+        a:hover {
+            color: $primary;
+        }
+    }
+
+    > .logo {
+        width: 50px;
+    }
+}
+
+.drop-body {
+    background: $white;
+    border: 1px solid #ddd;
+    @include border-radius(8px,8px,8px,8px);
+    @include shadow-mild();
+}
+
+#navDrop {
+    width: 124px;
+
+    ul {
+        li {
+            margin: 8px 0;
+        }
+    }
+}
+
+.success {
+    color: #73DA42 !important;
+}

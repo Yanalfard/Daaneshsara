@@ -12,16 +12,102 @@
     <!--UIKit-->
     <link href="~/Content/UIkit/uikit.min.css" rel="stylesheet" />
     <script src="~/Content/UIkit/uikit.min.js"></script>
+    <script src="~/Content/UIkit/uikit-icons.min.js"></script>
 
 </head>
 <body>
 
-    <h1>
-        HEllo DarKnesS My OLLD fRiedn
-    </h1>
+    <!-- #region Header -->
+
+    <header role="navigation" class="top-nav row">
+        <nav class="uk-flex-auto row flex-1">
+            <a href="" class="uk-margin-auto-right">
+                پروفایل
+            </a>
+            <div uk-drop>
+                <div id="navDrop" class="drop-body uk-padding-small column">
+                    <ul class="uk-margin-remove uk-padding-remove">
+                        <li>
+                            <a href="">
+                                <span>پروفایل</span>
+                                <span uk-icon="icon:user"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span>آپلود</span>
+                                <span uk-icon="icon:cloud-upload"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span>خروج</span>
+                                <span uk-icon="icon:sign-out"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr />
+                        </li>
+                        <li>
+                            <a href="" class="success">
+                                <span>130,000</span>
+                                <span uk-icon="icon:money"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div role="list" class="row uk-margin-auto-left">
+                <a role="listitem" href="">خانه</a>
+                <a role="listitem" href="">درباره ما</a>
+                <a role="listitem" href="">تماس با ما</a>
+                <a role="listitem" href="">قوانین</a>
+            </div>
+        </nav>
+        <a class="logo" href="~/Views/Home/Index.cshtml">
+            <img src="~/Resources/Static/Vector/Logo.svg" width="50" height="50" alt="Logo" />
+        </a>
+    </header>
+    <div class="space-nav"></div>
+
+    <!-- #endregion -->
 
     <div>
         @RenderBody()
     </div>
+
+    <nav class="bottom-nav">
+        <ul class="row">
+            <li>
+                <a href="" class="column">
+                    <span uk-icon=""></span>
+                    <span></span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="column">
+                    <span></span>
+                    <span></span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="column">
+                    <span></span>
+                    <span></span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="column">
+                    <span></span>
+                    <span></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!--Scripts-->
+    @*<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>*@
+
 </body>
 </html>

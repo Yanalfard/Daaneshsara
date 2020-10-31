@@ -61,10 +61,10 @@ $ScrollbarHandle: $white-dark;
 /*#endregion */
 /*#region shadow */
 @mixin shadow-mild {
-    $shadowColor: rgba(0, 0, 0, 0.38);
-    -moz-box-shadow: $shadowColor 0 0px .4vw;
-    -webkit-box-shadow: $shadowColor 0 0px .4vw;
-    box-shadow: $shadowColor 0 0px .4vw;
+    $shadowColor: rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: $shadowColor 0 0px 12px;
+    -webkit-box-shadow: $shadowColor 0 0px 12px;
+    box-shadow: $shadowColor 0 0px 12px;
 }
 
 @mixin shadow-medium {

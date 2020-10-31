@@ -24,122 +24,6 @@ backdrop-filter: opacity(20%);
 backdrop-filter: sepia(90%);
 backdrop-filter: saturate(80%);
 */
-/*#region name*/
-/*#endregion */
-/*#region Global */
-/*#endregion */
-/*#region difficulty */
-/*#endregion */
-/*#region Card*/
-/*#endregion */
-/*#region Scrollbar */
-/*#endregion */
-/*#region shadow */
-/*#endregion */
-/*#region Material  */
-/*#endregion */
-/*
-backdrop-filter: blur(2px);
-backdrop-filter: brightness(60%);
-backdrop-filter: contrast(40%);
-backdrop-filter: drop-shadow(4px 4px 10px blue);
-backdrop-filter: grayscale(30%);
-backdrop-filter: hue-rotate(120deg);
-backdrop-filter: invert(70%);
-backdrop-filter: opacity(20%);
-backdrop-filter: sepia(90%);
-backdrop-filter: saturate(80%);
-*/
-.space {
-  width: 100vw;
-  height: 4vw; }
-
-.space-double {
-  width: 100vw;
-  height: 8vw; }
-
-.space-half {
-  width: 100vw;
-  height: 2vw; }
-
-@media only screen and (max-device-width: 480px) {
-  .space-half {
-    width: 100vw;
-    height: 3vh; }
-  .space {
-    width: 100vw;
-    height: 6vh; }
-  .space-double {
-    width: 100vw;
-    height: 9vh; } }
-
-.space-nav {
-  width: 100vw;
-  height: 140px; }
-
-.space-nav-bottom {
-  width: 100vw;
-  height: 80px; }
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  .space-nav {
-    width: 100vw;
-    height: 7vw; } }
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
-  .space-nav {
-    width: 100vw;
-    height: 14vw; } }
-
-/*#region Alignment */
-.column {
-  display: flex;
-  -ms-flex-direction: column;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  -ms-align-content: center;
-  -webkit-align-content: center;
-  align-content: center; }
-
-.row {
-  display: flex;
-  -ms-flex-direction: row;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  -ms-align-content: center;
-  -webkit-align-content: center;
-  align-content: center; }
-
-.fillwidth {
-  min-width: 100%;
-  height: auto; }
-
-.fillheight {
-  min-height: 100%;
-  width: auto; }
-
-/*#endregion */
-.clipped {
-  margin-left: auto;
-  margin-right: auto;
-  width: 92vw;
-  max-width: 1600px; }
-
-.full-width {
-  width: 100vw; }
-
-.full-height {
-  height: 100vh; }
-
-.overflow-visible {
-  overflow: visible !important; }
-
-.overflow-hidden {
-  overflow: hidden !important; }
-
-.text-center {
-  text-align: center !important; }
-
 * {
   margin: 0;
   padding: 0;
@@ -176,10 +60,7 @@ body {
   min-height: 100vh; }
 
 a {
-  text-decoration: none; }
-
-a:hover {
-  text-decoration: none; }
+  text-decoration: none !important; }
 
 h1, h2, h3, h4, h5, h6 {
   color: #505050;

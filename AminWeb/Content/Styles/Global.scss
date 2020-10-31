@@ -1,5 +1,4 @@
 ﻿@import '_colors.scss';
-@import '_layout.scss';
 
 * {
     margin: 0;
@@ -44,11 +43,7 @@ body {
 }
 
 a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -119,7 +114,7 @@ img {
 .mat {
     @include mat();
 }
- 
+
 .white {
     background: $white;
 }

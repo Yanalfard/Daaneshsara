@@ -34,26 +34,7 @@
 
 .space-nav {
     width: 100vw;
-    height: 140px;
-}
-
-.space-nav-bottom {
-    width: 100vw;
     height: 80px;
-}
-
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-    .space-nav {
-        width: 100vw;
-        height: 7vw;
-    }
-}
-
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-    .space-nav {
-        width: 100vw;
-        height: 14vw;
-    }
 }
 
 /*#region Alignment */
@@ -68,24 +49,51 @@
     align-content: center;
 }
 
-.column {
-    @include column();
-}
-
-@mixin row() {
+@mixin row {
     display: flex;
-    -ms-flex-direction: row;
-    -webkit-flex-direction: row;
     flex-direction: row;
-    -ms-align-content: center;
-    -webkit-align-content: center;
-    align-content: center;
 }
 
 .row {
     @include row();
 }
 
+@mixin row-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.row-reverse {
+    @include row-reverse();
+}
+
+@mixin column {
+    display: flex;
+    flex-direction: column;
+}
+
+.column {
+    @include column();
+}
+
+@mixin column-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.column-reverse {
+    @include column-reverse();
+}
+
+@for $var from 1 to 10 {
+    .flex-#{$var} {
+        flex: $var;
+    }
+}
+
+.flex-auto {
+    flex: auto;
+}
 
 
 .fillwidth {
@@ -112,16 +120,6 @@
     grid-template-rows: auto;
     grid-gap: $gap;
     grid-template-columns: repeat(auto-fit, minmax($width, 1fr));
-}
-
-$clipped-width: 92vw;
-$clipped-max-width: 1600px;
-
-.clipped {
-    margin-left: auto;
-    margin-right: auto;
-    width: $clipped-width;
-    max-width: $clipped-max-width;
 }
 
 .full-width {
