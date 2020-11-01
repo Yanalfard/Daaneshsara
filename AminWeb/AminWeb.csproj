@@ -143,6 +143,12 @@
     <Content Include="Content\Styles\Global.min.css">
       <DependentUpon>Global.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\Pages\Index.css">
+      <DependentUpon>Index.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Pages\Index.min.css">
+      <DependentUpon>Index.css</DependentUpon>
+    </Content>
     <Content Include="Content\UIkit\uikit-icons.min.js" />
     <Content Include="Content\UIkit\uikit.min.css" />
     <Content Include="Content\UIkit\uikit.min.js" />
@@ -163,8 +169,15 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Content\Styles\Pages\Index.scss" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <Content Include="Resources\Static\Vector\biscuit\biscuit_main.svg" />
+    <Content Include="Resources\Static\Vector\Education.svg" />
+    <Content Include="Resources\Static\Vector\Heart.svg" />
+    <Content Include="Resources\Static\Vector\Instagram.svg" />
     <Content Include="Resources\Static\Vector\Logo.svg" />
+    <Content Include="Resources\Static\Vector\Medal.svg" />
+    <Content Include="Resources\Static\Vector\Twitter.svg" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
@@ -187,6 +200,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_VideoBlock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

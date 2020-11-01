@@ -3,24 +3,48 @@
 @import '_layout.scss';
 
 .top-nav {
-    padding: 15px 20px;
+    padding: 15px 0 0 0;
+    position: fixed;
+    width: 100vw;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
 
     > nav {
 
         a {
             margin: auto 0;
             margin-right: 16px;
-            color: #505050;
-            @include trans(.3s);
-        }
-
-        a:hover {
-            color: $primary;
         }
     }
 
     > .logo {
         width: 50px;
+    }
+}
+
+a {
+    color: $Text;
+    @include trans(.3s);
+}
+
+a:hover {
+    color: $primary;
+}
+
+.bottom-nav {
+    position: fixed;
+    padding: 20px 0 12px 0;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    background: #fff;
+    @include shadow-medium;
+    @include border-radius(32%,32%,0,0);
+
+    ul {
+        li {
+            margin: auto;
+        }
     }
 }
 
@@ -32,7 +56,7 @@
 }
 
 #navDrop {
-    width: 124px;
+    width: 152px;
 
     ul {
         li {
@@ -44,3 +68,249 @@
 .success {
     color: #73DA42 !important;
 }
+
+.biscuit {
+    width: 100vw;
+    height: auto;
+}
+
+$video-block-height: 360px;
+$video-block-width: 280px;
+
+.video-block {
+    background: #fff;
+    @include column;
+    @include border-radius(8px,8px,8px,8px);
+    border: 1px solid #c1c1c1;
+    height: $video-block-height;
+    width: $video-block-width;
+    -moz-box-shadow: 0 0 5px rgba(0,0,0,.24);
+    -webkit-box-shadow: 0 0 5px rgba(0,0,0,.24);
+    box-shadow: 0 0 5px rgba(0,0,0,.24);
+
+    .top {
+        .badges {
+            padding: 8px;
+            position: absolute;
+
+            > li {
+                padding: 6px;
+                margin-right: 8px;
+                background: #fff;
+                @include border-radius(12px,12px,12px,12px);
+
+                > img {
+                    height: 24px;
+                    width: 24px;
+                }
+            }
+        }
+
+        .thumbnail {
+            //width -> 280px;
+            height: 200px;
+            @include border-radius(8px,8px,0,0);
+        }
+    }
+
+    .content {
+        padding: 10px 10px 0 10px;
+        height: 96px;
+
+        .title {
+            font-size: 17px;
+            margin: 0;
+            @include max-line(1);
+            direction: rtl;
+        }
+
+        .desciption {
+            margin: 4px 0 0 0;
+            height: 36px;
+            font-size: 12px;
+            color: #5F5F5F;
+            @include max-line(2);
+        }
+
+        a.tutor {
+            margin-top: 4px;
+            font-size: 12px;
+        }
+    }
+
+    hr {
+        margin: 10px 0;
+    }
+
+    .bottom {
+        padding: 0 10px;
+
+        .price {
+            font-size: 18px;
+            color: #73DA42;
+        }
+
+        .star-container {
+
+            > span {
+                margin-top: auto;
+                width: 24px;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.video-grid {
+    @include grid($video-block-width);
+
+    > .video-block {
+        margin-left: auto;
+    }
+}
+
+$side-category-width: 280px;
+
+.side-category {
+    width: $side-category-width;
+    z-index: 1000;
+    padding: 16px;
+    @include mat();
+    @include shadow-mild;
+}
+
+.side-category-placeholder {
+    width: $side-category-width + 34;
+}
+
+@media only screen and (max-width: 724px) {
+    .side-category, .side-category-placeholder {
+        display: none !important;
+    }
+
+    .video-grid {
+
+        > .video-block {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+.search-box {
+    @include border-radius(10px,10px,10px,10px);
+    padding: 8px 12px;
+    background: #EFEFEF;
+    border: 1px solid #DDDDDD;
+
+    input {
+        border: none;
+        background: transparent;
+        width: 92%;
+    }
+
+    button {
+        color: #B9B9B9;
+    }
+}
+
+/*@media only screen and (max-width: 724px) {
+    .side-category, .side-category-placeholder {
+        display: none !important;
+    }
+
+    $video-block-height: 164px;
+    $video-block-width: 420px;
+
+    .video-block {
+        @include row-reverse;
+        height: $video-block-height;
+        width: $video-block-width;
+        margin: auto;
+
+        .top {
+            flex: 4;
+
+            .badges {
+                padding: 8px;
+                position: absolute;
+
+                > li {
+                    padding: 6px;
+                    margin-right: 8px;
+                    background: #fff;
+                    @include border-radius(12px,12px,12px,12px);
+
+                    > img {
+                        height: 24px;
+                        width: 24px;
+                    }
+                }
+            }
+
+            .thumbnail {
+                width: 230px !important;
+                height: $video-block-height;
+                @include border-radius(8px,8px,0,0);
+            }
+        }
+
+        .text {
+            flex: 1;
+        }
+
+        .content {
+            padding: 10px 10px 0 10px;
+            height: 100px;
+
+            .title {
+                font-size: 17px;
+                margin: 0;
+                @include max-line(1);
+            }
+
+            .desciption {
+                margin: 4px 0 0 0;
+                height: 36px;
+                font-size: 12px;
+                color: #5F5F5F;
+                @include max-line(2);
+            }
+
+            a.tutor {
+                margin-top: 4px;
+                font-size: 12px;
+            }
+        }
+
+        hr {
+            margin: 10px 0;
+        }
+
+        .bottom {
+            padding: 0 10px;
+
+            .price {
+                font-size: 18px;
+                color: #73DA42;
+            }
+
+            .star-container {
+
+                > span {
+                    margin-top: auto;
+                    width: 24px;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .video-grid {
+        @include grid($video-block-width);
+
+        > .video-block {
+            margin-left: auto;
+        }
+    }
+}*/

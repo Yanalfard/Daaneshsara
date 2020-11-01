@@ -68,10 +68,10 @@ $ScrollbarHandle: $white-dark;
 }
 
 @mixin shadow-medium {
-    $shadowColor: rgba(0, 0, 0, 0.54);
-    -moz-box-shadow: $shadowColor 0 0px .6vw;
-    -webkit-box-shadow: $shadowColor 0 0px .6vw;
-    box-shadow: $shadowColor 0 0px .6vw;
+    $shadowColor: rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: $shadowColor 0 -6px 16px;
+    -webkit-box-shadow: $shadowColor 0 -6px 16px;
+    box-shadow: $shadowColor 0 -6px 16px;
 }
 
 @mixin shadow-more {
@@ -133,7 +133,8 @@ $ScrollbarHandle: $white-dark;
 
 @mixin mat() {
     background: $CardBackground;
-    @include shadow-medium();
+    @include border-radius(8px,8px,8px,8px);
+    border: 1px solid #D4D4D4;
 }
 
 @mixin cancel() {
@@ -144,6 +145,14 @@ $ScrollbarHandle: $white-dark;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d04848",endColorstr="#ffc000",GradientType=1);
 }
 /*#endregion */
+
+@mixin max-line($line-count: 1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line-count; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
 
 /*
 backdrop-filter: blur(2px);

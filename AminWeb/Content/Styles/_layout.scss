@@ -32,9 +32,11 @@
     }
 }
 
+$nav-height: 80px;
+
 .space-nav {
     width: 100vw;
-    height: 80px;
+    height: $nav-height;
 }
 
 /*#region Alignment */

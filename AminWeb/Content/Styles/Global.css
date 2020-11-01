@@ -48,15 +48,18 @@ html {
   html ::-webkit-scrollbar {
     width: 14px; }
   html ::-webkit-scrollbar-track {
-    background: white; }
+    background: #dedede; }
   html ::-webkit-scrollbar-thumb {
-    background: white; }
+    background: #c4c4c4;
+    -moz-box-shadow: rgba(0, 0, 0, 0.12) 0 0px 12px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.12) 0 0px 12px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 0px 12px; }
   html ::-webkit-scrollbar-thumb:hover {
-    background: white; }
+    background: #b0b0b0; }
 
 body {
   background: #EDEDED;
-  overflow-x: hidden !important;
+  overflow: hidden !important;
   min-height: 100vh; }
 
 a {
@@ -120,9 +123,13 @@ img {
 
 .mat {
   background: #fff;
-  -moz-box-shadow: rgba(0, 0, 0, 0.54) 0 0px 0.6vw;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.54) 0 0px 0.6vw;
-  box-shadow: rgba(0, 0, 0, 0.54) 0 0px 0.6vw; }
+  -moz-border-radius: 8px 8px 8px 8px;
+  -webkit-border-radius: 8px 8px 8px 8px;
+  border-radius: 8px 8px 8px 8px;
+  /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/
+  border: 1px solid #D4D4D4; }
 
 .white {
   background: #fff; }

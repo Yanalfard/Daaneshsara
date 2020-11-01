@@ -5,6 +5,10 @@
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="description" content="@ViewBag.Content">
+
+    @RenderSection("MySection", false)
+
     <!--Project Styles-->
     <link href="~/Content/Styles/Controls.min.css" rel="stylesheet" />
     <link href="~/Content/Styles/Global.min.css" rel="stylesheet" />
@@ -20,12 +24,12 @@
     <!-- #region Header -->
 
     <header role="navigation" class="top-nav row">
-        <nav class="uk-flex-auto row flex-1">
-            <a href="" class="uk-margin-auto-right">
+        <nav class="uk-flex-auto row flex-1 uk-margin-left">
+            <a href="" class="uk-margin-auto-right lesser">
                 پروفایل
             </a>
-            <div uk-drop>
-                <div id="navDrop" class="drop-body uk-padding-small column">
+            <div uk-drop id="navDrop">
+                <div class="drop-body uk-padding-small column">
                     <ul class="uk-margin-remove uk-padding-remove">
                         <li>
                             <a href="">
@@ -45,62 +49,59 @@
                                 <span uk-icon="icon:sign-out"></span>
                             </a>
                         </li>
-                        <li>
-                            <hr />
-                        </li>
-                        <li>
-                            <a href="" class="success">
-                                <span>130,000</span>
-                                <span uk-icon="icon:money"></span>
-                            </a>
-                        </li>
                     </ul>
+                    <hr class="uk-grid-margin-small" />
+                    <a href="" class="success">
+                        <span>130,000</span>
+                        <span uk-icon="icon:money"></span>
+                    </a>
                 </div>
             </div>
 
-            <div role="list" class="row uk-margin-auto-left">
-                <a role="listitem" href="">خانه</a>
-                <a role="listitem" href="">درباره ما</a>
-                <a role="listitem" href="">تماس با ما</a>
-                <a role="listitem" href="">قوانین</a>
+            <div role="list" class="row-reverse uk-margin-auto-left">
+                <a role="listitem" href="" class="lesser">خانه</a>
+                <a role="listitem" href="" class="lesser">درباره ما</a>
+                <a role="listitem" href="" class="lesser">تماس با ما</a>
+                <a role="listitem" href="" class="lesser">قوانین</a>
             </div>
         </nav>
-        <a class="logo" href="~/Views/Home/Index.cshtml">
+        <a class="logo uk-margin-right" href="~/Views/Home/Index.cshtml">
             <img src="~/Resources/Static/Vector/Logo.svg" width="50" height="50" alt="Logo" />
         </a>
     </header>
-    <div class="space-nav"></div>
 
     <!-- #endregion -->
+    @*<div class="uk-container uk-margin-auto">
+            @RenderBody()
+        </div>*@
 
-    <div>
-        @RenderBody()
-    </div>
+    @RenderBody()
+
 
     <nav class="bottom-nav">
-        <ul class="row">
+        <ul class="row uk-padding-remove uk-margin-remove">
             <li>
                 <a href="" class="column">
-                    <span uk-icon=""></span>
-                    <span></span>
+                    <span uk-icon="chat" class="uk-margin-auto"></span>
+                    <span>گفت و گو</span>
                 </a>
             </li>
             <li>
                 <a href="" class="column">
-                    <span></span>
-                    <span></span>
+                    <span uk-icon="user" class="uk-margin-auto"></span>
+                    <span>پروفایل</span>
                 </a>
             </li>
             <li>
                 <a href="" class="column">
-                    <span></span>
-                    <span></span>
+                    <span uk-icon="home" class="uk-margin-auto"></span>
+                    <span>خانه</span>
                 </a>
             </li>
             <li>
                 <a href="" class="column">
-                    <span></span>
-                    <span></span>
+                    <span uk-icon="menu" class="uk-margin-auto"></span>
+                    <span>دسته بندی ها</span>
                 </a>
             </li>
         </ul>

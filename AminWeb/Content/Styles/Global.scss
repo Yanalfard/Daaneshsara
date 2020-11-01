@@ -24,21 +24,22 @@ html {
     }
     /* Track */
     ::-webkit-scrollbar-track {
-        background: lighten($Background,12%);
+        background: darken($Background,6%);
     }
     /* Handle */
     ::-webkit-scrollbar-thumb {
-        background: lighten($Background,20%);
+        background: darken($Background,16%);
+        @include shadow-mild;
     }
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: lighten($Background,32%);
+        background: darken($Background,24%);
     }
 }
 
 body {
     background: $Background;
-    overflow-x: hidden !important;
+    overflow: hidden !important;
     min-height: 100vh;
 }
 

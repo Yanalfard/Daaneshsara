@@ -1,0 +1,52 @@
+﻿@import '../_colors.scss';
+@import '../_layout.scss';
+
+.media {
+    position: absolute;
+    left: 0;
+    top: $nav-height + 26px;
+    display: flex;
+
+    > .column {
+        padding: 12px 8px;
+        background: #EFEFEF;
+        @include border-radius(0,8px,8px,0);
+        margin: auto 0;
+    }
+}
+
+.main-search {
+    background: #F8F8F8;
+    height: 224px;
+    overflow: hidden;
+    padding-bottom: 16px;
+
+    .search-box {
+        min-width: 48vw;
+        background: #fff;
+        @include shadow-mild;
+        @include border-radius(10px,10px,10px,10px);
+        border: 1px solid #ddd;
+        margin-top: $nav-height + 40px;
+        height: 36px;
+        padding: 10px 12px;
+
+        button {
+            color: #8d8d8d;
+            margin: auto;
+            padding: 6px;
+            @include border-radius(100%,100%,100%,100%);
+            @include trans(.3s);
+        }
+
+        button:hover {
+            background: #efefef;
+        }
+
+        input {
+            width: 100%;
+            border: none;
+            font-size: 16px;
+        }
+    }
+}

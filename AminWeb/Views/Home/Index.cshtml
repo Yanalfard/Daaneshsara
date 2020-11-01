@@ -1,8 +1,105 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "صفحه اصلی";
+    ViewBag.Content = "جسنجو ویدیو های آموزشی درباره هر موضوع دلخواه";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@*@section MySection{
+        <meta content="HELLO" />
+    }*@
 
+<!-- #region Styles -->
+<link href="~/Content/Styles/Pages/Index.min.css" rel="stylesheet" />
+<!-- #endregion -->
+
+<div class="media">
+    <div class="column">
+        <a href="https://www.instagram.com" class="uk-margin-small-bottom" uk-tooltip="title: اینستاگرام; pos:left">
+            <img src="~/Resources/Static/Vector/Instagram.svg" alt="Instagram" />
+        </a>
+        <a href="https://www.twitter.com" uk-tooltip="title: توئیتر ; pos:left">
+            <img src="~/Resources/Static/Vector/Twitter.svg" alt="Twitter" />
+        </a>
+    </div>
+</div>
+
+<section class="main-search row">
+    <div role="search" class="search-box row uk-margin-auto">
+        <button class="search" uk-icon="icon:search;ratio:1.2"></button>
+        <input type="text" value="" placeholder="جستجو..." dir="rtl" />
+        <button class="filter uk-margin-small-left" uk-icon="icon:chevron-down;ratio:1.5"></button>
+        <div uk-drop="pos: bottom-right; boundary: .search-box">
+            <div class="drop-body uk-padding-small column">
+                <ul class="uk-margin-remove uk-padding-remove">
+                    <li>
+                        <a>بر اساس تاریخ</a>
+                    </li>
+                    <li class="uk-margin-small-top">
+                        <a>بر اساس بازدید</a>
+                    </li>
+                    <li class="uk-margin-small-top">
+                        <a>بر اساس امتیاز</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<img src="~/Resources/Static/Vector/biscuit/biscuit_main.svg" class="biscuit" alt="biscuit" />
+
+<div class="uk-container">
+    <content class="row-reverse uk-margin-medium-top">
+        <div role="none" class="uk-margin-small-left">
+            <div role="none" class="side-category-placeholder"></div>
+            <div class="row">
+
+            </div>
+            <aside role="menu" class="side-category column" uk-sticky="offset: 100">
+                <h4>
+                    دسته بندی ها
+                </h4>
+                <div class="search-box row uk-margin-small-bottom">
+                    <button uk-icon="search"></button>
+                    <input dir="rtl" type="text" placeholder="جستجو..." value="" />
+                </div>
+                <details dir="rtl">
+                    <summary>دسته بندی</summary>
+                    <div class="uk-margin-right column">
+                        <details dir="rtl">
+                            <summary>دسته بندی</summary>
+                            <div class="uk-margin-right column">
+                                <details dir="rtl">
+                                    <summary>دسته بندی</summary>
+                                    <div class="column uk-margin-small-right">
+                                        <a href="">آیتم</a>
+                                        <a href="">آیتم</a>
+                                    </div>
+                                </details>
+                                <a href="">آیتم</a>
+                                <a href="">آیتم</a>
+                                <a href="">آیتم</a>
+                            </div>
+                        </details>
+                        <a href="">آیتم</a>
+                        <a href="">آیتم</a>
+                    </div>
+                </details>
+            </aside>
+        </div>
+        <div class="video-grid flex-1">
+            @Html.Partial("_VideoBlock")
+            @Html.Partial("_VideoBlock")
+            @Html.Partial("_VideoBlock")
+            @Html.Partial("_VideoBlock")
+            @Html.Partial("_VideoBlock")
+            @Html.Partial("_VideoBlock")
+            @Html.Partial("_VideoBlock")
+            @Html.Partial("_VideoBlock")
+            @Html.Partial("_VideoBlock")
+            @Html.Partial("_VideoBlock")
+            @Html.Partial("_VideoBlock")
+        </div>
+    </content>
+</div>
