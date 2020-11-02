@@ -10,5 +10,9 @@
   {
     "outputFile": "Content/Styles/Pages/Index.css",
     "inputFile": "Content/Styles/Pages/Index.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Pages/VideoView.css",
+    "inputFile": "Content/Styles/Pages/VideoView.scss"
   }
 ]

@@ -27,7 +27,8 @@
 <section class="main-search row">
     <div role="search" class="search-box row uk-margin-auto">
         <button class="search" uk-icon="icon:search;ratio:1.2"></button>
-        <input type="text" value="" placeholder="جستجو..." dir="rtl" />
+        <label for="Search" class="collapsed">جستجو</label>
+        <input type="text" name="Search" placeholder="جستجو..." dir="rtl" />
         <button class="filter uk-margin-small-left" uk-icon="icon:chevron-down;ratio:1.5"></button>
         <div uk-drop="pos: bottom-right; boundary: .search-box">
             <div class="drop-body uk-padding-small column">
@@ -51,7 +52,7 @@
 
 <div class="uk-container">
     <content class="row-reverse uk-margin-medium-top">
-        <div role="none" class="uk-margin-small-left">
+        <div role="none" class="remove-at-mobile uk-margin-small-left">
             <div role="none" class="side-category-placeholder"></div>
             <div class="row">
 
@@ -62,7 +63,8 @@
                 </h4>
                 <div class="search-box row uk-margin-small-bottom">
                     <button uk-icon="search"></button>
-                    <input dir="rtl" type="text" placeholder="جستجو..." value="" />
+                    <label for="CategorySearch" class="collapsed">جستجو دسته بندی</label>
+                    <input dir="rtl" type="text" placeholder="جستجو..." name="CategorySearch" />
                 </div>
                 <details dir="rtl">
                     <summary>دسته بندی</summary>
@@ -73,17 +75,17 @@
                                 <details dir="rtl">
                                     <summary>دسته بندی</summary>
                                     <div class="column uk-margin-small-right">
-                                        <a href="">آیتم</a>
-                                        <a href="">آیتم</a>
+                                        <a href="#">آیتم</a>
+                                        <a href="#">آیتم</a>
                                     </div>
                                 </details>
-                                <a href="">آیتم</a>
-                                <a href="">آیتم</a>
-                                <a href="">آیتم</a>
+                                <a href="#">آیتم</a>
+                                <a href="#">آیتم</a>
+                                <a href="#">آیتم</a>
                             </div>
                         </details>
-                        <a href="">آیتم</a>
-                        <a href="">آیتم</a>
+                        <a href="#">آیتم</a>
+                        <a href="#">آیتم</a>
                     </div>
                 </details>
             </aside>

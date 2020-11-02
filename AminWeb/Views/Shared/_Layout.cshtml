@@ -21,37 +21,53 @@
 </head>
 <body>
 
+    <!-- #region Account Modal -->
+
+    <div id="Account-Modal" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            @*@Html.Action("Login","Account")*@
+            @*@Html.Action("SignUp","Account")*@
+        </div>
+    </div>
+
+    @*<script>
+            //برای نشان دادن و مخفی کردن مودال
+            UIkit.modal(document.getElementById('Account-Modal')).show();
+            UIkit.modal(document.getElementById('Account-Modal')).hide();
+        </script>*@
+
+    <!-- #endregion -->
     <!-- #region Header -->
 
     <header role="navigation" class="top-nav row">
         <nav class="uk-flex-auto row flex-1 uk-margin-left">
-            <a href="" class="uk-margin-auto-right lesser">
+            <a href="#" class="uk-margin-auto-right lesser">
                 پروفایل
             </a>
             <div uk-drop id="navDrop">
                 <div class="drop-body uk-padding-small column">
                     <ul class="uk-margin-remove uk-padding-remove">
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <span>پروفایل</span>
                                 <span uk-icon="icon:user"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <span>آپلود</span>
                                 <span uk-icon="icon:cloud-upload"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="#">
                                 <span>خروج</span>
                                 <span uk-icon="icon:sign-out"></span>
                             </a>
                         </li>
                     </ul>
                     <hr class="uk-grid-margin-small" />
-                    <a href="" class="success">
+                    <a href="#" class="success">
                         <span>130,000</span>
                         <span uk-icon="icon:money"></span>
                     </a>
@@ -59,10 +75,10 @@
             </div>
 
             <div role="list" class="row-reverse uk-margin-auto-left">
-                <a role="listitem" href="" class="lesser">خانه</a>
-                <a role="listitem" href="" class="lesser">درباره ما</a>
-                <a role="listitem" href="" class="lesser">تماس با ما</a>
-                <a role="listitem" href="" class="lesser">قوانین</a>
+                <a role="listitem" href="#" class="lesser">خانه</a>
+                <a role="listitem" href="#" class="lesser">درباره ما</a>
+                <a role="listitem" href="#" class="lesser">تماس با ما</a>
+                <a role="listitem" href="#" class="lesser">قوانین</a>
             </div>
         </nav>
         <a class="logo uk-margin-right" href="~/Views/Home/Index.cshtml">
@@ -81,27 +97,27 @@
     <nav class="bottom-nav">
         <ul class="row uk-padding-remove uk-margin-remove">
             <li>
-                <a href="" class="column">
-                    <span uk-icon="chat" class="uk-margin-auto"></span>
-                    <span>گفت و گو</span>
-                </a>
-            </li>
-            <li>
-                <a href="" class="column">
+                <a href="#" class="column">
                     <span uk-icon="user" class="uk-margin-auto"></span>
                     <span>پروفایل</span>
                 </a>
             </li>
             <li>
-                <a href="" class="column">
-                    <span uk-icon="home" class="uk-margin-auto"></span>
-                    <span>خانه</span>
+                <a href="#" class="column">
+                    <span uk-icon="chat" class="uk-margin-auto"></span>
+                    <span>گفت و گو</span>
                 </a>
             </li>
             <li>
-                <a href="" class="column">
+                <a href="#" class="column">
                     <span uk-icon="menu" class="uk-margin-auto"></span>
                     <span>دسته بندی ها</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="column">
+                    <span uk-icon="home" class="uk-margin-auto"></span>
+                    <span>خانه</span>
                 </a>
             </li>
         </ul>

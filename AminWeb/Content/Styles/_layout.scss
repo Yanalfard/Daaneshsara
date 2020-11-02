@@ -1,5 +1,31 @@
 ﻿@import '_colors.scss';
 
+.white-area {
+    height: $White-Area-Height;
+    background: $White-Area-Background;
+    width: 100vw;
+}
+
+.white-area-margin {
+    $top: 20px;
+    margin-top: -1 * ($White-Area-Height - $top);
+}
+
+@media only screen and (max-width : 764px) {
+    .white-area-margin {
+        $top: 64px;
+        margin-top: -1 * ($White-Area-Height - $top);
+    }
+}
+
+@media only screen and (max-device-width : 764px) {
+    .white-area-margin {
+        $top: 64px;
+        margin-top: -1 * ($White-Area-Height - $top);
+    }
+}
+
+
 .space {
     width: 100vw;
     height: 4vw;

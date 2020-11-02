@@ -3,28 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DataLayer.Models;
 
 namespace AminWeb.Controllers
 {
-    public class HomeController : Controller
+    public class AccountController : Controller
     {
+        // GET: Account
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Login()
+        {
+            return PartialView();
+        }
+
+        public ActionResult SignUp()
+        {
+            return PartialView();
+        }
+
+        public ActionResult RecoverPassword()
         {
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            return View();
-        }
-
-        public ActionResult Rules()
+        public ActionResult ChangePassword()
         {
             return View();
         }

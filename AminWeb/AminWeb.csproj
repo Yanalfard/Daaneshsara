@@ -124,7 +124,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -149,6 +151,12 @@
     <Content Include="Content\Styles\Pages\Index.min.css">
       <DependentUpon>Index.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\Pages\VideoView.css">
+      <DependentUpon>VideoView.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Pages\VideoView.min.css">
+      <DependentUpon>VideoView.css</DependentUpon>
+    </Content>
     <Content Include="Content\UIkit\uikit-icons.min.js" />
     <Content Include="Content\UIkit\uikit.min.css" />
     <Content Include="Content\UIkit\uikit.min.js" />
@@ -170,6 +178,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Content\Styles\Pages\Index.scss" />
+    <Content Include="Content\Styles\Pages\VideoView.scss" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Resources\Static\Vector\biscuit\biscuit_main.svg" />
     <Content Include="Resources\Static\Vector\Education.svg" />
@@ -201,6 +210,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_VideoBlock.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Rules.cshtml" />
+    <Content Include="Views\Account\RecoverPassword.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Video\VideoView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
