@@ -78,12 +78,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AminWeb.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>AminWeb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>AminWeb.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
