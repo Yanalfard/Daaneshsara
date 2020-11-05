@@ -18,6 +18,7 @@ namespace DataLayer.Models
         public int UserId { get; set; }
         public int VideoId { get; set; }
         public System.DateTime Date { get; set; }
+        public bool IsBookMark { get; set; }
     
         public virtual TblUser TblUser { get; set; }
         public virtual TblVideo TblVideo { get; set; }

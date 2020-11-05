@@ -7,7 +7,7 @@ using DataLayer.Models;
 
 namespace DataLayer.Repositories
 {
-    public class MainRepo<TEntity> where TEntity : class
+    public class MainRepo<TEntity> : IMainRepo<TEntity> where TEntity : class
     {
         private AminWebEntities _db;
         private DbSet<TEntity> _dbSet;
