@@ -14,5 +14,9 @@
   {
     "outputFile": "Content/Styles/Pages/VideoView.css",
     "inputFile": "Content/Styles/Pages/VideoView.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Areas/UserDashboard.css",
+    "inputFile": "Content/Styles/Areas/UserDashboard.scss"
   }
 ]

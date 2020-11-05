@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Styles/Areas/UserDashboard.min.css" rel="stylesheet" />
+
+
+<div class="space-nav"></div>
+<div class="uk-container">
+    <content class="row-reverse uk-margin-medium-top">
+        <div role="none" class="remove-at-mobile uk-margin-left">
+            <div role="none" class="side-category-placeholder"></div>
+            <aside role="menu" class="side-category column" uk-sticky="offset: 100">
+                @*<h4>
+                        دسته بندی ها
+                    </h4>*@
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="" uk-icon="user">
+                                پروفایل
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" uk-icon="lock">
+                                تغییر رمز عبور
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" uk-icon="money">
+                                کیف پول
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" uk-icon="chat">
+                                گفت و گو
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" uk-icon="video">
+                                ویدیو های شما
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" uk-icon="addVideo">
+                                آپلود ویدیو
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" uk-icon="class">
+                                کلاس ها
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" uk-icon="form">
+                                تکمیل اطلاعات
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" uk-icon="edu">
+                                حساب آموزشگاهی
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </aside>
+        </div>
+        <div class="flex-1">
+            @RenderBody()
+        </div>
+    </content>
+</div>

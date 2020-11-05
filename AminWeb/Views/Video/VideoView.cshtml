@@ -12,6 +12,51 @@
 </div>
 <img src="~/Resources/Static/Vector/biscuit/biscuit_main.svg" width="1" height="1" class="biscuit" alt="biscuit" />
 
+<div id="Modal-Rate" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body column">
+        <h3 class="uk-margin-auto">به این ویدیو چند امتیاز می دهید؟</h3>
+        <button class="uk-modal-close-default" name="close" type="button" uk-close></button>
+        <div class="row star-container uk-margin-auto">
+            <span class="star-cb-group">
+                <input type="radio" id="rating-5" name="Raiting" value="5" /><label for="rating-5">5</label>
+                <input type="radio" id="rating-4" name="Raiting" value="4" checked="checked" /><label for="rating-4">4</label>
+                <input type="radio" id="rating-3" name="Raiting" value="3" /><label for="rating-3">3</label>
+                <input type="radio" id="rating-2" name="Raiting" value="2" /><label for="rating-2">2</label>
+                <input type="radio" id="rating-1" name="Raiting" value="1" /><label for="rating-1">1</label>
+                <input type="radio" id="rating-0" name="Raiting" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
+            </span>
+        </div>
+        <button class="btn-primary uk-modal-close uk-margin-auto uk-margin-top" type="button">ثبت</button>
+    </div>
+</div>
+
+<div id="Modal-Report" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body column">
+        <h3 class="uk-margin-auto">این ویدیو چه مشکلی دارد؟</h3>
+        <button class="uk-modal-close-default" name="close" type="button" uk-close></button>
+        <ul>
+            <li class="uk-form-controls">
+                <label>محتوای نا مربوط</label>
+                <input type="radio" class=" uk-radio" name="report" value="" id="" />
+            </li>
+            <li class="uk-form-controls uk-margin-small-top">
+                <label>محتوای نا مناسب</label>
+                <input type="radio" class="uk-radio" name="report" value="" id="" />
+            </li>
+            <li class="uk-form-controls uk-margin-small-top">
+                <label>کیفیت پایین ویدیو</label>
+                <input type="radio" class="uk-radio" name="report" value="" id="" />
+            </li>
+        </ul>
+        <hr />
+        <label for="Other" class="uk-margin-small-bottom" dir="rtl">مشکل دیگر...</label>
+        <div class="input-group">
+            <input type="email" name="Other" placeholder="لحاظ کنید"/>
+        </div>
+        <button class="btn-primary uk-modal-close uk-margin-auto uk-margin-top" type="button">ثبت</button>
+    </div>
+</div>
+
 <div class="column uk-container">
     <div class="column container uk-margin-auto">
         <video class="video-playback uk-margin-auto-left uk-margin-auto-right white-area-margin" controls controlsList="nodownload">
@@ -24,7 +69,7 @@
                     تیتر این ویدیو اینجا قرار می گیرد
                 </h3>
                 <a href="#" class="tutor">
-                    نام آپلود کننده اینج قرار می گیرد
+                    نام آپلود کننده اینجا قرار می گیرد
                 </a>
                 <p class="uk-margin-remove-bottom">
                     لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
@@ -59,12 +104,12 @@
                 </div>
                 <div class="control-panel-top  row-reverse uk-margin-auto-right">
                     <ul class="action-panel row uk-padding-remove uk-margin-auto-bottom uk-margin-auto-top uk-margin-auto-right">
-                        <li><a class="icon-button" uk-tooltip="گزارش تخلف" uk-icon="report"></a></li>
-                        <li><a class="icon-button" uk-tooltip="ذخیره ویدیو " uk-icon="bookmark"></a></li>
-                        <li><a class="icon-button" uk-tooltip="اشتراک گذاری" uk-icon="share"></a></li>
+                        <li><a href="#Modal-Report" uk-toggle class="icon-button" uk-tooltip="گزارش تخلف" uk-icon="report"></a></li>
+                        <li><a class="icon-button" onclick="UIkit.notification('ویدیو در کتاب خانه شما ذخیره شد')" uk-tooltip="ذخیره ویدیو" uk-icon="bookmark"></a></li>
+                        <li><a class="icon-button" onclick="fallbackCopyTextToClipboard(window.location.href); UIkit.notification('لینک کپی شد')" uk-tooltip="اشتراک گذاری" uk-icon="share"></a></li>
                     </ul>
                     <div class="row star-container uk-margin-small-right" dir="rtl">
-                        <a class="rate icon-button" uk-tooltip="امتیاز دهی" uk-icon="favourite"></a>
+                        <a href="#Modal-Rate" class="rate icon-button" uk-toggle uk-tooltip="امتیاز دهی" uk-icon="favourite"></a>
                         <div class="Stars" style="--rating: 2.6;" uk-tooltip="title:2.6" aria-label="The rating of this video is 2.3 out of 5"></div>
                         <span class="raiting">
                             2.6
@@ -77,40 +122,79 @@
         <div class="mat column uk-box-shadow-large uk-padding uk-margin-medium-top uk-margin-xlarge-bottom">
             <header class="row-reverse">
                 <h5>
-                    ویدیو های دیگر این کلاس
+                    نام این کلاس
                 </h5>
                 <span class="uk-badge uk-margin-small-right">
                     19
                 </span>
                 <a role="button" href="#" uk-icon="info" class="uk-margin-auto-right" type="button"></a>
-                <div uk-drop>
-                    <div class="drop-body uk-form-width-medium">
-
+                <div uk-drop="offset:0">
+                    <div class="drop-body uk-form-width-medium uk-padding">
+                        <dl>
+                            <dt>
+                                نام کلاس
+                            </dt>
+                            <dd>
+                                کلاس علوم اجتماعی
+                            </dd>
+                            <dt>
+                                آپلود کننده
+                            </dt>
+                            <dd>
+                                <a href="#">حسن حسن زاده</a>
+                            </dd>
+                        </dl>
                     </div>
                 </div>
             </header>
-            <div class="playlist uk-position-relative uk-visible-toggle" tabindex="-1" uk-slider>
-                <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-1@s uk-child-width-1-2@m @("uk-child-width-1-3\\@l")">
-                    <li>
-                        <div>
-                            @Html.Partial("_VideoBlock")
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            @Html.Partial("_VideoBlock")
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            @Html.Partial("_VideoBlock")
-                        </div>
-                    </li>
-                </ul>
-                <a class="handle uk-position-center-left uk-position-small uk-hidden-hover" uk-slidenav-previous uk-slider-item="previous"></a>
-                <a class="handle uk-position-center-right uk-position-small uk-hidden-hover" uk-slidenav-next uk-slider-item="next"></a>
-            </div>
+            <div uk-slider>
+                <div class="playlist uk-position-relative uk-visible-toggle" tabindex="-1">
+                    <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-1@s uk-child-width-1-2@m @("uk-child-width-1-3\\@l")">
+                        <li>
+                            <div>
+                                @Html.Partial("_VideoBlock")
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                @Html.Partial("_VideoBlock")
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                @Html.Partial("_VideoBlock")
+                            </div>
+                        </li>
+                    </ul>
+                    <a class="handle uk-position-center-left uk-position-small uk-hidden-hover" uk-slidenav-previous uk-slider-item="previous"></a>
+                    <a class="handle uk-position-center-right uk-position-small uk-hidden-hover" uk-slidenav-next uk-slider-item="next"></a>
+                </div>
 
+                <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-light"></ul>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    function fallbackCopyTextToClipboard(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+
+        // Avoid scrolling to bottom
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+        } catch (err) {
+        }
+
+        document.body.removeChild(textArea);
+    }
+</script>

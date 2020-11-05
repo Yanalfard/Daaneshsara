@@ -7,8 +7,6 @@
 
     <meta name="description" content="@ViewBag.Content">
 
-    @RenderSection("MySection", false)
-
     <!--Project Styles-->
     <link href="~/Content/Styles/Controls.min.css" rel="stylesheet" />
     <link href="~/Content/Styles/Global.min.css" rel="stylesheet" />
@@ -23,7 +21,7 @@
 
     <!-- #region Account Modal -->
 
-    <div id="Account-Modal" uk-modal>
+    <div id="Modal-Account" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
             @*@Html.Action("Login","Account")*@
             @*@Html.Action("SignUp","Account")*@
@@ -32,8 +30,8 @@
 
     @*<script>
             //برای نشان دادن و مخفی کردن مودال
-            UIkit.modal(document.getElementById('Account-Modal')).show();
-            UIkit.modal(document.getElementById('Account-Modal')).hide();
+            UIkit.modal(document.getElementById('Modal-Account')).show();
+            UIkit.modal(document.getElementById('Modal-Account')).hide();
         </script>*@
 
     <!-- #endregion -->
@@ -90,6 +88,7 @@
     @*<div class="uk-container uk-margin-auto">
             @RenderBody()
         </div>*@
+
 
     @RenderBody()
 
