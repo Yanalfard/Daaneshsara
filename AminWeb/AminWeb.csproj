@@ -220,7 +220,6 @@
     <Content Include="Views\Video\VideoView.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Resources\Dynamic\" />
     <Folder Include="Resources\Static\Raster\" />
   </ItemGroup>

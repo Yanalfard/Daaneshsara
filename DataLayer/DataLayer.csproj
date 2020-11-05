@@ -124,6 +124,7 @@
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IMainRepo.cs" />
     <Compile Include="Repositories\MainRepo.cs" />
     <Compile Include="Services\Heart.cs" />
   </ItemGroup>
