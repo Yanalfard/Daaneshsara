@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdUserPlaylistRel
+    public class MdUserPlaylistRel
     {
         [Key]
         public int id { get; set; }

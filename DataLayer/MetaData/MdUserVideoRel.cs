@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdUserVideoRel
+    public class MdUserVideoRel
     {
         [Key]
         public int id { get; set; }

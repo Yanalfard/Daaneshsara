@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdRole
+    public class MdRole
     {
         [Key]
         public int id { get; set; }

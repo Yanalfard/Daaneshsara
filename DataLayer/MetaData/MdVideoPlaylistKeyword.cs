@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdVideoPlaylistKeyword
+    public class MdVideoPlaylistKeyword
     {
         [Key]
         public int id { get; set; }
-                
+
         [Display(Name = "کلمه ی کلیدی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(length: 50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
