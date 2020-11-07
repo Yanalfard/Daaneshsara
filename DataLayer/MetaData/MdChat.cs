@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdChat
+    public class MdChat
     {
         [Key]
         public int id { get; set; }
 
-        [ForeignKey("SenderId")]
         public int SenderId { get; set; }
 
-        [ForeignKey("RecieverId")]
         public int RecieverId { get; set; }
 
         [Display(Name = "پیام")]

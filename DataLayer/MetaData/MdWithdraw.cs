@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace DataLayer.MetaData
 {
-    class MdWithdraw
+    public class MdWithdraw
     {
         [Key]
         public int id { get; set; }
 
         public int UserId { get; set; }
-                
+
         [Display(Name = "قیمت")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int Value { get; set; }

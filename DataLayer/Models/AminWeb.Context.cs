@@ -145,5 +145,9 @@ namespace DataLayer.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+
+        public System.Data.Entity.DbSet<DataLayer.MetaData.MdChat> MdChats { get; set; }
+
+        public System.Data.Entity.DbSet<DataLayer.MetaData.MdDoc> MdDocs { get; set; }
     }
 }
