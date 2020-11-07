@@ -125,7 +125,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\User\Controllers\AccountController.cs" />
+    <Compile Include="Areas\User\Controllers\ChatController.cs" />
     <Compile Include="Areas\User\Controllers\HomeController.cs" />
+    <Compile Include="Areas\User\Controllers\LibraryController.cs" />
+    <Compile Include="Areas\User\Controllers\VideoController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -170,7 +173,6 @@
     <Content Include="Content\UIkit\uikit.min.css" />
     <Content Include="Content\UIkit\uikit.min.js" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="CodeTemplates\MvcView\UkCreate.cs.t4" />
     <Content Include="CodeTemplates\MvcView\UkDetails.cs.t4" />
@@ -189,16 +191,17 @@
     <Content Include="Areas\User\Views\Account\UserData.cshtml" />
     <Content Include="Areas\User\Views\Account\ChangePassword.cshtml" />
     <Content Include="Areas\User\Views\Account\Wallet.cshtml" />
+    <Content Include="Areas\User\Views\Library\Index.cshtml" />
+    <Content Include="Areas\User\Views\Chat\Index.cshtml" />
+    <Content Include="Areas\User\Views\Video\YourVideos.cshtml" />
+    <Content Include="Areas\User\Views\Account\AccountToInstitution.cshtml" />
+    <Content Include="Areas\User\Views\Account\AccountCompletion.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Content\Styles\Pages\Index.scss" />
     <Content Include="Content\Styles\Pages\VideoView.scss" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\Styles\Areas\UserDashboard.scss" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Resources\Static\Vector\biscuit\biscuit_main.svg" />
@@ -241,11 +244,11 @@
     <Content Include="Views\Account\RecoverPassword.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Video\VideoView.cshtml" />
+    <Content Include="Views\Shared\_Playlist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Views\Home\" />
-    <Folder Include="Models\" />
     <Folder Include="Resources\Dynamic\" />
     <Folder Include="Resources\Static\Raster\" />
   </ItemGroup>

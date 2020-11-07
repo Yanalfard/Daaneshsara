@@ -24,5 +24,15 @@ namespace AminWeb.Areas.User.Controllers
             return View();
         }
 
+        public ActionResult AccountCompletion()
+        {
+            return View();
+        }
+
+        public ActionResult AccountToInstitution()
+        {
+            return View();
+        }
+
     }
 }

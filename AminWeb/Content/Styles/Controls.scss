@@ -10,6 +10,7 @@
     backdrop-filter: blur(4px);
 
     > nav {
+        margin-left: 20px;
 
         a {
             margin: auto 0;
@@ -19,6 +20,7 @@
 
     > .logo {
         width: 50px;
+        margin-right: 24px;
     }
 }
 
@@ -31,11 +33,11 @@ a:hover, summary:hover, .active {
     color: $primary;
 }
 
-a.blue {
+.blue {
     color: #55ACEE;
 }
 
-a.blue:hover {
+.blue:hover {
     color: lighten(#55ACEE,12%);
 }
 
@@ -48,7 +50,7 @@ a.blue:hover {
     width: 100vw;
     background: #fff;
     @include shadow-medium;
-    @include border-radius(32%,32%,0,0);
+    @include border-radius(16px,16px,0,0);
 
     ul {
         li {
@@ -57,18 +59,43 @@ a.blue:hover {
     }
 }
 
+$container-padding-phone: 0px;
+
 @media only screen and (max-width: 764px) {
+
     .bottom-nav {
         display: block;
     }
 }
 
 @media only screen and (max-device-width: 764px) {
+    .uk-container {
+        padding: $container-padding-phone !important;
+    }
+
+    .top-nav {
+
+        > nav {
+            margin-left: 10px;
+
+            a {
+                margin: auto 0;
+                margin-right: 16px;
+                font-size: 14px;
+            }
+        }
+
+        > .logo {
+            width: 32px;
+            margin-right: 10px;
+        }
+    }
+
+
     .bottom-nav {
         display: block;
     }
 }
-
 
 .drop-body {
     background: $white;
@@ -224,7 +251,10 @@ $side-category-width: 280px;
 
     .remove-at-mobile {
         display: none;
-        margin: 0 !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     $video-block-height: 164px;
@@ -316,9 +346,6 @@ $side-category-width: 280px;
     }
 }
 
-.remove-at-mobile {
-    display: initial;
-}
 
 /*@media only screen and (max-width: 724px) {
     .side-category, .side-category-placeholder {
@@ -364,6 +391,34 @@ details, summary {
     input {
         background: transparent;
         border: none;
+    }
+}
+
+textarea {
+    padding: 8px 12px;
+    background: #EFEFEF;
+    border: 1px solid #ddd;
+    @include border-radius(10px,10px,10px,10px);
+    resize: vertical;
+    min-height: 48px;
+}
+
+input.uk-checkbox {
+    padding: 10px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border-width: 2px
+}
+
+select {
+    padding: 8px 12px;
+    background: #EFEFEF;
+    border: 1px solid #ddd;
+    @include border-radius(10px,10px,10px,10px);
+
+    option {
+        background: white;
     }
 }
 

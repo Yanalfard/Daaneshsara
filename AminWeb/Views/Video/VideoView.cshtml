@@ -51,7 +51,7 @@
         <hr />
         <label for="Other" class="uk-margin-small-bottom" dir="rtl">مشکل دیگر...</label>
         <div class="input-group">
-            <input type="email" name="Other" placeholder="لحاظ کنید"/>
+            <input type="email" name="Other" placeholder="لحاظ کنید" />
         </div>
         <button class="btn-primary uk-modal-close uk-margin-auto uk-margin-top" type="button">ثبت</button>
     </div>
@@ -63,7 +63,7 @@
             <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
             مرورگر شما پخش ویدیو را پشتیبانی نمی کند.
         </video>
-        <div id="Info" class="mat uk-box-shadow-large uk-margin-medium-top">
+        <div id="Info" class="mat uk-box-shadow-large uk-margin-medium-top uk-margin-medium-bottom">
             <div class="uk-padding">
                 <h3>
                     تیتر این ویدیو اینجا قرار می گیرد
@@ -119,60 +119,10 @@
             </div>
         </div>
 
-        <div class="mat column uk-box-shadow-large uk-padding uk-margin-medium-top uk-margin-xlarge-bottom">
-            <header class="row-reverse">
-                <h5>
-                    نام این کلاس
-                </h5>
-                <span class="uk-badge uk-margin-small-right">
-                    19
-                </span>
-                <a role="button" href="#" uk-icon="info" class="uk-margin-auto-right" type="button"></a>
-                <div uk-drop="offset:0">
-                    <div class="drop-body uk-form-width-medium uk-padding">
-                        <dl>
-                            <dt>
-                                نام کلاس
-                            </dt>
-                            <dd>
-                                کلاس علوم اجتماعی
-                            </dd>
-                            <dt>
-                                آپلود کننده
-                            </dt>
-                            <dd>
-                                <a href="#">حسن حسن زاده</a>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            </header>
-            <div uk-slider>
-                <div class="playlist uk-position-relative uk-visible-toggle" tabindex="-1">
-                    <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-1@s uk-child-width-1-2@m @("uk-child-width-1-3\\@l")">
-                        <li>
-                            <div>
-                                @Html.Partial("_VideoBlock")
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                @Html.Partial("_VideoBlock")
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                @Html.Partial("_VideoBlock")
-                            </div>
-                        </li>
-                    </ul>
-                    <a class="handle uk-position-center-left uk-position-small uk-hidden-hover" uk-slidenav-previous uk-slider-item="previous"></a>
-                    <a class="handle uk-position-center-right uk-position-small uk-hidden-hover" uk-slidenav-next uk-slider-item="next"></a>
-                </div>
+        @Html.Partial("_Playlist")
 
-                <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-light"></ul>
-            </div>
-        </div>
+        <div class="space"></div>
+
     </div>
 </div>
 

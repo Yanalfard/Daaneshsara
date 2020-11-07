@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Content = "کتاب خانه ویدیو های شما، جایی که ویدیو های خریداری شده و ذخیره شده را می توانید بیابید";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mat uk-padding-small uk-box-shadow-small column">
+    <h3 class="uk-margin-remove">
+        کتابخانه
+    </h3>
+</div>
+
+<h4 class="blockquote">
+    خریداری شده
+</h4>
+
+<div class="video-grid">
+    @Html.Partial("_VideoBlock")
+    @Html.Partial("_VideoBlock")
+    @Html.Partial("_VideoBlock")
+    @Html.Partial("_VideoBlock")
+    @Html.Partial("_VideoBlock")
+</div>
+
+<h4 class="blockquote">
+    ذخیره شده
+</h4>
+
+<div class="video-grid">
+    @Html.Partial("_VideoBlock")
+    @Html.Partial("_VideoBlock")
+    @Html.Partial("_VideoBlock")
+    @Html.Partial("_VideoBlock")
+    @Html.Partial("_VideoBlock")
+</div>
+
+
