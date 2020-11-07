@@ -22,12 +22,12 @@
     }
 }
 
-a, details, summary {
+a, details, summary, .anchor {
     color: $Text;
     @include trans(.3s);
 }
 
-a:hover, summary:hover {
+a:hover, summary:hover, .active {
     color: $primary;
 }
 
@@ -376,7 +376,7 @@ details, summary {
     padding: 8px 20px;
     cursor: pointer;
     text-align: center;
-    min-width: 170px;
+    min-width: 150px;
 }
 
 .btn-primary {
@@ -430,5 +430,20 @@ details, summary {
         @include mat;
         @include shadow-mild;
         @include border-radius(50%,50%,50%,50%);
+    }
+}
+
+.uk-notification-message {
+    background-color: #fff !important;
+    direction: rtl;
+    @include mat;
+    @include shadow-more;
+
+    .uk-notification-close {
+        direction: rtl;
+    }
+
+    > div {
+        margin-right: 24px;
     }
 }
