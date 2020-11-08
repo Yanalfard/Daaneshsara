@@ -39,20 +39,21 @@
 
     <header role="navigation" class="top-nav row">
         <nav class="uk-flex-auto row flex-1">
-            <a href="#" class="uk-margin-auto-right lesser">
+            <a href="/User/Account/UserData" class="uk-margin-auto-right lesser">
                 پروفایل
             </a>
+
             <div uk-drop id="navDrop">
                 <div class="drop-body uk-padding-small column">
                     <ul class="uk-margin-remove uk-padding-remove">
                         <li>
-                            <a href="#">
+                            <a href="/User/Account/UserData">
                                 <span>پروفایل</span>
                                 <span uk-icon="icon:user"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/User/Video/YourVideos">
                                 <span>آپلود</span>
                                 <span uk-icon="icon:cloud-upload"></span>
                             </a>
@@ -65,7 +66,7 @@
                         </li>
                     </ul>
                     <hr class="uk-grid-margin-small" />
-                    <a href="#" class="success">
+                    <a href="/User/Account/Wallet" class="success">
                         <span>130,000</span>
                         <span uk-icon="icon:money"></span>
                     </a>
@@ -73,13 +74,16 @@
             </div>
 
             <div role="list" class="row-reverse uk-margin-auto-left">
-                <a role="listitem" href="#" class="lesser">خانه</a>
-                <a role="listitem" href="#" class="lesser">درباره ما</a>
-                <a role="listitem" href="#" class="lesser">تماس با ما</a>
-                <a role="listitem" href="#" class="lesser">قوانین</a>
+                <a role="listitem" href="/Home/Index" class="lesser">
+                    <span>خانه</span>
+                    @*<span uk-icon="icon:home;ratio:1"></span>*@
+                </a>
+                <a role="listitem" href="/Home/About" class="lesser">درباره ما</a>
+                <a role="listitem" href="/Home/Contact" class="lesser">تماس با ما</a>
+                <a role="listitem" href="/Home/Rules" class="lesser">قوانین</a>
             </div>
         </nav>
-        <a class="logo" href="~/Views/Home/Index.cshtml">
+        <a class="logo" href="/Home/Index">
             <img src="~/Resources/Static/Vector/Logo.svg" width="50" height="50" alt="Logo" />
         </a>
     </header>
@@ -122,8 +126,7 @@
         </ul>
     </nav>
 
-    <!--Scripts-->
-    @*<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>*@
+    <div role="none" class="uk-margin-large-bottom"></div>
 
 </body>
 </html>

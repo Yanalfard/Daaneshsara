@@ -1,0 +1,54 @@
+﻿@import '../_colors.scss';
+@import '../_layout.scss';
+
+.user {
+    &-top {
+    }
+
+    hr {
+        margin: 12px 0;
+    }
+
+    &-bottom {
+        padding-left: 0;
+
+        .menu {
+
+            > li {
+                margin-right: 24px;
+            }
+
+            &-item {
+                .title {
+                    margin: 0 0 8px 0;
+                    font-size: 16px;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .bar {
+                    @include border-radius(4px,4px,0,0);
+                    height: 6px;
+                    background: #ddd;
+                    width: 60px;
+                }
+            }
+
+            &-item:hover {
+                .title {
+                    color: $primary;
+                }
+
+                .bar {
+                    background: lighten($primary,8%);
+                }
+            }
+
+            &-item.active {
+                .bar {
+                    background: lighten($primary,8%);
+                }
+            }
+        }
+    }
+}

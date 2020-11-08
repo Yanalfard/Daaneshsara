@@ -132,6 +132,7 @@
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -162,6 +163,13 @@
     </Content>
     <Content Include="Content\Styles\Pages\Index.min.css">
       <DependentUpon>Index.css</DependentUpon>
+    </Content>
+    <None Include="Content\Styles\Pages\Profile.scss" />
+    <Content Include="Content\Styles\Pages\Profile.css">
+      <DependentUpon>Profile.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Pages\Profile.min.css">
+      <DependentUpon>Profile.css</DependentUpon>
     </Content>
     <Content Include="Content\Styles\Pages\VideoView.css">
       <DependentUpon>VideoView.scss</DependentUpon>
@@ -196,6 +204,7 @@
     <Content Include="Areas\User\Views\Video\YourVideos.cshtml" />
     <Content Include="Areas\User\Views\Account\AccountToInstitution.cshtml" />
     <Content Include="Areas\User\Views\Account\AccountCompletion.cshtml" />
+    <Content Include="Areas\User\Views\Video\UserVideoBlock.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -245,6 +254,11 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Video\VideoView.cshtml" />
     <Content Include="Views\Shared\_Playlist.cshtml" />
+    <Content Include="Views\Profile\Dashboard.cshtml" />
+    <Content Include="Views\Profile\_ProfileLayout.cshtml" />
+    <Content Include="Views\Profile\Videos.cshtml" />
+    <Content Include="Views\Profile\Classes.cshtml" />
+    <Content Include="Views\Profile\SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\User\Data\" />

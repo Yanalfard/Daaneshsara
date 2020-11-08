@@ -158,7 +158,7 @@ $video-block-width: 280px;
         .thumbnail {
             //width -> 280px;
             height: 200px;
-            @include border-radius(8px,8px,0,0);
+            @include border-radius(7px,7px,0,0);
         }
     }
 
@@ -216,6 +216,13 @@ $video-block-width: 280px;
 
     > .video-block {
         margin-left: auto;
+    }
+}
+
+.video-grid.center {
+    > .video-block {
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 }
 
@@ -416,6 +423,7 @@ select {
     background: #EFEFEF;
     border: 1px solid #ddd;
     @include border-radius(10px,10px,10px,10px);
+    cursor: pointer;
 
     option {
         background: white;
@@ -434,14 +442,20 @@ select {
     min-width: 150px;
 }
 
-.btn-primary {
+.btn-primary, .btn-pill-primary {
     color: white;
     background: $primary;
     border: none;
     @include trans(.2s);
 }
 
-.btn-primary:hover, .btn-primary:focus {
+.btn-pill-primary {
+    cursor: pointer;
+    padding: 12px;
+    @include border-radius(12px,12px,12px,12px);
+}
+
+.btn-primary:hover, .btn-pill-primary:hover, .btn-primary:focus {
     background: lighten($primary,8%);
 }
 

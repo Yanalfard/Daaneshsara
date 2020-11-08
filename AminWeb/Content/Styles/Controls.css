@@ -363,9 +363,9 @@ a:hover, summary:hover, .active {
         width: 24px; }
   .video-block .top .thumbnail, .uk-slider-items .video-block .top .thumbnail {
     height: 200px;
-    -moz-border-radius: 8px 8px 0 0;
-    -webkit-border-radius: 8px 8px 0 0;
-    border-radius: 8px 8px 0 0;
+    -moz-border-radius: 7px 7px 0 0;
+    -webkit-border-radius: 7px 7px 0 0;
+    border-radius: 7px 7px 0 0;
     /* -moz-border-radius: 0;
     -webkit-border-radius: 0;
     border-radius: 0;*/ }
@@ -412,10 +412,14 @@ a:hover, summary:hover, .active {
 .video-grid {
   display: grid;
   grid-template-rows: auto;
-  grid-gap: .6em;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  grid-gap: 1em;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
   .video-grid > .video-block {
     margin-left: auto; }
+
+.video-grid.center > .video-block {
+  margin-left: auto !important;
+  margin-right: auto !important; }
 
 .side-category {
   width: 280px;
@@ -521,8 +525,8 @@ a:hover, summary:hover, .active {
   .video-grid {
     display: grid;
     grid-template-rows: auto;
-    grid-gap: .6em;
-    grid-template-columns: repeat(auto-fit, minmax(90vw, 1fr)); }
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(90vw, 1fr)); }
     .video-grid > .video-block {
       margin-left: auto; } }
 
@@ -602,7 +606,8 @@ select {
   border-radius: 10px 10px 10px 10px;
   /* -moz-border-radius: 0;
     -webkit-border-radius: 0;
-    border-radius: 0;*/ }
+    border-radius: 0;*/
+  cursor: pointer; }
   select option {
     background: white; }
 
@@ -621,7 +626,7 @@ select {
   text-align: center;
   min-width: 150px; }
 
-.btn-primary {
+.btn-primary, .btn-pill-primary {
   color: white;
   background: #F94646;
   border: none;
@@ -630,7 +635,17 @@ select {
   -webkit-transition: all ease 0.2s;
   transition: all ease 0.2s; }
 
-.btn-primary:hover, .btn-primary:focus {
+.btn-pill-primary {
+  cursor: pointer;
+  padding: 12px;
+  -moz-border-radius: 12px 12px 12px 12px;
+  -webkit-border-radius: 12px 12px 12px 12px;
+  border-radius: 12px 12px 12px 12px;
+  /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/ }
+
+.btn-primary:hover, .btn-pill-primary:hover, .btn-primary:focus {
   background: #fa6e6e; }
 
 .btn-secondary {

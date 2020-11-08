@@ -29,6 +29,7 @@ html {
     /* Handle */
     ::-webkit-scrollbar-thumb {
         background: darken($Background,16%);
+        @include border-radius(16px,16px,16px,16px);
         @include shadow-mild;
     }
     /* Handle on hover */
