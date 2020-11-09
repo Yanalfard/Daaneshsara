@@ -87,7 +87,10 @@ backdrop-filter: saturate(80%);
     height: 6vh; }
   .space-double {
     width: 100vw;
-    height: 9vh; } }
+    height: 9vh; }
+  .space-bottom-nav {
+    width: 100vw;
+    height: 64px; } }
 
 .space-nav {
   width: 100vw;

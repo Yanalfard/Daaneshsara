@@ -87,7 +87,10 @@ backdrop-filter: saturate(80%);
     height: 6vh; }
   .space-double {
     width: 100vw;
-    height: 9vh; } }
+    height: 9vh; }
+  .space-bottom-nav {
+    width: 100vw;
+    height: 64px; } }
 
 .space-nav {
   width: 100vw;
@@ -172,6 +175,12 @@ backdrop-filter: saturate(80%);
   .side-category a {
     margin: 10px 0; }
 
+.menu a {
+  margin: 10px 0; }
+
+.button-navigation {
+  display: none; }
+
 .datalist {
   display: flex;
   flex-direction: row-reverse;
@@ -235,7 +244,13 @@ backdrop-filter: saturate(80%);
     padding-bottom: 12px;
     border-bottom: 1px solid #dbdbdb; }
   .table-simple tbody tr td {
-    padding: 6px 0; } }
+    padding: 6px 0; }
+  .button-navigation {
+    display: block; } }
+
+@media only screen and (max-device-width: 480px) {
+  .button-navigation {
+    display: block; } }
 
 .blockquote {
   color: #AFAFAF;

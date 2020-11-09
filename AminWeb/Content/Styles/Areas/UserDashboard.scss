@@ -15,6 +15,16 @@ $side-category-width: 200px;
     }
 }
 
+.menu {
+    a {
+        margin: 10px 0
+    }
+}
+
+.button-navigation{
+    display:none;
+}
+
 .datalist {
     @include row-reverse;
     -ms-flex-wrap: wrap;
@@ -103,12 +113,25 @@ $side-category-width: 200px;
             padding: 6px 0;
         }
     }
+
+    .button-navigation {
+        display: block;
+    }
 }
+
+@media only screen and (max-device-width : 480px) {
+    .button-navigation {
+        display: block;
+    }
+}
+
 
 .blockquote {
     color: #AFAFAF;
     direction: rtl;
     font-size: 20px;
+
+    
 }
 
 .blockquote:before {
@@ -123,7 +146,6 @@ $side-category-width: 200px;
         width: 64%;
         margin-left: auto;
     }
-
     /*ScrollBar*/
     /* width */
     ::-webkit-scrollbar {

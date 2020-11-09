@@ -88,37 +88,67 @@
         </a>
     </header>
 
-    <!-- #endregion -->
-    @*<div class="uk-container uk-margin-auto">
-            @RenderBody()
-        </div>*@
-
-
     @RenderBody()
 
+    <div id="Modal-Category" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body mat  uk-width-4-6-at-s uk-width-1-2-at-m uk-padding uk-margin-auto uk-box-shadow-large ">
+            <div role="menu" class="column">
+                <h4>
+                    دسته بندی ها
+                </h4>
+                <div class="search-box row uk-margin-small-bottom">
+                    <button uk-icon="search"></button>
+                    <label for="CategorySearch" class="collapsed">جستجو دسته بندی</label>
+                    <input dir="rtl" type="text" placeholder="جستجو..." name="CategorySearch" />
+                </div>
+                <details dir="rtl">
+                    <summary>دسته بندی</summary>
+                    <div class="uk-margin-right column">
+                        <details dir="rtl">
+                            <summary>دسته بندی</summary>
+                            <div class="uk-margin-right column">
+                                <details dir="rtl">
+                                    <summary>دسته بندی</summary>
+                                    <div class="column uk-margin-small-right">
+                                        <a href="#">آیتم</a>
+                                        <a href="#">آیتم</a>
+                                    </div>
+                                </details>
+                                <a href="#">آیتم</a>
+                                <a href="#">آیتم</a>
+                                <a href="#">آیتم</a>
+                            </div>
+                        </details>
+                        <a href="#">آیتم</a>
+                        <a href="#">آیتم</a>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
 
     <nav class="bottom-nav">
         <ul class="row uk-padding-remove uk-margin-remove">
             <li>
-                <a href="#" class="column">
+                <a href="/User/Account/UserData" class="column">
                     <span uk-icon="user" class="uk-margin-auto"></span>
                     <span>پروفایل</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="column">
+                <a href="/User/Chat/Index" class="column">
                     <span uk-icon="chat" class="uk-margin-auto"></span>
                     <span>گفت و گو</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="column">
+                <a href="#Modal-Category" uk-toggle class="column">
                     <span uk-icon="menu" class="uk-margin-auto"></span>
                     <span>دسته بندی ها</span>
                 </a>
             </li>
             <li>
-                <a href="#" class="column">
+                <a href="/Home/Index" class="column">
                     <span uk-icon="home" class="uk-margin-auto"></span>
                     <span>خانه</span>
                 </a>
@@ -126,7 +156,7 @@
         </ul>
     </nav>
 
-    <div role="none" class="uk-margin-large-bottom"></div>
+    <div role="none" class="space-bottom-nav uk-margin-xlarge-bottom"></div>
 
 </body>
 </html>
