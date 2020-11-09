@@ -461,6 +461,13 @@ select {
     min-width: 150px;
 }
 
+@media only screen and (max-device-width : 480px) {
+    .btn-primary, .btn-secondary {
+        @include border-radius(10px,10px,10px,10px);
+        min-width: 100px;
+    }
+}
+
 .btn-primary, .btn-pill-primary {
     color: white;
     background: $primary;
