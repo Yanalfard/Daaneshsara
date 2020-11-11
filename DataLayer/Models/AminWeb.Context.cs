@@ -28,6 +28,7 @@ namespace DataLayer.Models
         }
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TblCatagory> TblCatagory { get; set; }
         public virtual DbSet<TblChat> TblChat { get; set; }
         public virtual DbSet<TblConfig> TblConfig { get; set; }
         public virtual DbSet<TblDoc> TblDoc { get; set; }

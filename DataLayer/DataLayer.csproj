@@ -81,6 +81,9 @@
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TblCatagory.cs">
+      <DependentUpon>AminWeb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TblChat.cs">
       <DependentUpon>AminWeb.tt</DependentUpon>
     </Compile>

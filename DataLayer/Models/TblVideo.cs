@@ -38,7 +38,9 @@ namespace DataLayer.Models
         public bool IsCharity { get; set; }
         public Nullable<int> PlaylistId { get; set; }
         public bool IsActive { get; set; }
+        public int CatagoryId { get; set; }
     
+        public virtual TblCatagory TblCatagory { get; set; }
         public virtual TblPlaylist TblPlaylist { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblReport> TblReport { get; set; }
