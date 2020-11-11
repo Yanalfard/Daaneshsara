@@ -230,6 +230,9 @@ backdrop-filter: saturate(80%);
 .success {
   color: #73DA42; }
 
+.muted {
+  color: #AEAEAE !important; }
+
 .table-simple {
   margin: 0;
   width: 100%; }
