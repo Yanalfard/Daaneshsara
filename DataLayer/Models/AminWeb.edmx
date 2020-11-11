@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AminWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="AminWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -14,6 +14,14 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TblCatagory">
+          <Key>
+            <PropertyRef Name="CatagoryId" />
+          </Key>
+          <Property Name="CatagoryId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TblChat">
           <Key>
@@ -73,6 +81,7 @@
           <Property Name="IsCharity" Type="bit" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="CertificateURL" Type="nvarchar" MaxLength="256" />
+          <Property Name="CatagoryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TblReport">
           <Key>
@@ -156,6 +165,7 @@
           <Property Name="IsCharity" Type="bit" Nullable="false" />
           <Property Name="PlaylistId" Type="int" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CatagoryId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TblVideoPlaylistKeyword">
           <Key>
@@ -200,6 +210,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TblCatagory_TblCatagory">
+          <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="1" />
+          <End Role="TblCatagory1" Type="Self.TblCatagory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCatagory">
+              <PropertyRef Name="CatagoryId" />
+            </Principal>
+            <Dependent Role="TblCatagory1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TblLog_TblUser">
           <End Role="TblUser" Type="Self.TblUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -211,6 +233,18 @@
             </Principal>
             <Dependent Role="TblLog">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblPlaylist_TblCatagory">
+          <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="1" />
+          <End Role="TblPlaylist" Type="Self.TblPlaylist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCatagory">
+              <PropertyRef Name="CatagoryId" />
+            </Principal>
+            <Dependent Role="TblPlaylist">
+              <PropertyRef Name="CatagoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -326,6 +360,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TblVideo_TblCatagory">
+          <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="1" />
+          <End Role="TblVideo" Type="Self.TblVideo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCatagory">
+              <PropertyRef Name="CatagoryId" />
+            </Principal>
+            <Dependent Role="TblVideo">
+              <PropertyRef Name="CatagoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TblVideo_TblPack">
           <End Role="TblPlaylist" Type="Self.TblPlaylist" Multiplicity="0..1" />
           <End Role="TblVideo" Type="Self.TblVideo" Multiplicity="*" />
@@ -421,6 +467,7 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="AminWebModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblCatagory" EntityType="Self.TblCatagory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblChat" EntityType="Self.TblChat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblConfig" EntityType="Self.TblConfig" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDoc" EntityType="Self.TblDoc" Schema="dbo" store:Type="Tables" />
@@ -443,9 +490,17 @@
             <End Role="TblUser" EntitySet="TblUser" />
             <End Role="TblChat" EntitySet="TblChat" />
           </AssociationSet>
+          <AssociationSet Name="FK_TblCatagory_TblCatagory" Association="Self.FK_TblCatagory_TblCatagory">
+            <End Role="TblCatagory" EntitySet="TblCatagory" />
+            <End Role="TblCatagory1" EntitySet="TblCatagory" />
+          </AssociationSet>
           <AssociationSet Name="FK_TblLog_TblUser" Association="Self.FK_TblLog_TblUser">
             <End Role="TblUser" EntitySet="TblUser" />
             <End Role="TblLog" EntitySet="TblLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblPlaylist_TblCatagory" Association="Self.FK_TblPlaylist_TblCatagory">
+            <End Role="TblCatagory" EntitySet="TblCatagory" />
+            <End Role="TblPlaylist" EntitySet="TblPlaylist" />
           </AssociationSet>
           <AssociationSet Name="FK_TblPlaylist_TblUser" Association="Self.FK_TblPlaylist_TblUser">
             <End Role="TblUser" EntitySet="TblUser" />
@@ -483,6 +538,10 @@
             <End Role="TblVideo" EntitySet="TblVideo" />
             <End Role="TblUserVideoRel" EntitySet="TblUserVideoRel" />
           </AssociationSet>
+          <AssociationSet Name="FK_TblVideo_TblCatagory" Association="Self.FK_TblVideo_TblCatagory">
+            <End Role="TblCatagory" EntitySet="TblCatagory" />
+            <End Role="TblVideo" EntitySet="TblVideo" />
+          </AssociationSet>
           <AssociationSet Name="FK_TblVideo_TblPack" Association="Self.FK_TblVideo_TblPack">
             <End Role="TblPlaylist" EntitySet="TblPlaylist" />
             <End Role="TblVideo" EntitySet="TblVideo" />
@@ -504,7 +563,8 @@
             <End Role="TblVideo" EntitySet="TblVideo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AminWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -517,6 +577,18 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TblCatagory">
+          <Key>
+            <PropertyRef Name="CatagoryId" />
+          </Key>
+          <Property Name="CatagoryId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TblCatagory1" Relationship="Self.FK_TblCatagory_TblCatagory" FromRole="TblCatagory" ToRole="TblCatagory1" />
+          <NavigationProperty Name="TblCatagory2" Relationship="Self.FK_TblCatagory_TblCatagory" FromRole="TblCatagory1" ToRole="TblCatagory" />
+          <NavigationProperty Name="TblPlaylist" Relationship="Self.FK_TblPlaylist_TblCatagory" FromRole="TblCatagory" ToRole="TblPlaylist" />
+          <NavigationProperty Name="TblVideo" Relationship="Self.FK_TblVideo_TblCatagory" FromRole="TblCatagory" ToRole="TblVideo" />
         </EntityType>
         <EntityType Name="TblChat">
           <Key>
@@ -580,6 +652,8 @@
           <Property Name="IsCharity" Type="Boolean" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CertificateURL" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CatagoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TblCatagory" Relationship="Self.FK_TblPlaylist_TblCatagory" FromRole="TblPlaylist" ToRole="TblCatagory" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblPlaylist_TblUser" FromRole="TblPlaylist" ToRole="TblUser" />
           <NavigationProperty Name="TblUserPlaylistRel" Relationship="Self.FK_TblUserPackRel_TblPack" FromRole="TblPlaylist" ToRole="TblUserPlaylistRel" />
           <NavigationProperty Name="TblVideo" Relationship="Self.FK_TblVideo_TblPack" FromRole="TblPlaylist" ToRole="TblVideo" />
@@ -661,9 +735,9 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="VideoId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsBookMark" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblUserVideoRel_TblUser" FromRole="TblUserVideoRel" ToRole="TblUser" />
           <NavigationProperty Name="TblVideo" Relationship="Self.FK_TblUserVideoRel_TblVideo" FromRole="TblUserVideoRel" ToRole="TblVideo" />
-          <Property Name="IsBookMark" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TblVideo">
           <Key>
@@ -685,6 +759,8 @@
           <Property Name="IsCharity" Type="Boolean" Nullable="false" />
           <Property Name="PlaylistId" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CatagoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TblCatagory" Relationship="Self.FK_TblVideo_TblCatagory" FromRole="TblVideo" ToRole="TblCatagory" />
           <NavigationProperty Name="TblPlaylist" Relationship="Self.FK_TblVideo_TblPack" FromRole="TblVideo" ToRole="TblPlaylist" />
           <NavigationProperty Name="TblReport" Relationship="Self.FK_TblReport_TblVideo" FromRole="TblVideo" ToRole="TblReport" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_WhoUploadedVideo" FromRole="TblVideo" ToRole="TblUser" />
@@ -713,6 +789,42 @@
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblWithdraw_TblUser" FromRole="TblWithdraw" ToRole="TblUser" />
         </EntityType>
+        <Association Name="FK_TblCatagory_TblCatagory">
+          <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="1" />
+          <End Role="TblCatagory1" Type="Self.TblCatagory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCatagory">
+              <PropertyRef Name="CatagoryId" />
+            </Principal>
+            <Dependent Role="TblCatagory1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblPlaylist_TblCatagory">
+          <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="1" />
+          <End Role="TblPlaylist" Type="Self.TblPlaylist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCatagory">
+              <PropertyRef Name="CatagoryId" />
+            </Principal>
+            <Dependent Role="TblPlaylist">
+              <PropertyRef Name="CatagoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblVideo_TblCatagory">
+          <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="1" />
+          <End Role="TblVideo" Type="Self.TblVideo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblCatagory">
+              <PropertyRef Name="CatagoryId" />
+            </Principal>
+            <Dependent Role="TblVideo">
+              <PropertyRef Name="CatagoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Reciever">
           <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
           <End Role="TblChat" Type="Self.TblChat" Multiplicity="*" />
@@ -927,6 +1039,7 @@
         </Association>
         <EntityContainer Name="AminWebEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TblCatagory" EntityType="Self.TblCatagory" />
           <EntitySet Name="TblChat" EntityType="Self.TblChat" />
           <EntitySet Name="TblConfig" EntityType="Self.TblConfig" />
           <EntitySet Name="TblDoc" EntityType="Self.TblDoc" />
@@ -941,6 +1054,18 @@
           <EntitySet Name="TblVideo" EntityType="Self.TblVideo" />
           <EntitySet Name="TblVideoPlaylistKeyword" EntityType="Self.TblVideoPlaylistKeyword" />
           <EntitySet Name="TblWithdraw" EntityType="Self.TblWithdraw" />
+          <AssociationSet Name="FK_TblCatagory_TblCatagory" Association="Self.FK_TblCatagory_TblCatagory">
+            <End Role="TblCatagory" EntitySet="TblCatagory" />
+            <End Role="TblCatagory1" EntitySet="TblCatagory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblPlaylist_TblCatagory" Association="Self.FK_TblPlaylist_TblCatagory">
+            <End Role="TblCatagory" EntitySet="TblCatagory" />
+            <End Role="TblPlaylist" EntitySet="TblPlaylist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblVideo_TblCatagory" Association="Self.FK_TblVideo_TblCatagory">
+            <End Role="TblCatagory" EntitySet="TblCatagory" />
+            <End Role="TblVideo" EntitySet="TblVideo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Reciever" Association="Self.FK_Reciever">
             <End Role="TblUser" EntitySet="TblUser" />
             <End Role="TblChat" EntitySet="TblChat" />
@@ -1057,6 +1182,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TblCatagory">
+            <EntityTypeMapping TypeName="AminWebModel.TblCatagory">
+              <MappingFragment StoreEntitySet="TblCatagory">
+                <ScalarProperty Name="CatagoryId" ColumnName="CatagoryId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TblChat">
             <EntityTypeMapping TypeName="AminWebModel.TblChat">
               <MappingFragment StoreEntitySet="TblChat">
@@ -1118,6 +1252,7 @@
                 <ScalarProperty Name="IsCharity" ColumnName="IsCharity" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CertificateURL" ColumnName="CertificateURL" />
+                <ScalarProperty Name="CatagoryId" ColumnName="CatagoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1181,11 +1316,11 @@
           <EntitySetMapping Name="TblUserVideoRel">
             <EntityTypeMapping TypeName="AminWebModel.TblUserVideoRel">
               <MappingFragment StoreEntitySet="TblUserVideoRel">
-                <ScalarProperty Name="IsBookMark" ColumnName="IsBookMark" />
                 <ScalarProperty Name="UserVideoRelId" ColumnName="UserVideoRelId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsBookMark" ColumnName="IsBookMark" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1208,6 +1343,7 @@
                 <ScalarProperty Name="IsCharity" ColumnName="IsCharity" />
                 <ScalarProperty Name="PlaylistId" ColumnName="PlaylistId" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CatagoryId" ColumnName="CatagoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

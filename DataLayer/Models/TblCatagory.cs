@@ -12,37 +12,26 @@ namespace DataLayer.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class TblPlaylist
+    public partial class TblCatagory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TblPlaylist()
+        public TblCatagory()
         {
-            this.TblUserPlaylistRel = new HashSet<TblUserPlaylistRel>();
+            this.TblCatagory1 = new HashSet<TblCatagory>();
+            this.TblPlaylist = new HashSet<TblPlaylist>();
             this.TblVideo = new HashSet<TblVideo>();
-            this.TblVideoPlaylistKeyword = new HashSet<TblVideoPlaylistKeyword>();
         }
     
-        public int PlaylistId { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string DateSubmited { get; set; }
-        public int ViewCount { get; set; }
-        public bool IsHome { get; set; }
-        public string Link { get; set; }
-        public int UserId { get; set; }
-        public int Price { get; set; }
-        public bool IsCharity { get; set; }
-        public bool IsActive { get; set; }
-        public string CertificateURL { get; set; }
         public int CatagoryId { get; set; }
+        public string Name { get; set; }
+        public int ParentId { get; set; }
     
-        public virtual TblCatagory TblCatagory { get; set; }
-        public virtual TblUser TblUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblUserPlaylistRel> TblUserPlaylistRel { get; set; }
+        public virtual ICollection<TblCatagory> TblCatagory1 { get; set; }
+        public virtual TblCatagory TblCatagory2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblPlaylist> TblPlaylist { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblVideo> TblVideo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TblVideoPlaylistKeyword> TblVideoPlaylistKeyword { get; set; }
     }
 }
