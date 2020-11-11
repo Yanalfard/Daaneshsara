@@ -172,6 +172,10 @@ $side-category-width: 200px;
             margin: 0 12px;
             border-top: 1px solid #eee;
             padding-top: 16px;
+
+            .date {
+                color: lighten(#666666,20%)!important;
+            }
         }
     }
 }

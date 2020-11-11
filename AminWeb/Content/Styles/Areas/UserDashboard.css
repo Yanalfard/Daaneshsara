@@ -305,3 +305,5 @@ backdrop-filter: saturate(80%);
       margin: 0 12px;
       border-top: 1px solid #eee;
       padding-top: 16px; }
+      .chat-room .message .date {
+        color: #999999 !important; }

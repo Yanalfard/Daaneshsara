@@ -165,6 +165,7 @@
       <DependentUpon>Index.css</DependentUpon>
     </Content>
     <Content Include="Areas\User\Views\Shared\Navigation.cshtml" />
+    <Content Include="Areas\User\Views\Chat\Message.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>
