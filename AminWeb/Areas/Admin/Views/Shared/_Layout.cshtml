@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+
+<html lang="fa">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset='utf-8'>
+    <title>الگو</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <!-- plugins css -->
+    <link href="~/Areas/Admin/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!--tagsinput-->
+    <link href="~/Areas/Admin/Content/bootstrap/css/bootstrap-tagsinput.css" rel="stylesheet" />
+    <!-- font-icon-->
+    <link href="~/Areas/Admin/Fonts/fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Fonts/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
+    <!-- custom css-->
+    <link href="~/Areas/Admin/Content/Styles/style.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/Styles/style-rtl.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="wrapper flex-div">
+        <div class="layout flex-div">
+            <!-- Side Nav START -->
+            <div class="side-nav" style="z-index:8500">
+                <div class="side-nav-inner">
+                    <div class="side-nav-logo">
+                        <a href="#">
+                            <img class="logo logo-dark" width="24" height="24" src="~/Resources/Static/Vector/Logo.svg" />
+                            <!--<div class="logo logo-dark" style="background-image: url('/img/admin/logo/logo.png')"></div>-->
+                        </a>
+                        <div class="mobile-toggle side-nav-toggle">
+                            <a href="#">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <ul class="side-nav-menu scrollable">
+                        <li class="nav-item active">
+                            <a href="index.html">
+                                <span class="icon-holder">
+                                    <i class="fas fa-home"></i>
+                                </span>
+                                <span class="title">داشبورد</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle" href="javascript:void(0);">
+                                <span class="icon-holder">
+                                    <i class="fas fa-th-large"></i>
+                                </span>
+                                <span class="title">پکیج ها</span>
+                                <span class="arrow">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="list.html">لیست</a>
+                                </li>
+                                <li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item active">
+                            <a href="/Admin/User">
+                                <span class="icon-holder">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                                <span class="title">کاربران</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+            <!-- Side Nav END -->
+            <!-- Page Container START -->
+            <div class="page-container flex-div">
+                <!-- Header START -->
+                <div class="header navbar" style="z-index:7500">
+                    <div class="header-container">
+                        <ul class="nav-right float-right mr-3">
+                            <li>
+                                <a class="side-nav-toggle" href="javascript:void(0);">
+                                    <i class="fas fa-align-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-left float-left">
+                            <li class="user-profile dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <div class="user-info">
+                                        <span class="name pr-1"></span>
+                                        <img height="50" width="50" />
+                                        <i class="fas fa-chevron-down font-size-10"></i>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-cog pr-1"></i>
+                                            <span>تنظیمات</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-user pr-1"></i>
+                                            <span>پروفایل</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-envelope pr-1"></i>
+                                            <span>پیام</span>
+                                        </a>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fas fa-power-off pr-1"></i>
+                                            <span>خروج</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="notifications dropdown ">
+                                <span class="counter">5</span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fas fa-bell"></i>
+                                </a>
+                                <ul class="dropdown-menu ">
+                                    <li class="notice-header">
+                                        <i class="fas fa-bell pr-1"></i>
+                                        <span>پیشنهادات</span>
+                                    </li>
+                                    <li>
+                                        <ul class="list-info overflow-y-auto relative scrollable">
+                                        </ul>
+                                    </li>
+                                    <li class="notice-footer">
+                                        <span>
+                                            <a href="/admin/proposal" class="text-gray">مشاهده همه پیشنهادات<i class="ei-right-chevron pl-1 font-size-10"></i></a>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="sub-header shadow-sm" style="z-index:7000">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb rounded-0 m-0 bg-white">
+                            <li class="breadcrumb-item p-0"><a href="/admin/Home">داشبورد</a></li>
+                            <li class="breadcrumb-item p-0 active" aria-current="page"></li>
+                        </ol>
+                    </nav>
+                </div>
+                <!-- Header END -->
+                <!-- Content Wrapper START -->
+                <div class="main-content flex p-0">
+                    <div class="container-fluid flex-div">
+                        <div class="row flex-div" style="overflow-y:scroll">
+                            <div class="col-md-12 p-4">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Wrapper END -->
+                <!-- Footer START -->
+                <footer class="content-footer bg-white shadow-lg" style="z-index:7500">
+                    <div class="footer border-0">
+                        <div class="copyright">
+                            <span><b class="text-dark">آراز کد</b> 2020</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- Footer END -->
+            </div>
+            <!-- Page Container END -->
+        </div>
+    </div>
+
+
+    <script src="~/Areas/Admin/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Areas/Admin/Scripts/popper.min.js"></script>
+    <script src="~/Areas/Admin/Scripts/docs.min.js"></script>
+    <script src="~/Areas/Admin/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Areas/Admin/Scripts/script.js"></script>
+    <script src="~/Areas/Admin/Content/bootstrap/js/bootstrap-tagsinput.js"></script>
+
+</body>
+</html>
