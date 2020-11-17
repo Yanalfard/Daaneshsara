@@ -23,9 +23,4 @@ namespace DataLayer.MetaData
         public string Title { get; set; }
     }
 
-    [MetadataType(typeof(MdRole))]
-    public class TblRole
-    {
-
-    }
 }

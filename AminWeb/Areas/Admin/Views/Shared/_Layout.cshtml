@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset='utf-8'>
-    <title>الگو</title>
+    <title>@ViewBag.Title</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="~/favicon.ico">
@@ -18,6 +18,13 @@
     <!-- custom css-->
     <link href="~/Areas/Admin/Content/Styles/style.css" rel="stylesheet" />
     <link href="~/Areas/Admin/Content/Styles/style-rtl.css" rel="stylesheet" />
+
+
+    <!-- Loading-->
+    <link href="~/Content/Styles/Areas/Admin.min.css" rel="stylesheet" />
+
+    <!--Paging-->
+    <link href="~/Areas/Admin/Content/bootstrap/Paging/Paging.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -40,7 +47,7 @@
                     </div>
                     <ul class="side-nav-menu scrollable">
                         <li class="nav-item active">
-                            <a href="index.html">
+                            <a href="/Admin/Home">
                                 <span class="icon-holder">
                                     <i class="fas fa-home"></i>
                                 </span>
@@ -73,7 +80,22 @@
                                 <span class="title">کاربران</span>
                             </a>
                         </li>
-
+                        <li class="nav-item active">
+                            <a href="/Admin/Ticket">
+                                <span class="icon-holder">
+                                    <i class="fas fa-ticket-alt"></i>
+                                </span>
+                                <span class="title">تیکت ها</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="/Admin/Chat">
+                                <span class="icon-holder">
+                                    <i class="fas fa-comments"></i>
+                                </span>
+                                <span class="title">چت ها</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
@@ -177,7 +199,7 @@
                 <footer class="content-footer bg-white shadow-lg" style="z-index:7500">
                     <div class="footer border-0">
                         <div class="copyright">
-                            <span><b class="text-dark">آراز کد</b> 2020</span>
+                            <span><b class="text-dark">پنل مدیریت</b> </span>
                         </div>
                     </div>
                 </footer>
@@ -186,6 +208,26 @@
             <!-- Page Container END -->
         </div>
     </div>
+    <!-- #Loadin -->
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+
+    <!--#endregion-->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content" id="myModalBody">
+
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 
     <script src="~/Areas/Admin/Scripts/jquery-3.4.1.min.js"></script>
@@ -195,5 +237,22 @@
     <script src="~/Areas/Admin/Scripts/script.js"></script>
     <script src="~/Areas/Admin/Content/bootstrap/js/bootstrap-tagsinput.js"></script>
 
+
+    <!--Paging-->
+    <script src="~/Areas/Admin/Content/bootstrap/Paging/jquery.simplePagination.js"></script>
+    <script src="~/Areas/Admin/Content/bootstrap/Paging/Paging.js"></script>
+
+    <script>
+
+
+                        //function LoadingEnd(form) {
+                        //    $("#overlay").fadeOut(300);
+                        //    //$(form)[0].reset();
+                        //}
+                        //function doneEdit() {
+                        //    alert('تغیرات انجام شد');
+                        //}
+    </script>
+    @RenderSection("Scripts", false)
 </body>
 </html>

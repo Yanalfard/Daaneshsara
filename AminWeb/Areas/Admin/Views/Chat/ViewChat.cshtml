@@ -1,0 +1,20 @@
+﻿@model IEnumerable<DataLayer.Models.TblChat>
+@{
+    ViewBag.Title = "ViewChat";
+}
+
+@foreach (var item in Model)
+{
+<div>
+    <h1>پیام</h1>
+    @item.Message
+    <h1>ارسال کننده پیام</h1>
+    @item.TblUser1.Name
+    <h1>دریافت کننده</h1>
+
+    @item.TblUser.Name
+    <h1>زمان</h1>
+
+    @item.TimeSent
+</div>
+}

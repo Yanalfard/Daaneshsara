@@ -126,6 +126,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ChatController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PlaylistController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="676709.jpg" />
     <Content Include="Areas\Admin\Content\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Areas\Admin\Content\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Areas\Admin\Content\bootstrap\css\bootstrap-reboot.css" />
@@ -159,6 +161,15 @@
     <Content Include="Areas\Admin\Content\bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="Areas\Admin\Content\bootstrap\js\bootstrap.js" />
     <Content Include="Areas\Admin\Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Content\bootstrap\js\jquery.unobtrusive-ajax.js" />
+    <Content Include="Areas\Admin\Content\bootstrap\js\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Areas\Admin\Content\bootstrap\js\jquery.validate.min.js" />
+    <Content Include="Areas\Admin\Content\bootstrap\js\jquery.validate.unobtrusive.js" />
+    <Content Include="Areas\Admin\Content\bootstrap\js\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Areas\Admin\Content\bootstrap\Date\kendo.all.min.js" />
+    <Content Include="Areas\Admin\Content\bootstrap\Paging\jquery.simplePagination.js" />
+    <Content Include="Areas\Admin\Content\bootstrap\Paging\Paging.css" />
+    <Content Include="Areas\Admin\Content\bootstrap\Paging\Paging.js" />
     <Content Include="Areas\Admin\Fonts\fontawesome\css\all.css" />
     <Content Include="Areas\Admin\Fonts\fontawesome\css\all.min.css" />
     <Content Include="Areas\Admin\Fonts\fontawesome\css\brands.css" />
@@ -1756,6 +1767,12 @@
     <Content Include="Areas\Admin\Content\Styles\style-rtl.css" />
     <Content Include="Areas\Admin\Content\Styles\style.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Styles\Areas\Admin.css">
+      <DependentUpon>Admin.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Areas\Admin.min.css">
+      <DependentUpon>Admin.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\Areas\UserDashboard.css">
       <DependentUpon>UserDashboard.scss</DependentUpon>
     </Content>
@@ -1850,23 +1867,31 @@
     <Content Include="Areas\Admin\Scripts\jquery-1.9.1.min.map" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\User\UserList.cshtml" />
-    <Content Include="Areas\Admin\Views\Ticket\Tickets.cshtml" />
-    <Content Include="Areas\Admin\Views\User\ViewSingleUser.cshtml" />
-    <Content Include="Areas\Admin\Views\User\EditUser.cshtml" />
-    <Content Include="Areas\Admin\Views\User\CreateUser.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Ticket\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ViewUser.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Video\VideoList.cshtml" />
     <Content Include="Areas\Admin\Views\Video\ViewSingleVideo.cshtml" />
     <Content Include="Areas\Admin\Views\Video\EditVideo.cshtml" />
     <Content Include="Areas\Admin\Views\Video\CreateVideo.cshtml" />
     <Content Include="Areas\Admin\Views\Video\ReportList.cshtml" />
-    <Content Include="Areas\Admin\Views\Chat\ChatList.cshtml" />
-    <Content Include="Areas\Admin\Views\Chat\ChatWithUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Chat\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Chat\ListChat.cshtml" />
     <Content Include="Areas\Admin\Views\Playlist\PlaylistList.cshtml" />
     <Content Include="Areas\Admin\Views\Playlist\ViewSinglePlaylist.cshtml" />
     <Content Include="Areas\Admin\Views\Playlist\EditPlaylist.cshtml" />
     <Content Include="Areas\Admin\Views\Playlist\CreatePlaylist.cshtml" />
     <Content Include="Areas\Admin\Views\Video\VideoReportList.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ListUser.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ChangePassword.cshtml" />
+    <Content Include="Content\Styles\Areas\_loading.scss" />
+    <Content Include="Content\Styles\Areas\Admin.scss" />
+    <Content Include="Areas\Admin\Views\Ticket\ListTicket.cshtml" />
+    <Content Include="Areas\Admin\Views\Ticket\ViewTicket.cshtml" />
+    <Content Include="Areas\Admin\Views\Chat\ViewChat.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>
@@ -1934,6 +1959,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modal.js" />
+    <Content Include="Scripts\Model.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1969,6 +1996,7 @@
     <Folder Include="Areas\User\Views\Home\" />
     <Folder Include="Resources\Dynamic\" />
     <Folder Include="Resources\Static\Raster\" />
+    <Folder Include="Resources\Ticket\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

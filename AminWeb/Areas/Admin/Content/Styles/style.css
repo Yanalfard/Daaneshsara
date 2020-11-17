@@ -1574,6 +1574,15 @@ ul {
     min-height: 200px;
 }
 
+.modal {
+    z-index: 11000 !important;
+    width:2000px !important;
+}
+
+.modal-backdrop {
+    z-index: 10000 !important;
+}
+
 .modal-gallery-image-box {
     position: relative;
     height: 113px;
