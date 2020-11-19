@@ -125,6 +125,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CatagoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChatController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PlaylistController.cs" />
@@ -1892,6 +1893,9 @@
     <Content Include="Areas\Admin\Views\Ticket\ListTicket.cshtml" />
     <Content Include="Areas\Admin\Views\Ticket\ViewTicket.cshtml" />
     <Content Include="Areas\Admin\Views\Chat\ViewChat.cshtml" />
+    <Content Include="Areas\Admin\Views\Catagory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Catagory\ListCat.cshtml" />
+    <Content Include="Areas\Admin\Views\Catagory\Create.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>

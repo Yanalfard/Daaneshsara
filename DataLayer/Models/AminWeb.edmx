@@ -19,9 +19,9 @@
           <Key>
             <PropertyRef Name="CatagoryId" />
           </Key>
-          <Property Name="CatagoryId" Type="int" Nullable="false" />
+          <Property Name="CatagoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
         </EntityType>
         <EntityType Name="TblChat">
           <Key>
@@ -211,7 +211,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TblCatagory_TblCatagory">
-          <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="1" />
+          <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="0..1" />
           <End Role="TblCatagory1" Type="Self.TblCatagory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblCatagory">
@@ -582,9 +582,9 @@
           <Key>
             <PropertyRef Name="CatagoryId" />
           </Key>
-          <Property Name="CatagoryId" Type="Int32" Nullable="false" />
+          <Property Name="CatagoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
           <NavigationProperty Name="TblCatagory1" Relationship="Self.FK_TblCatagory_TblCatagory" FromRole="TblCatagory" ToRole="TblCatagory1" />
           <NavigationProperty Name="TblCatagory2" Relationship="Self.FK_TblCatagory_TblCatagory" FromRole="TblCatagory1" ToRole="TblCatagory" />
           <NavigationProperty Name="TblPlaylist" Relationship="Self.FK_TblPlaylist_TblCatagory" FromRole="TblCatagory" ToRole="TblPlaylist" />
@@ -790,7 +790,7 @@
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblWithdraw_TblUser" FromRole="TblWithdraw" ToRole="TblUser" />
         </EntityType>
         <Association Name="FK_TblCatagory_TblCatagory">
-          <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="1" />
+          <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="0..1" />
           <End Role="TblCatagory1" Type="Self.TblCatagory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TblCatagory">

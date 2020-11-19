@@ -13,11 +13,13 @@ namespace AminWeb.Areas.Admin.Controllers
     {
         private Heart _db = new Heart();
         // GET: Admin/Chat
-        public ActionResult Index()
+        public ActionResult Index(string tellNo = "", string email = "")
         {
+            ViewBag.tellNo = tellNo;
+            ViewBag.email = email;
             //TblChat chat = new TblChat();
-            //chat.RecieverId = 13;
-            //chat.SenderId = 14;
+            //chat.RecieverId = 14;
+            //chat.SenderId = 13;
             //chat.TimeSent = DateTime.Now;
             //chat.Message = "salam chetory";
 
@@ -29,8 +31,8 @@ namespace AminWeb.Areas.Admin.Controllers
             //chat2.Message = "salam chetory";
 
             //TblChat chat3 = new TblChat();
-            //chat3.RecieverId = 14;
-            //chat3.SenderId = 13;
+            //chat3.RecieverId = 13;
+            //chat3.SenderId = 14;
             //chat3.TimeSent = DateTime.Now;
             //chat3.Message = "salam chetory";
 
@@ -79,7 +81,6 @@ namespace AminWeb.Areas.Admin.Controllers
             {
                 return false;
             }
-
         }
         public List<TblChat> GetAllChats()
         {
@@ -87,7 +88,7 @@ namespace AminWeb.Areas.Admin.Controllers
             if (allChats.Count != 0)
             {
                 TblChat helpChat = allChats[0];
-                int lengthForSmartedEngin = allChats.DistinctBy(i => i.SenderId).DistinctBy(j => j.RecieverId).Count()+1;
+                int lengthForSmartedEngin = allChats.DistinctBy(i => i.SenderId).DistinctBy(j => j.RecieverId).Count();
                 for (int j = 0; j < lengthForSmartedEngin; j++)
                     for (int i = 1; i < allChats.Count; i++)
                         if (allChats[i].SenderId == helpChat.SenderId && allChats[i].RecieverId == helpChat.RecieverId)
@@ -96,18 +97,18 @@ namespace AminWeb.Areas.Admin.Controllers
                             allChats.RemoveAt(i);
                         else
                             helpChat = allChats[i];
+                allChats = allChats.DistinctBy(i => i.SenderId).ToList();
+                if (allChats.Count > 1)
+                    if (allChats[0].SenderId == allChats[1].RecieverId && allChats[0].RecieverId == allChats[1].SenderId)
+                        allChats.RemoveAt(0);
             }
-            return allChats.DistinctBy(i => i.SenderId).ToList();
+            return allChats;
         }
 
-        public ActionResult ListChat(string name = "", string tellNo = "", string email = "", string message = "")
+        public ActionResult ListChat(string tellNo = "", string email = "")
         {
-            List<TblChat> list = new List<TblChat>();
-            list.AddRange(GetAllChats());
-            if (name != "")
-            {
-                list = list.Where(p => p.TblUser.Name.Contains(name)).ToList();
-            }
+            List<TblChat> list = GetAllChats();
+
             if (tellNo != "")
             {
                 list = list.Where(p => p.TblUser.TellNo.Contains(tellNo)).ToList();
@@ -115,10 +116,6 @@ namespace AminWeb.Areas.Admin.Controllers
             if (email != "")
             {
                 list = list.Where(p => p.TblUser.Email.Contains(email)).ToList();
-            }
-            if (message != "")
-            {
-                list = list.Where(p => p.Message.Contains(message)).ToList();
             }
             return PartialView(list);
         }

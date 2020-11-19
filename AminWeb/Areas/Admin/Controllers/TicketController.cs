@@ -22,7 +22,6 @@ namespace AminWeb.Areas.Admin.Controllers
         }
         public ActionResult ListTicket(string name = "", string tellNo = "", string email = "", string title = "")
         {
-
             List<TblTicket> list = new List<TblTicket>();
             list.AddRange(_db.Ticket.Get());
             if (name != "")
@@ -43,13 +42,10 @@ namespace AminWeb.Areas.Admin.Controllers
             }
             return PartialView(list.OrderByDescending(i => i.DateSent));
         }
-
         public ActionResult ViewTicket(int id)
         {
             return PartialView(_db.Ticket.GetById(id));
         }
-
-
         public ActionResult Delete(int id)
         {
             TblTicket selectUserById = _db.Ticket.GetById(id);

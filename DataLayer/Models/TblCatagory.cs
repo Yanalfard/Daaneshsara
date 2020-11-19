@@ -24,7 +24,7 @@ namespace DataLayer.Models
     
         public int CatagoryId { get; set; }
         public string Name { get; set; }
-        public int ParentId { get; set; }
+        public Nullable<int> ParentId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblCatagory> TblCatagory1 { get; set; }

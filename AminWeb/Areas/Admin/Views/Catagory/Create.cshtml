@@ -1,0 +1,23 @@
+﻿@model DataLayer.Models.TblCatagory
+@using (Ajax.BeginForm("Create", "Catagory", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "success", UpdateTargetId = "myModal" }, htmlAttributes: new { @id = "ChangePasswordForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ParentId)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="name">نام گروه</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", required = "required", minlength = "5" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ثبت " class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+
