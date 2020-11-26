@@ -238,15 +238,26 @@
     <script src="~/Areas/Admin/Content/bootstrap/Paging/Paging.js"></script>
 
     <script>
+        function LoadingRun(form) {
+            if (!$(form).valid()) return;
+            $("#overlay").fadeIn(300);
+        }
+        function LoadingEnd(form) {
+            $("#overlay").fadeOut(300);
+            success();
+        }
 
+        function success() {
+            $("#myModal").modal('hide');
+        }
 
-                        //function LoadingEnd(form) {
-                        //    $("#overlay").fadeOut(300);
-                        //    //$(form)[0].reset();
-                        //}
-                        //function doneEdit() {
-                        //    alert('تغیرات انجام شد');
-                        //}
+                            //function LoadingEnd(form) {
+                            //    $("#overlay").fadeOut(300);
+                            //    //$(form)[0].reset();
+                            //}
+                            //function doneEdit() {
+                            //    alert('تغیرات انجام شد');
+                            //}
     </script>
     @RenderSection("Scripts", false)
 </body>

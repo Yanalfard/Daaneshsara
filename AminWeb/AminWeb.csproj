@@ -1896,6 +1896,7 @@
     <Content Include="Areas\Admin\Views\Catagory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Catagory\ListCat.cshtml" />
     <Content Include="Areas\Admin\Views\Catagory\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Catagory\Edit.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>
@@ -1952,6 +1953,7 @@
     <Content Include="Resources\Static\Vector\Logo.svg" />
     <Content Include="Resources\Static\Vector\Medal.svg" />
     <Content Include="Resources\Static\Vector\Twitter.svg" />
+    <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
@@ -1959,6 +1961,8 @@
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

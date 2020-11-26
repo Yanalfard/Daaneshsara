@@ -1,5 +1,5 @@
-﻿@model DataLayer.MetaData.MdCategory
-@using (Ajax.BeginForm("Create", "Catagory", new AjaxOptions()
+﻿@model DataLayer.Models.TblCatagory
+@using (Ajax.BeginForm("Edit", "Catagory", new AjaxOptions()
 {
     HttpMethod = "POST",
     OnComplete = "success()",
@@ -10,6 +10,7 @@
 
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.CatagoryId)
     @Html.HiddenFor(m => m.ParentId)
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -22,7 +23,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="ثبت " onclick="LoadingRun('#createCatagory')" class="btn btn-success" />
+                <input type="submit" value="ویرایش" onclick="LoadingRun('#editCatagory')" class="btn btn-success" />
             </div>
         </div>
     </div>

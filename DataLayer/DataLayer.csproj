@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\PersianCalender.cs" />
+    <Compile Include="MetaData\MdCategory.cs" />
     <Compile Include="MetaData\MdChat.cs" />
     <Compile Include="MetaData\MdDoc.cs" />
     <Compile Include="MetaData\MdPlaylist.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Repositories\MainRepo.cs" />
     <Compile Include="Services\Heart.cs" />
     <Compile Include="ViewModels\VmChangePassword.cs" />
+    <Compile Include="ViewModels\VmLogin.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

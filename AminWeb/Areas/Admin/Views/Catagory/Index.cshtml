@@ -3,12 +3,11 @@
 @{
     ViewBag.Title = "دسته بندی";
 }
-
-
 <div class="card flex-div border-0 shadow">
+    <div id="listCat">
+        @Html.Action("ListCat", "Catagory")
+    </div>
 
-    @Html.Action("ListCat", "Catagory")
-  
     <div class="card-footer bg-white">
         <nav aria-label="Page navigation example">
             <div id="pagination-container"></div>
@@ -38,9 +37,9 @@
     <script src="~/Areas/Admin/Content/bootstrap/js/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Areas/Admin/Content/bootstrap/js/jquery.unobtrusive-ajax.min.js"></script>
 
+
+
     <script>
-
-
         function create(id) {
             $.get("/Admin/Catagory/Create/" + id,
                 function (result) {
@@ -48,7 +47,15 @@
                     $("#myModalBody").html(result);
                 }
             );
-        }
+        };
+        function edit(id) {
+            $.get("/Admin/Catagory/Edit/" + id,
+                function (result) {
+                    $("#myModal").modal('show');
+                    $("#myModalBody").html(result);
+                }
+            );
+        };
         function subCategory(id) {
             $.get("/Admin/Catagory/ListCat?id=" + id,
                 function (result) {
@@ -58,20 +65,18 @@
             );
         }
 
-        function deleteUser(id) {
-            if (confirm('آیا از حذف کاربر مورد نظر مظمئن هستین؟')) {
-                $.get("/Admin/User/Delete/" + id, function (result) {
+        function deleteCat(id) {
+            if (confirm('آیا از حذف دسته مورد نظر مظمئن هستین؟')) {
+                $.get("/Admin/Catagory/Delete/" + id, function (result) {
                     if (result.success) {
-                        $('#user_' + id).addClass('text-danger');
-                        $("#user_" + id).hide('slow');
+                        $('#cat_' + id).addClass('text-danger');
+                        $("#cat_" + id).hide('slow');
                     } else {
                         alert(result.responseText);
                     }
                 })
             }
         }
-        function success() {
-            $("#myModal").modal('hide');
-        }
+       
     </script>
 }
