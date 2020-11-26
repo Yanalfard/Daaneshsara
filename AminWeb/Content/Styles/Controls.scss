@@ -269,13 +269,12 @@ $side-category-width: 280px;
         margin: auto;
     }
 
-    /*#region Horizontal */
 
-    /*$video-block-height: 164px;
+    /* $video-block-height: 164px;
     $video-block-width: 90vw;
 
     .video-block {
-        @include row;
+        @include row;d
         height: $video-block-height;
         width: $video-block-width;
         margin: auto;
@@ -350,16 +349,14 @@ $side-category-width: 280px;
             }
         }
     }
-
+*/
     .video-grid {
         @include grid($video-block-width);
 
         > .video-block {
             margin-left: auto;
         }
-    }*/
-
-    /*#endregion */
+    }
 }
 
 @media only screen and (max-device-width : 480px) {

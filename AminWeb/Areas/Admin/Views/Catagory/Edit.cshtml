@@ -1,0 +1,32 @@
+﻿@model DataLayer.Models.TblCatagory
+@using (Ajax.BeginForm("Edit", "Catagory", new AjaxOptions()
+{
+    HttpMethod = "POST",
+    OnComplete = "success()",
+    OnSuccess = "LoadingEnd('#createCatagory')",
+    UpdateTargetId = "listCat"
+},
+    htmlAttributes: new { @id = "createCatagory" }))
+
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.CatagoryId)
+    @Html.HiddenFor(m => m.ParentId)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label for="name">نام گروه</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", minlength = "5", required = "required" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ویرایش" onclick="LoadingRun('#editCatagory')" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+

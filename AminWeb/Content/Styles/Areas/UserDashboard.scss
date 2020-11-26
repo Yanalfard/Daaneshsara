@@ -1,6 +1,7 @@
 ﻿@import '../_colors.scss';
 @import '../_layout.scss';
 
+
 $side-category-width: 200px;
 
 .side-category-placeholder {
@@ -87,6 +88,10 @@ $side-category-width: 200px;
     color: #73DA42;
 }
 
+.muted {
+    color: #AEAEAE !important;
+}
+
 .table-simple {
     margin: 0;
     width: 100%;
@@ -168,6 +173,10 @@ $side-category-width: 200px;
             margin: 0 12px;
             border-top: 1px solid #eee;
             padding-top: 16px;
+
+            .date {
+                color: lighten(#666666,20%)!important;
+            }
         }
     }
 }

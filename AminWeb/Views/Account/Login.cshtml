@@ -1,36 +1,60 @@
-﻿<div class="form column" role="form">
-    <div class="row-reverse">
-        <h3>
-            ورود
-        </h3>
-        <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
-    </div>
+﻿@model DataLayer.ViewModels.VmLogin
 
-    <div class="form-group">
-        <label for="Email">ایمیل</label>
-        <div class="input-group">
-            <input type="email" name="Email" />
+@*@using (Ajax.BeginForm("Login", "Account", new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        OnSuccess = "LoadingEnd('#createCatagory')",
+        UpdateTargetId = "loginForm"
+    },
+        htmlAttributes: new { @id = "loginForm" }))*@
+
+@using (Ajax.BeginForm("Login", "Account", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "LoginForm" }, htmlAttributes: new { @id = "LoginForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form column" role="form">
+        <div class="row-reverse">
+            <h3>
+                ورود
+            </h3>
+            <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
         </div>
-        <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
-    </div>
 
-    <div class="form-group">
-        <label for="Password">رمز عبور</label>
-        <div class="input-group">
-            <input type="password" name="Password" />
+        <div class="form-group">
+            <label for="Email">ایمیل</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.Email)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "uk-text-danger" })
+            </span>
         </div>
-        <span role="alert" class="alert">این فیلد اشتباه است</span>
+        <div class="form-group">
+            <label for="Password">رمز عبور</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.Password)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+        <div class="uk-margin-top column uk-margin-auto-left uk-margin-bottom">
+            <label dir="rtl" class="uk-margin-auto-left">
+                <input class="uk-checkbox uk-margin-auto-left" type="checkbox">
+                میخواهم درصدی از درامد این ویدیو به خیریه
+                <a href="#" class="blue">نام خیریه</a>
+                اهدا شود
+            </label>
+        </div>
+        <a href="#" class="uk-margin-top">رمز عبور خود را فراموش کرده اید؟</a>
+
+        <div class="column center uk-margin-large-top">
+            <button class="btn-primary uk-margin-bottom">
+                ورود
+            </button>
+
+            <button onclick="UIkit.modal(document.getElementById('Modal-Register')).show();" class="btn-secondary">
+                ثبت نام
+            </button>
+        </div>
     </div>
-
-    <a href="#" class="uk-margin-top">رمز عبور خود را فراموش کرده اید؟</a>
-
-    <div class="column center uk-margin-large-top">
-        <button class="btn-primary uk-margin-bottom">
-            ورود
-        </button>
-
-        <button class="btn-secondary">
-            ثبت نام
-        </button>
-    </div>
-</div>
+}

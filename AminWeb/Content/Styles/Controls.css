@@ -462,12 +462,11 @@ a:hover, summary:hover, .active {
     margin-bottom: 0 !important; }
   .video-block {
     margin: auto; }
-  /*#region Horizontal */
-  /*$video-block-height: 164px;
+  /* $video-block-height: 164px;
     $video-block-width: 90vw;
 
     .video-block {
-        @include row;
+        @include row;d
         height: $video-block-height;
         width: $video-block-width;
         margin: auto;
@@ -542,15 +541,14 @@ a:hover, summary:hover, .active {
             }
         }
     }
-
-    .video-grid {
-        @include grid($video-block-width);
-
-        > .video-block {
-            margin-left: auto;
-        }
-    }*/
-  /*#endregion */ }
+*/
+  .video-grid {
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .video-grid > .video-block {
+      margin-left: auto; } }
 
 @media only screen and (max-device-width: 480px) {
   .remove-at-mobile {

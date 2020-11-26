@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DataLayer.Models.TblCatagory>
+<div class="card-header bg-white">
+    <div class="row justify-content-end">
+        <div class="col-md-2 col-3 pl-2 pr-0">
+            <a onclick="create(@ViewBag.ParentId)" class="btn btn-success btn-sm text-white float-left"><i class="fas fa-plus-circle"></i>افزودن</a>
+        </div>
+    </div>
+</div>
+<div id="card-table" class="p-0 card-body flex-div">
+    <div class="table-responsive flex">
+        <table class="table fixed pr-3 text-center">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">کد</th>
+                    <th scope="col">نام گروه</th>
+                    <th scope="col">مشاهده زیرمجموعه</th>
+                    <th scope="col">عملیات</th>
+                </tr>
+            </thead>
+            <tbody id="listCat" class="list-wrapper">
+                @if (Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr id="cat_@item.CatagoryId" class="list-item">
+                            <td>@(Model.ToList().IndexOf(item)+1)</td>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                <a href="#" onclick="subCategory(@item.CatagoryId)" title="مشاهده زیر مجموعه  " data-toggle="tooltip" data-placement="top">
+                                    <span class="fa fa-eye text-info">
+
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ویرایش">
+                                    <a onclick="edit(@item.CatagoryId)" ><i class="btn fas fa-edit mr-2 text-primary"></i></a>
+                                </span>
+                                <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                                    <a onclick="deleteCat(@item.CatagoryId)" data-toggle="modal" data-target="#modalSave"><i class="btn fas fa-trash mr-2 text-danger"></i></a>
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

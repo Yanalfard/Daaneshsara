@@ -1,0 +1,48 @@
+﻿@model DataLayer.MetaData.MdUser
+@{
+    ViewBag.Title = "ایجاد  کاربر جدید";
+}
+
+<div class="flex-column card flex-div border-0 shadow">
+    <div class="card-header bg-white">
+        <h4>ویرایش جدید</h4>
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m=>m.UserId)
+        @Html.HiddenFor(m=>m.DocsId)
+        @Html.HiddenFor(m=>m.Password)
+        @Html.HiddenFor(m=>m.IsActive)
+        <div class="card-body">
+            <div class="form-group mx-sm-1 mb-2">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "نام" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mx-sm-1 mb-2">
+                @Html.EditorFor(model => model.TellNo, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "شماره تلفن" } })
+                @Html.ValidationMessageFor(model => model.TellNo, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mx-sm-1 mb-2">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "ایمیل" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mx-sm-1 mb-2">
+                @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control form-control-sm", placeholder = "کیف پول" } })
+                @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group mx-sm-1 mb-2">
+                @Html.DropDownListFor(model => model.RoleId, (IEnumerable<SelectListItem>)ViewBag.RoleName, htmlAttributes: new { @class = "form-control form-control-sm" })
+                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="card-footer bg-white">
+            <div class="flex-row">
+                <button class="btn btn-primary">تایید</button>
+                <a href="@Url.Action("Index")" class="btn btn-secondary mr-2">بازگشت</a>
+            </div>
+        </div>
+    }
+</div>
+
+
