@@ -8,7 +8,7 @@
     },
         htmlAttributes: new { @id = "loginForm" }))*@
 
-@using (Ajax.BeginForm("Login", "Account", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "LoginForm" }, htmlAttributes: new { @id = "LoginForm" }))
+@using (Ajax.BeginForm("Login", "Account", new AjaxOptions() { HttpMethod = "POST",OnFailure="done1()", OnSuccess = "LoadingEnd('#loginForm')", UpdateTargetId = "loginForm" }, htmlAttributes: new { @id = "loginForm" }))
 {
     @Html.AntiForgeryToken()
     <div class="form column" role="form">
@@ -48,7 +48,7 @@
         <a href="#" class="uk-margin-top">رمز عبور خود را فراموش کرده اید؟</a>
 
         <div class="column center uk-margin-large-top">
-            <button class="btn-primary uk-margin-bottom">
+            <button class="btn-primary uk-margin-bottom" onclick="LoadingRun('#loginForm')">
                 ورود
             </button>
 

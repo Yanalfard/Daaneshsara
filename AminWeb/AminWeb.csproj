@@ -146,6 +146,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\AminWebRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="676709.jpg" />
@@ -1945,6 +1946,7 @@
     <Content Include="Content\Styles\Pages\Index.scss" />
     <Content Include="Content\Styles\Pages\VideoView.scss" />
     <Content Include="Content\Styles\Areas\UserDashboard.scss" />
+    <Content Include="Content\Styles\_loading.scss" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Resources\Static\Vector\biscuit\biscuit_main.svg" />
     <Content Include="Resources\Static\Vector\Education.svg" />

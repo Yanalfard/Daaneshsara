@@ -176,5 +176,30 @@
 
     <div role="none" class="space-bottom-nav uk-margin-xlarge-bottom"></div>
 
+
+    <!-- #Loadin -->
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+
+
+    <script>
+        function LoadingRun(form) {
+            if (!$(form).valid()) return;
+            $("#overlay").fadeIn(300);
+        }
+        function LoadingEnd(form) {
+            $("#overlay").fadeOut(300);
+            //$(form)[0].reset();
+        }
+        function done1(){
+            $("#overlay").fadeOut(300);
+            location.reload();
+            //$(form)[0].reset();
+        }
+    </script>
+    <!--#endregion-->
 </body>
 </html>

@@ -1,4 +1,5 @@
-﻿using DataLayer.Services;
+﻿using DataLayer.Models;
+using DataLayer.Services;
 using DataLayer.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,10 @@ namespace AminWeb.Controllers
             if (ModelState.IsValid)
             {
                 string hashPass = FormsAuthentication.HashPasswordForStoringInConfigFile(user.Password,"SHA256");
-                if (_db.User.Get().Any(i => i.Email == user.Email && i.Password == user.Email))
+                if (_db.User.Get().Any(i => i.Email == user.Email && i.Password == hashPass))
                 {
                     FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
-                    return View();
+                    return View("Index");
                 }
                 else
                 {
@@ -40,6 +41,7 @@ namespace AminWeb.Controllers
             }
             return PartialView("Login",user);
         }
+
         public ActionResult SignUp()
         {
             return PartialView();
