@@ -8,7 +8,7 @@
     },
         htmlAttributes: new { @id = "loginForm" }))*@
 
-@using (Ajax.BeginForm("Login", "Account", new AjaxOptions() { HttpMethod = "POST",OnFailure="done1()", OnSuccess = "LoadingEnd('#loginForm')", UpdateTargetId = "loginForm" }, htmlAttributes: new { @id = "loginForm" }))
+@using (Ajax.BeginForm("Login", "Account", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal()", OnSuccess = "LoadingEnd('#loginForm')", UpdateTargetId = "loginForm" }, htmlAttributes: new { @id = "loginForm" }))
 {
     @Html.AntiForgeryToken()
     <div class="form column" role="form">
@@ -39,10 +39,8 @@
         </div>
         <div class="uk-margin-top column uk-margin-auto-left uk-margin-bottom">
             <label dir="rtl" class="uk-margin-auto-left">
-                <input class="uk-checkbox uk-margin-auto-left" type="checkbox">
-                میخواهم درصدی از درامد این ویدیو به خیریه
-                <a href="#" class="blue">نام خیریه</a>
-                اهدا شود
+                @Html.EditorFor(model => model.RememberMe, new { htmlAttributes = new { @class = "uk-checkbox uk-margin-auto-left"} })
+            مرا بخاطر بسپار
             </label>
         </div>
         <a href="#" class="uk-margin-top">رمز عبور خود را فراموش کرده اید؟</a>

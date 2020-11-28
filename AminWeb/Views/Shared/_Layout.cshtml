@@ -28,13 +28,12 @@
 
     <div id="Modal-Account" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
-            @Html.Action("Login", "Account")
-            @*@Html.Action("SignUp","Account")*@
+            @Html.Action("Login", "Account", new { area = "" })
         </div>
     </div>
     <div id="Modal-Register" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
-            @Html.Action("SignUp", "Account")
+            @Html.Action("SignUp", "Account", new { area = "" })
         </div>
     </div>
     <script>
@@ -69,7 +68,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="/LogOff">
                                     <span>خروج</span>
                                     <span uk-icon="icon:sign-out"></span>
                                 </a>
@@ -192,14 +191,17 @@
         }
         function LoadingEnd(form) {
             $("#overlay").fadeOut(300);
-            //$(form)[0].reset();
+            $(form)[0].reset();
         }
-        function done1(){
-            $("#overlay").fadeOut(300);
+        function doneModal(form) {
+            $("#overlay").fadeOut();
+            UIkit.modal(document.getElementById(form)).hide();
             location.reload();
             //$(form)[0].reset();
         }
     </script>
     <!--#endregion-->
+    @RenderSection("Scripts", false)
+
 </body>
 </html>

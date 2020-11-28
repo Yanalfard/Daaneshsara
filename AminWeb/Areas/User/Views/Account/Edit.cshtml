@@ -1,0 +1,45 @@
+﻿@model DataLayer.ViewModels.VmEditInfo
+
+        @using (Ajax.BeginForm("Edit", "Account", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal('Modal-Edit')", OnSuccess = "LoadingEnd('#editForm')", UpdateTargetId = "editForm" }, htmlAttributes: new { @id = "editForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.UserId)
+            <h3>
+                ویرایش اطلاعات کاربری
+            </h3>
+            <div class="form-group">
+                <label for="Name">نام و نام خانوادگی</label>
+                <div class="input-group">
+                    @Html.EditorFor(m => m.Name)
+                </div>
+                <span role="alert" class="alert">
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "uk-text-danger" })
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="Tel">شماره تلفن</label>
+                <div class="input-group">
+                    @Html.EditorFor(m => m.TellNo)
+                </div>
+                <span role="alert" class="alert">
+                    @Html.ValidationMessageFor(model => model.TellNo, "", new { @class = "uk-text-danger" })
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="Email">ایمیل</label>
+                <div class="input-group">
+                    @Html.EditorFor(m => m.Email)
+                </div>
+                <span role="alert" class="alert">
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "uk-text-danger" })
+                </span>
+            </div>
+
+            <div class="row-reverse uk-margin-top">
+                <input type="submit" value="ویرایش" class="btn-primary" onclick="LoadingRun('#editForm')" />
+                <button class="btn-secondary uk-modal-close uk-margin-right">
+                    بازگشت
+                </button>
+            </div>
+
+        }

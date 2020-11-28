@@ -24,7 +24,7 @@ namespace AminWeb.Controllers
             return PartialView();
         }
         [HttpPost]
-        public ActionResult Login(VmLogin user)
+        public ActionResult Login(VmLogin user, string ReturnUrl = "/")
         {
             if (ModelState.IsValid)
             {
@@ -32,7 +32,8 @@ namespace AminWeb.Controllers
                 if (_db.User.Get().Any(i => i.Email == user.Email && i.Password == hashPass))
                 {
                     FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);
-                    return View("Index");
+                    //FormsAuthentication.SetAuthCookie("m22", true);
+                    return Redirect("Index");
                 }
                 else
                 {
@@ -41,7 +42,12 @@ namespace AminWeb.Controllers
             }
             return PartialView("Login",user);
         }
-
+        [Route("LogOff")]
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/");
+        }
         public ActionResult SignUp()
         {
             return PartialView();
