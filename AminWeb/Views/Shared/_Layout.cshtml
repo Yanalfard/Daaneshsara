@@ -33,7 +33,7 @@
     </div>
     <div id="Modal-Register" uk-modal>
         <div class="uk-modal-dialog uk-modal-body">
-            @Html.Action("SignUp", "Account", new { area = "" })
+            @Html.Action("Register", "Account", new { area = "" })
         </div>
     </div>
     <script>
@@ -184,20 +184,57 @@
     </div>
 
 
+
+    <div id="Modal-Show" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body" id="Modal-Body">
+
+        </div>
+    </div>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfeB-IZAAAAANpiuFCp-HURWmy1NGqmj-p4owkF&&hl=fa"></script>
+
     <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LfeB-IZAAAAANpiuFCp-HURWmy1NGqmj-p4owkF', { action: 'contact_us' }).then(function (token) {
+                $('.GoogleCapcha').val(token);
+            });
+        });
+        function reloadRech() {
+            grecaptcha.execute('6LfeB-IZAAAAANpiuFCp-HURWmy1NGqmj-p4owkF', { action: 'contact_us' }).then(function (token) {
+                //document.getElementById("GoogleCapcha").value = token;
+                $('.GoogleCapcha').val(token);
+            });
+        }
+    </script>
+
+
+
+
+
+
+
+    <script>
+        function forgetPassword() {
+            $.get('/Account/ForgetPassword', function (result) {
+                UIkit.modal(document.getElementById('Modal-Show')).show();
+                $('#Modal-Body').html(result);
+            });
+        }
+
         function LoadingRun(form) {
             if (!$(form).valid()) return;
             $("#overlay").fadeIn(300);
         }
         function LoadingEnd(form) {
             $("#overlay").fadeOut(300);
+            reloadRech();
             $(form)[0].reset();
         }
         function doneModal(form) {
             $("#overlay").fadeOut();
             UIkit.modal(document.getElementById(form)).hide();
-            location.reload();
-            //$(form)[0].reset();
+            //location.reload();
+            window.location.href = "/";
+            $(form)[0].reset();
         }
     </script>
     <!--#endregion-->

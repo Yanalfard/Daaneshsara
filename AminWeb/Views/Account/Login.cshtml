@@ -8,7 +8,7 @@
     },
         htmlAttributes: new { @id = "loginForm" }))*@
 
-@using (Ajax.BeginForm("Login", "Account", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal()", OnSuccess = "LoadingEnd('#loginForm')", UpdateTargetId = "loginForm" }, htmlAttributes: new { @id = "loginForm" }))
+@using (Ajax.BeginForm("Login", "Account", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal('Modal-Account')", OnSuccess = "LoadingEnd('#loginForm')", UpdateTargetId = "loginForm" }, htmlAttributes: new { @id = "loginForm" }))
 {
     @Html.AntiForgeryToken()
     <div class="form column" role="form">
@@ -18,6 +18,18 @@
             </h3>
             <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
         </div>
+        @if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
+        {
+            <div class="uk-text-danger uk-margin-bottom">
+                <p class="uk-text-danger">شما مجوز ورود به بخش درخواست شده را ندارید .</p>
+            </div>
+        }
+        @if (!User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
+        {
+            <div class="uk-text-danger uk-margin-bottom">
+                <p class="uk-text-danger">لطفا وارد حساب کاربری خود شوید </p>
+            </div>
+        }
 
         <div class="form-group">
             <label for="Email">ایمیل</label>
@@ -37,22 +49,28 @@
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "uk-text-danger" })
             </span>
         </div>
+        <div class="form-group">
+            <input type="hidden" name="GoogleCapcha" class="GoogleCapcha" value="" />
+            <span role="alert" class="alert">
+                @Html.ValidationSummary(true, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
         <div class="uk-margin-top column uk-margin-auto-left uk-margin-bottom">
             <label dir="rtl" class="uk-margin-auto-left">
-                @Html.EditorFor(model => model.RememberMe, new { htmlAttributes = new { @class = "uk-checkbox uk-margin-auto-left"} })
-            مرا بخاطر بسپار
+                @Html.EditorFor(model => model.RememberMe, new { htmlAttributes = new { @class = "uk-checkbox uk-margin-auto-left" } })
+                مرا بخاطر بسپار
             </label>
         </div>
-        <a href="#" class="uk-margin-top">رمز عبور خود را فراموش کرده اید؟</a>
+        <a href="#" onclick="forgetPassword()" class="uk-margin-top">رمز عبور خود را فراموش کرده اید؟</a>
 
         <div class="column center uk-margin-large-top">
             <button class="btn-primary uk-margin-bottom" onclick="LoadingRun('#loginForm')">
                 ورود
             </button>
 
-            <button onclick="UIkit.modal(document.getElementById('Modal-Register')).show();" class="btn-secondary">
+            <a onclick="UIkit.modal(document.getElementById('Modal-Register')).show();" class="btn-secondary btn">
                 ثبت نام
-            </button>
+            </a>
         </div>
     </div>
 }

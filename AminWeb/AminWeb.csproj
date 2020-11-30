@@ -138,8 +138,10 @@
     <Compile Include="Areas\User\Controllers\LibraryController.cs" />
     <Compile Include="Areas\User\Controllers\VideoController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="CaptchaResponseViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageEmailsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -147,6 +149,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\AminWebRoleProvider.cs" />
+    <Compile Include="Utilities\PartialToStringClass.cs" />
+    <Compile Include="Utilities\SendEmail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="676709.jpg" />
@@ -1988,11 +1992,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_VideoBlock.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Rules.cshtml" />
-    <Content Include="Views\Account\RecoverPassword.cshtml" />
+    <Content Include="Views\Account\ForgetPassword.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Video\VideoView.cshtml" />
     <Content Include="Views\Shared\_Playlist.cshtml" />
@@ -2001,6 +2005,10 @@
     <Content Include="Views\Profile\Videos.cshtml" />
     <Content Include="Views\Profile\Classes.cshtml" />
     <Content Include="Views\Profile\SearchResults.cshtml" />
+    <Content Include="Views\Account\ActiviationEmail.cshtml" />
+    <Content Include="Views\ManageEmails\ActiviationEmail.cshtml" />
+    <Content Include="Views\Account\LoginModal.cshtml" />
+    <Content Include="Views\ManageEmails\RecoveryPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

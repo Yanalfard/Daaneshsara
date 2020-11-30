@@ -135,6 +135,7 @@
     <Compile Include="Services\Heart.cs" />
     <Compile Include="ViewModels\VmChangePassword.cs" />
     <Compile Include="ViewModels\VmEditInfo.cs" />
+    <Compile Include="ViewModels\VmForgetPassword.cs" />
     <Compile Include="ViewModels\VmLogin.cs" />
     <Compile Include="ViewModels\VmRegister.cs" />
   </ItemGroup>

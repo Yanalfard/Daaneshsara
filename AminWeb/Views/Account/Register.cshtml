@@ -1,0 +1,70 @@
+﻿@model DataLayer.ViewModels.VmRegister
+@using (Ajax.BeginForm("Register", "Account", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal('Modal-Register')", OnSuccess = "LoadingEnd('#RegisterForm')", UpdateTargetId = "RegisterForm" }, htmlAttributes: new { @id = "RegisterForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form column" role="form">
+        <div class="row-reverse">
+            <h3>
+                ثبت نام
+            </h3>
+            <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
+        </div>
+        <div class="form-group">
+            <label for="Name">نام و نام خانوادگی</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.Name)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="Email">ایمیل</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.Email)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="Password">رمز عبور</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.Password)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="Password"> تکرار رمز عبور</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.RePassword)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="GoogleCapcha" class="GoogleCapcha" value="" />
+            <span role="alert" class="alert">
+                @Html.ValidationSummary(true, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+        <label dir="rtl" class="uk-margin-small-top"><input class="uk-checkbox" type="checkbox"> با <a href="#" class="blue">قوانین و مقررات سایت</a> موافق هستم</label>
+
+        <div class="column center uk-margin-large-top">
+            <button class="btn-primary uk-margin-bottom" onclick="LoadingRun('#RegisterForm')">
+                ثبت نام
+            </button>
+
+            <a onclick="UIkit.modal(document.getElementById('Modal-Account')).show();" class="btn-secondary btn">
+                ورود
+            </a>
+        </div>
+    </div>
+
+}

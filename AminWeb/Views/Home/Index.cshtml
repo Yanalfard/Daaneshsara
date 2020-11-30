@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*-at-section MySection{
-        <meta content="HELLO" />
-    }*@
-
+<!-- #region namayesh login mogei ke be safe dastrasy nadarad -->
+@Html.Action("LoginModal", "Account")
+<!-- #endregion -->
 <!-- #region Styles -->
 <link href="~/Content/Styles/Pages/Index.min.css" rel="stylesheet" />
 <!-- #endregion -->
@@ -23,7 +22,6 @@
         </a>
     </div>
 </div>
-
 <section class="main-search row">
     <div role="search" class="search-box row uk-margin-auto">
         <button class="search" uk-icon="icon:search;ratio:1.2"></button>

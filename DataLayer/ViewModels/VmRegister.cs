@@ -16,12 +16,6 @@ namespace DataLayer.ViewModels
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(length: 50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
         public string Name { get; set; }
-
-        [Display(Name = "شماره تلفن همراه")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 11, ErrorMessage = "طول بیش از 11 کاراکتر مجاز نیست")]
-        public string TellNo { get; set; }
-
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(length: 150, ErrorMessage = "طول بیش از 150 کاراکتر مجاز نیست")]
@@ -29,13 +23,16 @@ namespace DataLayer.ViewModels
         public string Email { get; set; }
         [Display(Name = "رمز")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MinLength(4, ErrorMessage = "تعداد کاراکتر کم است")]
+        [MaxLength(length: 64, ErrorMessage = "طول بیش از 64 کاراکتر مجاز نیست")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+        [Display(Name = "تکرار رمز")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(length: 64, ErrorMessage = "طول بیش از 64 کاراکتر مجاز نیست")]
         [MinLength(4, ErrorMessage = "تعداد کاراکتر کم است")]
-        public string Password { get; set; }
-
-        public Nullable<int> DocsId { get; set; }
-        [Display(Name = "نقش")]
-        [Required(ErrorMessage = "لطفا {0} را انتخاب کنید")]
-        public int RoleId { get; set; }
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "کلمه های عبور مغایرت دارند")]
+        public string RePassword { get; set; }
     }
 }
