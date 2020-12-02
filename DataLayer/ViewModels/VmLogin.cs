@@ -11,13 +11,13 @@ namespace DataLayer.ViewModels
     {
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 150, ErrorMessage = "طول بیش از 150 کاراکتر مجاز نیست")]
+        [MaxLength(150, ErrorMessage = "طول بیش از 150 کاراکتر مجاز نیست")]
         [EmailAddress(ErrorMessage = "ایمیل وارد شده نامعتبر است")]
         public string Email { get; set; }
         [Display(Name = "رمز")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [DataType(DataType.Password)]
-        [MaxLength(length: 64, ErrorMessage = "طول بیش از 64 کاراکتر مجاز نیست")]
+        [MaxLength(64, ErrorMessage = "طول بیش از 64 کاراکتر مجاز نیست")]
         public string Password { get; set; }
         [Display(Name = "مرا بخاطر بسپار")]
         public bool RememberMe { get; set; }

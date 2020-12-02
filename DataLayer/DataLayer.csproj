@@ -133,6 +133,7 @@
     <Compile Include="Repositories\IMainRepo.cs" />
     <Compile Include="Repositories\MainRepo.cs" />
     <Compile Include="Services\Heart.cs" />
+    <Compile Include="ViewModels\VmActive.cs" />
     <Compile Include="ViewModels\VmChangePassword.cs" />
     <Compile Include="ViewModels\VmEditInfo.cs" />
     <Compile Include="ViewModels\VmForgetPassword.cs" />

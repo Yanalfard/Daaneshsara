@@ -13,16 +13,12 @@
     <div class="form-group">
         <label for="Contacts">مخاطبان</label>
         <div class="row-reverse">
-            <select name="Contacts" class="uk-width-1-1" dir="rtl">
-                <option>صدرا محمدی</option>
-                <option>حسن حسن اصل </option>
-                <option>ینال احمدزاده</option>
-            </select>
+            @Html.Action("Chats")
         </div>
     </div>
 
     <div class="chat-room uk-margin-top uk-box-shadow-hover-large">
-        <ul class="uk-padding-remove">
+        <ul class="uk-padding-remove" id="listMessage">
             <li>
                 @Html.Partial("Message")
             </li>
@@ -56,5 +52,23 @@
             </button>
         </div>
     </div>
-
 </div>
+
+@section Scripts{
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        $('#mySelect').on('change', function () {
+            var user2 = $(this).val();
+            $.get('/User/Chat/ViewChat/' + user2, function (result) {
+                $('#listMessage').html(result);
+            });
+        });
+                //function viewMessage(id) {
+                //    alert('5');
+                //    $.get('/User/Chat/ViewChat/' + id, function (result) {
+                //        $('#listMessage').html(result);
+                //    });
+                //}
+    </script>
+}

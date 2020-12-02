@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace AminWeb.Areas.User.Controllers
 {
@@ -22,7 +23,35 @@ namespace AminWeb.Areas.User.Controllers
         {
             return View();
         }
-
+        TblUser SelectUser()
+        {
+            TblUser selectUser = _db.User.Get().FirstOrDefault(i => i.Email == User.Identity.Name);
+            return selectUser;
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(VmChangeOldNewPassword changePass)
+        {
+            if (ModelState.IsValid)
+            {
+                TblUser user = SelectUser();
+                if (user != null)
+                {
+                    string hassPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(changePass.OldPassword,"SHA256");
+                    if (user.Password == hassPassword)
+                    {
+                        user.Password= FormsAuthentication.HashPasswordForStoringInConfigFile(changePass.Password, "SHA256");
+                        _db.User.Update(user);
+                        _db.User.Save();
+                        return View("ChangePassword", changePass);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("OldPassword","رمز قدیمی اشتباه است");
+                    }
+                }
+            }
+            return View("ChangePassword",changePass);
+        }
         public ActionResult Wallet()
         {
             return View();
@@ -37,11 +66,7 @@ namespace AminWeb.Areas.User.Controllers
         {
             return View();
         }
-        TblUser SelectUser()
-        {
-            TblUser selectUser = _db.User.Get().FirstOrDefault(i => i.Email == User.Identity.Name);
-            return selectUser;
-        }
+
         public ActionResult Info()
         {
             return PartialView(SelectUser());
@@ -78,7 +103,7 @@ namespace AminWeb.Areas.User.Controllers
                     updateUser.TellNo = user.TellNo;
                     _db.User.Update(updateUser);
                     _db.User.Save();
-                    return Redirect("Index");
+                    return JavaScript("UIkit.modal(document.getElementById('Modal-Show')).hide();UIkit.notification('اطلاعات ویرایش شد');doneEditInfo()");
                 }
             }
             return PartialView("Edit", user);

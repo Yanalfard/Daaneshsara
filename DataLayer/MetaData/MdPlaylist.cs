@@ -15,11 +15,11 @@ namespace DataLayer.MetaData
 
         [Display(Name = "تیتر")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 256, ErrorMessage = "طول بیش از 256 کاراکتر مجاز نیست")]
+        [MaxLength(256, ErrorMessage = "طول بیش از 256 کاراکتر مجاز نیست")]
         public string Title { get; set; }
 
         [Display(Name = "توضیحات")]
-        [MaxLength(length: 500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
+        [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         public string Description { get; set; }
 
         [DataType(DataType.DateTime)]
@@ -32,7 +32,7 @@ namespace DataLayer.MetaData
         public bool IsHome { get; set; }
 
         [Display(Name = "لینک")]
-        [MaxLength(length: 500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
+        [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         [DataType(DataType.Url)]
         public string Link { get; set; }
 
@@ -50,7 +50,7 @@ namespace DataLayer.MetaData
         public bool IsActive { get; set; }
 
         [Display(Name = "مدرک",Description = "مدرک در انتهای دیدن تمام ویدیو های موجود در لیست به دانشجو داده میشود")]
-        [MaxLength(length: 256, ErrorMessage = "طول بیش از 256 کاراکتر مجاز نیست")]
+        [MaxLength(256, ErrorMessage = "طول بیش از 256 کاراکتر مجاز نیست")]
         public string CertificateURL { get; set; }
     }
 

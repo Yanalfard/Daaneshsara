@@ -18,7 +18,7 @@ namespace AminWeb.Areas.Admin.Controllers
         public ActionResult Index(string name = "", string tellNo = "", string email = "", string balance = "", int isActive = -1, int roleId = -1)
         {
             #region MyRegion
-            
+
             //TblRole s1 = new TblRole();
             //s1.Name = "user";
             //s1.Title = "کاربر";
@@ -78,41 +78,49 @@ namespace AminWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(MdUser user)
         {
-            if (ModelState.IsValid)
+            try
             {
-                user.Email = user.Email.Trim().ToLower().Replace(" ", "");
-                user.TellNo = user.TellNo.Trim().ToLower().Replace(" ", "");
-                if (_db.User.Get().Any(i => i.TellNo == user.TellNo))
+                if (ModelState.IsValid)
                 {
-                    ModelState.AddModelError("TelNo", "شماره موبایل تکراریست");
+                    user.Email = user.Email.Trim().ToLower().Replace(" ", "");
+                    user.TellNo = user.TellNo.Trim().ToLower().Replace(" ", "");
+                    if (_db.User.Get().Any(i => i.TellNo == user.TellNo))
+                    {
+                        ModelState.AddModelError("TelNo", "شماره موبایل تکراریست");
+                    }
+                    else if (_db.User.Get().Any(i => i.Email == user.Email))
+                    {
+                        ModelState.AddModelError("Email", "ایمیل تکراریست");
+                    }
+                    else
+                    {
+                        TblUser addUser = new TblUser();
+                        addUser.Balance = user.Balance;
+                        addUser.Auth = Guid.NewGuid().ToString();
+                        addUser.IsActive = user.IsActive;
+                        addUser.Email = user.Email;
+                        addUser.Name = user.Name;
+                        addUser.RoleId = user.RoleId;
+                        addUser.TellNo = user.TellNo;
+                        addUser.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(user.Password, "SHA256");
+                        _db.User.Add(addUser);
+                        _db.User.Save();
+                        return RedirectToAction("Index");
+                    }
                 }
-                else if (_db.User.Get().Any(i => i.Email == user.Email))
-                {
-                    ModelState.AddModelError("Email", "ایمیل تکراریست");
-                }
-                else
-                {
-                    TblUser addUser = new TblUser();
-                    addUser.Balance = user.Balance;
-                    addUser.Auth = Guid.NewGuid().ToString();
-                    addUser.IsActive = user.IsActive;
-                    addUser.Email = user.Email;
-                    addUser.Name = user.Name;
-                    addUser.RoleId = user.RoleId;
-                    addUser.TellNo = user.TellNo;
-                    addUser.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(user.Password, "SHA256");
-                    _db.User.Add(addUser);
-                    _db.User.Save();
-                    return RedirectToAction("Index");
-                }
-            }
-            ViewBag.IsActive = new SelectList(new[] { new { Value = "true", Text = "فعال" }, new { Value = "false", Text = "غیرفعال" }, }, "Value", "Text", user.IsActive);
-            ViewBag.RoleName = new SelectList(new[]
-            { new { Value = "0", Text = "کارآموز" },
+                ViewBag.IsActive = new SelectList(new[] { new { Value = "true", Text = "فعال" }, new { Value = "false", Text = "غیرفعال" }, }, "Value", "Text", user.IsActive);
+                ViewBag.RoleName = new SelectList(new[]
+                { new { Value = "0", Text = "کارآموز" },
              new { Value = "1", Text = "مربی" },
             new { Value = "2", Text = "آموزشگاه" },
             new { Value = "3", Text = "مدیر" }}, "Value", "Text", user.RoleId);
-            return View(user);
+                return View(user);
+            }
+            catch
+            {
+                return View(user);
+
+            }
         }
 
         public ActionResult ActiveDisableUser(int id)

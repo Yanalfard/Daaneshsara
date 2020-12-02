@@ -23,7 +23,7 @@ namespace DataLayer.MetaData
 
         [Display(Name = "توضیحات")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
+        [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         public string Description { get; set; }
 
     }

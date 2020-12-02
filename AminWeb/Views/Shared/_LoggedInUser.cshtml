@@ -1,0 +1,42 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <a href="/User/Account/UserData" class="uk-margin-auto-right lesser">
+        پروفایل
+    </a>
+    <div uk-drop id="navDrop">
+        <div class="drop-body uk-padding-small column">
+            <ul class="uk-margin-remove uk-padding-remove">
+                <li>
+                    <a href="/User/Account/UserData">
+                        <span>پروفایل</span>
+                        <span uk-icon="icon:user"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/User/Video/YourVideos">
+                        <span>آپلود</span>
+                        <span uk-icon="icon:cloud-upload"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/LogOff">
+                        <span>خروج</span>
+                        <span uk-icon="icon:sign-out"></span>
+                    </a>
+                </li>
+            </ul>
+            <hr class="uk-grid-margin-small" />
+            <a href="/User/Account/Wallet" class="success">
+                <span>130,000</span>
+                <span uk-icon="icon:money"></span>
+            </a>
+        </div>
+    </div>
+
+}
+else
+{
+    <a onclick="showLogin()" class="uk-margin-auto-right lesser">
+        ورود
+    </a>
+}

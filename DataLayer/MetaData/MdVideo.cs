@@ -14,16 +14,16 @@ namespace DataLayer.MetaData
         
         [Display(Name = "ویدیو")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
+        [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         public string VideoUrl { get; set; }
         
         [Display(Name = "دموی ویدیو")]
-        [MaxLength(length: 500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
+        [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         public string VidioDemoUrl { get; set; }
         
         [Display(Name = "عکس")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 300, ErrorMessage = "طول بیش از 300 کاراکتر مجاز نیست")]
+        [MaxLength(300, ErrorMessage = "طول بیش از 300 کاراکتر مجاز نیست")]
         [DataType(DataType.ImageUrl)]
         public string MainImage { get; set; }
         
@@ -33,7 +33,7 @@ namespace DataLayer.MetaData
         public string Title { get; set; }
         
         [Display(Name = "توضیحات")]
-        [MaxLength(length: 1000, ErrorMessage = "طول بیش از 1000 کاراکتر مجاز نیست")]
+        [MaxLength(1000, ErrorMessage = "طول بیش از 1000 کاراکتر مجاز نیست")]
         public string Description { get; set; }
         
         [MaxLength(20)]
@@ -50,7 +50,7 @@ namespace DataLayer.MetaData
         public int LikeCount { get; set; }
         
         [Display(Name = "لینک")]
-        [MaxLength(length: 500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
+        [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         [DataType(DataType.Url)]
         public string Link { get; set; }
         

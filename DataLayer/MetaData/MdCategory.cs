@@ -12,7 +12,7 @@ namespace DataLayer.MetaData
         public int CatagoryId { get; set; }
         [Display(Name = "گروه")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
+        [MaxLength(50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
         public string Name { get; set; }
         public Nullable<int> ParentId { get; set; }
     }

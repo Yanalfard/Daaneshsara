@@ -20,11 +20,16 @@ namespace AminWeb.Controllers
     {
         private Heart _db = new Heart();
         // GET: Account
+        //[Authorize(Order = 0, Roles = "*", Users = "*")]
+        //[ChildActionOnly]
         private async Task<bool> IsCaptchaValid(string response)
         {
             try
             {
+                //Localhost
                 var secret = "6LfeB-IZAAAAAFJGzrD4-Vz9B4GPnjaps0gjQwFq";
+                //Site
+                //var secret = "6LfeB-IZAAAAAFJGzrD4-Vz9B4GPnjaps0gjQwFq";
                 using (var client = new HttpClient())
                 {
                     var values = new Dictionary<string, string>
@@ -140,7 +145,7 @@ namespace AminWeb.Controllers
                         _db.User.Save();
                         string body = PartialToStringClass.RenderPartialView("ManageEmails", "ActiviationEmail", addUser);
                         SendEmail.Send(user.Email, "ایمیل فعالسازی", body);
-                        return JavaScript("UIkit.modal(document.getElementById('Modal-Register')).hide();UIkit.notification('لینک فعال سازی به ایمیل شما ارسال شد')");
+                        return JavaScript("UIkit.modal(document.getElementById('Modal-Show')).hide();UIkit.notification('لینک فعال سازی به ایمیل شما ارسال شد')");
                     }
                 }
                 else
@@ -151,15 +156,41 @@ namespace AminWeb.Controllers
             return PartialView("Register", user);
         }
         [Route("ActiveUser/{id}")]
-        public ActionResult ActiveUser(string id)
+        public ActionResult ActiveUser()
         {
             try
             {
-                return PartialView();
+                return View();
             }
             catch
             {
-                return RedirectToAction("/ErrorPage/NotFound");
+                return Redirect("/fallback.html");
+            }
+        }
+        [HttpPost]
+        [Route("ActiveUser/{id}")]
+        public ActionResult ActiveUser(VmActive check)
+        {
+            try
+            {
+                TblUser selectUser = _db.User.Get().FirstOrDefault(i => i.Auth == check.id);
+                if (selectUser != null)
+                {
+                    selectUser.IsActive = true;
+                    selectUser.Auth = Guid.NewGuid().ToString();
+                    _db.User.Save();
+                    return Redirect("/?ReturnUrl=Active");
+                }
+                else
+                {
+                    ModelState.AddModelError("id", "حساب کاربری شما یافت نشد");
+                    return View(check);
+                    //return JavaScript("UIkit.notification('حساب کاربری شما یافت نشد');");
+                }
+            }
+            catch
+            {
+                return Redirect("/fallback.html");
             }
         }
         public ActionResult ForgetPassword()

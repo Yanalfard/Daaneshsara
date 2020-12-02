@@ -13,17 +13,18 @@ namespace DataLayer.ViewModels
 
         [Display(Name = "نام و نام خانوادگی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
+        [MaxLength(50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
         public string Name { get; set; }
 
         [Display(Name = "شماره تلفن همراه")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 11, ErrorMessage = "طول بیش از 11 کاراکتر مجاز نیست")]
+        [MaxLength(11, ErrorMessage = "طول بیش از 11 کاراکتر مجاز نیست")]
+        [MinLength(11, ErrorMessage = "طول کاراکتر کمتر مجاز نیست")]
         public string TellNo { get; set; }
 
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 150, ErrorMessage = "طول بیش از 150 کاراکتر مجاز نیست")]
+        [MaxLength(150, ErrorMessage = "طول بیش از 150 کاراکتر مجاز نیست")]
         [EmailAddress(ErrorMessage = "ایمیل وارد شده نامعتبر است")]
         public string Email { get; set; }
     }

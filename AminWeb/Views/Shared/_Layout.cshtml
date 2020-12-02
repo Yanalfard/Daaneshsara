@@ -24,18 +24,6 @@
 </head>
 <body>
 
-    <!-- #region Account Modal -->
-
-    <div id="Modal-Account" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body">
-            @Html.Action("Login", "Account", new { area = "" })
-        </div>
-    </div>
-    <div id="Modal-Register" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body">
-            @Html.Action("Register", "Account", new { area = "" })
-        </div>
-    </div>
     <script>
         //برای نشان دادن و مخفی کردن مودال
         // UIkit.modal(document.getElementById('Modal-Account')).show();
@@ -47,48 +35,9 @@
 
     <header role="navigation" class="top-nav row">
         <nav class="uk-flex-auto row flex-1">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a href="/User/Account/UserData" class="uk-margin-auto-right lesser">
-                    پروفایل
-                </a>
-                <div uk-drop id="navDrop">
-                    <div class="drop-body uk-padding-small column">
-                        <ul class="uk-margin-remove uk-padding-remove">
-                            <li>
-                                <a href="/User/Account/UserData">
-                                    <span>پروفایل</span>
-                                    <span uk-icon="icon:user"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/User/Video/YourVideos">
-                                    <span>آپلود</span>
-                                    <span uk-icon="icon:cloud-upload"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/LogOff">
-                                    <span>خروج</span>
-                                    <span uk-icon="icon:sign-out"></span>
-                                </a>
-                            </li>
-                        </ul>
-                        <hr class="uk-grid-margin-small" />
-                        <a href="/User/Account/Wallet" class="success">
-                            <span>130,000</span>
-                            <span uk-icon="icon:money"></span>
-                        </a>
-                    </div>
-                </div>
-
-            }
-            else
-            {
-                <a onclick="UIkit.modal(document.getElementById('Modal-Account')).show();" class="uk-margin-auto-right lesser">
-                    ورود
-                </a>
-            }
+            <div id="loggedInUser">
+                @Html.Partial("_LoggedInUser")
+            </div>
 
             <div role="list" class="row-reverse uk-margin-auto-left">
                 <a role="listitem" href="/Home/Index" class="lesser">
@@ -185,6 +134,7 @@
 
 
 
+
     <div id="Modal-Show" uk-modal>
         <div class="uk-modal-dialog uk-modal-body" id="Modal-Body">
 
@@ -213,12 +163,26 @@
 
 
     <script>
+        function showLogin() {
+            $.get('/Account/Login', function (result) {
+                reloadRech();
+                UIkit.modal(document.getElementById('Modal-Show')).show();
+                $('#Modal-Body').html(result);
+            });
+        };
+        function showRegister() {
+            $.get('/Account/Register', function (result) {
+                reloadRech();
+                UIkit.modal(document.getElementById('Modal-Show')).show();
+                $('#Modal-Body').html(result);
+            });
+        };
         function forgetPassword() {
             $.get('/Account/ForgetPassword', function (result) {
                 UIkit.modal(document.getElementById('Modal-Show')).show();
                 $('#Modal-Body').html(result);
             });
-        }
+        };
 
         function LoadingRun(form) {
             if (!$(form).valid()) return;
@@ -232,9 +196,7 @@
         function doneModal(form) {
             $("#overlay").fadeOut();
             UIkit.modal(document.getElementById(form)).hide();
-            //location.reload();
             window.location.href = "/";
-            $(form)[0].reset();
         }
     </script>
     <!--#endregion-->

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<DataLayer.Models.TblChat>
+<select name="Contacts" class="uk-width-1-1" dir="rtl"  id="mySelect">
+    <option value="0">انتخاب کنید</option>
+
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <option  value="@item.RecieverId">@item.TblUser.Name</option>
+        }
+    }
+</select>

@@ -1904,6 +1904,7 @@
     <Content Include="Areas\Admin\Views\Catagory\Edit.cshtml" />
     <Content Include="Areas\User\Views\Account\Info.cshtml" />
     <Content Include="Areas\User\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\User\Views\Chat\Chats.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>
@@ -1920,6 +1921,7 @@
     <Content Include="Content\UIkit\uikit-icons.min.js" />
     <Content Include="Content\UIkit\uikit.min.css" />
     <Content Include="Content\UIkit\uikit.min.js" />
+    <Content Include="fallback.html" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="CodeTemplates\MvcView\UkCreate.cs.t4" />
@@ -2009,6 +2011,8 @@
     <Content Include="Views\ManageEmails\ActiviationEmail.cshtml" />
     <Content Include="Views\Account\LoginModal.cshtml" />
     <Content Include="Views\ManageEmails\RecoveryPassword.cshtml" />
+    <Content Include="Views\Account\ActiveUser.cshtml" />
+    <Content Include="Views\Shared\_LoggedInUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

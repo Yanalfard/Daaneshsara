@@ -1,5 +1,5 @@
 ﻿@model DataLayer.ViewModels.VmRegister
-@using (Ajax.BeginForm("Register", "Account", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal('Modal-Register')", OnSuccess = "LoadingEnd('#RegisterForm')", UpdateTargetId = "RegisterForm" }, htmlAttributes: new { @id = "RegisterForm" }))
+@using (Ajax.BeginForm("Register", "Account", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal('Modal-Show')", OnSuccess = "LoadingEnd('#RegisterForm')", UpdateTargetId = "RegisterForm" }, htmlAttributes: new { @id = "RegisterForm" }))
 {
     @Html.AntiForgeryToken()
     <div class="form column" role="form">
@@ -61,7 +61,7 @@
                 ثبت نام
             </button>
 
-            <a onclick="UIkit.modal(document.getElementById('Modal-Account')).show();" class="btn-secondary btn">
+            <a onclick="showLogin();" class="btn-secondary btn">
                 ورود
             </a>
         </div>

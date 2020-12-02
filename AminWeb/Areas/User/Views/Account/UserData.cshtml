@@ -5,11 +5,22 @@
 }
 
 
-
-@Html.Action("Info")
-
-<div id="Modal-Edit" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
-        @Html.Action("Edit")
-    </div>
+<div id="info">
+    @Html.Action("Info")
 </div>
+
+
+<script>
+    function editInfo() {
+        $.get('/User/Account/Edit', function (result) {
+            reloadRech();
+            UIkit.modal(document.getElementById('Modal-Show')).show();
+            $('#Modal-Body').html(result);
+        });
+    };
+    function doneEditInfo() {
+        $.get('/User/Account/Info', function (result) {
+            $('#info').html(result);
+        });
+    }
+</script>
