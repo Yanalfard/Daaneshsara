@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\VideoController.cs" />
     <Compile Include="Areas\User\Controllers\AccountController.cs" />
     <Compile Include="Areas\User\Controllers\ChatController.cs" />
+    <Compile Include="Areas\User\Controllers\ClassesController.cs" />
     <Compile Include="Areas\User\Controllers\HomeController.cs" />
     <Compile Include="Areas\User\Controllers\LibraryController.cs" />
     <Compile Include="Areas\User\Controllers\VideoController.cs" />
@@ -1905,6 +1906,9 @@
     <Content Include="Areas\User\Views\Account\Info.cshtml" />
     <Content Include="Areas\User\Views\Account\Edit.cshtml" />
     <Content Include="Areas\User\Views\Chat\Chats.cshtml" />
+    <Content Include="Areas\User\Views\Chat\ViewChat.cshtml" />
+    <Content Include="Areas\User\Views\Classes\Classes.cshtml" />
+    <Content Include="Areas\User\Views\Classes\Create.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>

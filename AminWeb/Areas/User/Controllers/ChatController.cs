@@ -54,9 +54,13 @@ namespace AminWeb.Areas.User.Controllers
         {
             return PartialView(GetAllChats());
         }
-        public ActionResult ViewChat(int user2)
+        public ActionResult ViewChat(int id)
         {
-            return View(GetAChat(user2));
+            return PartialView(GetAChat(id));
+        }
+        public ActionResult SendMessage(string id)
+        {
+            return PartialView("ViewChat");
         }
     }
 }

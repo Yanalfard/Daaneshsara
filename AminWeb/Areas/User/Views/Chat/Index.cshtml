@@ -19,31 +19,32 @@
 
     <div class="chat-room uk-margin-top uk-box-shadow-hover-large">
         <ul class="uk-padding-remove" id="listMessage">
-            <li>
-                @Html.Partial("Message")
-            </li>
-            <li>
-                @Html.Partial("Message")
-            </li>
-            <li>
-                @Html.Partial("Message")
-            </li>
-            <li>
-                @Html.Partial("Message")
-            </li>
-            <li>
-                @Html.Partial("Message")
-            </li>
-            <li>
-                @Html.Partial("Message")
-            </li>
-            <li>
-                @Html.Partial("Message")
-            </li>
+            @*<li>
+                    @Html.Partial("Message")
+                </li>
+                <li>
+                    @Html.Partial("Message")
+                </li>
+                <li>
+                    @Html.Partial("Message")
+                </li>
+                <li>
+                    @Html.Partial("Message")
+                </li>
+                <li>
+                    @Html.Partial("Message")
+                </li>
+                <li>
+                    @Html.Partial("Message")
+                </li>
+                <li>
+                    @Html.Partial("Message")
+                </li>*@
         </ul>
     </div>
 
     <div class="row-reverse uk-margin-top">
+
         <div class="row uk-width-1-1">
             <textarea type="text" name="Message" class="uk-width-1-1" placeholder="..."></textarea>
             <button class="btn-pill-primary uk-margin-left uk-margin-auto-bottom">
@@ -55,20 +56,18 @@
 </div>
 
 @section Scripts{
-    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
     <script>
         $('#mySelect').on('change', function () {
-            var user2 = $(this).val();
-            $.get('/User/Chat/ViewChat/' + user2, function (result) {
+            var id = $(this).val();
+            $.get('/User/Chat/ViewChat/' + id, function (result) {
                 $('#listMessage').html(result);
             });
         });
-                //function viewMessage(id) {
-                //    alert('5');
-                //    $.get('/User/Chat/ViewChat/' + id, function (result) {
-                //        $('#listMessage').html(result);
-                //    });
-                //}
+                        //function viewMessage(id) {
+                        //    alert('5');
+                        //    $.get('/User/Chat/ViewChat/' + id, function (result) {
+                        //        $('#listMessage').html(result);
+                        //    });
+                        //}
     </script>
 }

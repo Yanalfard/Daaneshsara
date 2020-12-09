@@ -147,7 +147,7 @@
                     <option>ریاضی</option>
                     <option>مدنی</option>
                 </select>
-                <button uk-icon="plus" uk-toggle="target: #Modal-AddPlaylist" type="button" uk-tooltip="اضافه کردن کلاس جدید" class="uk-margin-auto-right"></button>
+                <button uk-icon="plus" onclick="createClasses()" type="button" uk-tooltip="اضافه کردن کلاس جدید" class="uk-margin-auto-right"></button>
             </div>
             <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
         </div>
@@ -185,192 +185,11 @@
 
 <div id="Modal-Categories" uk-modal>
     <div class="uk-modal-dialog uk-modal-body column">
-        <h3>
-            کلاس ها
-        </h3>
-        <button type="button" uk-toggle="target: #Modal-AddPlaylist" class="btn-primary uk-margin-bottom uk-margin-auto-left">کلاس جدید</button>
-        <div class="row-reverse">
-            <details dir="rtl" class="uk-margin-small-bottom uk-width-1-1">
-                <summary>
-                    ریاضی گسسته
-                </summary>
-                <ul dir="ltr" class="column uk-margin-auto-left uk-nav uk-nav-default"
-                    uk-sortable="group:my; cls-custom: uk-box-shadow-small uk-background mat">
-                    <li>
-                        <div class="row-reverse uk-padding-small">
-                            <span>این یک ویدیو است</span>
-                            <div class="row uk-margin-auto-right">
-                                <a href="" uk-icon="trash"></a>
-                                <a href="" uk-icon="edit"></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row-reverse uk-padding-small">
-                            <span>این یک ویدیو است</span>
-                            <div class="row uk-margin-auto-right">
-                                <a href="" uk-icon="trash"></a>
-                                <a href="" uk-icon="edit"></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row-reverse uk-padding-small">
-                            <span>این یک ویدیو است</span>
-                            <div class="row uk-margin-auto-right">
-                                <a href="" uk-icon="trash"></a>
-                                <a href="" uk-icon="edit"></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row-reverse uk-padding-small">
-                            <span>این یک ویدیو است</span>
-                            <div class="row uk-margin-auto-right">
-                                <a href="" uk-icon="trash"></a>
-                                <a href="" uk-icon="edit"></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row-reverse uk-padding-small">
-                            <span>این یک ویدیو است</span>
-                            <div class="row uk-margin-auto-right">
-                                <a href="" uk-icon="trash"></a>
-                                <a href="" uk-icon="edit"></a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </details>
-            <div class="row uk-margin-auto-right">
-                <a href="" uk-icon="trash"></a>
-                <a href="" uk-icon="edit"></a>
-            </div>
-        </div>
-        <div class="row-reverse">
-            <details dir="rtl" class="uk-margin-small-bottom uk-width-1-1">
-                <summary>
-                    علوم تجربی
-                </summary>
-                <ul dir="ltr" class="column uk-margin-auto-left uk-nav uk-nav-default"
-                    uk-sortable="group:my; cls-custom: uk-box-shadow-small uk-background mat">
-                    <li>
-                        <div class="row-reverse uk-padding-small">
-                            <span>این یک ویدیو است</span>
-                            <div class="row uk-margin-auto-right">
-                                <a href="" uk-icon="trash"></a>
-                                <a href="" uk-icon="edit"></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row-reverse uk-padding-small">
-                            <span>این یک ویدیو است</span>
-                            <div class="row uk-margin-auto-right">
-                                <a href="" uk-icon="trash"></a>
-                                <a href="" uk-icon="edit"></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row-reverse uk-padding-small">
-                            <span>این یک ویدیو است</span>
-                            <div class="row uk-margin-auto-right">
-                                <a href="" uk-icon="trash"></a>
-                                <a href="" uk-icon="edit"></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row-reverse uk-padding-small">
-                            <span>این یک ویدیو است</span>
-                            <div class="row uk-margin-auto-right">
-                                <a href="" uk-icon="trash"></a>
-                                <a href="" uk-icon="edit"></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row-reverse uk-padding-small">
-                            <span>این یک ویدیو است</span>
-                            <div class="row uk-margin-auto-right">
-                                <a href="" uk-icon="trash"></a>
-                                <a href="" uk-icon="edit"></a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </details>
-            <div class="row uk-margin-auto-right">
-                <a href="" uk-icon="trash"></a>
-                <a href="" uk-icon="edit"></a>
-            </div>
-        </div>
+       
     </div>
 </div>
 
-<div id="Modal-AddPlaylist" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body column">
-        <h3>
-            کلاس جدید
-        </h3>
 
-        <div class="form-group">
-            <label for="Title">نام کلاس</label>
-            <div class="input-group">
-                <input type="text" name="Title" />
-            </div>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
-        </div>
-
-        <div class="form-group">
-            <label for="Description">توضیحات</label>
-            <textarea type="text" name="Description"></textarea>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
-        </div>
-
-        <div class="form-group">
-            <label for="Price">قیمت به تومان</label>
-            <div class="input-group">
-                <input type="number" name="Price" />
-            </div>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
-        </div>
-
-        <div class="uk-margin-top uk-margin-bottom">
-            <label dir="rtl">
-                <input class="uk-checkbox" type="checkbox">
-                میخواهم درصدی از درامد این ویدیو به خیریه
-                <a href="#" class="blue">نام خیریه</a>
-                اهدا شود
-            </label>
-        </div>
-
-        <div class="form-group">
-            <label for="Certificate">در صورت ارایه مدرک، آن را آپلود کنید</label>
-            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
-                <span uk-icon="icon: cloud-upload"></span>
-                <span class="uk-text-middle">فایل خود را اینجا بیاندازید و یا</span>
-                <div uk-form-custom>
-                    <input type="file" name="Certificate">
-                    <span class="blue">کلیک کنید</span>
-                </div>
-            </div>
-            <span role="alert" class="alert">فایل شما معتبر نمی باشد</span>
-        </div>
-
-        <div class="row-reverse uk-margin-medium-top">
-            <button class="btn-primary">
-                اضافه
-            </button>
-            <button class="btn-secondary uk-margin-right uk-modal-close">
-                بازگشت
-            </button>
-        </div>
-
-    </div>
-</div>
 
 <div class="mat uk-padding-small uk-box-shadow-small row-reverse">
     <h3 class="uk-margin-auto-left uk-margin-remove">
@@ -380,7 +199,7 @@
         <a href="#Modal-AddVideo" uk-toggle class="center" uk-icon="icon:addVideo;ratio:1.2" uk-tooltip="آپلود ویدیو">
 
         </a>
-        <a href="#Modal-Categories" uk-toggle class="center uk-margin-left" uk-icon="icon:class;ratio:1.2" uk-tooltip="کلاس ها">
+        <a onclick="showClasses()" class="center uk-margin-left" uk-icon="icon:class;ratio:1.2" uk-tooltip="کلاس ها">
 
         </a>
     </div>

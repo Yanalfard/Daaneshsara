@@ -1,0 +1,63 @@
+﻿
+@using (Html.BeginForm())
+{
+
+    <h3>
+        کلاس جدید
+    </h3>
+
+    <div class="form-group">
+        <label for="Title">نام کلاس</label>
+        <div class="input-group">
+            <input type="text" name="Title" />
+        </div>
+        <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
+    </div>
+
+    <div class="form-group">
+        <label for="Description">توضیحات</label>
+        <textarea type="text" name="Description"></textarea>
+        <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
+    </div>
+
+    <div class="form-group">
+        <label for="Price">قیمت به تومان</label>
+        <div class="input-group">
+            <input type="number" name="Price" />
+        </div>
+        <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
+    </div>
+
+    <div class="uk-margin-top uk-margin-bottom">
+        <label dir="rtl">
+            <input class="uk-checkbox" type="checkbox">
+            میخواهم درصدی از درامد این ویدیو به خیریه
+            <a href="#" class="blue">نام خیریه</a>
+            اهدا شود
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label for="Certificate">در صورت ارایه مدرک، آن را آپلود کنید</label>
+        <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
+            <span uk-icon="icon: cloud-upload"></span>
+            <span class="uk-text-middle">فایل خود را اینجا بیاندازید و یا</span>
+            <div uk-form-custom>
+                <input type="file" name="Certificate">
+                <span class="blue">کلیک کنید</span>
+            </div>
+        </div>
+        <span role="alert" class="alert">فایل شما معتبر نمی باشد</span>
+    </div>
+
+    <div class="row-reverse uk-margin-medium-top">
+        <button class="btn-primary">
+            اضافه
+        </button>
+        <button class="btn-secondary uk-margin-right uk-modal-close">
+            بازگشت
+        </button>
+    </div>
+
+}
+
