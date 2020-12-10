@@ -33,26 +33,34 @@ namespace AminWeb.Areas.Admin.Controllers
             }
             return PartialView(_db.Cat.Get().Where(i => i.ParentId == null).ToList());
         }
-        public ActionResult Create(int? id)
+        public ActionResult SubCategory(int id)
         {
-            return PartialView(new MdCategory()
-            {
-                ParentId = id,
-            });
+            List<TblPlaylist> list = _db.Playlist.Get().Where(i => i.CatagoryId == id).ToList();
+            return PartialView(list);
+        }
+        public ActionResult Create()
+        {
+            return PartialView();
         }
         [HttpPost]
         public ActionResult Create(MdCategory catagory)
         {
             if (ModelState.IsValid)
             {
-                TblCatagory addCat = new TblCatagory()
+                if (_db.Cat.Get().Any(i => i.Name == catagory.Name))
                 {
-                    Name=catagory.Name,
-                    ParentId= catagory.ParentId,
-                };
-                _db.Cat.Add(addCat);
-                _db.Cat.Save();
-                return PartialView("ListCat", _db.Cat.Get().Where(i => i.ParentId == null).ToList());
+                    ModelState.AddModelError("Name", "نام گروه تکراریست");
+                }
+                else
+                {
+                    TblCatagory addCat = new TblCatagory()
+                    {
+                        Name = catagory.Name,
+                    };
+                    _db.Cat.Add(addCat);
+                    _db.Cat.Save();
+                    return JavaScript("doneModal()");
+                }
             }
             return PartialView("Create", catagory);
         }
@@ -79,14 +87,36 @@ namespace AminWeb.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
-            return PartialView(_db.Cat.GetById(id));
+            TblCatagory category = _db.Cat.GetById(id);
+            MdCategory mdCategory = new MdCategory()
+            {
+                CatagoryId = category.CatagoryId,
+                Name = category.Name,
+            };
+            return PartialView(mdCategory);
         }
         [HttpPost]
-        public ActionResult Edit(TblCatagory catagory)
+        public ActionResult Edit(MdCategory catagory)
         {
-            _db.Cat.Update(catagory);
-            _db.Cat.Save();
-            return PartialView("ListCat", _db.Cat.Get().Where(i => i.ParentId == null).ToList());
+            if (ModelState.IsValid)
+            {
+                if (_db.Cat.Get().Any(i => i.Name == catagory.Name && i.CatagoryId != catagory.CatagoryId))
+                {
+                    ModelState.AddModelError("Name", "نام گروه تکراریست");
+                }
+                else
+                {
+                    TblCatagory updateCat = new TblCatagory()
+                    {
+                        CatagoryId=catagory.CatagoryId,
+                        Name = catagory.Name,
+                    };
+                    _db.Cat.Update(updateCat);
+                    _db.Cat.Save();
+                    return JavaScript("doneModal()");
+                }
+            }
+            return PartialView("Create", catagory);
         }
     }
 }

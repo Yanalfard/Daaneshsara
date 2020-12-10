@@ -1909,6 +1909,8 @@
     <Content Include="Areas\User\Views\Chat\ViewChat.cshtml" />
     <Content Include="Areas\User\Views\Classes\Classes.cshtml" />
     <Content Include="Areas\User\Views\Classes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Catagory\SubCategory.cshtml" />
+    <Content Include="Areas\User\Views\Video\Create.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>

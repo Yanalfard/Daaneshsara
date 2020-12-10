@@ -1,7 +1,9 @@
-﻿
-@using (Html.BeginForm())
-{
+﻿@model DataLayer.MetaData.MdPlaylist
 
+
+@using (Ajax.BeginForm("Create", "Classes", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal('Modal-Show')", OnSuccess = "LoadingEnd('#loginForm')", UpdateTargetId = "loginForm" }, htmlAttributes: new { @id = "loginForm" }))
+{
+    @Html.AntiForgeryToken()
     <h3>
         کلاس جدید
     </h3>
@@ -9,28 +11,34 @@
     <div class="form-group">
         <label for="Title">نام کلاس</label>
         <div class="input-group">
-            <input type="text" name="Title" />
+            @Html.EditorFor(m => m.Title)
         </div>
-        <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
+        <span role="alert" class="alert">
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "uk-text-danger" })
+        </span>
     </div>
 
     <div class="form-group">
         <label for="Description">توضیحات</label>
-        <textarea type="text" name="Description"></textarea>
-        <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
+        @Html.EditorFor(m => m.Description)
+        <span role="alert" class="alert">
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
+        </span>
     </div>
 
     <div class="form-group">
         <label for="Price">قیمت به تومان</label>
         <div class="input-group">
-            <input type="number" name="Price" />
+            @Html.EditorFor(m => m.Price)
         </div>
-        <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
+        <span role="alert" class="alert">
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "uk-text-danger" })
+        </span>
     </div>
 
     <div class="uk-margin-top uk-margin-bottom">
         <label dir="rtl">
-            <input class="uk-checkbox" type="checkbox">
+            @Html.EditorFor(m => m.IsCharity)
             میخواهم درصدی از درامد این ویدیو به خیریه
             <a href="#" class="blue">نام خیریه</a>
             اهدا شود
@@ -47,7 +55,8 @@
                 <span class="blue">کلیک کنید</span>
             </div>
         </div>
-        <span role="alert" class="alert">فایل شما معتبر نمی باشد</span>
+        @Html.ValidationMessageFor(model => model.CertificateURL, "", new { @class = "uk-text-danger" })
+
     </div>
 
     <div class="row-reverse uk-margin-medium-top">

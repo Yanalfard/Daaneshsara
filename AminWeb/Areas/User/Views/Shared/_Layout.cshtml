@@ -55,6 +55,12 @@
             $('#ModalUserBody').html(result);
         });
     }
+    function CreateVideo() {
+        $.get('/User/Video/Create', function (result) {
+            UIkit.modal(document.getElementById('ModalUser')).show();
+            $('#ModalUserBody').html(result);
+        });
+    }
 </script>
 @RenderSection("Scripts", false)
 

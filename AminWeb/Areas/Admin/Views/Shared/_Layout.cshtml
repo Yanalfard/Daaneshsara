@@ -213,13 +213,18 @@
     <!--#endregion-->
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-            <div class="modal-content" id="myModalBody">
-
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body" id="myModalBody">
+                    ...
+                </div>
             </div>
         </div>
     </div>
-
 
 
 
@@ -237,6 +242,7 @@
     <script src="~/Areas/Admin/Content/bootstrap/Paging/jquery.simplePagination.js"></script>
     <script src="~/Areas/Admin/Content/bootstrap/Paging/Paging.js"></script>
 
+
     <script>
         function LoadingRun(form) {
             if (!$(form).valid()) return;
@@ -244,21 +250,14 @@
         }
         function LoadingEnd(form) {
             $("#overlay").fadeOut(300);
-            success();
+            $(form)[0].reset();
         }
-
-        function success() {
+        function doneModal(form) {
             $("#myModal").modal('hide');
+            $('#listCat').load('/Admin/Catagory/ListCat')
         }
-
-                            //function LoadingEnd(form) {
-                            //    $("#overlay").fadeOut(300);
-                            //    //$(form)[0].reset();
-                            //}
-                            //function doneEdit() {
-                            //    alert('تغیرات انجام شد');
-                            //}
     </script>
+
     @RenderSection("Scripts", false)
 </body>
 </html>

@@ -13,8 +13,8 @@ namespace DataLayer.MetaData
         [Display(Name = "گروه")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
+        [MinLength(3, ErrorMessage = "طول کاراکتر کمتر است")]
         public string Name { get; set; }
-        public Nullable<int> ParentId { get; set; }
     }
 
 }

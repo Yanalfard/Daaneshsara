@@ -34,6 +34,7 @@ namespace DataLayer.MetaData
         
         [Display(Name = "توضیحات")]
         [MaxLength(1000, ErrorMessage = "طول بیش از 1000 کاراکتر مجاز نیست")]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         
         [MaxLength(20)]
@@ -48,7 +49,10 @@ namespace DataLayer.MetaData
         
         [Display(Name = "تعداد لایک")]
         public int LikeCount { get; set; }
-        
+        [Display(Name = "کلمات کلیدی")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(256)]
+        public string Keywords { get; set; }
         [Display(Name = "لینک")]
         [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         [DataType(DataType.Url)]
@@ -62,7 +66,6 @@ namespace DataLayer.MetaData
         public int Price { get; set; }
         
         [Display(Name = "خیریه",Description = "با انتخاب این گزینه 5 درصد از درآمد شما از این مورد به سازمان های خیریه داده میشود")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public bool IsCharity { get; set; }
         
         public Nullable<int> PlaylistId { get; set; }
@@ -70,9 +73,4 @@ namespace DataLayer.MetaData
         public bool IsActive { get; set; }
     }
 
-    [MetadataType(typeof(MdVideo))]
-    public class TblVideo
-    {
-
-    }
 }

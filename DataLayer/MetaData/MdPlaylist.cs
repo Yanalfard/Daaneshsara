@@ -19,6 +19,7 @@ namespace DataLayer.MetaData
         public string Title { get; set; }
 
         [Display(Name = "توضیحات")]
+        [DataType(DataType.MultilineText)]
         [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         public string Description { get; set; }
 
@@ -54,9 +55,4 @@ namespace DataLayer.MetaData
         public string CertificateURL { get; set; }
     }
 
-    [MetadataType(typeof(MdPlaylist))]
-    public class TblPlaylist
-    {
-
-    }
 }
