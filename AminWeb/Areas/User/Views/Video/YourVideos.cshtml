@@ -4,17 +4,12 @@
     ViewBag.Content = "ویدیو هایی که شما آپلود کرده اید";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
 }
-
-
-
-
-
 <div class="mat uk-padding-small uk-box-shadow-small row-reverse">
     <h3 class="uk-margin-auto-left uk-margin-remove">
         ویدیو های شما
     </h3>
     <div class="row uk-margin-auto-right">
-        <a  onclick="CreateVideo()" class="center" uk-icon="icon:addVideo;ratio:1.2" uk-tooltip="آپلود ویدیو">
+        <a onclick="CreateVideo()" class="center" uk-icon="icon:addVideo;ratio:1.2" uk-tooltip="آپلود ویدیو">
 
         </a>
         <a onclick="showClasses()" class="center uk-margin-left" uk-icon="icon:class;ratio:1.2" uk-tooltip="کلاس ها">
@@ -31,3 +26,64 @@
     @Html.Partial("UserVideoBlock")
 </div>
 
+@section Scripts{
+
+    <script src="~/Scripts/ajaxfileupload.js"></script>
+
+    <script type="text/javascript">
+        function runUpload(data, status, xhr) {
+            $("#overlay").fadeOut(300);
+            if (data.result == "ok") {
+                //showClasses()
+                 $.ajaxFileUpload({
+                    url: "@Url.Action("UploadFiles", "Classes")", // مسيري كه بايد فايل به آن ارسال شود
+                    secureuri: false,
+                    formElementId: "createClasses", // كدام فرم در صفحه پردازش شود؟
+                    dataType: "json",
+                    data:
+                    {
+                        id: data.Id /* اين آي دي پس از ذخيره شدن محصول در سرور از آن دريافت مي‌شود */,
+                        // , ...
+                    }, // اطلاعات اضافي در صورت نياز
+                     complete: function () {
+                         alert('1');
+                    },
+                    success: function (successData, successStatus) {
+                        location.reload();
+                        alert('2');
+
+                    },
+                    error: function (errorData, errorStatus, e) {
+                        alert('3');
+
+                    }
+                });
+            }
+
+            @*$.ajaxFileUpload({
+                url: "@Url.Action("UploadFiles", "Classes")", // مسيري كه بايد فايل به آن ارسال شود
+                secureuri: false,
+                formElementId: "createClasses", // كدام فرم در صفحه پردازش شود؟
+                dataType: "json",
+                data:
+                {
+                    id: data.Id /* اين آي دي پس از ذخيره شدن محصول در سرور از آن دريافت مي‌شود */,
+                    // , ...
+                }, // اطلاعات اضافي در صورت نياز
+                complete: function () {
+                },
+                success: function (successData, successStatus) {
+                    location.reload();
+
+                },
+                error: function (errorData, errorStatus, e) {
+                    alert(e);
+                }
+            });*@
+
+        }
+    </script>
+
+
+
+}

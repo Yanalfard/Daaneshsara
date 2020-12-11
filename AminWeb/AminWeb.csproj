@@ -1911,6 +1911,8 @@
     <Content Include="Areas\User\Views\Classes\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Catagory\SubCategory.cshtml" />
     <Content Include="Areas\User\Views\Video\Create.cshtml" />
+    <Content Include="Areas\User\Views\Classes\ListClasses.cshtml" />
+    <Content Include="Areas\User\Views\Classes\Edit.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>
@@ -1972,6 +1974,7 @@
     <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
     <Content Include="Scripts\jquery-3.5.1.slim.js" />
@@ -2024,6 +2027,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Views\Home\" />
+    <Folder Include="Resources\Classes\" />
     <Folder Include="Resources\Dynamic\" />
     <Folder Include="Resources\Static\Raster\" />
     <Folder Include="Resources\Ticket\" />

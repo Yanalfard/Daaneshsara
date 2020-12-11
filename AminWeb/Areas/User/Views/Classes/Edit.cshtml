@@ -1,20 +1,21 @@
 ﻿@model DataLayer.MetaData.MdPlaylist
-@using (Ajax.BeginForm(actionName: "Create",
-    controllerName: "Classes",
-    ajaxOptions: new AjaxOptions
-    {
-        HttpMethod = "POST",
-        OnSuccess = "runUpload",
-        UpdateTargetId = "createClasses"
-    },
-    routeValues: null,
-    htmlAttributes: new { id = "createClasses" }))
+
+
+@using (Ajax.BeginForm("Edit", "Classes", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal('Modal-Show')", OnSuccess = "LoadingEnd('#createClasses')", UpdateTargetId = "createClasses" }, htmlAttributes: new { @id = "createClasses" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m=>m.PlaylistId)
+    @Html.HiddenFor(m=>m.IsActive)
+    @Html.HiddenFor(m=>m.IsHome)
+    @Html.HiddenFor(m=>m.Link)
+    @Html.HiddenFor(m=>m.IsCharity)
+    @Html.HiddenFor(m=>m.CertificateURL)
+    @Html.HiddenFor(m=>m.ViewCount)
+    @Html.HiddenFor(m=>m.UserId)
+    @Html.HiddenFor(m=>m.DateSubmited)
     <h3>
         کلاس جدید
     </h3>
-
     <div class="form-group">
         <label for="Title">نام کلاس</label>
         <div class="input-group">
@@ -45,7 +46,7 @@
     <div class="form-group">
         <label for="Playlist">کلاس</label>
         <div class="row-reverse">
-            @Html.DropDownListFor(model => model.CatagoryId, (IEnumerable<SelectListItem>)ViewBag.CatagoryId, "دسته ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left", dir = "rtl" })
+            @Html.DropDownList("CatagoryId", null, htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left", dir = "rtl" })
         </div>
         @Html.ValidationMessageFor(model => model.CatagoryId, "", new { @class = "uk-text-danger" })
     </div>
@@ -74,9 +75,9 @@
 
     <div class="row-reverse uk-margin-medium-top">
         <button class="btn-primary" onclick="LoadingRun('#createClasses')">
-            اضافه
+            ویرایش
         </button>
-        <button class="btn-secondary uk-margin-right uk-modal-close">
+        <button onclick="showClasses()" class="btn-secondary uk-margin-right uk-modal-close">
             بازگشت
         </button>
     </div>

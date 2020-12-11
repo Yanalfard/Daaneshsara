@@ -11,9 +11,9 @@ namespace DataLayer.MetaData
     public class MdPlaylist
     {
         [Key]
-        public int id { get; set; }
+        public int PlaylistId { get; set; }
 
-        [Display(Name = "تیتر")]
+        [Display(Name = "نام کلاس")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(256, ErrorMessage = "طول بیش از 256 کاراکتر مجاز نیست")]
         public string Title { get; set; }
@@ -53,6 +53,9 @@ namespace DataLayer.MetaData
         [Display(Name = "مدرک",Description = "مدرک در انتهای دیدن تمام ویدیو های موجود در لیست به دانشجو داده میشود")]
         [MaxLength(256, ErrorMessage = "طول بیش از 256 کاراکتر مجاز نیست")]
         public string CertificateURL { get; set; }
+        [Display(Name = "عضو")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public int CatagoryId { get; set; }
     }
 
 }
