@@ -1,0 +1,54 @@
+{
+  "dir": "rtl",
+  "lang": "fa",
+  "name": "Amoozesh",
+  "short_name": "Amoozesh",
+  "display": "standalone",
+  "start_url": "/Home/Index",
+  "background_color": "#F94646",
+  "theme_color": "#F94646",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/Resources/Static/Raster/Mobile/icon_72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/Resources/Static/Raster/Mobile/icon_96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/Resources/Static/Raster/Mobile/icon_128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/Resources/Static/Raster/Mobile/icon_144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/Resources/Static/Raster/Mobile/icon_152.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "/Resources/Static/Raster/Mobile/icon_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/Resources/Static/Raster/Mobile/icon_384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "/Resources/Static/Raster/Mobile/icon_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+} 

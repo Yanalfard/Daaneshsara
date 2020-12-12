@@ -4,15 +4,16 @@
     ViewBag.Content = "ویدیو هایی که شما آپلود کرده اید";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
 }
+
 <div class="mat uk-padding-small uk-box-shadow-small row-reverse">
     <h3 class="uk-margin-auto-left uk-margin-remove">
         ویدیو های شما
     </h3>
     <div class="row uk-margin-auto-right">
-        <a onclick="CreateVideo()" class="center" uk-icon="icon:addVideo;ratio:1.2" uk-tooltip="آپلود ویدیو">
+        <a href="/User/Video/Create" class="center" uk-icon="icon:addVideo;ratio:1.2" uk-tooltip="آپلود ویدیو">
 
         </a>
-        <a onclick="showClasses()" class="center uk-margin-left" uk-icon="icon:class;ratio:1.2" uk-tooltip="کلاس ها">
+        <a href="/User/Classes/Create" class="center uk-margin-left" uk-icon="icon:class;ratio:1.2" uk-tooltip="کلاس ها">
 
         </a>
     </div>
@@ -83,7 +84,5 @@
 
         }
     </script>
-
-
 
 }

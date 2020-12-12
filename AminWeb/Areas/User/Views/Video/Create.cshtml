@@ -1,195 +1,205 @@
 ﻿@model DataLayer.MetaData.MdVideo
-@using (Ajax.BeginForm("Create", "Video", new AjaxOptions()
-{
-    HttpMethod = "POST",
-    OnSuccess = "LoadingEnd('#createCatagory')",
-    UpdateTargetId = "createVideo",
-},
-htmlAttributes: new { @id = "createVideo" }))
-{
-    <h3>
-        آپلود ویدیو جدید
-    </h3>
 
-    <div class="form-group">
-        <label for="Title">تیتر ویدیو</label>
-        <div class="input-group">
-            @Html.EditorFor(m => m.Title)
-        </div>
-        <span role="alert" class="alert">
-            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "uk-text-danger" })
-        </span>
-    </div>
-
-    <div class="form-group">
-        <label for="MainImage">عکس</label>
-        <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
-            <span uk-icon="icon: cloud-upload"></span>
-            <span class="uk-text-middle">عکس خود را اینجا بیاندازید و یا</span>
-            <div uk-form-custom>
-                <input type="file" name="MainImage">
-                <span class="blue">کلیک کنید</span>
-            </div>
-        </div>
-        <span role="alert" class="alert">
-            @Html.ValidationMessageFor(model => model.MainImage, "", new { @class = "uk-text-danger" })
-        </span>
-    </div>
-
-    <div class="form-group">
-        <label for="Video">ویدیو</label>
-        <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
-            <span uk-icon="icon: cloud-upload"></span>
-            <span class="uk-text-middle">ویدیو خود را اینجا بیاندازید و یا</span>
-            <div uk-form-custom>
-                <input type="file" name="Video">
-                <span class="blue">کلیک کنید</span>
-            </div>
-        </div>
-        <span role="alert" class="alert">
-            @Html.ValidationMessageFor(model => model.MainImage, "", new { @class = "uk-text-danger" })
-        </span>
-    </div>
-
-    <!-- #region Upload -->
-
-    <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
-
-    <script>
-        import UIkit from "uikit";
-
-
-        var bar = document.getElementById('js-progressbar');
-
-        UIkit.upload('.js-upload', {
-
-            url: '', // <-----------------------------------------------------------------{ URL }
-            multiple: false,
-
-            beforeSend: function () {
-                console.log('beforeSend', arguments);
-            },
-            beforeAll: function () {
-                console.log('beforeAll', arguments);
-            },
-            load: function () {
-                console.log('load', arguments);
-            },
-            error: function () {
-                console.log('error', arguments);
-                UIkit.notification('در آپلود فایل مشکلی پیش آمد');
-
-            },
-            complete: function () {
-                console.log('complete', arguments);
-            },
-
-            loadStart: function (e) {
-                console.log('loadStart', arguments);
-
-                bar.removeAttribute('hidden');
-                bar.max = e.total;
-                bar.value = e.loaded;
-            },
-
-            progress: function (e) {
-                console.log('progress', arguments);
-
-                bar.max = e.total;
-                bar.value = e.loaded;
-            },
-
-            loadEnd: function (e) {
-                console.log('loadEnd', arguments);
-
-                bar.max = e.total;
-                bar.value = e.loaded;
-            },
-
-            completeAll: function () {
-                console.log('completeAll', arguments);
-
-                setTimeout(function () {
-                    bar.setAttribute('hidden', 'hidden');
-                }, 1000);
-
-                UIkit.notification('آپلود شد');
-            }
-
-        });
-
-    </script>
-
-    <!-- #endregion -->
-
-    <div class="form-group">
-        <label for="Description">توضیحات</label>
-        @Html.EditorFor(m => m.Description)
-        <span role="alert" class="alert">
-            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
-        </span>
-    </div>
-
-    <div class="form-group">
-        <label for="Price">قیمت به تومان</label>
-        <div class="input-group">
-            @Html.EditorFor(m => m.Price)
-        </div>
-        <span role="alert" class="alert">
-            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
-        </span>
-    </div>
-
-    <div class="uk-margin-top uk-margin-bottom">
-        <label dir="rtl">
-            @Html.EditorFor(m => m.IsCharity)
-            میخواهم درصدی از درامد این ویدیو به خیریه
-            <a href="#" class="blue">نام خیریه</a>
-            اهدا شود
-        </label>
-    </div>
-
-    <div class="form-group">
-        <label for="Playlist">کلاس</label>
-        <div class="row-reverse">
-
-            @Html.DropDownListFor(model => model.PlaylistId, (IEnumerable<SelectListItem>)ViewBag.PlaylistId, "کلاس ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left", dir = "rtl" })
-
-            <button uk-icon="plus" onclick="createClasses()" type="button" uk-tooltip="اضافه کردن کلاس جدید" class="uk-margin-auto-right"></button>
-        </div>
-        @Html.ValidationMessageFor(model => model.PlaylistId, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        <label for="Keywords">کلمات کلیدی</label>
-        <div class="input-group">
-            @Html.EditorFor(m => m.Price)
-        </div>
-        <span role="alert" class="alert">
-            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
-        </span>
-    </div>
-
-
-    <div class="form-group">
-        <label for="Certificate">در صورت ارایه مدرک، آن را آپلود کنید</label>
-        <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
-            <span uk-icon="icon: cloud-upload"></span>
-            <span class="uk-text-middle">فایل خود را اینجا بیاندازید و یا</span>
-            <div uk-form-custom>
-                <input type="file" name="Certificate">
-                <span class="blue">کلیک کنید</span>
-            </div>
-        </div>
-        <span role="alert" class="alert">فایل شما معتبر نمی باشد</span>
-    </div>
-
-    <div class="row-reverse uk-margin-medium-top">
-        <button class="btn-primary">
-            آپلود
-        </button>
-    </div>
-
-
+@{
+    ViewBag.Title = "ویدیوهای شما";
+    ViewBag.Content = "ویدیو هایی که شما آپلود کرده اید";
+    Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
 }
 
+<div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
+
+    @using (Ajax.BeginForm("Create", "Video", new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        OnSuccess = "LoadingEnd('#createCatagory')",
+        UpdateTargetId = "createVideo",
+    },
+    htmlAttributes: new { @id = "createVideo" }))
+    {
+        <h3>
+            آپلود ویدیو جدید
+        </h3>
+
+        <div class="form-group">
+            <label for="Title">تیتر ویدیو</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.Title)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="MainImage">عکس</label>
+            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
+                <span uk-icon="icon: cloud-upload"></span>
+                <span class="uk-text-middle">عکس خود را اینجا بیاندازید و یا</span>
+                <div uk-form-custom>
+                    <input type="file" name="MainImage">
+                    <span class="blue">کلیک کنید</span>
+                </div>
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.MainImage, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="Video">ویدیو</label>
+            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
+                <span uk-icon="icon: cloud-upload"></span>
+                <span class="uk-text-middle">ویدیو خود را اینجا بیاندازید و یا</span>
+                <div uk-form-custom>
+                    <input type="file" name="Video">
+                    <span class="blue">کلیک کنید</span>
+                </div>
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.MainImage, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+
+        <!-- #region Upload -->
+
+        <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+
+        <script>
+            import UIkit from "uikit";
+
+
+            var bar = document.getElementById('js-progressbar');
+
+            UIkit.upload('.js-upload', {
+
+                url: '', // <-----------------------------------------------------------------{ URL }
+                multiple: false,
+
+                beforeSend: function () {
+                    console.log('beforeSend', arguments);
+                },
+                beforeAll: function () {
+                    console.log('beforeAll', arguments);
+                },
+                load: function () {
+                    console.log('load', arguments);
+                },
+                error: function () {
+                    console.log('error', arguments);
+                    UIkit.notification('در آپلود فایل مشکلی پیش آمد');
+
+                },
+                complete: function () {
+                    console.log('complete', arguments);
+                },
+
+                loadStart: function (e) {
+                    console.log('loadStart', arguments);
+
+                    bar.removeAttribute('hidden');
+                    bar.max = e.total;
+                    bar.value = e.loaded;
+                },
+
+                progress: function (e) {
+                    console.log('progress', arguments);
+
+                    bar.max = e.total;
+                    bar.value = e.loaded;
+                },
+
+                loadEnd: function (e) {
+                    console.log('loadEnd', arguments);
+
+                    bar.max = e.total;
+                    bar.value = e.loaded;
+                },
+
+                completeAll: function () {
+                    console.log('completeAll', arguments);
+
+                    setTimeout(function () {
+                        bar.setAttribute('hidden', 'hidden');
+                    }, 1000);
+
+                    UIkit.notification('آپلود شد');
+                }
+
+            });
+
+        </script>
+
+        <!-- #endregion -->
+
+        <div class="form-group">
+            <label for="Description">توضیحات</label>
+            @Html.EditorFor(m => m.Description)
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="Price">قیمت به تومان</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.Price)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+
+        <div class="uk-margin-top uk-margin-bottom">
+            <label dir="rtl">
+                @Html.EditorFor(m => m.IsCharity)
+                میخواهم درصدی از درامد این ویدیو به خیریه
+                <a href="#" class="blue">نام خیریه</a>
+                اهدا شود
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="Playlist">کلاس</label>
+            <div class="row-reverse">
+
+                @Html.DropDownListFor(model => model.PlaylistId, (IEnumerable<SelectListItem>)ViewBag.PlaylistId, "کلاس ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left", dir = "rtl" })
+
+                <a href="/User/Classes/Create" uk-icon="plus" uk-tooltip="اضافه کردن کلاس جدید" class="uk-margin-auto-right"></a>
+            </div>
+            @Html.ValidationMessageFor(model => model.PlaylistId, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="Keywords">کلمات کلیدی</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.Price)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+
+
+        <div class="form-group">
+            <label for="Certificate">در صورت ارایه مدرک، آن را آپلود کنید</label>
+            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
+                <span uk-icon="icon: cloud-upload"></span>
+                <span class="uk-text-middle">فایل خود را اینجا بیاندازید و یا</span>
+                <div uk-form-custom>
+                    <input type="file" name="Certificate">
+                    <span class="blue">کلیک کنید</span>
+                </div>
+            </div>
+            <span role="alert" class="alert">فایل شما معتبر نمی باشد</span>
+        </div>
+
+        <div class="row-reverse uk-margin-medium-top">
+            <button class="btn-primary">
+                آپلود
+            </button>
+        </div>
+
+
+    }
+
+</div>

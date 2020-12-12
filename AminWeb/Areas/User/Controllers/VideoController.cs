@@ -18,11 +18,6 @@ namespace AminWeb.Areas.User.Controllers
             return View();
         }
 
-        public ActionResult UploadVideo()
-        {
-            return PartialView();
-        }
-
         public ActionResult EditVideo()
         {
             return PartialView();
@@ -30,8 +25,9 @@ namespace AminWeb.Areas.User.Controllers
         public ActionResult Create()
         {
             ViewBag.PlaylistId = new SelectList(_db.Playlist.Get(), "PlaylistId", "Title");
-            return PartialView();
+            return View();
         }
+
         [HttpPost]
         public ActionResult Create(MdVideo video)
         {

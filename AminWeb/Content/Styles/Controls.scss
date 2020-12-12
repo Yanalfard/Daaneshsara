@@ -16,6 +16,7 @@
         a {
             margin: auto 0;
             margin-right: 16px;
+            white-space: nowrap;
         }
     }
 
@@ -213,7 +214,7 @@ $video-block-width: 280px;
 }
 
 .video-grid {
-    @include grid($video-block-width);
+    @include grid-gap($video-block-width,16px);
 
     > .video-block {
         margin-left: auto;

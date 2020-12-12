@@ -31,7 +31,7 @@ namespace AminWeb.Areas.User.Controllers
         public ActionResult Create()
         {
             ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name");
-            return PartialView();
+            return View();
         }
         [HttpPost]
         public ActionResult Create(MdPlaylist playList)
