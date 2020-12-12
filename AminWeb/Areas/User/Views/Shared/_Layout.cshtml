@@ -42,6 +42,13 @@
     </div>
 </div>
 
+
+<div id="createCla" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body" id="ModalUserBody">
+        @Html.Action("Create", "Classes")
+    </div>
+</div>
+
 <script>
     function showClasses() {
         $.get('/User/Classes/Classes', function (result) {
@@ -50,10 +57,8 @@
         });
     }
     function createClasses() {
-        $.get('/User/Classes/Create', function (result) {
-            UIkit.modal(document.getElementById('ModalUser')).show();
-            $('#ModalUserBody').html(result);
-        });
+        UIkit.modal(document.getElementById('createCla')).show();
+
     }
     function editClasses(id) {
         $.get('/User/Classes/Edit/' + id, function (result) {

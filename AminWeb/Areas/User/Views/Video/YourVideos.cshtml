@@ -33,7 +33,10 @@
 
     <script type="text/javascript">
         function runUpload(data, status, xhr) {
-            $("#overlay").fadeOut(300);
+            debugger;
+
+            //$("#overlay").fadeOut(300);
+            console.log(data)
             if (data.result == "ok") {
                 //showClasses()
                  $.ajaxFileUpload({

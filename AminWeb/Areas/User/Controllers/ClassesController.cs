@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -34,7 +35,7 @@ namespace AminWeb.Areas.User.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(MdPlaylist playList)
+        public ActionResult Create(MdPlaylist playList, HttpPostedFileBase Certificate)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +66,7 @@ namespace AminWeb.Areas.User.Controllers
                 }
             }
             ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", playList.CatagoryId);
+
             return PartialView("Create", playList);
         }
         public ActionResult Edit(int id)
@@ -132,7 +134,6 @@ namespace AminWeb.Areas.User.Controllers
             Certificate.SaveAs(Server.MapPath("/Resources/Classes/" + UpdatePlaylist.CertificateURL));
             //return JavaScript("showClasses();");
             return Json(new { FileName = "/Uploads/filename.ext" }, "text/html", JsonRequestBehavior.AllowGet);
-
         }
     }
 }
