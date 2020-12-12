@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bc61ce17546247b5922e955eb8178878" Name="Diagram1">
+      <Diagram DiagramId="ab6d57a59af349f493434da06785b302" Name="Diagram1">
         <EntityTypeShape EntityType="AminWebModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AminWebModel.TblCatagory" Width="1.5" PointX="6" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AminWebModel.TblChat" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />

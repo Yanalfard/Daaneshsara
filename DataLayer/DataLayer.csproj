@@ -15,6 +15,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\PersianCalender.cs" />
+    <Compile Include="MetaData\MdCategory.cs" />
     <Compile Include="MetaData\MdChat.cs" />
     <Compile Include="MetaData\MdDoc.cs" />
     <Compile Include="MetaData\MdPlaylist.cs" />
@@ -130,6 +133,12 @@
     <Compile Include="Repositories\IMainRepo.cs" />
     <Compile Include="Repositories\MainRepo.cs" />
     <Compile Include="Services\Heart.cs" />
+    <Compile Include="ViewModels\VmActive.cs" />
+    <Compile Include="ViewModels\VmChangePassword.cs" />
+    <Compile Include="ViewModels\VmEditInfo.cs" />
+    <Compile Include="ViewModels\VmForgetPassword.cs" />
+    <Compile Include="ViewModels\VmLogin.cs" />
+    <Compile Include="ViewModels\VmRegister.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

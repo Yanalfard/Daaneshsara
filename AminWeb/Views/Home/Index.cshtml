@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*-at-section MySection{
-        <meta content="HELLO" />
-    }*@
-
+<!-- #region namayesh login mogei ke be safe dastrasy nadarad -->
+@Html.Action("LoginModal", "Account")
+<!-- #endregion -->
 <!-- #region Styles -->
 <link href="~/Content/Styles/Pages/Index.min.css" rel="stylesheet" />
 <!-- #endregion -->
@@ -25,7 +24,6 @@
         </a>
     </div>
 </div>
-
 <section class="main-search row">
     <div role="search" class="search-box row uk-margin-auto">
         <button class="search" uk-icon="icon:search;ratio:1.2"></button>
@@ -65,6 +63,19 @@
                     <label for="CategorySearch" class="collapsed">جستجو دسته بندی</label>
                     <input dir="rtl" type="text" placeholder="جستجو..." name="CategorySearch" />
                 </div>
+
+                @*
+
+                    <details dir="rtl">
+                        <summary>دسته بندی</summary>
+                        <div class="column uk-margin-small-right">
+                            <a href="#">آیتم</a>
+                            <a href="#">آیتم</a>
+                        </div>
+                    </details>
+
+                *@
+
                 <details dir="rtl">
                     <summary>دسته بندی</summary>
                     <div class="uk-margin-right column">

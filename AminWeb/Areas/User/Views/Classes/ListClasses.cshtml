@@ -1,0 +1,37 @@
+﻿@model IEnumerable<DataLayer.Models.TblPlaylist>
+
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <div class="row-reverse">
+            <details dir="rtl" class="uk-margin-small-bottom uk-width-1-1">
+                <summary>
+                    @item.Title
+                </summary>
+                @if (item.TblVideo.Any())
+                {
+                    <ul dir="ltr" class="column uk-margin-auto-left uk-nav uk-nav-default"
+                        uk-sortable="group:my; cls-custom: uk-box-shadow-small uk-background mat">
+                        @foreach (var j in item.TblVideo)
+                        {
+                            <li>
+                                <div class="row-reverse uk-padding-small">
+                                    <span>@j.Title</span>
+                                    <div class="row uk-margin-auto-right">
+                                        <a href="" uk-icon="trash"></a>
+                                        <a href="" uk-icon="edit"></a>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                }
+            </details>
+            <div class="row uk-margin-auto-right">
+                <a href="" uk-icon="trash"></a>
+                <a onclick="editClasses(@item.PlaylistId)" uk-icon="edit"></a>
+            </div>
+        </div>
+    }
+}

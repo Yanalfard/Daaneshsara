@@ -1,0 +1,80 @@
+﻿
+
+@{
+    ViewBag.Title = "دسته بندی";
+}
+<div class="card flex-div border-0 shadow">
+
+
+
+    <div class="card-header bg-white">
+        <div class="row justify-content-end">
+            <div class="col-md-2 col-3 pl-2 pr-0">
+                <a onclick="create()" class="btn btn-success btn-sm text-white float-left"><i class="fas fa-plus-circle"></i>افزودن</a>
+            </div>
+        </div>
+    </div>
+    <div id="listCat">
+        @Html.Action("ListCat", "Catagory")
+    </div>
+
+    <div class="card-footer bg-white">
+        <nav aria-label="Page navigation example">
+            <div id="pagination-container"></div>
+        </nav>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Button trigger modal -->
+@section Scripts{
+    <script src="~/Areas/Admin/Content/bootstrap/js/jquery.validate.min.js"></script>
+    <script src="~/Areas/Admin/Content/bootstrap/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Areas/Admin/Content/bootstrap/js/jquery.unobtrusive-ajax.min.js"></script>
+
+
+    <script>
+        function create() {
+            $.get("/Admin/Catagory/Create",
+                function (result) {
+                    $("#myModal").modal('show');
+                    $("#myModalBody").html(result);
+                }
+            );
+        };
+        function edit(id) {
+            $.get("/Admin/Catagory/Edit/" + id,
+                function (result) {
+                    $("#myModal").modal('show');
+                    $("#myModalBody").html(result);
+                }
+            );
+        };
+        function subCategory(id) {
+            $.get("/Admin/Catagory/SubCategory?id=" + id,
+                function (result) {
+                    $("#myModal").modal('show');
+                    $("#myModalBody").html(result);
+                }
+            );
+        }
+
+        function deleteCat(id) {
+            if (confirm('آیا از حذف دسته مورد نظر مظمئن هستین؟')) {
+                $.get("/Admin/Catagory/Delete/" + id, function (result) {
+                    if (result.success) {
+                        $('#cat_' + id).addClass('text-danger');
+                        $("#cat_" + id).hide('slow');
+                    } else {
+                        alert(result.responseText);
+                    }
+                })
+            }
+        }
+
+    </script>
+}

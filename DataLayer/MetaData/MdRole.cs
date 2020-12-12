@@ -14,18 +14,13 @@ namespace DataLayer.MetaData
 
         [Display(Name = "نام سیستمی")]
         [Required]
-        [MaxLength(length: 50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
+        [MaxLength(50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
         public string Name { get; set; }
 
         [Display(Name = "نوع کاربر")]
         [Required]
-        [MaxLength(length: 50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
+        [MaxLength(50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
         public string Title { get; set; }
     }
 
-    [MetadataType(typeof(MdRole))]
-    public class TblRole
-    {
-
-    }
 }

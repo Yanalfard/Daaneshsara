@@ -1,36 +1,76 @@
-﻿<div class="form column" role="form">
-    <div class="row-reverse">
-        <h3>
-            ورود
-        </h3>
-        <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
-    </div>
+﻿@model DataLayer.ViewModels.VmLogin
 
-    <div class="form-group">
-        <label for="Email">ایمیل</label>
-        <div class="input-group">
-            <input type="email" name="Email" />
+
+@using (Ajax.BeginForm("Login", "Account", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal('Modal-Show')", OnSuccess = "LoadingEnd('#loginForm')", UpdateTargetId = "loginForm" }, htmlAttributes: new { @id = "loginForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form column" role="form">
+        <div class="row-reverse">
+            <h3>
+                ورود
+            </h3>
+            <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
         </div>
-        <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
-    </div>
+        @if (Request.QueryString["ReturnUrl"] == "Active")
+        {
+            <div class="uk-text-danger uk-margin-bottom">
+                <p class="uk-text-danger">حساب کاربری شما فعال شد می توانید وارد حساب خود شوید</p>
+            </div>
+        }
+        else if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
+        {
+            <div class="uk-text-danger uk-margin-bottom">
+                <p class="uk-text-danger">شما مجوز ورود به بخش درخواست شده را ندارید .</p>
+            </div>
+        }
+        else if (!User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
+        {
+            <div class="uk-text-danger uk-margin-bottom">
+                <p class="uk-text-danger">لطفا وارد حساب کاربری خود شوید </p>
+            </div>
+        }
 
-    <div class="form-group">
-        <label for="Password">رمز عبور</label>
-        <div class="input-group">
-            <input type="password" name="Password" />
+        <div class="form-group">
+            <label for="Email">ایمیل</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.Email)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "uk-text-danger" })
+            </span>
         </div>
-        <span role="alert" class="alert">این فیلد اشتباه است</span>
+        <div class="form-group">
+            <label for="Password">رمز عبور</label>
+            <div class="input-group">
+                @Html.EditorFor(m => m.Password)
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="GoogleCapcha" class="GoogleCapcha" id="GoogleCapcha" value="" />
+            <span role="alert" class="alert">
+                @Html.ValidationSummary(true, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+        <div class="uk-margin-top column uk-margin-auto-left uk-margin-bottom">
+            <label dir="rtl" class="uk-margin-auto-left">
+                @Html.EditorFor(model => model.RememberMe, new { htmlAttributes = new { @class = "uk-checkbox uk-margin-auto-left" } })
+                مرا بخاطر بسپار
+            </label>
+        </div>
+        <a onclick="forgetPassword()" class="uk-margin-top">رمز عبور خود را فراموش کرده اید؟</a>
+
+        <div class="column center uk-margin-large-top">
+            <button class="btn-primary uk-margin-bottom" onclick="LoadingRun('#loginForm')">
+                ورود
+            </button>
+
+            <a onclick="showRegister();" class="btn-secondary btn">
+                ثبت نام
+            </a>
+        </div>
     </div>
+}
 
-    <a href="#" class="uk-margin-top">رمز عبور خود را فراموش کرده اید؟</a>
-
-    <div class="column center uk-margin-large-top">
-        <button class="btn-primary uk-margin-bottom">
-            ورود
-        </button>
-
-        <button class="btn-secondary">
-            ثبت نام
-        </button>
-    </div>
-</div>

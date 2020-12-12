@@ -22,5 +22,9 @@
   {
     "outputFile": "Content/Styles/Pages/Profile.css",
     "inputFile": "Content/Styles/Pages/Profile.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Areas/Admin.css",
+    "inputFile": "Content/Styles/Areas/Admin.scss"
   }
 ]

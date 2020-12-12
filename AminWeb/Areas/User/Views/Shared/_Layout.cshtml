@@ -35,5 +35,44 @@
         @Html.Partial("Navigation")
     </div>
 </div>
+<!-- Modal Navigation -->
+<div id="ModalUser" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body" id="ModalUserBody">
+
+    </div>
+</div>
+
+<script>
+    function showClasses() {
+        $.get('/User/Classes/Classes', function (result) {
+            UIkit.modal(document.getElementById('ModalUser')).show();
+            $('#ModalUserBody').html(result);
+        });
+    }
+    function createClasses() {
+        $.get('/User/Classes/Create', function (result) {
+            UIkit.modal(document.getElementById('ModalUser')).show();
+            $('#ModalUserBody').html(result);
+        });
+    }
+    function editClasses(id) {
+        $.get('/User/Classes/Edit/' + id, function (result) {
+            UIkit.modal(document.getElementById('ModalUser')).show();
+            $('#ModalUserBody').html(result);
+        });
+    }
+    function CreateVideo() {
+        $.get('/User/Video/Create', function (result) {
+            UIkit.modal(document.getElementById('ModalUser')).show();
+            $('#ModalUserBody').html(result);
+        });
+    }
+
+
+
+</script>
+
+
+@RenderSection("Scripts", false)
 
 

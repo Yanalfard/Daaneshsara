@@ -15,7 +15,7 @@ namespace DataLayer.MetaData
 
         [Display(Name = "کلمه ی کلیدی")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [MaxLength(length: 50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
+        [MaxLength(50, ErrorMessage = "طول بیش از 50 کاراکتر مجاز نیست")]
         public string Name { get; set; }
 
         [ForeignKey("VideoId")]

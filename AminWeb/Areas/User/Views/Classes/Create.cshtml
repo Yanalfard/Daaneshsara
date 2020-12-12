@@ -1,0 +1,85 @@
+﻿@model DataLayer.MetaData.MdPlaylist
+@using (Ajax.BeginForm(actionName: "Create",
+    controllerName: "Classes",
+    ajaxOptions: new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "runUpload",
+        UpdateTargetId = "createClasses"
+    },
+    routeValues: null,
+    htmlAttributes: new { id = "createClasses" }))
+{
+    @Html.AntiForgeryToken()
+    <h3>
+        کلاس جدید
+    </h3>
+
+    <div class="form-group">
+        <label for="Title">نام کلاس</label>
+        <div class="input-group">
+            @Html.EditorFor(m => m.Title)
+        </div>
+        <span role="alert" class="alert">
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "uk-text-danger" })
+        </span>
+    </div>
+
+    <div class="form-group">
+        <label for="Description">توضیحات</label>
+        @Html.EditorFor(m => m.Description)
+        <span role="alert" class="alert">
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
+        </span>
+    </div>
+
+    <div class="form-group">
+        <label for="Price">قیمت به تومان</label>
+        <div class="input-group">
+            @Html.EditorFor(m => m.Price)
+        </div>
+        <span role="alert" class="alert">
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "uk-text-danger" })
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="Playlist">کلاس</label>
+        <div class="row-reverse">
+            @Html.DropDownListFor(model => model.CatagoryId, (IEnumerable<SelectListItem>)ViewBag.CatagoryId, "دسته ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left", dir = "rtl" })
+        </div>
+        @Html.ValidationMessageFor(model => model.CatagoryId, "", new { @class = "uk-text-danger" })
+    </div>
+    <div class="uk-margin-top uk-margin-bottom">
+        <label dir="rtl">
+            @Html.EditorFor(m => m.IsCharity)
+            میخواهم درصدی از درامد این ویدیو به خیریه
+            <a href="#" class="blue">نام خیریه</a>
+            اهدا شود
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label for="Certificate">در صورت ارایه مدرک، آن را آپلود کنید</label>
+        <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
+            <span uk-icon="icon: cloud-upload"></span>
+            <span class="uk-text-middle">فایل خود را اینجا بیاندازید و یا</span>
+            <div uk-form-custom>
+                <input type="file" name="Certificate">
+                <span class="blue">کلیک کنید</span>
+            </div>
+        </div>
+        @Html.ValidationMessageFor(model => model.CertificateURL, "", new { @class = "uk-text-danger" })
+
+    </div>
+
+    <div class="row-reverse uk-margin-medium-top">
+        <button class="btn-primary" onclick="LoadingRun('#createClasses')">
+            اضافه
+        </button>
+        <button class="btn-secondary uk-margin-right uk-modal-close">
+            بازگشت
+        </button>
+    </div>
+
+}
+

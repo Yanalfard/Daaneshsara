@@ -1,0 +1,26 @@
+﻿@model DataLayer.ViewModels.VmActive
+
+@{
+    ViewBag.Title = "فعال سازی حساب کاربری";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="space-nav"></div>
+<div class="column uk-container uk-margin-auto">
+    @using (Html.BeginForm())
+    {
+        <h3>
+            برای فعال سازی حساب کاربری روی دکمه زیر کلید کنید
+        </h3>
+        @Html.ValidationMessageFor(m=>m.id, "", new { @class = "uk-text-danger" })
+        <div class="column center uk-margin-large-top">
+            <button class="btn-primary uk-margin-bottom" onclick="LoadingRun()">
+                غعال سازی
+            </button>
+        </div>
+    }
+</div>
+
+
+@section Scripts{
+
+}

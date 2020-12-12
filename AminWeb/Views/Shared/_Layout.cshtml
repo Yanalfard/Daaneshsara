@@ -16,61 +16,27 @@
     <script src="~/Content/UIkit/uikit.min.js"></script>
     <script src="~/Content/UIkit/uikit-icons.min.js"></script>
 
+
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 </head>
 <body>
 
-    <!-- #region Account Modal -->
-
-    <div id="Modal-Account" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body">
-            @*@Html.Action("Login","Account")*@
-            @*@Html.Action("SignUp","Account")*@
-        </div>
-    </div>
-
-    @*<script>
-            //برای نشان دادن و مخفی کردن مودال
-            UIkit.modal(document.getElementById('Modal-Account')).show();
-            UIkit.modal(document.getElementById('Modal-Account')).hide();
-        </script>*@
+    <script>
+        //برای نشان دادن و مخفی کردن مودال
+        // UIkit.modal(document.getElementById('Modal-Account')).show();
+        //UIkit.modal(document.getElementById('Modal-Account')).hide();
+    </script>
 
     <!-- #endregion -->
     <!-- #region Header -->
 
     <header role="navigation" class="top-nav row">
         <nav class="uk-flex-auto row flex-1">
-            <a href="/User/Account/UserData" class="uk-margin-auto-right lesser">
-                پروفایل
-            </a>
-
-            <div uk-drop id="navDrop">
-                <div class="drop-body uk-padding-small column">
-                    <ul class="uk-margin-remove uk-padding-remove">
-                        <li>
-                            <a href="/User/Account/UserData">
-                                <span>پروفایل</span>
-                                <span uk-icon="icon:user"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/User/Video/YourVideos">
-                                <span>آپلود</span>
-                                <span uk-icon="icon:cloud-upload"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span>خروج</span>
-                                <span uk-icon="icon:sign-out"></span>
-                            </a>
-                        </li>
-                    </ul>
-                    <hr class="uk-grid-margin-small" />
-                    <a href="/User/Account/Wallet" class="success">
-                        <span>130,000</span>
-                        <span uk-icon="icon:money"></span>
-                    </a>
-                </div>
+            <div id="loggedInUser">
+                @Html.Partial("_LoggedInUser")
             </div>
 
             <div role="list" class="row-reverse uk-margin-auto-left">
@@ -157,6 +123,84 @@
     </nav>
 
     <div role="none" class="space-bottom-nav uk-margin-xlarge-bottom"></div>
+
+
+    <!-- #Loadin -->
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+
+
+
+
+    <div id="Modal-Show" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body" id="Modal-Body">
+
+        </div>
+    </div>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfeB-IZAAAAANpiuFCp-HURWmy1NGqmj-p4owkF&&hl=fa"></script>
+
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6LfeB-IZAAAAANpiuFCp-HURWmy1NGqmj-p4owkF', { action: 'contact_us' }).then(function (token) {
+                $('.GoogleCapcha').val(token);
+            });
+        });
+        function reloadRech() {
+            grecaptcha.execute('6LfeB-IZAAAAANpiuFCp-HURWmy1NGqmj-p4owkF', { action: 'contact_us' }).then(function (token) {
+                //document.getElementById("GoogleCapcha").value = token;
+                $('.GoogleCapcha').val(token);
+            });
+        }
+    </script>
+
+
+
+
+
+
+
+    <script>
+        function showLogin() {
+            $.get('/Account/Login', function (result) {
+                reloadRech();
+                UIkit.modal(document.getElementById('Modal-Show')).show();
+                $('#Modal-Body').html(result);
+            });
+        };
+        function showRegister() {
+            $.get('/Account/Register', function (result) {
+                reloadRech();
+                UIkit.modal(document.getElementById('Modal-Show')).show();
+                $('#Modal-Body').html(result);
+            });
+        };
+        function forgetPassword() {
+            $.get('/Account/ForgetPassword', function (result) {
+                UIkit.modal(document.getElementById('Modal-Show')).show();
+                $('#Modal-Body').html(result);
+            });
+        };
+
+        function LoadingRun(form) {
+            if (!$(form).valid()) return;
+            $("#overlay").fadeIn(300);
+        }
+        function LoadingEnd(form) {
+            $("#overlay").fadeOut(300);
+            reloadRech();
+            $(form)[0].reset();
+        }
+        function doneModal(form) {
+            $("#overlay").fadeOut();
+            UIkit.modal(document.getElementById(form)).hide();
+            window.location.href = "/";
+        }
+    </script>
+    <!--#endregion-->
+    @RenderSection("Scripts", false)
 
 </body>
 </html>

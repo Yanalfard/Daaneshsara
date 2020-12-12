@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "کاربران";
+}
+
+<div class="card flex-div border-0 shadow">
+    <div class="card-header bg-white">
+        <div class="row justify-content-end">
+            <div class="col-md-10 col-12">
+                <form class="card-form row" action="/Admin/User/Index" method="post">
+                    <div class="form-input col-md-8">
+                        <div class="form-inline">
+                            <div class="form-group mx-sm-1 mb-2">
+                                <input class="form-control form-control-sm" name="name" type="text" value="@ViewBag.name" placeholder="نام">
+                            </div>
+                            <div class="form-group mx-sm-1 mb-2">
+                                <input class="form-control form-control-sm" name="tellNo" type="text" value="@ViewBag.tellNo" placeholder="شماره تماس">
+                            </div>
+                            <div class="form-group mx-sm-1 mb-2">
+                                <input class="form-control form-control-sm" name="email" type="text" value="@ViewBag.email" placeholder="ایمیل">
+                            </div>
+                            <div class="form-group mx-sm-1 mb-2">
+                                <input class="form-control form-control-sm" name="balance" type="text" value="@ViewBag.balance" placeholder="کیف پول">
+                            </div>
+                            <div class="form-group mx-sm-1 mb-2">
+                                <select id="DegreeSearch" name="isActive" class="form-control form-control-sm">
+                                    <option value="-1" selected="">فعال بودن</option>
+                                    <option value="1">فعال</option>
+                                    <option value="0">غیر فعال</option>
+                                </select>
+                            </div>
+                            <div class="form-group mx-sm-1 mb-2">
+                                <select id="DegreeSearch" name="roleId" class="form-control form-control-sm">
+                                    <option value="-1" selected="">همه</option>
+                                    <option value="0">کاربران</option>
+                                    <option value="1">مربی </option>
+                                    <option value="2">آموزشگاه</option>
+                                    <option value="2">مربی</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-toolbar col-md-3">
+                        <input type="submit" value="جستجو" class="btn btn-primary btn-sm" />
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2 col-3 pl-2 pr-0">
+                <a href="/Admin/User/Create" class="btn btn-success btn-sm text-white float-left"><i class="fas fa-plus-circle"></i>افزودن</a>
+            </div>
+        </div>
+    </div>
+    <div id="card-table" class="p-0 card-body flex-div">
+        <div class="table-responsive flex">
+            <table class="table fixed pr-3 text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">کد</th>
+                        <th scope="col">نام</th>
+                        <th scope="col">شماره تماس</th>
+                        <th scope="col">ایمیل</th>
+                        <th scope="col">کیف پول</th>
+                        <th scope="col">فعال</th>
+                        <th scope="col">مدارک</th>
+                        <th scope="col">گردش مالی</th>
+                        <th scope="col">نقش</th>
+                        <th scope="col">تغیر رمز</th>
+                        <th scope="col">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody id="listUser" class="list-wrapper">
+                    @Html.Action("ListUser", "User")
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer bg-white">
+        <nav aria-label="Page navigation example">
+            <div id="pagination-container"></div>
+        </nav>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body" id="myModalBody">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+@section Scripts{
+    <script src="~/Areas/Admin/Content/bootstrap/js/jquery.validate.min.js"></script>
+    <script src="~/Areas/Admin/Content/bootstrap/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Areas/Admin/Content/bootstrap/js/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+
+        function activeDisableUser(id) {
+            $.get("/Admin/User/ActiveDisableUser/" + id, function (result) {
+                $('#listUser').html(result);
+            });
+        }
+        function changePassword(id) {
+            $.get("/Admin/User/ChangePassword/" + id,
+                function (result) {
+                    $("#myModal").modal('show');
+                    $("#myModalBody").html(result);
+                }
+            );
+        }
+        function deleteUser(id) {
+            if (confirm('آیا از حذف کاربر مورد نظر مظمئن هستین؟')) {
+                $.get("/Admin/User/Delete/" + id, function (result) {
+                    if (result.success) {
+                        $('#user_' + id).addClass('text-danger');
+                        $("#user_" + id).hide('slow');
+                    } else {
+                        alert(result.responseText);
+                    }
+                })
+            }
+        }
+        function success() {
+            $("#myModal").modal('hide');
+        }
+    </script>
+}
