@@ -1,14 +1,15 @@
 ﻿@model DataLayer.MetaData.MdPlaylist
 @using (Ajax.BeginForm(actionName: "Create",
-    controllerName: "Classes",
-    ajaxOptions: new AjaxOptions
-    {
-        HttpMethod = "POST",
-        OnSuccess = "runUpload",
-        UpdateTargetId = "createClasses"
-    },
-    routeValues: null,
-    htmlAttributes: new { id = "createClasses" }))
+                                controllerName: "Classes",
+                                ajaxOptions: new AjaxOptions
+                                {
+                                    HttpMethod = "POST",
+                                    UpdateTargetId = "createClasses",
+                                    InsertionMode = InsertionMode.Replace,
+                                    OnSuccess = "runUpload",
+                                },
+                                routeValues: null,
+                                htmlAttributes: new { id = "createClasses" }))
 {
     @Html.AntiForgeryToken()
     <h3>
@@ -64,7 +65,7 @@
             <span uk-icon="icon: cloud-upload"></span>
             <span class="uk-text-middle">فایل خود را اینجا بیاندازید و یا</span>
             <div uk-form-custom>
-                <input type="file" name="Certificate">
+                <input type="file" id="imageUploadInput" name="Certificate">
                 <span class="blue">کلیک کنید</span>
             </div>
         </div>
