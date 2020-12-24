@@ -44,8 +44,7 @@ namespace DataLayer.MetaData
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [DataType(DataType.Currency)]
         public int Price { get; set; }
-
-        [Display(Name = "خیریه",Description = "با انتخاب این گزینه 5 درصد از درآمد شما از این مورد به سازمان های خیریه داده میشود")]
+        [Display(Name = "خیریه")]
         public bool IsCharity { get; set; }
 
         public bool IsActive { get; set; }

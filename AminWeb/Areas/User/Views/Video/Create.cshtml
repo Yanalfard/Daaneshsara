@@ -1,25 +1,17 @@
 ﻿@model DataLayer.MetaData.MdVideo
 
 @{
-    ViewBag.Title = "ویدیوهای شما";
+    ViewBag.Title = "اضافه کردن ویدیو ";
     ViewBag.Content = "ویدیو هایی که شما آپلود کرده اید";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
 }
 
 <div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
-
-    @using (Ajax.BeginForm("Create", "Video", new AjaxOptions()
-    {
-        HttpMethod = "POST",
-        OnSuccess = "LoadingEnd('#createCatagory')",
-        UpdateTargetId = "createVideo",
-    },
-    htmlAttributes: new { @id = "createVideo" }))
+    @using (Html.BeginForm("Create", "Video", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <h3>
             آپلود ویدیو جدید
         </h3>
-
         <div class="form-group">
             <label for="Title">تیتر ویدیو</label>
             <div class="input-group">
@@ -44,6 +36,21 @@
                 @Html.ValidationMessageFor(model => model.MainImage, "", new { @class = "uk-text-danger" })
             </span>
         </div>
+        <div class="form-group">
+            <label for="Video">ویدیو</label>
+            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
+                <span uk-icon="icon: cloud-upload"></span>
+                <span class="uk-text-middle"> دموی ویدیو خود را اینجا بیاندازید و یا</span>
+                <div uk-form-custom>
+                    <input type="file" name="VideoDemoUrl">
+                    <span class="blue">کلیک کنید</span>
+                </div>
+            </div>
+            <span role="alert" class="alert">
+                @Html.ValidationMessageFor(model => model.VidioDemoUrl, "", new { @class = "uk-text-danger" })
+            </span>
+        </div>
+
 
         <div class="form-group">
             <label for="Video">ویدیو</label>
@@ -51,15 +58,14 @@
                 <span uk-icon="icon: cloud-upload"></span>
                 <span class="uk-text-middle">ویدیو خود را اینجا بیاندازید و یا</span>
                 <div uk-form-custom>
-                    <input type="file" name="Video">
+                    <input type="file" name="VideoUrl">
                     <span class="blue">کلیک کنید</span>
                 </div>
             </div>
             <span role="alert" class="alert">
-                @Html.ValidationMessageFor(model => model.MainImage, "", new { @class = "uk-text-danger" })
+                @Html.ValidationMessageFor(model => model.VideoUrl, "", new { @class = "uk-text-danger" })
             </span>
         </div>
-
         <!-- #region Upload -->
 
         <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
@@ -145,7 +151,7 @@
                 @Html.EditorFor(m => m.Price)
             </div>
             <span role="alert" class="alert">
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "uk-text-danger" })
             </span>
         </div>
 
@@ -162,37 +168,33 @@
             <label for="Playlist">کلاس</label>
             <div class="row-reverse">
 
-                @Html.DropDownListFor(model => model.PlaylistId, (IEnumerable<SelectListItem>)ViewBag.PlaylistId, "کلاس ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left", dir = "rtl" })
+                @Html.DropDownListFor(model => model.CatagoryId, (IEnumerable<SelectListItem>)ViewBag.CatagoryId, "کلاس ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showPlaylist", dir = "rtl" , onchange="showPlaylist()" })
 
                 <a href="/User/Classes/Create" uk-icon="plus" uk-tooltip="اضافه کردن کلاس جدید" class="uk-margin-auto-right"></a>
             </div>
-            @Html.ValidationMessageFor(model => model.PlaylistId, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.CatagoryId, "", new { @class = "text-danger" })
         </div>
 
+        <div class="form-group">
+            <label for="Playlist">کلاس</label>
+            <div class="row-reverse">
+                <select id="PlaylistId">
+
+                </select>
+                @*@Html.DropDownListFor(model => model.CatagoryId, (IEnumerable<SelectListItem>)ViewBag.CatagoryId, "کلاس ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left", dir = "rtl" })*@
+                <a href="/User/Classes/Create" uk-icon="plus" uk-tooltip="اضافه کردن کلاس جدید" class="uk-margin-auto-right"></a>
+            </div>
+            @Html.ValidationMessageFor(model => model.CatagoryId, "", new { @class = "text-danger" })
+        </div>
         <div class="form-group">
             <label for="Keywords">کلمات کلیدی</label>
             <div class="input-group">
-                @Html.EditorFor(m => m.Price)
+                @Html.EditorFor(m => m.Keywords)
             </div>
             <span role="alert" class="alert">
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
+                @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "uk-text-danger" })
             </span>
         </div>
-
-
-        <div class="form-group">
-            <label for="Certificate">در صورت ارایه مدرک، آن را آپلود کنید</label>
-            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
-                <span uk-icon="icon: cloud-upload"></span>
-                <span class="uk-text-middle">فایل خود را اینجا بیاندازید و یا</span>
-                <div uk-form-custom>
-                    <input type="file" name="Certificate">
-                    <span class="blue">کلیک کنید</span>
-                </div>
-            </div>
-            <span role="alert" class="alert">فایل شما معتبر نمی باشد</span>
-        </div>
-
         <div class="row-reverse uk-margin-medium-top">
             <button class="btn-primary">
                 آپلود
@@ -203,3 +205,13 @@
     }
 
 </div>
+
+<script>
+    $(".showPlaylist").change(function () {
+        var id = $(this).children("option:selected").val();
+        $('/User/Video/ShowPlaylist/' + id, function (result) {
+            console.log(result);
+            $('#PlaylistId').html(result);
+        });
+    });
+</script>

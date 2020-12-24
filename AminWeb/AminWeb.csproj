@@ -150,6 +150,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\AminWebRoleProvider.cs" />
+    <Compile Include="Utilities\CheckContentImage.cs" />
     <Compile Include="Utilities\PartialToStringClass.cs" />
     <Compile Include="Utilities\SendEmail.cs" />
   </ItemGroup>
@@ -1914,6 +1915,7 @@
     <Content Include="Areas\User\Views\Video\Create.cshtml" />
     <Content Include="Areas\User\Views\Classes\ListClasses.cshtml" />
     <Content Include="Areas\User\Views\Classes\Edit.cshtml" />
+    <Content Include="Areas\User\Views\Video\ShowPlaylist.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>
@@ -1966,6 +1968,9 @@
     <Content Include="Content\Styles\_loading.scss" />
     <Content Include="manifest.json" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <Content Include="Resources\Classes\CertificateURL\NoImage.svg" />
+    <Content Include="Resources\Classes\Link\NoImage.svg" />
+    <Content Include="Resources\Classes\NoImage.svg" />
     <Content Include="Resources\Static\Raster\Mobile\icon_128.png" />
     <Content Include="Resources\Static\Raster\Mobile\icon_144.png" />
     <Content Include="Resources\Static\Raster\Mobile\icon_152.png" />
@@ -1980,6 +1985,7 @@
     <Content Include="Resources\Static\Vector\Instagram.svg" />
     <Content Include="Resources\Static\Vector\Logo.svg" />
     <Content Include="Resources\Static\Vector\Medal.svg" />
+    <Content Include="Resources\Static\Vector\NoImage.svg" />
     <Content Include="Resources\Static\Vector\Twitter.svg" />
     <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -2038,9 +2044,11 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Views\Home\" />
-    <Folder Include="Resources\Classes\" />
     <Folder Include="Resources\Dynamic\" />
     <Folder Include="Resources\Ticket\" />
+    <Folder Include="Resources\Video\Image\" />
+    <Folder Include="Resources\Video\VideoDemo\" />
+    <Folder Include="Resources\Video\VideoUrl\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

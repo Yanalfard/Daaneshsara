@@ -71,6 +71,7 @@ namespace DataLayer.MetaData
         public Nullable<int> PlaylistId { get; set; }
         
         public bool IsActive { get; set; }
+        public int CatagoryId { get; set; }
     }
 
 }

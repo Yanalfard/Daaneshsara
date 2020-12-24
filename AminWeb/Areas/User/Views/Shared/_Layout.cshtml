@@ -45,7 +45,7 @@
 
 <div id="createCla" uk-modal>
     <div class="uk-modal-dialog uk-modal-body" id="ModalUserBody">
-        @Html.Action("Create", "Classes")
+        @*@Html.Action("Create", "Classes")*@
     </div>
 </div>
 
@@ -72,7 +72,20 @@
             $('#ModalUserBody').html(result);
         });
     }
-
+    function deleteClasses(id) {
+        if (confirm('کلاس مورد نظر حذف شود')) {
+            $.get('/User/Classes/Delete/' + id, function (result) {
+                if (result.success) {
+                    $("#classes_" + id).hide('slow');
+                    $("#classes_" + id).addClass("text-danger");
+                } else {
+                    alert(result.responseText);
+                }
+                //UIkit.modal(document.getElementById('ModalUser')).show();
+                //$('#ModalUserBody').html(result);
+            });
+        }
+    }
 
 
 </script>

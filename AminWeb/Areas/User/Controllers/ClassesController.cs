@@ -1,4 +1,5 @@
-﻿using DataLayer.MetaData;
+﻿using AminWeb.Utilities;
+using DataLayer.MetaData;
 using DataLayer.Models;
 using DataLayer.Services;
 using System;
@@ -35,30 +36,45 @@ namespace AminWeb.Areas.User.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(MdPlaylist playList, HttpPostedFileBase Certificate)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(MdPlaylist playList, HttpPostedFileBase Link, HttpPostedFileBase CertificateURL)
         {
             if (ModelState.IsValid)
             {
                 if (!_db.Playlist.Get().Any(i => i.UserId == SelectUser().UserId && i.Title == playList.Title.Trim()))
                 {
                     TblPlaylist addPlaylist = new TblPlaylist();
+                    if (Link != null && Link.IsImage())
+                    {
+                        addPlaylist.Link = Guid.NewGuid().ToString() + Path.GetExtension(Link.FileName);
+                        Link.SaveAs(Server.MapPath("/Resources/Classes/Link/" + addPlaylist.Link));
+                    }
+                    else
+                    {
+                        addPlaylist.Link = "NoImage.svg";
+                    }
+                    if (CertificateURL != null && CertificateURL.IsImage())
+                    {
+                        addPlaylist.CertificateURL = Guid.NewGuid().ToString() + Path.GetExtension(CertificateURL.FileName);
+                        CertificateURL.SaveAs(Server.MapPath("/Resources/Classes/CertificateURL/" + addPlaylist.CertificateURL));
+                    }
+                    else
+                    {
+                        addPlaylist.CertificateURL = "NoImage.svg";
+                    }
                     addPlaylist.Title = playList.Title.Trim();
                     addPlaylist.Description = playList.Description;
                     addPlaylist.IsActive = playList.IsActive;
                     addPlaylist.IsHome = playList.IsHome;
-                    addPlaylist.Link = playList.Link;
                     addPlaylist.IsCharity = playList.IsCharity;
                     addPlaylist.Price = playList.Price;
-                    addPlaylist.CertificateURL = playList.CertificateURL;
                     addPlaylist.CatagoryId = playList.CatagoryId;
                     addPlaylist.UserId = SelectUser().UserId;
                     addPlaylist.ViewCount = 0;
                     addPlaylist.DateSubmited = DateTime.Now.ToShortDateString();
                     _db.Playlist.Add(addPlaylist);
                     _db.Playlist.Save();
-                    // return JavaScript("doUpload()");
-                    var isAjax = this.Request.IsAjaxRequest();
-                    return Json(new { result = "ok", Id = addPlaylist.PlaylistId }, JsonRequestBehavior.AllowGet);
+                    return Redirect("/User/Video/YourVideos");;
                 }
                 else
                 {
@@ -67,7 +83,7 @@ namespace AminWeb.Areas.User.Controllers
             }
             ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", playList.CatagoryId);
 
-            return PartialView("Create", playList);
+            return View(playList);
         }
         public ActionResult Edit(int id)
         {
@@ -91,16 +107,45 @@ namespace AminWeb.Areas.User.Controllers
             playList.DateSubmited = selectPlayList.DateSubmited;
             playList.CatagoryId = selectPlayList.CatagoryId;
             ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", selectPlayList.CatagoryId);
-            return PartialView(playList);
+            return View(playList);
         }
         [HttpPost]
-        public ActionResult Edit(MdPlaylist playList)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(MdPlaylist playList, HttpPostedFileBase Link, HttpPostedFileBase CertificateURL)
         {
             if (ModelState.IsValid)
             {
                 if (!_db.Playlist.Get().Any(i => i.UserId == SelectUser().UserId && i.Title == playList.Title.Trim() && i.PlaylistId != playList.PlaylistId))
                 {
+
                     TblPlaylist UpdatePlaylist = _db.Playlist.GetById(playList.PlaylistId);
+                    if (Link != null && Link.IsImage())
+                    {
+                        if (UpdatePlaylist.Link != null)
+                        {
+                            string fullPathLogo = Request.MapPath("/Resources/Classes/Link/" + UpdatePlaylist.Link);
+                            if (System.IO.File.Exists(fullPathLogo))
+                            {
+                                System.IO.File.Delete(fullPathLogo);
+                            }
+                        }
+                        playList.Link = Guid.NewGuid().ToString() + Path.GetExtension(Link.FileName);
+                        Link.SaveAs(Server.MapPath("/Resources/Classes/Link/" + playList.Link));
+                    }
+                    if (CertificateURL != null && CertificateURL.IsImage())
+                    {
+                        if (UpdatePlaylist.CertificateURL != null)
+                        {
+                            string fullPathLogo = Request.MapPath("/Resources/Classes/CertificateURL/" + UpdatePlaylist.CertificateURL);
+                            if (System.IO.File.Exists(fullPathLogo))
+                            {
+                                System.IO.File.Delete(fullPathLogo);
+                            }
+                        }
+                        playList.CertificateURL = Guid.NewGuid().ToString() + Path.GetExtension(CertificateURL.FileName);
+                        CertificateURL.SaveAs(Server.MapPath("/Resources/Classes/CertificateURL/" + playList.CertificateURL));
+                    }
+
                     UpdatePlaylist.Title = playList.Title.Trim();
                     UpdatePlaylist.Description = playList.Description;
                     UpdatePlaylist.IsActive = playList.IsActive;
@@ -115,7 +160,8 @@ namespace AminWeb.Areas.User.Controllers
                     UpdatePlaylist.DateSubmited = playList.DateSubmited;
                     _db.Playlist.Update(UpdatePlaylist);
                     _db.Playlist.Save();
-                    return JavaScript("showClasses()");
+                    return Redirect("/User/Video/YourVideos");
+                    //return JavaScript("showClasses()");
                 }
                 else
                 {
@@ -123,9 +169,8 @@ namespace AminWeb.Areas.User.Controllers
                 }
             }
             ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", playList.CatagoryId);
-            return PartialView(playList);
+            return View(playList);
         }
-
         [HttpPost]
         public ActionResult UploadFiles(HttpPostedFileBase Certificate, int id)
         {
@@ -134,6 +179,23 @@ namespace AminWeb.Areas.User.Controllers
             Certificate.SaveAs(Server.MapPath("/Resources/Classes/" + UpdatePlaylist.CertificateURL));
             //return JavaScript("showClasses();");
             return Json(new { FileName = "/Uploads/filename.ext" }, "text/html", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            TblPlaylist deletePlaylist = _db.Playlist.GetById(id);
+            if (deletePlaylist == null)
+            {
+                return Json(new { success = false, responseText = "کلاس یافت نشد " }, JsonRequestBehavior.AllowGet);
+            }
+            if (_db.Video.Get(i => i.PlaylistId == id).Any())
+            {
+                return Json(new { success = false, responseText = "کلاس مورد نظر ویدیو دارد " }, JsonRequestBehavior.AllowGet);
+            }
+            _db.Playlist.Delete(deletePlaylist);
+            _db.Playlist.Save();
+            return Json(new { success = true, responseText = "کلاس مورد نظر  حذف شد " }, JsonRequestBehavior.AllowGet);
+
         }
     }
 }

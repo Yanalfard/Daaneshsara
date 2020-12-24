@@ -13,7 +13,7 @@
         <a href="/User/Video/Create" class="center" uk-icon="icon:addVideo;ratio:1.2" uk-tooltip="آپلود ویدیو">
 
         </a>
-        <a href="/User/Classes/Create" class="center uk-margin-left" uk-icon="icon:class;ratio:1.2" uk-tooltip="کلاس ها">
+        <a onclick="showClasses()" class="center uk-margin-left" uk-icon="icon:class;ratio:1.2" uk-tooltip="کلاس ها">
 
         </a>
     </div>
@@ -28,9 +28,7 @@
 </div>
 
 @section Scripts{
-
     <script src="~/Scripts/ajaxfileupload.js"></script>
-
     <script type="text/javascript">
         function runUpload(data, status, xhr) {
             debugger;

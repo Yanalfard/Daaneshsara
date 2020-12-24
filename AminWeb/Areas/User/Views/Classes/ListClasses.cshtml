@@ -4,7 +4,7 @@
 {
     foreach (var item in Model)
     {
-        <div class="row-reverse">
+        <div class="row-reverse" id="classes_@(item.PlaylistId)">
             <details dir="rtl" class="uk-margin-small-bottom uk-width-1-1">
                 <summary>
                     @item.Title
@@ -29,8 +29,8 @@
                 }
             </details>
             <div class="row uk-margin-auto-right">
-                <a href="" uk-icon="trash"></a>
-                <a onclick="editClasses(@item.PlaylistId)" uk-icon="edit"></a>
+                <a uk-icon="trash" onclick="deleteClasses(@item.PlaylistId)"></a>
+                <a href="/User/Classes/Edit/@item.PlaylistId" uk-icon="edit"></a>
             </div>
         </div>
     }

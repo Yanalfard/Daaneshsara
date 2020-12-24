@@ -1,29 +1,18 @@
 ﻿@model DataLayer.MetaData.MdPlaylist
 
 @{
-    ViewBag.Title = "ویدیوهای شما";
-    ViewBag.Content = "ویدیو هایی که شما آپلود کرده اید";
+    ViewBag.Title = "ایجاد کلاس";
+    ViewBag.Content = "  ایجاد کلاس";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
 }
 
 <div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
-
-    @using (Ajax.BeginForm(actionName: "Create",
-        controllerName: "Classes",
-        ajaxOptions: new AjaxOptions
-        {
-            HttpMethod = "POST",
-            OnSuccess = "runUpload",
-            UpdateTargetId = "createClasses"
-        },
-        routeValues: null,
-        htmlAttributes: new { id = "createClasses" }))
+    @using (Html.BeginForm("Create", "Classes", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         <h3 class="uk-margin-remove-top">
             کلاس جدید
         </h3>
-
         <div class="form-group">
             <label for="Title">نام کلاس</label>
             <div class="input-group">
@@ -41,7 +30,6 @@
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "uk-text-danger" })
             </span>
         </div>
-
         <div class="form-group">
             <label for="Price">قیمت به تومان</label>
             <div class="input-group">
@@ -66,30 +54,39 @@
                 اهدا شود
             </label>
         </div>
-
+        <div class="form-group">
+            <label for="Certificate">عکس کلاس</label>
+            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
+                <span uk-icon="icon: cloud-upload"></span>
+                <span class="uk-text-middle">فایل خود را اینجا بیاندازید و یا</span>
+                <div uk-form-custom>
+                    <input type="file" name="Link">
+                    <span class="blue">کلیک کنید</span>
+                </div>
+            </div>
+            @Html.ValidationMessageFor(model => model.Link, "", new { @class = "uk-text-danger" })
+        </div>
         <div class="form-group">
             <label for="Certificate">در صورت ارایه مدرک، آن را آپلود کنید</label>
             <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
                 <span uk-icon="icon: cloud-upload"></span>
                 <span class="uk-text-middle">فایل خود را اینجا بیاندازید و یا</span>
                 <div uk-form-custom>
-                    <input type="file" name="Certificate">
+                    <input type="file" name="CertificateURL">
                     <span class="blue">کلیک کنید</span>
                 </div>
             </div>
             @Html.ValidationMessageFor(model => model.CertificateURL, "", new { @class = "uk-text-danger" })
-
         </div>
 
         <div class="row-reverse uk-margin-medium-top">
-            <button class="btn-primary" onclick="LoadingRun('#createClasses')">
+            <button class="btn-primary">
                 اضافه
             </button>
-            <button class="btn-secondary uk-margin-right uk-modal-close">
+            <a onclick="window.location.href = '/User/Video/YourVideos'" class="btn-secondary uk-margin-right uk-modal-close">
                 بازگشت
-            </button>
+            </a>
         </div>
-
     }
 
 </div>
