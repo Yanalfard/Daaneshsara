@@ -28,7 +28,7 @@ namespace AminWeb.Areas.User.Controllers
 
         public ActionResult ListClasses()
         {
-            return PartialView(_db.Playlist.Get());
+            return PartialView(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId));
         }
         public ActionResult Create()
         {
@@ -74,7 +74,7 @@ namespace AminWeb.Areas.User.Controllers
                     addPlaylist.DateSubmited = DateTime.Now.ToShortDateString();
                     _db.Playlist.Add(addPlaylist);
                     _db.Playlist.Save();
-                    return Redirect("/User/Video/YourVideos");;
+                    return Redirect("/User/Video/YourVideos"); ;
                 }
                 else
                 {
@@ -193,6 +193,23 @@ namespace AminWeb.Areas.User.Controllers
                 return Json(new { success = false, responseText = "کلاس مورد نظر ویدیو دارد " }, JsonRequestBehavior.AllowGet);
             }
             _db.Playlist.Delete(deletePlaylist);
+            if (deletePlaylist.Link != null)
+            {
+                string fullPathLogo = Request.MapPath("/Resources/Classes/Link/" + deletePlaylist.Link);
+                if (System.IO.File.Exists(fullPathLogo))
+                {
+                    System.IO.File.Delete(fullPathLogo);
+                }
+            }
+            if (deletePlaylist.CertificateURL != null)
+            {
+                string fullPathLogo2 = Request.MapPath("/Resources/Classes/CertificateURL/" + deletePlaylist.CertificateURL);
+                if (System.IO.File.Exists(fullPathLogo2))
+                {
+                    System.IO.File.Delete(fullPathLogo2);
+                }
+            }
+
             _db.Playlist.Save();
             return Json(new { success = true, responseText = "کلاس مورد نظر  حذف شد " }, JsonRequestBehavior.AllowGet);
 

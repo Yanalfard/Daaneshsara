@@ -25,9 +25,4 @@ namespace DataLayer.MetaData
         public Nullable<int> PlaylistId { get; set; }
     }
 
-    [MetadataType(typeof(MdVideoPlaylistKeyword))]
-    public class TblVideoPlaylistKeyword
-    {
-
-    }
 }

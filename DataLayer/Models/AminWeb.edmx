@@ -171,7 +171,7 @@
           <Key>
             <PropertyRef Name="VideoPlaylistKeywordId" />
           </Key>
-          <Property Name="VideoPlaylistKeywordId" Type="int" Nullable="false" />
+          <Property Name="VideoPlaylistKeywordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="VideoId" Type="int" />
           <Property Name="PlaylistId" Type="int" />

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<DataLayer.Models.TblVideo>
 @{
     ViewBag.Title = "ویدیوهای شما";
     ViewBag.Content = "ویدیو هایی که شما آپلود کرده اید";
@@ -11,7 +11,6 @@
     </h3>
     <div class="row uk-margin-auto-right">
         <a href="/User/Video/Create" class="center" uk-icon="icon:addVideo;ratio:1.2" uk-tooltip="آپلود ویدیو">
-
         </a>
         <a onclick="showClasses()" class="center uk-margin-left" uk-icon="icon:class;ratio:1.2" uk-tooltip="کلاس ها">
 
@@ -20,70 +19,9 @@
 </div>
 
 <div class="video-grid uk-margin-top">
-    @Html.Partial("UserVideoBlock")
-    @Html.Partial("UserVideoBlock")
-    @Html.Partial("UserVideoBlock")
-    @Html.Partial("UserVideoBlock")
-    @Html.Partial("UserVideoBlock")
+    @foreach (var item in Model)
+    {
+        @Html.Partial("UserVideoBlock", item)
+    }
 </div>
 
-@section Scripts{
-    <script src="~/Scripts/ajaxfileupload.js"></script>
-    <script type="text/javascript">
-        function runUpload(data, status, xhr) {
-            debugger;
-
-            //$("#overlay").fadeOut(300);
-            console.log(data)
-            if (data.result == "ok") {
-                //showClasses()
-                 $.ajaxFileUpload({
-                    url: "@Url.Action("UploadFiles", "Classes")", // مسيري كه بايد فايل به آن ارسال شود
-                    secureuri: false,
-                    formElementId: "createClasses", // كدام فرم در صفحه پردازش شود؟
-                    dataType: "json",
-                    data:
-                    {
-                        id: data.Id /* اين آي دي پس از ذخيره شدن محصول در سرور از آن دريافت مي‌شود */,
-                        // , ...
-                    }, // اطلاعات اضافي در صورت نياز
-                     complete: function () {
-                         alert('1');
-                    },
-                    success: function (successData, successStatus) {
-                        location.reload();
-                        alert('2');
-
-                    },
-                    error: function (errorData, errorStatus, e) {
-                        alert('3');
-
-                    }
-                });
-            }
-
-            @*$.ajaxFileUpload({
-                url: "@Url.Action("UploadFiles", "Classes")", // مسيري كه بايد فايل به آن ارسال شود
-                secureuri: false,
-                formElementId: "createClasses", // كدام فرم در صفحه پردازش شود؟
-                dataType: "json",
-                data:
-                {
-                    id: data.Id /* اين آي دي پس از ذخيره شدن محصول در سرور از آن دريافت مي‌شود */,
-                    // , ...
-                }, // اطلاعات اضافي در صورت نياز
-                complete: function () {
-                },
-                success: function (successData, successStatus) {
-                    location.reload();
-
-                },
-                error: function (errorData, errorStatus, e) {
-                    alert(e);
-                }
-            });*@
-
-        }
-    </script>
-
-}

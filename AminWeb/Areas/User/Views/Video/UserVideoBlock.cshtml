@@ -1,40 +1,35 @@
-﻿@*@model DataLayer.Models.TblVideo*@
-
-<div class="video-block">
+﻿@model DataLayer.Models.TblVideo
+<div class="video-block video_@Model.VideoId" >
     <div class="top">
         <ul class="badges row ">
             <li uk-tooltip="title:حذف">
-                <button class="anchor" uk-icon="icon:trash;ratio:1.2"></button>
+                <button onclick="deleteVideo(@Model.VideoId)" class="anchor" uk-icon="icon:trash;ratio:1.2"></button>
             </li>
-            <li uk-tooltip="title:ویرایش">
-                <button class="anchor" uk-icon="icon:edit;ratio:1.2"></button>
+            <li  uk-tooltip="title:ویرایش">
+                <a href="/User/Video/Edit/@Model.VideoId" class="anchor" uk-icon="icon:edit;ratio:1.2"></a>
             </li>
         </ul>
-        <img class="thumbnail" height="200" width="360" src="https://picsum.photos/360/200" alt="Thumbnail" />
+        <img class="thumbnail" height="200" width="360" src="~/Resources/Video/Image/@Model.MainImage" alt="Thumbnail" />
     </div>
     <div class="text column">
         <div class="content column">
             <a class="title">
-                این تیتر یک ویدیو می باشد
-                این تیتر یک ویدیو می باشد
-                این تیتر یک ویدیو می باشد
-                این تیتر یک ویدیو می باشد
+               @Model.Title
             </a>
             <p class="desciption">
-                این توضیحات یک ویدیو می باشد بسار مختصر و مفید می باشد
-                این توضیحات یک ویدیو می باشد بسار مختصر و مفید می باشد
+                @Model.Description
             </p>
             <span class="tutor uk-margin-small-top uk-margin-auto-left" uk-tooltip="pos: left; title: تعداد بازدید" uk-icon="eye">
-                164
+                @Model.ViewCount
             </span>
         </div>
         <hr />
         <div class="bottom row">
             <h6 class="price">
-                36,000
+                @Model.Price
             </h6>
             <div class="row star-container uk-margin-auto-left" dir="rtl">
-                <div class="Stars" style="--rating: 2.6;" uk-tooltip="title:2.6" aria-label="Rating of this product is 2.3 out of 5."></div>
+                <div class="Stars" style="--rating: (@Model.LikeCount/20)" uk-tooltip="title: (@Model.LikeCount/20)" aria-label="Rating of this product is 2.3 out of 5."></div>
             </div>
         </div>
     </div>

@@ -77,7 +77,7 @@
             $.get('/User/Classes/Delete/' + id, function (result) {
                 if (result.success) {
                     $("#classes_" + id).hide('slow');
-                    $("#classes_" + id).addClass("text-danger");
+                    $("#classes_" + id).addClass("uk-text-danger");
                 } else {
                     alert(result.responseText);
                 }
@@ -87,7 +87,18 @@
         }
     }
 
-
+    function deleteVideo(id) {
+        if (confirm('ویدیو مورد نظر حذف شود')) {
+            $.get('/User/Video/Delete/' + id, function (result) {
+                if (result.success) {
+                    $(".video_" + id).hide('slow');
+                    $(".video_" + id).addClass("uk-text-danger");
+                } else {
+                    alert(result.responseText);
+                }
+            });
+        }
+    }
 </script>
 
 

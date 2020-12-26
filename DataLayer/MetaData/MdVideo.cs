@@ -13,16 +13,14 @@ namespace DataLayer.MetaData
         public int id { get; set; }
         
         [Display(Name = "ویدیو")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         public string VideoUrl { get; set; }
         
         [Display(Name = "دموی ویدیو")]
         [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
-        public string VidioDemoUrl { get; set; }
+        public string VideoDemoUrl { get; set; }
         
         [Display(Name = "عکس")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(300, ErrorMessage = "طول بیش از 300 کاراکتر مجاز نیست")]
         [DataType(DataType.ImageUrl)]
         public string MainImage { get; set; }
@@ -62,12 +60,13 @@ namespace DataLayer.MetaData
         
         [Display(Name = "قیمت")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        [DataType(DataType.Currency)]
+        [DataType(DataType.Currency,ErrorMessage ="مبلغ مجاز نیست")]
         public int Price { get; set; }
         
         [Display(Name = "خیریه",Description = "با انتخاب این گزینه 5 درصد از درآمد شما از این مورد به سازمان های خیریه داده میشود")]
         public bool IsCharity { get; set; }
-        
+        [Display(Name = "کلاس")]
+        [Required(ErrorMessage = "لطفا {0} را انتخاب کنید")]
         public Nullable<int> PlaylistId { get; set; }
         
         public bool IsActive { get; set; }

@@ -1,1 +1,9 @@
-﻿
+﻿@model IEnumerable<DataLayer.Models.TblPlaylist>
+
+<select  name="PlaylistId">
+    @foreach (var item in Model)
+    {
+
+        <option value=" @item.PlaylistId"> @item.Title</option>
+    }
+</select>
