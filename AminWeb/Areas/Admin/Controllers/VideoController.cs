@@ -9,6 +9,7 @@ namespace AminWeb.Areas.Admin.Controllers
     public class VideoController : Controller
     {
         // GET: Admin/Video
+        public ActionResult Index() => View();
         public ActionResult VideoList()
         {
             return View();

@@ -72,7 +72,7 @@ namespace AminWeb.Areas.User.Controllers
                     ModelState.AddModelError("VideoUrl", "حجم ویدیو بیشتر از 100 مگابایات است");
                     return View(video);
                 }
-                else if (VideoUrl != null && VideoUrl.IsImage())
+                else if (VideoUrl != null )
                 {
                     video.VideoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoUrl.FileName);
                     VideoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl));

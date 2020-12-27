@@ -1918,6 +1918,7 @@
     <Content Include="Areas\User\Views\Classes\Edit.cshtml" />
     <Content Include="Areas\User\Views\Video\ShowPlaylist.cshtml" />
     <Content Include="Areas\User\Views\Video\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Video\Index.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>
