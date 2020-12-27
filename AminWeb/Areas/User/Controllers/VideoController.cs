@@ -53,6 +53,11 @@ namespace AminWeb.Areas.User.Controllers
                     ModelState.AddModelError("MainImage", "حجم عکس بیشتر از 10 مگابایات است");
                     return View(video);
                 }
+                else if (!MainImage.IsImage())
+                {
+                    ModelState.AddModelError("MainImage", "عکس نامعتبر است");
+                    return View(video);
+                }
                 else if (MainImage != null && MainImage.IsImage())
                 {
                     video.MainImage = Guid.NewGuid().ToString() + Path.GetExtension(MainImage.FileName);
@@ -60,6 +65,16 @@ namespace AminWeb.Areas.User.Controllers
                     ImageResizer img = new ImageResizer();
                     img.Resize(Server.MapPath("/Resources/Video/Image/" + video.MainImage),
                         Server.MapPath("/Resources/Video/Image/Thumb/" + video.MainImage));
+                }
+                string PasVideoUrl = "";
+                string PasVideoDemoUrl = "";
+                if (VideoUrl != null)
+                {
+                     PasVideoUrl = Path.GetExtension(VideoUrl.FileName).ToLower();
+                }
+                if (VideoDemoUrl != null)
+                {
+                     PasVideoDemoUrl = Path.GetExtension(VideoDemoUrl.FileName).ToLower();
                 }
 
                 if (VideoUrl == null)
@@ -72,7 +87,12 @@ namespace AminWeb.Areas.User.Controllers
                     ModelState.AddModelError("VideoUrl", "حجم ویدیو بیشتر از 100 مگابایات است");
                     return View(video);
                 }
-                else if (VideoUrl != null )
+                else if (VideoUrl != null && PasVideoUrl != ".mkv" || PasVideoUrl != ".mp4")
+                {
+                    ModelState.AddModelError("VideoUrl", "ویدیو نامعتبر است");
+                    return View(video);
+                }
+                else if (VideoUrl != null)
                 {
                     video.VideoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoUrl.FileName);
                     VideoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl));
@@ -80,6 +100,11 @@ namespace AminWeb.Areas.User.Controllers
                 if (VideoDemoUrl != null && VideoDemoUrl.ContentLength > 104857600)
                 {
                     ModelState.AddModelError("VideoDemoUrl", "حجم دموی ویدیو بیشتر از 100 مگابایات است");
+                    return View(video);
+                }
+                else if (VideoDemoUrl != null && PasVideoDemoUrl != ".mkv" || PasVideoDemoUrl != ".mp4")
+                {
+                    ModelState.AddModelError("VideoDemoUrl", "دموی ویدیو نامعتبر است");
                     return View(video);
                 }
                 else if (VideoDemoUrl != null)
@@ -160,37 +185,12 @@ namespace AminWeb.Areas.User.Controllers
                     ModelState.AddModelError("MainImage", "حجم عکس بیشتر از 10 مگابایات است");
                     return View(video);
                 }
-                if (VideoUrl != null && VideoUrl.ContentLength > 104857600)
+                else if (MainImage != null && !MainImage.IsImage())
                 {
-                    ModelState.AddModelError("VideoUrl", "حجم ویدیو بیشتر از 100 مگابایات است");
+                    ModelState.AddModelError("MainImage", " عکس نامعتبر است");
                     return View(video);
                 }
-                if (VideoDemoUrl != null && VideoDemoUrl.ContentLength > 104857600)
-                {
-                    ModelState.AddModelError("VideoDemoUrl", "حجم دموی ویدیو بیشتر از 100 مگابایات است");
-                    return View(video);
-                }
-                if (VideoDemoUrl != null)
-                {
-                    string fullPathLogo = Request.MapPath("/Resources/Video/VideoDemo/" + video.VideoDemoUrl);
-                    if (System.IO.File.Exists(fullPathLogo))
-                    {
-                        System.IO.File.Delete(fullPathLogo);
-                    }
-                    video.VideoDemoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoDemoUrl.FileName);
-                    VideoDemoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoDemo/" + video.VideoDemoUrl));
-                }
-                if (VideoUrl != null)
-                {
-                    string fullPathLogo = Request.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl);
-                    if (System.IO.File.Exists(fullPathLogo))
-                    {
-                        System.IO.File.Delete(fullPathLogo);
-                    }
-                    video.VideoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoUrl.FileName);
-                    VideoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl));
-                }
-                if (MainImage != null && MainImage.IsImage())
+                else if (MainImage != null && MainImage.IsImage())
                 {
                     string fullPathLogo = Request.MapPath("/Resources/Video/Image/" + video.MainImage);
                     if (System.IO.File.Exists(fullPathLogo))
@@ -208,6 +208,60 @@ namespace AminWeb.Areas.User.Controllers
                     img.Resize(Server.MapPath("/Resources/Video/Image/" + video.MainImage),
                         Server.MapPath("/Resources/Video/Image/Thumb/" + video.MainImage));
                 }
+
+                string PasVideoUrl = "";
+                string PasVideoDemoUrl = "";
+                if (VideoUrl != null)
+                {
+                    PasVideoUrl = Path.GetExtension(VideoUrl.FileName).ToLower();
+                }
+                if (VideoDemoUrl != null)
+                {
+                    PasVideoDemoUrl = Path.GetExtension(VideoDemoUrl.FileName).ToLower();
+                }
+
+                if (VideoUrl != null && VideoUrl.ContentLength > 104857600)
+                {
+                    ModelState.AddModelError("VideoUrl", "حجم ویدیو بیشتر از 100 مگابایات است");
+                    return View(video);
+                }
+                else if (VideoUrl != null && PasVideoUrl != ".mkv" || PasVideoUrl != ".mp4")
+                {
+                    ModelState.AddModelError("VideoUrl", "ویدیو نامعتبر است");
+                    return View(video);
+                }
+                else if (VideoUrl != null)
+                {
+                    string fullPathLogo = Request.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl);
+                    if (System.IO.File.Exists(fullPathLogo))
+                    {
+                        System.IO.File.Delete(fullPathLogo);
+                    }
+                    video.VideoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoUrl.FileName);
+                    VideoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl));
+                }
+                if (VideoDemoUrl != null && VideoDemoUrl.ContentLength > 104857600)
+                {
+                    ModelState.AddModelError("VideoDemoUrl", "حجم دموی ویدیو بیشتر از 100 مگابایات است");
+                    return View(video);
+                }
+                else if (VideoDemoUrl != null && PasVideoDemoUrl != ".mkv" || PasVideoDemoUrl != ".mp4")
+                {
+                    ModelState.AddModelError("VideoDemoUrl", "دموی ویدیو نامعتبر است");
+                    return View(video);
+                }
+                else if (VideoDemoUrl != null)
+                {
+                    string fullPathLogo = Request.MapPath("/Resources/Video/VideoDemo/" + video.VideoDemoUrl);
+                    if (System.IO.File.Exists(fullPathLogo))
+                    {
+                        System.IO.File.Delete(fullPathLogo);
+                    }
+                    video.VideoDemoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoDemoUrl.FileName);
+                    VideoDemoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoDemo/" + video.VideoDemoUrl));
+                }
+
+
                 TblVideo updateVideoById = _db.Video.GetById(video.id);
                 updateVideoById.Title = video.Title;
                 updateVideoById.Description = video.Description;
@@ -237,7 +291,7 @@ namespace AminWeb.Areas.User.Controllers
 
             return PartialView(video);
         }
-       
+
         public string RemoveParameters(string keywords)
         {
             if (keywords[keywords.Length - 1] == '،')
