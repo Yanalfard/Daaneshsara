@@ -237,6 +237,7 @@ namespace AminWeb.Areas.User.Controllers
 
             return PartialView(video);
         }
+       
         public string RemoveParameters(string keywords)
         {
             if (keywords[keywords.Length - 1] == '،')

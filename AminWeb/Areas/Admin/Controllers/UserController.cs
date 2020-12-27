@@ -235,7 +235,6 @@ namespace AminWeb.Areas.Admin.Controllers
         }
         public ActionResult ListUser(string name = "", string tellNo = "", string email = "", string balance = "", int isActive = -1, int roleId = -1)
         {
-
             List<TblUser> list = new List<TblUser>();
             list.AddRange(_db.User.Get());
             if (name != "")

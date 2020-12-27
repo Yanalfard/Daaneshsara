@@ -66,7 +66,6 @@ namespace DataLayer.MetaData
         [Display(Name = "خیریه",Description = "با انتخاب این گزینه 5 درصد از درآمد شما از این مورد به سازمان های خیریه داده میشود")]
         public bool IsCharity { get; set; }
         [Display(Name = "کلاس")]
-        [Required(ErrorMessage = "لطفا {0} را انتخاب کنید")]
         public Nullable<int> PlaylistId { get; set; }
         
         public bool IsActive { get; set; }

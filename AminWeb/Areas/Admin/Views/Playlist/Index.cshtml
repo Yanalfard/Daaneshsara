@@ -1,13 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "ویدیوها";
+    ViewBag.Title = "کلاس ها";
 }
 
 <div class="card flex-div border-0 shadow">
     <div class="card-header bg-white">
         <div class="row justify-content-end">
             <div class="col-md-10 col-12">
-                <form class="card-form row" action="/Admin/Video/Index" method="post">
+                <form class="card-form row" action="/Admin/Playlist/Index" method="post">
                     <div class="form-input col-md-8">
                         <div class="form-inline">
                             <div class="form-group mx-sm-1 mb-2">
@@ -64,13 +64,12 @@
                     <tr>
                         <th scope="col">کد</th>
                         <th scope="col">عکس </th>
+                        <th scope="col">مدرک کلاس</th>
                         <th scope="col">نام</th>
                         <th scope="col">تاریخ ثبت</th>
                         <th scope="col">تعداد بازدید </th>
-                        <th scope="col">پسندها</th>
                         <th scope="col">قیمت</th>
                         <th scope="col">دسته </th>
-                        <th scope="col">کلاس </th>
                         <th scope="col">نام کاربر </th>
                         <th scope="col">نقش</th>
                         <th scope="col">خیریه</th>
@@ -79,8 +78,8 @@
                         <th scope="col">عملیات</th>
                     </tr>
                 </thead>
-                <tbody id="listVideo" class="list-wrapper">
-                    @Html.Action("ListVideo", "Video")
+                <tbody id="listPlaylist" class="list-wrapper">
+                    @Html.Action("ListPlaylist", "Playlist")
                 </tbody>
             </table>
         </div>
@@ -113,30 +112,28 @@
 
     <script>
 
-        function showHideInHomeVideo(id) {
-            $.get("/Admin/Video/ShowHideInHomeVideo/" + id, function (result) {
-                $('#listVideo').html(result);
+        function showHideInHomePlaylist(id) {
+            $.get("/Admin/Playlist/ShowHideInHomePlaylist/" + id, function (result) {
+                $('#listPlaylist').html(result);
             });
         }
-        function activeDisableVideo(id) {
-            $.get("/Admin/Video/ActiveDisableVideo/" + id, function (result) {
-                $('#listVideo').html(result);
+        function activeDisablePlaylist(id) {
+            $.get("/Admin/Playlist/ActiveDisablePlaylist/" + id, function (result) {
+                $('#listPlaylist').html(result);
             });
         }
-        function deleteVideo(id) {
-            if (confirm('آیا از حذف ویدیو مورد نظر مظمئن هستین؟')) {
-                $.get("/Admin/Video/Delete/" + id, function (result) {
+        function deletePlaylist(id) {
+            if (confirm('آیا از حذف کلاس مورد نظر مظمئن هستین؟')) {
+                $.get("/Admin/Playlist/Delete/" + id, function (result) {
                     if (result.success) {
-                        $('#video_' + id).addClass('text-danger');
-                        $("#video_" + id).hide('slow');
+                        $('#playlist_' + id).addClass('text-danger');
+                        $("#playlist_" + id).hide('slow');
                     } else {
                         alert(result.responseText);
                     }
                 })
             }
         }
-        function success() {
-            $("#myModal").modal('hide');
-        }
+      
     </script>
 }

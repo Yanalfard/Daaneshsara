@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DataLayer.Models.TblVideo>
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <tr id="video_@item.VideoId" class="list-item">
+            <td>@(Model.ToList().IndexOf(item)+1)</td>
+            <td>
+                @if (item.MainImage != null)
+                {
+                    <img style="max-width:100px;" class="thumbnail" src="~/Resources/Video/Image/Thumb/@item.MainImage" alt="@item.Title" />
+                }
+            </td>
+            <td>
+                @item.Title
+            </td>
+            <td>
+                @Convert.ToDateTime(item.DateSubmited).ToShamsi()
+            </td>
+            <td>@item.ViewCount</td>
+            <td>@item.LikeCount</td>
+            <td>@item.Price.ToString("#,0")</td>
+            <td>@item.TblCatagory.Name</td>
+            <td>@item.TblPlaylist.Title</td>
+            <td>@item.TblUser.Name</td>
+            <td>
+                <small class="text-info">@item.TblUser.TblRole.Title</small>
+            </td>
+            <td>
+                @if (item.IsCharity)
+                {
+                    <small class="text-info">موافقم</small>
+                }
+                else
+                {
+                    <small class="text-info">مخالفم</small>
+
+                }
+            </td>
+            <td>
+                @if (item.IsHome)
+                {
+                    <a href="#" onclick="showHideInHomeVideo(@item.VideoId)" class="badge-success badge-pill">نمایش</a>
+                }
+                else
+                {
+                    <a href="#" onclick="showHideInHomeVideo(@item.VideoId)" class="badge-danger badge-pill">مخفی</a>
+                }
+            </td>
+            <td>
+                @if (item.IsActive)
+                {
+                    <a href="#" onclick="activeDisableVideo(@item.VideoId)" class="badge-success badge-pill">بله</a>
+                }
+                else
+                {
+                    <a href="#" onclick="activeDisableVideo(@item.VideoId)" class="badge-danger badge-pill">خیر</a>
+                }
+            </td>
+
+            <td>
+                <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                    <a onclick="deleteVideo(@item.VideoId)" data-toggle="modal" data-target="#modalSave"><i class="btn fas fa-trash mr-2 text-danger"></i></a>
+                </span>
+            </td>
+        </tr>
+    }
+}
+

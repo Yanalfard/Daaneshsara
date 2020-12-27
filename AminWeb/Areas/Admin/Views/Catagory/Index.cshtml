@@ -75,6 +75,25 @@
                 })
             }
         }
+        function activeDisablePlaylist(id) {
+            $.get("/Admin/Catagory/ActiveDisablePlaylist/" + id, function (result) {
+                $('#listPlaylist').html(result);
+            });
+        }
+        function deletePlaylist(id) {
+            if (confirm('آیا از حذف کلاس مورد نظر مظمئن هستین؟')) {
+                $.get("/Admin/Catagory/DeletePlayList/" + id, function (result) {
+                    if (result.success) {
+                        $('#playlist_' + id).addClass('text-danger');
+                        $("#playlist_" + id).hide('slow');
+                    } else {
+                        alert(result.responseText);
+                    }
+                })
+            }
+        }
+        //activeDisablePlaylist
+        //deletePlaylist
 
     </script>
 }

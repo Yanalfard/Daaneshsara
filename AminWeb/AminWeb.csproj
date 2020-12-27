@@ -135,6 +135,7 @@
     <Compile Include="Areas\User\Controllers\AccountController.cs" />
     <Compile Include="Areas\User\Controllers\ChatController.cs" />
     <Compile Include="Areas\User\Controllers\ClassesController.cs" />
+    <Compile Include="Areas\User\Controllers\DocController.cs" />
     <Compile Include="Areas\User\Controllers\HomeController.cs" />
     <Compile Include="Areas\User\Controllers\LibraryController.cs" />
     <Compile Include="Areas\User\Controllers\VideoController.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Utilities\CheckContentImage.cs" />
     <Compile Include="Utilities\ImageResizer.cs" />
     <Compile Include="Utilities\PartialToStringClass.cs" />
+    <Compile Include="Utilities\PersianCalender.cs" />
     <Compile Include="Utilities\SendEmail.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1882,18 +1884,9 @@
     <Content Include="Areas\Admin\Views\User\ViewUser.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Video\VideoList.cshtml" />
-    <Content Include="Areas\Admin\Views\Video\ViewSingleVideo.cshtml" />
-    <Content Include="Areas\Admin\Views\Video\EditVideo.cshtml" />
-    <Content Include="Areas\Admin\Views\Video\CreateVideo.cshtml" />
-    <Content Include="Areas\Admin\Views\Video\ReportList.cshtml" />
     <Content Include="Areas\Admin\Views\Chat\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Chat\ListChat.cshtml" />
-    <Content Include="Areas\Admin\Views\Playlist\PlaylistList.cshtml" />
-    <Content Include="Areas\Admin\Views\Playlist\ViewSinglePlaylist.cshtml" />
-    <Content Include="Areas\Admin\Views\Playlist\EditPlaylist.cshtml" />
-    <Content Include="Areas\Admin\Views\Playlist\CreatePlaylist.cshtml" />
-    <Content Include="Areas\Admin\Views\Video\VideoReportList.cshtml" />
+    <Content Include="Areas\Admin\Views\Playlist\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\ListUser.cshtml" />
     <Content Include="Areas\Admin\Views\User\ChangePassword.cshtml" />
@@ -1919,6 +1912,10 @@
     <Content Include="Areas\User\Views\Video\ShowPlaylist.cshtml" />
     <Content Include="Areas\User\Views\Video\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Video\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Video\ListVideo.cshtml" />
+    <Content Include="Areas\Admin\Views\Catagory\SubCategorys.cshtml" />
+    <Content Include="Areas\Admin\Views\Playlist\ListPlaylist.cshtml" />
+    <Content Include="Areas\User\Views\Doc\Index.cshtml" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>

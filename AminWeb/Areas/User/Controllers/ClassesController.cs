@@ -193,7 +193,7 @@ namespace AminWeb.Areas.User.Controllers
                 return Json(new { success = false, responseText = "کلاس مورد نظر ویدیو دارد " }, JsonRequestBehavior.AllowGet);
             }
             _db.Playlist.Delete(deletePlaylist);
-            if (deletePlaylist.Link != null)
+            if (deletePlaylist.Link != null && deletePlaylist.Link != "NoImage.svg")
             {
                 string fullPathLogo = Request.MapPath("/Resources/Classes/Link/" + deletePlaylist.Link);
                 if (System.IO.File.Exists(fullPathLogo))
@@ -201,7 +201,7 @@ namespace AminWeb.Areas.User.Controllers
                     System.IO.File.Delete(fullPathLogo);
                 }
             }
-            if (deletePlaylist.CertificateURL != null)
+            if (deletePlaylist.CertificateURL != null && deletePlaylist.CertificateURL != "NoImage.svg")
             {
                 string fullPathLogo2 = Request.MapPath("/Resources/Classes/CertificateURL/" + deletePlaylist.CertificateURL);
                 if (System.IO.File.Exists(fullPathLogo2))

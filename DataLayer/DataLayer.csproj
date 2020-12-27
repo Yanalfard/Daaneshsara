@@ -54,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\PersianCalender.cs" />
     <Compile Include="MetaData\MdCategory.cs" />
     <Compile Include="MetaData\MdChat.cs" />
     <Compile Include="MetaData\MdDoc.cs" />
@@ -140,7 +139,9 @@
     <Compile Include="ViewModels\VmLogin.cs" />
     <Compile Include="ViewModels\VmRegister.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Classes\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <EntityDeploy Include="Models\AminWeb.edmx">

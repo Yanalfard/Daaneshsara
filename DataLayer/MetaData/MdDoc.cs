@@ -43,9 +43,4 @@ namespace DataLayer.MetaData
         public string Address { get; set; }
     }
 
-    [MetadataType(typeof(MdDoc))]
-    public class TblDoc
-    {
-
-    }
 }

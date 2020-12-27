@@ -35,6 +35,10 @@ namespace AminWeb.Areas.Admin.Controllers
         }
         public ActionResult SubCategory(int id)
         {
+            return PartialView();
+        }
+        public ActionResult SubCategorys(int id)
+        {
             List<TblPlaylist> list = _db.Playlist.Get().Where(i => i.CatagoryId == id).ToList();
             return PartialView(list);
         }
@@ -117,6 +121,49 @@ namespace AminWeb.Areas.Admin.Controllers
                 }
             }
             return PartialView("Create", catagory);
+        }
+
+        public ActionResult ActiveDisablePlaylist(int id)
+        {
+            TblPlaylist updateVideo = _db.Playlist.GetById(id);
+            updateVideo.IsActive = !updateVideo.IsActive;
+            _db.Playlist.Update(updateVideo);
+            _db.Video.Save();
+            return PartialView("SubCategorys", _db.Playlist.Get().Where(i => i.CatagoryId == updateVideo.CatagoryId).ToList());
+        }
+
+        public ActionResult DeletePlayList(int id)
+        {
+            TblPlaylist deletePlaylist = _db.Playlist.GetById(id);
+            if (deletePlaylist == null)
+            {
+                return Json(new { success = false, responseText = "کلاس یافت نشد " }, JsonRequestBehavior.AllowGet);
+            }
+            if (_db.Video.Get(i => i.PlaylistId == id).Any())
+            {
+                return Json(new { success = false, responseText = "کلاس مورد نظر ویدیو دارد " }, JsonRequestBehavior.AllowGet);
+            }
+            _db.Playlist.Delete(deletePlaylist);
+            if (deletePlaylist.Link != null && deletePlaylist.Link != "NoImage.svg")
+            {
+                string fullPathLogo = Request.MapPath("/Resources/Classes/Link/" + deletePlaylist.Link);
+                if (System.IO.File.Exists(fullPathLogo))
+                {
+                    System.IO.File.Delete(fullPathLogo);
+                }
+            }
+            if (deletePlaylist.CertificateURL != null && deletePlaylist.CertificateURL != "NoImage.svg")
+            {
+                string fullPathLogo2 = Request.MapPath("/Resources/Classes/CertificateURL/" + deletePlaylist.CertificateURL);
+                if (System.IO.File.Exists(fullPathLogo2))
+                {
+                    System.IO.File.Delete(fullPathLogo2);
+                }
+            }
+
+            _db.Playlist.Save();
+            return Json(new { success = true, responseText = "کلاس مورد نظر  حذف شد " }, JsonRequestBehavior.AllowGet);
+
         }
     }
 }
