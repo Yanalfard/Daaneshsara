@@ -50,3 +50,35 @@
         }
     }
 }
+
+.category-drop {
+    background: #fff;
+    @include border-radius(12px,12px,12px,12px);
+    @include shadow-more;
+    height: auto;
+    max-height: 240px;
+    z-index: 999;
+    overflow: hidden;
+
+    ul {
+        li {
+            padding: 8px 12px 8px 0;
+            @include trans(.5s);
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+            color: #333;
+            cursor: pointer;
+
+            b {
+                color: $primary;
+            }
+        }
+
+        li:hover {
+            @include trans(.1s);
+            background: #eee;
+        }
+    }
+}

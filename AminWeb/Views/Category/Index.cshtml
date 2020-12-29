@@ -6,7 +6,10 @@
 <div class="search-box row uk-margin-small-bottom">
     <button uk-icon="search"></button>
     <label for="CategorySearch" class="collapsed">جستجو دسته بندی</label>
-    <input dir="rtl" type="text" placeholder="جستجو..." name="CategorySearch" />
+    <input dir="rtl" id="txtCategoryInput" oninput="txtCategoryChanged(this.value)" type="text" placeholder="جستجو..." name="CategorySearch" />
+    <div class="category-drop mat" uk-drop="mode: none; pos: bottom-justify">
+        <ul class="uk-padding-remove uk-margin-remove" id="drop"></ul>
+    </div>
 </div>
 <div dir="rtl">
     <ul>
@@ -21,3 +24,19 @@
     </ul>
 </div>
 
+<script>
+
+    const categories = [
+        'ریاضی',
+        'فیزیک',
+        'آبیاری گیاهان دریایی',
+        'علوم',
+        'ادبیات',
+        'گیاه شناسی',
+    ]
+
+    function txtCategoryChanged(value) {
+
+    }
+
+</script>

@@ -154,3 +154,6 @@ img {
 
 .black-light {
   background: #848484; }
+
+.grecaptcha-badge {
+  display: none !important; }
