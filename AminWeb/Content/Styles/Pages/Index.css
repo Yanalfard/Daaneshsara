@@ -260,3 +260,6 @@ backdrop-filter: saturate(80%);
     -webkit-transition: all ease 0.1s;
     transition: all ease 0.1s;
     background: #eee; }
+
+#listCategories b {
+  color: #F94646; }
