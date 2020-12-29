@@ -516,14 +516,38 @@ select {
     }
 }
 
-.playlist {
+.videoClass {
+    .header {
+        .drop-body {
+            padding: 16px;
 
-    .handle {
-        padding: 12px 17px;
-        background: #fff;
-        @include mat;
-        @include shadow-mild;
-        @include border-radius(50%,50%,50%,50%);
+            dl {
+                dt {
+                    font-weight: bold;
+                    font-size: 15px;
+                    color: #484848;
+                    margin-bottom:3px;
+                }
+
+                dd {
+                    font-weight: normal;
+                    font-size: 13px;
+                    color: #777;
+                    margin-bottom: 8px;
+                }
+            }
+        }
+    }
+
+    .playlist {
+
+        .handle {
+            padding: 12px 17px;
+            background: #fff;
+            @include mat;
+            @include shadow-mild;
+            @include border-radius(50%,50%,50%,50%);
+        }
     }
 }
 
