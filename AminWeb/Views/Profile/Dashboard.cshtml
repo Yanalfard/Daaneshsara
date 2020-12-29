@@ -1,19 +1,23 @@
-﻿
+﻿@model IEnumerable<DataLayer.Models.TblVideo>
+
 @{
-    ViewBag.Title = "Dashboard";
+    ViewBag.Title = ViewBag.Name;
     Layout = "~/Views/Profile/_ProfileLayout.cshtml";
+    var first = Model.FirstOrDefault();
 }
+@Html.Partial("_HeaderProfile", @first.TblUser)
 
-@Html.Partial("_Playlist")
-<br class="uk-margin-top" />
+@if (Model.Any())
+{
+ 
+    @Html.Action("ListPlayList", "PlayList", new { UserId = first.UserId })
 
-<div class="video-grid center flex-1">
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-</div>
+    <br class="uk-margin-top" />
+
+    <div class="video-grid center flex-1">
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_VideoBlock", item)
+        }
+    </div>
+}

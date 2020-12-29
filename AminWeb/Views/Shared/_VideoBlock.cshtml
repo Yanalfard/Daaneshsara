@@ -1,48 +1,51 @@
 ﻿@model DataLayer.Models.TblVideo
 
+@if (Model != null)
+{
 
 
-<div class="video-block">
-    <div class="top">
-        <ul class="badges row ">
-            @if (Model.TblUser.RoleId == 2)
-            {
-                <li uk-tooltip="title:آموزشگاهی">
-                    <img src="~/Resources/Static/Vector/Education.svg" height="24" width="24" alt="Badge" />
-                </li>
-            }
-            @if (Model.TblUser.RoleId == 2 && Model.PlaylistId != null && Model.TblPlaylist.CertificateURL != null)
-            {
-                <li uk-tooltip="title:دارای مدرک">
-                    <img src="~/Resources/Static/Vector/Medal.svg" height="24" width="24" alt="Badge" />
-                </li>
-            }
-            @*<li uk-tooltip="title:حامی خیریه">
-                    <img src="~/Resources/Static/Vector/Heart.svg" height="24" width="24" alt="Badge" />
-                </li>*@
-        </ul>
-        <img class="thumbnail" height="200" width="360" src="~/Resources/Video/Image/Thumb/@Model.MainImage" alt="Thumbnail" />
-    </div>
-    <div class="text column">
-        <div class="content column">
-            <a href="/VideoView/@Model.VideoId/@Model.Title" class="title">
-                @Model.Title
-            </a>
-            <p class="desciption">
-                @Model.Description
-            </p>
-            <a class="tutor" uk-icon="tutor" href="/Profile/Dashboard">
-                @Model.TblUser.Name
-            </a>
+    <div class="video-block">
+        <div class="top">
+            <ul class="badges row ">
+                @if (Model.TblUser.RoleId == 2)
+                {
+                    <li uk-tooltip="title:آموزشگاهی">
+                        <img src="~/Resources/Static/Vector/Education.svg" height="24" width="24" alt="Badge" />
+                    </li>
+                }
+                @if (Model.TblUser.RoleId == 2 && Model.PlaylistId != null && Model.TblPlaylist.CertificateURL != null)
+                {
+                    <li uk-tooltip="title:دارای مدرک">
+                        <img src="~/Resources/Static/Vector/Medal.svg" height="24" width="24" alt="Badge" />
+                    </li>
+                }
+                @*<li uk-tooltip="title:حامی خیریه">
+                        <img src="~/Resources/Static/Vector/Heart.svg" height="24" width="24" alt="Badge" />
+                    </li>*@
+            </ul>
+            <img class="thumbnail" height="200" width="360" src="~/Resources/Video/Image/Thumb/@Model.MainImage" alt="Thumbnail" />
         </div>
-        <hr />
-        <div class="bottom row">
-            <h6 class="price">
-               @Model.Price.ToString("#,0")
-            </h6>
-            <div class="row star-container uk-margin-auto-left" dir="rtl">
-                <div class="Stars" style="--rating: @(Model.LikeCount/20);" uk-tooltip="@(Model.LikeCount/20)" aria-label="Rating of this product is 2.3 out of 5."></div>
+        <div class="text column">
+            <div class="content column">
+                <a href="/VideoView/@Model.VideoId/@Model.Title" class="title">
+                    @Model.Title
+                </a>
+                <p class="desciption">
+                    @Model.Description
+                </p>
+                <a class="tutor" uk-icon="tutor" href="/Dashboard/@Model.TblUser.UserId/@Model.TblUser.Name">
+                    @Model.TblUser.Name
+                </a>
+            </div>
+            <hr />
+            <div class="bottom row">
+                <h6 class="price">
+                    @Model.Price.ToString("#,0")
+                </h6>
+                <div class="row star-container uk-margin-auto-left" dir="rtl">
+                    <div class="Stars" style="--rating: @(Model.LikeCount/20);" uk-tooltip="@(Model.LikeCount/20)" aria-label="Rating of this product is 2.3 out of 5."></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}

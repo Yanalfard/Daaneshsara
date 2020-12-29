@@ -1,16 +1,18 @@
-﻿
+﻿@model IEnumerable<DataLayer.Models.TblPlaylist>
 @{
-    ViewBag.Title = "Classes";
+    ViewBag.Title = ViewBag.Name;
     Layout = "~/Views/Profile/_ProfileLayout.cshtml";
+    var first = Model.FirstOrDefault();
 }
 
-@Html.Partial("_Playlist")
-<br class="uk-margin-top" />
-@Html.Partial("_Playlist")
-<br class="uk-margin-top" />
-@Html.Partial("_Playlist")
-<br class="uk-margin-top" />
-@Html.Partial("_Playlist")
-<br class="uk-margin-top" />
-@Html.Partial("_Playlist")
-<br class="uk-margin-top" />
+@if (Model.Any())
+{
+    @Html.Partial("_HeaderProfile", @first.TblUser)
+
+    foreach (var item in Model)
+    {
+        @Html.Partial("_Playlist", item)
+        <br class="uk-margin-top" />
+    }
+
+}

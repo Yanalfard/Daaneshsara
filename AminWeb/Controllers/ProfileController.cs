@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataLayer.Models;
+using DataLayer.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,20 +10,25 @@ namespace AminWeb.Controllers
 {
     public class ProfileController : Controller
     {
+        private Heart _db = new Heart();
         // GET: Profile
-        public ActionResult Dashboard()
+        [Route("Dashboard/{id}/{name}")]
+        public ActionResult Dashboard(int id, string name)
         {
-            return View();
+            ViewBag.Name = name;
+            List<TblVideo> selectVideoInUser = _db.Video.Get().Where(i => i.UserId == id && i.IsActive).OrderByDescending(i=>i.DateSubmited).Take(12).ToList();
+            return View(selectVideoInUser);
         }
-
-        public ActionResult Videos()
+        [Route("Videos/{id}/{name}")]
+        public ActionResult Videos(int id, string name)
         {
-            return View();
+            ViewBag.Name = name;
+            return View(_db.Video.Get().Where(i => i.UserId == id && i.IsActive).OrderByDescending(i => i.DateSubmited));
         }
-
-        public ActionResult Classes()
+        [Route("Classes/{id}/{name}")]
+        public ActionResult Classes(int id, string name)
         {
-            return View();
+            return View(_db.Playlist.Get().Where(i => i.UserId == id && i.IsActive).OrderByDescending(i => i.DateSubmited).ToList());
         }
 
         public ActionResult SearchResults()

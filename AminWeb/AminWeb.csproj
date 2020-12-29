@@ -145,6 +145,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageEmailsController.cs" />
+    <Compile Include="Controllers\PlayListController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2043,6 +2044,8 @@
     <Content Include="Views\Shared\_LoggedInUser.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Video\ListVideos.cshtml" />
+    <Content Include="Views\PlayList\ListPlayList.cshtml" />
+    <Content Include="Views\Shared\_HeaderProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

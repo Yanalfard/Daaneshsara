@@ -1,19 +1,19 @@
-﻿
-@{
-    ViewBag.Title = "Videos";
-    Layout = "~/Views/Profile/_ProfileLayout.cshtml";
-}
+﻿@model IEnumerable<DataLayer.Models.TblVideo>
 
-<div class="video-grid center flex-1">
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-</div>
+@{
+    ViewBag.Title = ViewBag.Name;
+    Layout = "~/Views/Profile/_ProfileLayout.cshtml";
+    var first = Model.FirstOrDefault();
+}
+@if (Model.Any())
+{
+
+    @Html.Partial("_HeaderProfile", @first.TblUser)
+
+    <div class="video-grid center flex-1">
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_VideoBlock", item)
+        }
+    </div>
+}
