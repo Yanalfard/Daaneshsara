@@ -142,6 +142,7 @@
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="CaptchaResponseViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageEmailsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MoreLinq\MoreEnumerable.DistinctBy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\AminWebRoleProvider.cs" />
     <Compile Include="Utilities\CheckContentImage.cs" />
@@ -2039,6 +2041,8 @@
     <Content Include="Views\ManageEmails\RecoveryPassword.cshtml" />
     <Content Include="Views\Account\ActiveUser.cshtml" />
     <Content Include="Views\Shared\_LoggedInUser.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Video\ListVideos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

@@ -7,7 +7,7 @@
 }
 
 <div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
-    @using (Html.BeginForm("Edit", "Video", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Edit", "Video", new AjaxOptions() { OnSuccess = "LoadingEnd('#editVideo')" }, FormMethod.Post, new { enctype = "multipart/form-data", @id = "editVideo" }))
     {
         @Html.HiddenFor(m => m.id)
         @Html.HiddenFor(m => m.MainImage)
@@ -49,7 +49,7 @@
         <div class="form-group">
             <label for="VideoDemo">دموی ویدیو</label>
             <div class="row-reverse text-center">
-                @if (Model.VideoDemoUrl !=null)
+                @if (Model.VideoDemoUrl != null)
                 {
                     <video class="video-playback" controls controlsList="nodownload">
                         <source src="~/Resources/Video/VideoDemo/@Model.VideoDemoUrl" type="video/mp4">
@@ -123,10 +123,12 @@
         <div class="form-group">
             <label for="Playlist">کلاس</label>
             <div class="row-reverse">
-                @Html.DropDownList("PlaylistId", null, htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left", dir = "rtl" })
-                <a href="/User/Classes/Create" uk-icon="plus" uk-tooltip="اضافه کردن کلاس جدید" class="uk-margin-auto-right"></a>
+                @Html.DropDownList("CatagoryId", null, htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showPlaylist", dir = "rtl" })
             </div>
-            @Html.ValidationMessageFor(model => model.PlaylistId, "", new { @class = "uk-text-danger" })
+            @Html.ValidationMessageFor(model => model.CatagoryId, "", new { @class = "uk-text-danger" })
+        </div>
+        <div class="form-group" id="playlistEdit">
+            @*@Html.Action("ShowPlaylist", "Video", new { id=Model.CatagoryId })*@
         </div>
         <div class="form-group">
             <label for="Keywords">کلمات کلیدی</label>
@@ -138,7 +140,7 @@
             </span>
         </div>
         <div class="row-reverse uk-margin-medium-top">
-            <button class="btn-primary">
+            <button class="btn-primary" onclick="LoadingRun('#editVideo')">
                 ویرایش
             </button>
         </div>
@@ -147,3 +149,31 @@
     }
 
 </div>
+<script>
+
+
+    $(document).ready(function () {
+        $.get('/User/Video/ShowPlaylist/' + @Model.CatagoryId, function (result) {
+            $('#playlistEdit').html(result);
+        }).then(i => {
+        $('#PlaylistId').val(@Model.PlaylistId);
+        });
+        @*$.get('/User/Video/ShowPlaylist/' + @Model.CatagoryId, function (result) {
+            $('#playlistEdit').html(result);
+            $('#PlaylistId').val(@Model.PlaylistId);
+        });*@
+        $(".showPlaylist").change(function () {
+            var id = $(".showPlaylist option:selected").val();
+            if (id != "") {
+                $("#overlay").fadeIn(300);
+                $.get('/User/Video/ShowPlaylist/' + id, function (result) {
+                    $('#playlistEdit').html(result);
+                    $("#overlay").fadeOut(300);
+                });
+            }
+            else {
+                $('#playlistEdit').html("");
+            }
+        });
+    });
+</script>

@@ -26,7 +26,7 @@
         <hr />
         <div class="bottom row">
             <h6 class="price">
-                @Model.Price
+                @Model.Price.ToString("#,0")
             </h6>
             <div class="row star-container uk-margin-auto-left" dir="rtl">
                 <div class="Stars" style="--rating: (@Model.LikeCount/20)" uk-tooltip="title: (@Model.LikeCount/20)" aria-label="Rating of this product is 2.3 out of 5."></div>

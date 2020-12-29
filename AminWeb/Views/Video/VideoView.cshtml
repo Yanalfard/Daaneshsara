@@ -1,4 +1,5 @@
-﻿@{
+﻿@model DataLayer.Models.TblVideo
+@{
     ViewBag.Title = "نام ویدیو";
     ViewBag.Content = "نام ویدیو آموزشی، آپلود کننده آن و تاریخ آپلود";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -59,32 +60,39 @@
 <div class="column uk-container">
     <div class="column container uk-margin-auto">
         <video class="video-playback uk-margin-auto-left uk-margin-auto-right white-area-margin" controls controlsList="nodownload">
-            <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            <source src="~/Resources/Video/VideoDemo/@Model.VidioDemoUrl" type="video/mp4">
             مرورگر شما پخش ویدیو را پشتیبانی نمی کند.
         </video>
         <div id="Info" class="mat uk-box-shadow-large uk-margin-medium-top uk-margin-medium-bottom">
             <div class="uk-padding">
                 <h3>
-                    تیتر این ویدیو اینجا قرار می گیرد
+                   @Model.Title
                 </h3>
                 <a href="#" class="tutor">
-                    نام آپلود کننده اینجا قرار می گیرد
+                   @Model.TblUser.Name
                 </a>
                 <p class="uk-margin-remove-bottom">
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم
-                    از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                    سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود
-                    ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                   @{ 
+                       string desc = "";
+                       foreach (string word in Model.Description.Split(' ').ToList().Take(30))
+                       {
+                           desc += word + ' ';
+                       }
+
+                       string desc2 = "";
+                       foreach (string word in Model.Description.Split(' ').ToList().Skip(30))
+                       {
+                           desc2 +=  word + ' ';
+                       }
+                   }
+                   
+                    @desc
+
                     <details dir="rtl">
                         <summary>
                             بیشتر...
                         </summary>
-                        جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
-                        طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و
-                        طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و
-                        دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی
-                        دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی
-                        دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                        @desc2
                     </details>
                 </p>
             </div>
@@ -98,7 +106,7 @@
                         <span>
                             تومان
                         </span>
-                        160,000
+                        @Model.Price.ToString("#,0")
                     </div>
                 </div>
                 <div class="control-panel-top  row-reverse uk-margin-auto-right">
@@ -109,9 +117,9 @@
                     </ul>
                     <div class="row star-container uk-margin-small-right" dir="rtl">
                         <a href="#Modal-Rate" class="rate icon-button" uk-toggle uk-tooltip="امتیاز دهی" uk-icon="favourite"></a>
-                        <div class="Stars" style="--rating: 2.6;" uk-tooltip="title:2.6" aria-label="The rating of this video is 2.3 out of 5"></div>
+                        <div class="Stars" style="--rating:  @(Model.LikeCount/20);;" uk-tooltip="@(Model.LikeCount/20)" aria-label="The rating of this video is 2.3 out of 5"></div>
                         <span class="raiting remove-at-mobile">
-                            2.6
+                            @(Model.LikeCount/20)
                         </span>
                     </div>
                 </div>

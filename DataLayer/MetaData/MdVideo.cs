@@ -69,6 +69,7 @@ namespace DataLayer.MetaData
         public Nullable<int> PlaylistId { get; set; }
         
         public bool IsActive { get; set; }
+        [Required(ErrorMessage ="دسته مورد نظر را انتخاب کنید")]
         public int CatagoryId { get; set; }
     }
 

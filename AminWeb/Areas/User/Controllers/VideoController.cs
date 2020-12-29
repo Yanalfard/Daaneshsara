@@ -31,18 +31,18 @@ namespace AminWeb.Areas.User.Controllers
         }
         public ActionResult Create()
         {
-            ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId), "PlaylistId", "Title");
-            // ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name");
+            //ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId), "PlaylistId", "Title");
+            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name");
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(MdVideo video, HttpPostedFileBase MainImage, HttpPostedFileBase VideoDemoUrl, HttpPostedFileBase VideoUrl)
         {
+            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", video.CatagoryId);
             if (ModelState.IsValid)
             {
-                ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId), "PlaylistId", "Title", video.PlaylistId);
-
+                //ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId), "PlaylistId", "Title", video.PlaylistId);
                 if (MainImage == null)
                 {
                     ModelState.AddModelError("MainImage", "عکس آپلود کنید");
@@ -70,11 +70,11 @@ namespace AminWeb.Areas.User.Controllers
                 string PasVideoDemoUrl = "";
                 if (VideoUrl != null)
                 {
-                     PasVideoUrl = Path.GetExtension(VideoUrl.FileName).ToLower();
+                    PasVideoUrl = Path.GetExtension(VideoUrl.FileName).ToLower();
                 }
                 if (VideoDemoUrl != null)
                 {
-                     PasVideoDemoUrl = Path.GetExtension(VideoDemoUrl.FileName).ToLower();
+                    PasVideoDemoUrl = Path.GetExtension(VideoDemoUrl.FileName).ToLower();
                 }
 
                 if (VideoUrl == null)
@@ -87,30 +87,38 @@ namespace AminWeb.Areas.User.Controllers
                     ModelState.AddModelError("VideoUrl", "حجم ویدیو بیشتر از 100 مگابایات است");
                     return View(video);
                 }
-                else if (VideoUrl != null && PasVideoUrl != ".mkv" || PasVideoUrl != ".mp4")
-                {
-                    ModelState.AddModelError("VideoUrl", "ویدیو نامعتبر است");
-                    return View(video);
-                }
                 else if (VideoUrl != null)
                 {
-                    video.VideoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoUrl.FileName);
-                    VideoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl));
+                    if (PasVideoUrl == ".mkv" || PasVideoUrl == ".mp4")
+                    {
+                        video.VideoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoUrl.FileName);
+                        VideoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl));
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("VideoUrl", "ویدیو نامعتبر است");
+                        return View(video);
+                    }
+
                 }
                 if (VideoDemoUrl != null && VideoDemoUrl.ContentLength > 104857600)
                 {
                     ModelState.AddModelError("VideoDemoUrl", "حجم دموی ویدیو بیشتر از 100 مگابایات است");
                     return View(video);
                 }
-                else if (VideoDemoUrl != null && PasVideoDemoUrl != ".mkv" || PasVideoDemoUrl != ".mp4")
-                {
-                    ModelState.AddModelError("VideoDemoUrl", "دموی ویدیو نامعتبر است");
-                    return View(video);
-                }
                 else if (VideoDemoUrl != null)
                 {
-                    video.VideoDemoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoDemoUrl.FileName);
-                    VideoDemoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoDemo/" + video.VideoDemoUrl));
+                    if (PasVideoDemoUrl == ".mkv" || PasVideoDemoUrl == ".mp4")
+                    {
+                        video.VideoDemoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoDemoUrl.FileName);
+                        VideoDemoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoDemo/" + video.VideoDemoUrl));
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("VideoDemoUrl", "دموی ویدیو نامعتبر است");
+                        return View(video);
+                    }
+
                 }
 
                 TblVideo addVideo = new TblVideo();
@@ -121,7 +129,7 @@ namespace AminWeb.Areas.User.Controllers
                 addVideo.PlaylistId = video.PlaylistId;
                 addVideo.IsActive = false;
                 addVideo.IsHome = false;
-                addVideo.CatagoryId = _db.Playlist.GetById(video.PlaylistId).CatagoryId;
+                addVideo.CatagoryId = video.CatagoryId;
                 addVideo.MainImage = video.MainImage;
                 addVideo.Link = video.MainImage;
                 addVideo.VideoUrl = video.VideoUrl;
@@ -164,20 +172,15 @@ namespace AminWeb.Areas.User.Controllers
             editVideo.VideoDemoUrl = selectVideoById.VidioDemoUrl;
             List<TblVideoPlaylistKeyword> selectKeywords = _db.VideoPlaylistKeyword.Get().Where(i => i.VideoId == id).ToList();
             editVideo.Keywords = string.Join("،", selectKeywords.Select(t => t.Name));
-            //addVideo.IsActive = false;
-            //addVideo.IsHome = false;
-            //addVideo.ViewCount = 0;
-            //addVideo.LikeCount = 0;
-            // addVideo.UserId = SelectUser().UserId;
-            //  addVideo.DateSubmited = DateTime.Now.ToShortDateString();
-            ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId), "PlaylistId", "Title", editVideo.PlaylistId);
-
+            //  ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId), "PlaylistId", "Title", editVideo.PlaylistId);
+            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", editVideo.CatagoryId);
             return View(editVideo);
         }
 
         [HttpPost]
         public ActionResult Edit(MdVideo video, HttpPostedFileBase MainImage, HttpPostedFileBase VideoDemoUrl, HttpPostedFileBase VideoUrl)
         {
+            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", video.CatagoryId);
             if (ModelState.IsValid)
             {
                 if (MainImage != null && MainImage.ContentLength > 10485760)
@@ -225,40 +228,48 @@ namespace AminWeb.Areas.User.Controllers
                     ModelState.AddModelError("VideoUrl", "حجم ویدیو بیشتر از 100 مگابایات است");
                     return View(video);
                 }
-                else if (VideoUrl != null && PasVideoUrl != ".mkv" || PasVideoUrl != ".mp4")
-                {
-                    ModelState.AddModelError("VideoUrl", "ویدیو نامعتبر است");
-                    return View(video);
-                }
                 else if (VideoUrl != null)
                 {
-                    string fullPathLogo = Request.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl);
-                    if (System.IO.File.Exists(fullPathLogo))
+                    if (PasVideoUrl == ".mkv" || PasVideoUrl == ".mp4")
                     {
-                        System.IO.File.Delete(fullPathLogo);
+                        string fullPathLogo = Request.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl);
+                        if (System.IO.File.Exists(fullPathLogo))
+                        {
+                            System.IO.File.Delete(fullPathLogo);
+                        }
+                        video.VideoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoUrl.FileName);
+                        VideoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl));
                     }
-                    video.VideoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoUrl.FileName);
-                    VideoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoUrl/" + video.VideoUrl));
+                    else
+                    {
+                        ModelState.AddModelError("VideoUrl", "ویدیو نامعتبر است");
+                        return View(video);
+                    }
+
                 }
                 if (VideoDemoUrl != null && VideoDemoUrl.ContentLength > 104857600)
                 {
                     ModelState.AddModelError("VideoDemoUrl", "حجم دموی ویدیو بیشتر از 100 مگابایات است");
                     return View(video);
                 }
-                else if (VideoDemoUrl != null && PasVideoDemoUrl != ".mkv" || PasVideoDemoUrl != ".mp4")
-                {
-                    ModelState.AddModelError("VideoDemoUrl", "دموی ویدیو نامعتبر است");
-                    return View(video);
-                }
                 else if (VideoDemoUrl != null)
                 {
-                    string fullPathLogo = Request.MapPath("/Resources/Video/VideoDemo/" + video.VideoDemoUrl);
-                    if (System.IO.File.Exists(fullPathLogo))
+                    if (PasVideoDemoUrl == ".mkv" || PasVideoDemoUrl == ".mp4")
                     {
-                        System.IO.File.Delete(fullPathLogo);
+                        string fullPathLogo = Request.MapPath("/Resources/Video/VideoDemo/" + video.VideoDemoUrl);
+                        if (System.IO.File.Exists(fullPathLogo))
+                        {
+                            System.IO.File.Delete(fullPathLogo);
+                        }
+                        video.VideoDemoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoDemoUrl.FileName);
+                        VideoDemoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoDemo/" + video.VideoDemoUrl));
                     }
-                    video.VideoDemoUrl = Guid.NewGuid().ToString() + Path.GetExtension(VideoDemoUrl.FileName);
-                    VideoDemoUrl.SaveAs(Server.MapPath("/Resources/Video/VideoDemo/" + video.VideoDemoUrl));
+                    else
+                    {
+                        ModelState.AddModelError("VideoDemoUrl", "دموی ویدیو نامعتبر است");
+                        return View(video);
+                    }
+
                 }
 
 
@@ -268,7 +279,7 @@ namespace AminWeb.Areas.User.Controllers
                 updateVideoById.Price = video.Price;
                 updateVideoById.IsCharity = video.IsCharity;
                 updateVideoById.PlaylistId = video.PlaylistId;
-                updateVideoById.CatagoryId = _db.Playlist.GetById(video.PlaylistId).CatagoryId;
+                updateVideoById.CatagoryId = video.CatagoryId;
                 updateVideoById.MainImage = video.MainImage;
                 updateVideoById.VideoUrl = video.VideoUrl;
                 updateVideoById.VidioDemoUrl = video.VideoDemoUrl;
@@ -287,8 +298,6 @@ namespace AminWeb.Areas.User.Controllers
                 _db.VideoPlaylistKeyword.Save();
                 return Redirect("/User/Video/YourVideos");
             }
-            ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId), "PlaylistId", "Title", video.PlaylistId);
-
             return PartialView(video);
         }
 
@@ -340,17 +349,15 @@ namespace AminWeb.Areas.User.Controllers
         }
 
 
-        //private SectionRepository secRepo = new SectionRepository();
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult UpdateSortOrder(int columnNum, string sectionIdQueryString)
+        public ActionResult ShowPlaylist(int? id)
         {
-            string[] separator = new string[2] { "section[]=", "&" };
-            string[] sectionIdArray = sectionIdQueryString.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-
-            //secRepo.UpdateSortOrder(columnNum, sectionIdArray);
-            //secRepo.Save();
-            return Content("Success");
+            if (id == null)
+            {
+                return null;
+            }
+            ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId && i.CatagoryId == id), "PlaylistId", "Title");
+            List<TblPlaylist> playlists = _db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId && i.CatagoryId == id).ToList();
+            return PartialView(playlists);
         }
     }
 }

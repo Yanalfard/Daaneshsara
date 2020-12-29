@@ -21,7 +21,17 @@
             <td>@item.LikeCount</td>
             <td>@item.Price.ToString("#,0")</td>
             <td>@item.TblCatagory.Name</td>
-            <td>@item.TblPlaylist.Title</td>
+
+            @if (item.PlaylistId != null)
+            {
+                <td>
+                    @item.TblPlaylist.Title
+                </td>
+            }
+            else
+            {
+                <td>کلاس ندارد</td>
+            }
             <td>@item.TblUser.Name</td>
             <td>
                 <small class="text-info">@item.TblUser.TblRole.Title</small>

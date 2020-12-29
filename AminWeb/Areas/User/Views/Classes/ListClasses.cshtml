@@ -1,4 +1,73 @@
-﻿@model IEnumerable<DataLayer.Models.TblPlaylist>
+﻿@*@model IEnumerable<DataLayer.Models.TblVideo>
+
+
+
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            if (item.PlaylistId != null)
+            {
+                <div class="row-reverse" id="classes_(@(item.TblPlaylist.PlaylistId)">
+                    <details dir="rtl" class="uk-margin-small-bottom uk-width-1-1">
+                        <summary>
+                            @item.TblPlaylist.Title
+                        </summary>
+                        <ul dir="ltr" class="column uk-margin-auto-left uk-nav uk-nav-default"
+                            uk-sortable="group:my; cls-custom: uk-box-shadow-small uk-background mat">
+                            @if (item.TblPlaylist.TblVideo.Any())
+                            {
+                                foreach (var j in item.TblPlaylist.TblVideo)
+                                {
+                                    <li class="video_@j.VideoId">
+                                        <div class="row-reverse uk-padding-small">
+                                            <span>@j.Title</span>
+                                            <div class="row uk-margin-auto-right">
+                                                <a onclick="deleteVideo(@j.VideoId)" uk-icon="trash"></a>
+                                                <a href="/User/Video/Edit/@j.VideoId" uk-icon="edit"></a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </details>
+                    <div class="row uk-margin-auto-right">
+                        <a uk-icon="trash" onclick="deleteClasses(@item.TblPlaylist.PlaylistId)"></a>
+                        <a href="/User/Classes/Edit/@item.TblPlaylist.PlaylistId" uk-icon="edit"></a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row-reverse" id="classes_(@(item.VideoId)">
+                    <details dir="rtl" class="uk-margin-small-bottom uk-width-1-1">
+                        <summary>
+                            بدون  کلاس
+                        </summary>
+                        <ul dir="ltr" class="column uk-margin-auto-left uk-nav uk-nav-default"
+                            uk-sortable="group:my; cls-custom: uk-box-shadow-small uk-background mat">
+                            <li class="video_@item.VideoId">
+                                <div class="row-reverse uk-padding-small">
+                                    <span>@item.Title</span>
+                                    <div class="row uk-margin-auto-right">
+                                        <a onclick="deleteVideo(@item.VideoId)" uk-icon="trash"></a>
+                                        <a href="/User/Video/Edit/@item.VideoId" uk-icon="edit"></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </details>
+
+                </div>
+            }
+        }
+    }*@
+
+
+
+@model IEnumerable<DataLayer.Models.TblPlaylist>
+@using DataLayer.Models
 
 @if (Model.Any())
 {
@@ -20,7 +89,7 @@
                                     <span>@j.Title</span>
                                     <div class="row uk-margin-auto-right">
                                         <a onclick="deleteVideo(@j.VideoId)" uk-icon="trash"></a>
-                                        <a href="/User/Video/Edit/@j.VideoId" uk-icon="edit" ></a>
+                                        <a href="/User/Video/Edit/@j.VideoId" uk-icon="edit"></a>
                                     </div>
                                 </div>
                             </li>
@@ -34,4 +103,34 @@
             </div>
         </div>
     }
+}
+
+@if (ViewBag.Video != null)
+{
+    List<TblVideo> list = ViewBag.Video;
+    <div class="row-reverse">
+        <details dir="rtl" class="uk-margin-small-bottom uk-width-1-1">
+            <summary>
+                بدون کلاس
+            </summary>
+
+            <ul dir="ltr" class="column uk-margin-auto-left uk-nav uk-nav-default"
+                uk-sortable="group:my; cls-custom: uk-box-shadow-small uk-background mat">
+                @foreach (var item in list)
+                {
+                    <li class="video_@item.VideoId">
+                        <div class="row-reverse uk-padding-small">
+                            <span>@item.Title</span>
+                            <div class="row uk-margin-auto-right">
+                                <a onclick="deleteVideo(@item.VideoId)" uk-icon="trash"></a>
+                                <a href="/User/Video/Edit/@item.VideoId" uk-icon="edit"></a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+
+        </details>
+    </div>
+
 }

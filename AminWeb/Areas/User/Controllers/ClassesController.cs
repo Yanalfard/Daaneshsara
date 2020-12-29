@@ -2,6 +2,7 @@
 using DataLayer.MetaData;
 using DataLayer.Models;
 using DataLayer.Services;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +29,11 @@ namespace AminWeb.Areas.User.Controllers
 
         public ActionResult ListClasses()
         {
+            ViewBag.Video = _db.Video.Get().Where(i => i.UserId == SelectUser().UserId && i.PlaylistId == null).ToList();
             return PartialView(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId));
+            //List<TblVideo> video = _db.Video.Get().Where(i => i.UserId == SelectUser().UserId).OrderByDescending(i=>i.PlaylistId).ToList();
+            ////video = video.DistinctBy(i=>i.PlaylistId).ToList();
+            //return PartialView(video);
         }
         public ActionResult Create()
         {

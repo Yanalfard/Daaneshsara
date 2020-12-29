@@ -1,9 +1,21 @@
 ﻿@model IEnumerable<DataLayer.Models.TblPlaylist>
+@*@model DataLayer.Models.TblPlaylist*@
 
-<select  name="PlaylistId">
-    @foreach (var item in Model)
-    {
 
-        <option value=" @item.PlaylistId"> @item.Title</option>
-    }
-</select>
+
+@if (Model.Any())
+{
+    <label for="Playlist">کلاس</label>
+    <div class="row-reverse">
+        <select name="PlaylistId" id="PlaylistId" class="uk-width-2-3 uk-margin-small-left " dir="rtl">
+            <option value="">دسته بندی نشده</option>
+            @foreach (var item in Model)
+            {
+
+                <option value="@item.PlaylistId"> @item.Title</option>
+            }
+        </select>
+        <a href="/User/Classes/Create" uk-icon="plus" uk-tooltip="اضافه کردن کلاس جدید" class="uk-margin-auto-right"></a>
+
+    </div>
+}

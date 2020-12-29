@@ -1,0 +1,23 @@
+﻿@model IEnumerable<DataLayer.Models.TblCatagory>
+
+<h4>
+    دسته بندی ها
+</h4>
+<div class="search-box row uk-margin-small-bottom">
+    <button uk-icon="search"></button>
+    <label for="CategorySearch" class="collapsed">جستجو دسته بندی</label>
+    <input dir="rtl" type="text" placeholder="جستجو..." name="CategorySearch" />
+</div>
+<div dir="rtl">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <a onclick="selectByCategory(@item.CatagoryId)">
+                    @item.Name
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+

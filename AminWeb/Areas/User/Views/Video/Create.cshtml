@@ -7,7 +7,7 @@
 }
 
 <div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
-    @using (Html.BeginForm("Create", "Video", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Create", "Video", new AjaxOptions() { OnSuccess = "LoadingEnd('#createVideo')" }, FormMethod.Post, new { enctype = "multipart/form-data", @id = "createVideo" }))
     {
         <h3>
             آپلود ویدیو جدید
@@ -66,7 +66,7 @@
                 @Html.ValidationMessageFor(model => model.VideoUrl, "", new { @class = "uk-text-danger" })
             </span>
         </div>
-     
+
 
         <div class="form-group">
             <label for="Description">توضیحات</label>
@@ -94,14 +94,14 @@
                 اهدا شود
             </label>
         </div>
-
         <div class="form-group">
-            <label for="Playlist">کلاس</label>
+            <label for="Playlist">دسته </label>
             <div class="row-reverse">
-                @Html.DropDownListFor(model => model.PlaylistId, (IEnumerable<SelectListItem>)ViewBag.PlaylistId, "کلاس مورد نظر", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showPlaylist", dir = "rtl", onchange = "showPlaylist()" })
-                <a href="/User/Classes/Create" uk-icon="plus" uk-tooltip="اضافه کردن کلاس جدید" class="uk-margin-auto-right"></a>
+                @Html.DropDownListFor(model => model.CatagoryId, (IEnumerable<SelectListItem>)ViewBag.CatagoryId, "دسته بندی ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showPlaylist", dir = "rtl", onchange = "showPlaylist()" })
             </div>
-            @Html.ValidationMessageFor(model => model.PlaylistId, "", new { @class = "uk-text-danger" })
+            @Html.ValidationMessageFor(model => model.CatagoryId, "", new { @class = "uk-text-danger" })
+        </div>
+        <div class="form-group" id="playlist">
         </div>
         <div class="form-group">
             <label for="Keywords">کلمات کلیدی</label>
@@ -113,12 +113,28 @@
             </span>
         </div>
         <div class="row-reverse uk-margin-medium-top">
-            <button class="btn-primary">
+            <button class="btn-primary" onclick="LoadingRun('#createVideo')">
                 آپلود
             </button>
         </div>
-
-
     }
-
 </div>
+
+
+<script>
+    $(document).ready(function () {
+        $(".showPlaylist").change(function () {
+            var id = $(".showPlaylist option:selected").val();
+            if (id != "") {
+                $("#overlay").fadeIn(300);
+                $.get('/User/Video/ShowPlaylist/' + id, function (result) {
+                    $('#playlist').html(result);
+                    $("#overlay").fadeOut(300);
+                });
+            }
+            else {
+                $('#playlist').html("");
+            }
+        });
+    });
+</script>
