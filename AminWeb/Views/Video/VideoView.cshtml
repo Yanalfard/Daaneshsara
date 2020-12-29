@@ -72,28 +72,31 @@
                    @Model.TblUser.Name
                 </a>
                 <p class="uk-margin-remove-bottom">
-                   @{ 
-                       string desc = "";
-                       foreach (string word in Model.Description.Split(' ').ToList().Take(30))
-                       {
-                           desc += word + ' ';
-                       }
+                    @{
+                        string desc = "";
+                        foreach (string word in Model.Description.Split(' ').ToList().Take(30))
+                        {
+                            desc += word + ' ';
+                        }
 
-                       string desc2 = "";
-                       foreach (string word in Model.Description.Split(' ').ToList().Skip(30))
-                       {
-                           desc2 +=  word + ' ';
-                       }
-                   }
-                   
+                        string desc2 = "";
+                        foreach (string word in Model.Description.Split(' ').ToList().Skip(30))
+                        {
+                            desc2 += word + ' ';
+                        }
+                    }
+
                     @desc
 
-                    <details dir="rtl">
-                        <summary>
-                            بیشتر...
-                        </summary>
-                        @desc2
-                    </details>
+                    @if (!string.IsNullOrEmpty(desc2))
+                    {
+                        <details dir="rtl">
+                            <summary>
+                                بیشتر...
+                            </summary>
+                            @desc2
+                        </details>
+                    }
                 </p>
             </div>
             <hr class="uk-margin-remove" />

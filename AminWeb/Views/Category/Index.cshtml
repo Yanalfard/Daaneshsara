@@ -4,20 +4,52 @@
     دسته بندی ها
 </h4>
 <div class="search-box row uk-margin-small-bottom">
-    <button uk-icon="search"></button>
+    <button uk-icon="search" onclick="catSearch(document.getElementById('txtCategoryInput').value)"></button>
     <label for="CategorySearch" class="collapsed">جستجو دسته بندی</label>
-    <input dir="rtl" type="text" placeholder="جستجو..." name="CategorySearch" />
+    <input dir="rtl" id="txtCategoryInput" oninput="catSearch(this.value)" type="text" placeholder="جستجو..." name="CategorySearch" />
+    <div class="category-drop mat" uk-drop="mode: none; pos: bottom-justify">
+        <ul class="uk-padding-remove uk-margin-remove" id="drop"></ul>
+    </div>
 </div>
 <div dir="rtl">
-    <ul>
-        @foreach (var item in Model)
-        {
-            <li>
-                <a onclick="selectByCategory(@item.CatagoryId)">
-                    @item.Name
-                </a>
-            </li>
-        }
+    <ul id="listCategories">
+        @*@foreach (var item in Model)
+            {
+                <li>
+                    <a onclick="selectByCategory(@item.CatagoryId)">
+                        @item.Name
+                    </a>
+                </li>
+            }*@
+
     </ul>
 </div>
 
+<script>
+
+    // Tamam e Category haye server, yekbar load shavand.
+    const categories = [
+        'ریاضی',
+        'فیزیک',
+        'آبیاری گیاهان دریایی',
+        'علوم',
+        'ادبیات',
+        'گیاه شناسی',
+    ]
+
+    const list = document.getElementById('listCategories');
+
+    function catSearch(val) {
+        list.innerHTML = '';
+        categories.filter(i => i.includes(val)).forEach(i =>
+            list.innerHTML += `<li><a href="javascript:selectByCategory('${i}')">${i.replace(val, `<b>${val}</b>`)}</a></li>`);
+    }
+
+    // MEHDIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+    fetch('Category/getAllCategoryNames').then(i => { // <--------------------------- { Enter URL }
+        categories = i;
+        categories.slice(0, 24).forEach(i =>
+            list.innerHTML += `<li><a href="javascript:selectByCategory('${i}')">${i}</a></li>`);
+    });
+
+</script>

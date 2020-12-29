@@ -767,7 +767,20 @@ select {
   .form-group .alert {
     margin-top: 6px; }
 
-.playlist .handle {
+.videoClass .header .drop-body {
+  padding: 16px; }
+  .videoClass .header .drop-body dl dt {
+    font-weight: bold;
+    font-size: 15px;
+    color: #484848;
+    margin-bottom: 3px; }
+  .videoClass .header .drop-body dl dd {
+    font-weight: normal;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 8px; }
+
+.videoClass .playlist .handle {
   padding: 12px 17px;
   background: #fff;
   background: #fff;

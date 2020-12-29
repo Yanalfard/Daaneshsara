@@ -224,3 +224,42 @@ backdrop-filter: saturate(80%);
       width: 100%;
       border: none;
       font-size: 16px; }
+
+.category-drop {
+  background: #fff;
+  -moz-border-radius: 12px 12px 12px 12px;
+  -webkit-border-radius: 12px 12px 12px 12px;
+  border-radius: 12px 12px 12px 12px;
+  /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0 1vw;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 1vw;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 1vw;
+  height: auto;
+  max-height: 240px;
+  z-index: 999;
+  overflow: hidden; }
+  .category-drop ul li {
+    padding: 8px 12px 8px 0;
+    -moz-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+    -webkit-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    color: #333;
+    cursor: pointer; }
+    .category-drop ul li b {
+      color: #F94646; }
+  .category-drop ul li:hover {
+    -moz-transition: all ease 0.1s;
+    -o-transition: all ease 0.1s;
+    -webkit-transition: all ease 0.1s;
+    transition: all ease 0.1s;
+    background: #eee; }
+
+#listCategories b {
+  color: #F94646; }
