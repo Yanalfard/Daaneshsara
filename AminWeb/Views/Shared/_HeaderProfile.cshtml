@@ -7,11 +7,11 @@
         {
             <img src="~/Resources/Static/Vector/Education.svg" class="uk-margin-right" height="24" width="24" alt="Badge" />
         }
-        <div class="search-box row uk-margin-auto-right">
+        <form action="/Profile/SearchResults/@Model.UserId" class="search-box row uk-margin-auto-right">
             <button uk-icon="search"></button>
             <label for="CategorySearch" class="collapsed">جستجو دسته بندی</label>
-            <input dir="rtl" type="text" placeholder="جستجو..." name="CategorySearch" />
-        </div>
+            <input dir="rtl" type="text" value="@ViewBag.Names" placeholder="جستجو..." name="q" />
+        </form>
     </div>
     <hr />
     <div class="user-bottom">

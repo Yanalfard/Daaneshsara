@@ -48,7 +48,7 @@
             </div>
 
             <div role="list" class="row-reverse uk-margin-auto-left">
-                <a role="listitem" href="/Home/Index" class="lesser">
+                <a role="listitem" href="/" class="lesser">
                     <span>خانه</span>
                     @*<span uk-icon="icon:home;ratio:1"></span>*@
                 </a>
@@ -57,7 +57,7 @@
                 <a role="listitem" href="/Home/Rules" class="lesser">قوانین</a>
             </div>
         </nav>
-        <a class="logo" href="/Home/Index">
+        <a class="logo" href="/">
             <img src="~/Resources/Static/Vector/Logo.svg" width="50" height="50" alt="Logo" />
         </a>
     </header>
@@ -67,36 +67,11 @@
     <div id="Modal-Category" uk-modal>
         <div class="uk-modal-dialog uk-modal-body mat  uk-width-4-6-at-s uk-width-1-2-at-m uk-padding uk-margin-auto uk-box-shadow-large ">
             <div role="menu" class="column">
-                <h4>
-                    دسته بندی ها
-                </h4>
-                <div class="search-box row uk-margin-small-bottom">
-                    <button uk-icon="search"></button>
-                    <label for="CategorySearch" class="collapsed">جستجو دسته بندی</label>
-                    <input dir="rtl" type="text" placeholder="جستجو..." name="CategorySearch" />
-                </div>
-                <details dir="rtl">
-                    <summary>دسته بندی</summary>
-                    <div class="uk-margin-right column">
-                        <details dir="rtl">
-                            <summary>دسته بندی</summary>
-                            <div class="uk-margin-right column">
-                                <details dir="rtl">
-                                    <summary>دسته بندی</summary>
-                                    <div class="column uk-margin-small-right">
-                                        <a href="#">آیتم</a>
-                                        <a href="#">آیتم</a>
-                                    </div>
-                                </details>
-                                <a href="#">آیتم</a>
-                                <a href="#">آیتم</a>
-                                <a href="#">آیتم</a>
-                            </div>
-                        </details>
-                        <a href="#">آیتم</a>
-                        <a href="#">آیتم</a>
-                    </div>
-                </details>
+                <!-- #region Category -->
+
+                @Html.Action("Index", "Category")
+
+                <!-- #endregion -->
             </div>
         </div>
     </div>
@@ -202,6 +177,78 @@
             window.location.href = "/";
         }
     </script>
+
+    <script>
+
+        // Tamam e Category haye server, yekbar load shavand.
+        let categories = [];
+
+        const lists = document.getElementsByClassName('listCategory');
+
+        function catSearch(val) {
+            for (var list of lists) {
+                list.innerHTML = '';
+                categories.filter(i => i.includes(val)).forEach(i =>
+                    list.innerHTML += `<li><a href="javascript:selectByCategory('${i}')">${i.replace(val, `<b>${val}</b>`)}</a></li>`);
+            }
+        }
+
+        if (localStorage.getItem('cats') === null || localStorage.getItem('cats') === undefined || localStorage.getItem('cats') === '') {
+            fetch(window.location.origin + '/Category/ListCategory').then(i => {
+                i.json().then((a) => {
+                    categories = a.responseText;
+                    localStorage.setItem('cats', JSON.stringify(categories));
+                    for (var list of lists) {
+                        categories.forEach(i =>
+                            list.innerHTML += `<li><a href="javascript:selectByCategory('${i}')">${i}</a></li>`);
+                    }
+                });
+            });
+        }
+        else {
+            categories = JSON.parse(localStorage.getItem('cats'));
+            for (var list of lists) {
+                categories.forEach(i =>
+                    list.innerHTML += `<li><a href="javascript:selectByCategory('${i}')">${i}</a></li>`);
+            }
+        }
+
+        function selectByCategory(name) {
+            console.table(window.location);
+            if (window.location.pathname == '/Home/Index' || window.location.pathname == '/') {
+                // در ایندکس است
+
+                if (name === '') return false;
+
+                $("#overlay").fadeIn(100);
+
+                $.ajax({
+                    url: "/Video/SelectVideosByCategory/",
+                    data: { name: name },
+                    type: "Get",
+                }).done(function (result) {
+                    $('#listVideo').html(result);
+                    $("#overlay").fadeOut(300);
+                });
+                $("#overlay").fadeOut(300);
+
+                UIkit.modal(document.getElementById('Modal-Category')).hide();
+                window.localStorage.setItem('searchcat', '');
+                return false;
+
+            }
+            else {
+                // از پیج دیگر می آید
+                UIkit.modal(document.getElementById('Modal-Category')).hide();
+                localStorage.setItem('searchcat', name);
+                window.location = window.location.origin;
+
+                return true;
+            }
+        }
+
+    </script>
+
 
     <!--#endregion-->
     @RenderSection("Scripts", false)

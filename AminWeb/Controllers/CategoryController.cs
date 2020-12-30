@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataLayer.Models;
 
 namespace AminWeb.Controllers
 {
@@ -15,6 +16,11 @@ namespace AminWeb.Controllers
         public ActionResult Index()
         {
             return PartialView(_db.Cat.Get());
+        }
+        public ActionResult ListCategory()
+        {
+            var list = _db.Cat.Get().Select(i => i.Name).ToList();
+            return Json(new { success = true, responseText = list }, JsonRequestBehavior.AllowGet);
         }
     }
 }

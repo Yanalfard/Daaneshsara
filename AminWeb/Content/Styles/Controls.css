@@ -819,3 +819,6 @@ select {
     direction: rtl; }
   .uk-notification-message > div {
     margin-right: 24px; }
+
+.listCategory b {
+  color: #F94646; }

@@ -24,7 +24,7 @@
 </div>
 <section class="main-search row">
     <div role="search" class="search-box row uk-margin-auto">
-        <button class="search" uk-icon="icon:search;ratio:1.2"></button>
+        <button class="search" onclick="searchVideoByName(document.getElementById('txtCategory').value)" uk-icon="icon:search;ratio:1.2"></button>
         <label for="Search" class="collapsed">جستجو</label>
         <input autocomplete="off" oninput="txtTypeChanged(this.value)" id="txtCategory" type="text" name="Search" placeholder="جستجو..." dir="rtl" />
         <div class="category-drop mat" uk-drop="mode: none; pos: bottom-justify">
@@ -35,13 +35,13 @@
             <div class="drop-body uk-padding-small column">
                 <ul class="uk-margin-remove uk-padding-remove">
                     <li>
-                        <a>بر اساس تاریخ</a>
+                        <a onclick="selectVideoBySearch('1')">بر اساس تاریخ</a>
                     </li>
                     <li class="uk-margin-small-top">
-                        <a>بر اساس بازدید</a>
+                        <a onclick="selectVideoBySearch('2')">بر اساس بازدید</a>
                     </li>
                     <li class="uk-margin-small-top">
-                        <a>بر اساس امتیاز</a>
+                        <a onclick="selectVideoBySearch('3')">بر اساس امتیاز</a>
                     </li>
                 </ul>
             </div>
@@ -73,58 +73,80 @@
             </aside>
         </div>
         <div class="video-grid flex-1" id="listVideo">
-            @Html.Action("ListVideos", "Video")
+            @*@Html.Action("ListVideos", "Video")*@
         </div>
     </content>
 </div>
 
 <script>
-    function selectByCategory(id) {
-        $("#overlay").fadeIn(100);
-        $.get('/Video/SelectVideosByCategory/' + id, function (result) {
-            $('#listVideo').html(result);
-            $("#overlay").fadeOut(300);
-        });
-        $("#overlay").fadeOut(300);
-    }
-</script>
 
-<script>
 
-    const videoNames = [
-        'کافه',
-        'رستوران',
-        'فست فود',
-        'فود',
-        'دونر',
-        'نوتلا'
-    ];
+    let videoNames = [];
 
     function txtTypeChanged(val) {
         val = val.trim();
         const drop = document.getElementById('drop');
         const catdrop = UIkit.drop(document.getElementsByClassName('category-drop')[0]);
 
-        if (val === '' || val === ' ') {
+        if (val === '' || val === ' ' || val.length < 2) {
             catdrop.hide();
             return;
         }
+        fetch(window.location.origin + '/SelectVideoName/' + val).then(i => {
+            i.json().then((a) => {
+                videoNames = a.responseText;
 
-        catdrop.show();
+                catdrop.show();
 
-        drop.innerHTML = '';
-        for (let vid of videoNames.filter(i => i.includes(val))) {
-            const li = document.createElement('li');
-            li.innerHTML = vid.replace(val, `<b>${val}</b>`);
-            li.addEventListener('click', () => {
-                document.getElementById('txtCategory').value = vid;
-                catdrop.hide(0);
+                drop.innerHTML = '';
+                for (let vid of videoNames.filter(i => i.includes(val))) {
+                    const li = document.createElement('li');
+                    li.innerHTML = vid.replace(val, `<b>${val}</b>`);
+                    li.addEventListener('click', () => {
+                        document.getElementById('txtCategory').value = vid;
+                        catdrop.hide(0);
+                        searchVideoByName(vid);
+                    });
+                    drop.appendChild(li);
+                }
+                if (drop.children.length == 0) {
+                    catdrop.hide(0);
+                }
             });
-            drop.appendChild(li);
-        }
-        if (drop.children.length == 0) {
-            catdrop.hide(0);
-        }
+        });
     }
 
+
 </script>
+
+@section Scripts{
+    <script>
+        function searchVideoByName(name) {
+            if (name == "") {
+                return false;
+            }
+            $("#overlay").fadeIn(300);
+            $.get('/SearchVideoByName/' + name, function (result) {
+                $('#listVideo').html(result);
+                $("#overlay").fadeOut(300);
+            });
+            $("#overlay").fadeOut(300);
+
+        }
+        function selectVideoBySearch(id) {
+            $("#overlay").fadeIn(300);
+            $.get('/Video/SelectVideoBySearch/' + id, function (result) {
+                $('#listVideo').html(result);
+                $("#overlay").fadeOut(300);
+            });
+        }
+        if (selectByCategory(localStorage.getItem('searchcat')) !== true) {
+            $("#overlay").fadeIn(300);
+            // agar
+            $.get('/Video/SelectVideos', function (result) {
+                $('#listVideo').html(result);
+                $("#overlay").fadeOut(300);
+            });
+        }
+    </script>
+}

@@ -1,19 +1,15 @@
-﻿
+﻿@model IEnumerable<DataLayer.Models.TblVideo>
 @{
-    ViewBag.Title = "SearchResults";
+    ViewBag.Title = ViewBag.Names;
     Layout = "~/Views/Profile/_ProfileLayout.cshtml";
+    var first = Model.FirstOrDefault();
 }
+@Html.Partial("_HeaderProfile", @first.TblUser)
 
 <div class="video-grid center flex-1">
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
-    @Html.Partial("_VideoBlock")
+    @foreach (var item in Model)
+    {
+        @Html.Partial("_VideoBlock", item)
+
+    }
 </div>
