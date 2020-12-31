@@ -20,7 +20,7 @@ namespace AminWeb.Controllers
         
         public ActionResult About()
         {
-            return View(_db.);
+            return View();
         }
 
         public ActionResult Contact()
