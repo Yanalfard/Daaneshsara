@@ -1,6 +1,6 @@
 ﻿@model DataLayer.Models.TblVideo
 @{
-    ViewBag.Title = "نام ویدیو";
+    ViewBag.Title = ViewBag.Name;
     ViewBag.Content = "نام ویدیو آموزشی، آپلود کننده آن و تاریخ آپلود";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,7 +8,6 @@
 <link href="~/Content/Styles/Pages/VideoView.min.css" rel="stylesheet" />
 
 <div class="white-area">
-
 </div>
 <img src="~/Resources/Static/Vector/biscuit/biscuit_main.svg" width="1" height="1" class="biscuit" alt="biscuit" />
 
@@ -16,7 +15,7 @@
     <div class="uk-modal-dialog uk-modal-body column">
         <h3 class="uk-margin-auto">به این ویدیو چند امتیاز می دهید؟</h3>
         <button class="uk-modal-close-default" name="close" type="button" uk-close></button>
-        <div class="row star-container uk-margin-auto">
+        <div class="row star-container uk-margin-auto" id="myRaiting">
             <span class="star-cb-group">
                 <input type="radio" id="rating-5" name="Raiting" value="5" /><label for="rating-5">5</label>
                 <input type="radio" id="rating-4" name="Raiting" value="4" checked="checked" /><label for="rating-4">4</label>
@@ -25,35 +24,37 @@
                 <input type="radio" id="rating-1" name="Raiting" value="1" /><label for="rating-1">1</label>
                 <input type="radio" id="rating-0" name="Raiting" value="0" class="star-cb-clear" /><label for="rating-0">0</label>
             </span>
+            <button class="btn-primary uk-margin-auto uk-margin-top" onclick="submitRating()">ثبت</button>
         </div>
-        <button class="btn-primary uk-modal-close uk-margin-auto uk-margin-top" type="button">ثبت</button>
     </div>
 </div>
 
 <div id="Modal-Report" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body column">
+    <div  class="uk-modal-dialog uk-modal-body column" id="myReport">
         <h3 class="uk-margin-auto">این ویدیو چه مشکلی دارد؟</h3>
         <button class="uk-modal-close-default" name="close" type="button" uk-close></button>
         <ul>
             <li class="uk-form-controls">
                 <label>محتوای نا مربوط</label>
-                <input type="radio" class=" uk-radio" name="report" value="" id="" />
+                <input type="radio" class=" uk-radio" checked name="reportRadio" value="محتوای نا مربوط" id="" />
             </li>
             <li class="uk-form-controls uk-margin-small-top">
                 <label>محتوای نا مناسب</label>
-                <input type="radio" class="uk-radio" name="report" value="" id="" />
+                <input type="radio" class="uk-radio" name="reportRadio" value="محتوای نا مناسب" id="" />
             </li>
             <li class="uk-form-controls uk-margin-small-top">
                 <label>کیفیت پایین ویدیو</label>
-                <input type="radio" class="uk-radio" name="report" value="" id="" />
+                <input type="radio" class="uk-radio" name="reportRadio" value="کیفیت پایین ویدیو" id="" />
             </li>
         </ul>
         <hr />
         <label for="Other" class="uk-margin-small-bottom" dir="rtl">مشکل دیگر...</label>
         <div class="input-group">
-            <input type="email" name="Other" placeholder="لحاظ کنید" />
+            <input type="text" id="textReporter" name="Text" placeholder="لحاظ کنید" />
         </div>
-        <button class="btn-primary uk-modal-close uk-margin-auto uk-margin-top" type="button">ثبت</button>
+        <button class="btn-primary  uk-margin-auto uk-margin-top" onclick="submitReport()">
+            ثبت
+        </button>
     </div>
 </div>
 
@@ -61,15 +62,15 @@
     <div class="column container uk-margin-auto">
         <video class="video-playback uk-margin-auto-left uk-margin-auto-right white-area-margin" controls controlsList="nodownload">
             <source src="~/Resources/Video/VideoDemo/@Model.VidioDemoUrl" type="video/mp4">
-            مرورگر شما پخش ویدیو را پشتیبانی نمی کند.
+           
         </video>
         <div id="Info" class="mat uk-box-shadow-large uk-margin-medium-top uk-margin-medium-bottom">
             <div class="uk-padding">
                 <h3>
-                   @Model.Title
+                    @Model.Title
                 </h3>
                 <a href="#" class="tutor">
-                   @Model.TblUser.Name
+                    @Model.TblUser.Name
                 </a>
                 <p class="uk-margin-remove-bottom">
                     @{
@@ -78,7 +79,6 @@
                         {
                             desc += word + ' ';
                         }
-
                         string desc2 = "";
                         foreach (string word in Model.Description.Split(' ').ToList().Skip(30))
                         {
@@ -114,16 +114,24 @@
                 </div>
                 <div class="control-panel-top  row-reverse uk-margin-auto-right">
                     <ul class="action-panel row uk-padding-remove uk-margin-auto-bottom uk-margin-auto-top uk-margin-auto-right">
+
                         <li><a href="#Modal-Report" uk-toggle class="icon-button" uk-tooltip="گزارش تخلف" uk-icon="report"></a></li>
-                        <li><a class="icon-button" onclick="UIkit.notification('ویدیو در کتاب خانه شما ذخیره شد')" uk-tooltip="ذخیره ویدیو" uk-icon="bookmark"></a></li>
+
+                        @if (User.Identity.IsAuthenticated && !User.IsInRole("admin"))
+                        {
+                            <li id="ListIsBookMark">
+                                @Html.Action("CheckUserSaveVideo", "Video")
+                                @*<li><a class="icon-button" onclick="UIkit.notification('ویدیو در کتاب خانه شما ذخیره شد')" uk-tooltip="ذخیره ویدیو" uk-icon="bookmark"></a></li>*@
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a class="icon-button" href="/Video/CheckbookmarkVideoInUser" uk-tooltip="ذخیره ویدیو" uk-icon="bookmark"></a></li>
+                        }
                         <li><a class="icon-button" onclick="fallbackCopyTextToClipboard(window.location.href); UIkit.notification('لینک کپی شد')" uk-tooltip="اشتراک گذاری" uk-icon="share"></a></li>
                     </ul>
-                    <div class="row star-container uk-margin-small-right" dir="rtl">
-                        <a href="#Modal-Rate" class="rate icon-button" uk-toggle uk-tooltip="امتیاز دهی" uk-icon="favourite"></a>
-                        <div class="Stars" style="--rating:  @(Model.LikeCount/20);;" uk-tooltip="@(Model.LikeCount/20)" aria-label="The rating of this video is 2.3 out of 5"></div>
-                        <span class="raiting remove-at-mobile">
-                            @(Model.LikeCount/20)
-                        </span>
+                    <div class="row star-container uk-margin-small-right" dir="rtl" id="listLikeCount">
+                        @Html.Action("LikeCount", new { LikeCount = Model.LikeCount })
                     </div>
                 </div>
             </div>
@@ -135,3 +143,40 @@
 </div>
 
 <script src="~/Scripts/UIScripts/CopyToClipboard.js"></script>
+
+
+<script>
+
+
+    function checkbookmarkVideoInUser(id) {
+        $.get('/Video/CheckbookmarkVideoInUser/' + id, function (result) {
+            $('#ListIsBookMark').html(result);
+        });
+    }
+    function submitRating() {
+        var id=@Model.VideoId;
+        var name=$('input[name=Raiting]:checked', '#myRaiting').val();
+        $.ajax({
+            url: "/Video/Raiting/",
+            data: { id:id, Raiting: name },
+            type: "Post",
+        }).done(function (result) {
+            $('#listLikeCount').html(result);
+            UIkit.modal(document.getElementById('Modal-Rate')).hide();
+            $("#overlay").fadeOut(300);
+        });
+    }
+     function submitReport() {
+         var id =@Model.VideoId;
+         var Text = $('#textReporter').val();
+         var reportRadio = $('input[name=reportRadio]:checked').val();
+        $.ajax({
+            url: "/Video/Report/",
+            data: { id: id, Text: Text, reportRadio: reportRadio},
+            type: "Post",
+        }).done(function (result) {
+            UIkit.modal(document.getElementById('Modal-Report')).hide();
+            $("#overlay").fadeOut(300);
+        });
+    }
+</script>

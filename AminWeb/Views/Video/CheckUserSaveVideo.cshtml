@@ -1,0 +1,18 @@
+﻿
+@if (ViewBag.IsBookMark)
+{
+    <a class="icon-button" onclick="checkbookmarkVideoInUser(@ViewBag.VideoId)" uk-tooltip="ذخیره ویدیو" uk-icon="bookmark" style="color:red"></a>
+}
+else
+{
+    @*<a class="icon-button" onclick="UIkit.notification('ویدیو در کتاب خانه شما ذخیره شد')" uk-tooltip="ذخیره ویدیو" uk-icon="bookmark"></a>*@
+    <a class="icon-button" onclick="checkbookmarkVideoInUser(@ViewBag.VideoId)" uk-tooltip="ذخیره ویدیو" uk-icon="bookmark"></a>
+}
+
+@if (ViewBag.Error != null)
+{
+    <input type="hidden" id="ErrorCheckUser" name="name" value="@ViewBag.Error" />
+    <script>
+        UIkit.notification(document.getElementById('ErrorCheckUser').value)
+    </script>
+}
