@@ -526,7 +526,7 @@ select {
                     font-weight: bold;
                     font-size: 15px;
                     color: #484848;
-                    margin-bottom:3px;
+                    margin-bottom: 3px;
                 }
 
                 dd {
@@ -569,5 +569,63 @@ select {
 .listCategory {
     b {
         color: $primary;
+    }
+}
+
+#loader {
+    height: 3px;
+    left: 0;
+    right: 0;
+    position: fixed;
+    background: lighten($primary, 16);
+    z-index: 1010;
+    display: flex;
+
+    .fill {
+        background: $primary;
+        width: 64%;
+        @include border-radius(4px,4px,4px,4px);
+        -moz-animation-name: loader;
+        -o-animation-name: loader;
+        -webkit-animation-name: loader;
+        animation-name: loader;
+        -moz-animation-duration: 1.5s;
+        -o-animation-duration: 1.5s;
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+        -moz-animation-iteration-count: infinite;
+        -o-animation-iteration-count: infinite;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+    }
+}
+
+@keyframes loader {
+    from {
+        transform: translateX(-100vw);
+    }
+
+    to {
+        transform: translateX(100vw);
+    }
+}
+
+@-moz-keyframes loader {
+    from {
+        transform: translateX(-100vw);
+    }
+
+    to {
+        transform: translateX(100vw);
+    }
+}
+
+@-webkit-keyframes loader {
+    from {
+        transform: translateX(-100vw);
+    }
+
+    to {
+        transform: translateX(100vw);
     }
 }
