@@ -17,7 +17,16 @@ namespace AminWeb.Controllers
         public ActionResult VideoView(int id, string name)
         {
             ViewBag.Name = name;
-            return View(_db.Video.GetById(id));
+            TblVideo video = _db.Video.GetById(id);
+            int IpOnline = Convert.ToInt32(Session["IpOnline"]);
+            //Session["ViewVideoValid"]=
+            if (IpOnline != 0)
+            {
+                video.ViewCount++;
+                _db.Video.Save();
+                Session["ViewVideoValid"] = 1;
+            }
+            return View(video);
         }
 
         public ActionResult ListVideos()
@@ -153,7 +162,7 @@ namespace AminWeb.Controllers
             else
             {
                 var number = product.LikeCount * product.RatingCount;
-                product.RatingCount ++;
+                product.RatingCount++;
                 product.LikeCount = (int)((number + ConverRating) / product.RatingCount);
             }
             _db.Report.Save();

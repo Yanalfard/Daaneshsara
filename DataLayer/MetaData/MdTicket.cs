@@ -18,6 +18,7 @@ namespace DataLayer.MetaData
         [Display(Name = "توضیحات ")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(950, ErrorMessage = "طول بیش از 950 کاراکتر مجاز نیست")]
+        [DataType(DataType.MultilineText)]
         public string Text { get; set; }
         [Display(Name = "فایل ")]
         public string AttachmentUrl { get; set; }

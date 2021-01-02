@@ -1,47 +1,59 @@
-﻿
+﻿@model DataLayer.MetaData.MdTicket
 @{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "تماس با ما";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div role="none" class="space-nav"></div>
 <div class="column uk-container">
-    <div class="mat uk-margin-auto
+
+    @using (Html.BeginForm("Contact", "Home", new AjaxOptions() { OnSuccess = "LoadingEnd('#createContact')" }, FormMethod.Post,new { enctype = "multipart/form-data", @id = "createContact" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="mat uk-margin-auto
          uk-width-1-2-at-m uk-width-1-1-at-s
          uk-padding column uk-box-shadow-large">
-        <h3>
-            تماس با ما
-        </h3>
-        <div class="form-group">
-            <label for="Email">ایمیل</label>
-            <div class="input-group">
-                <input type="email" name="Email" />
+            <h3>
+                تماس با ما
+            </h3>
+            <div class="form-group">
+                <label for="Email">موضوع</label>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.Title)
+                </div>
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "uk-text-danger" })
             </div>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
-        </div>
-        <div class="form-group">
-            <label for="Subject">موضوع</label>
-            <div class="row-reverse">
-                <select name="Subject" class="uk-width-1-1" dir="rtl">
-                    <option>لحاظ مشکلی در سایت</option>
-                    <option>طرح سوال</option>
-                    <option>دیگر</option>
-                </select>
+            <div class="form-group uk-margin-top">
+                <label for="AttachmentUrl">پیوست</label>
+                <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
+                    <span uk-icon="icon: cloud-upload"></span>
+                    <span class="uk-text-middle">پیوست خود را اینجا بیاندازید و یا</span>
+                    <div uk-form-custom>
+                        <input type="file" name="AttachmentUrl">
+                        <span class="blue">کلیک کنید</span>
+                    </div>
+                </div>
+                <span role="alert" class="alert">
+                    @Html.ValidationMessageFor(model => model.AttachmentUrl, "", new { @class = "uk-text-danger" })
+                </span>
             </div>
+            <div class="form-group uk-margin-top">
+                <label for="Description">توضیحات</label>
+                @Html.EditorFor(model => model.Text)
+
+                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "uk-text-danger" })
+            </div>
+
+            <div class="row uk-margin-medium-top">
+                <button class="btn-primary uk-margin-auto"  onclick="LoadingRun('#createContact')">
+                    ثبت
+                </button>
+            </div>
+
         </div>
 
-        <div class="form-group uk-margin-top">
-            <label for="Description">توضیحات</label>
-            <textarea type="text" name="Description"></textarea>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
-        </div>
 
-        <div class="row uk-margin-medium-top">
-            <button class="btn-primary uk-margin-auto">
-                ثبت
-            </button>
-        </div>
+    }
 
-    </div>
 </div>
 
