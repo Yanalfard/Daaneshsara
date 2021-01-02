@@ -147,7 +147,6 @@
     <Compile Include="Controllers\ManageEmailsController.cs" />
     <Compile Include="Controllers\PlayListController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
-    <Compile Include="Controllers\UploadImageController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1930,6 +1929,12 @@
     <Content Include="Content\Styles\Pages\Profile.min.css">
       <DependentUpon>Profile.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\Pages\Purchase.css">
+      <DependentUpon>Purchase.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Pages\Purchase.min.css">
+      <DependentUpon>Purchase.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\Pages\VideoView.css">
       <DependentUpon>VideoView.scss</DependentUpon>
     </Content>
@@ -1974,22 +1979,6 @@
     <Content Include="Content\Styles\Areas\UserDashboard.scss" />
     <Content Include="Content\Styles\_loading.scss" />
     <Content Include="manifest.json" />
-    <Content Include="Scripts\ckeditor\.htaccess" />
-    <Content Include="Scripts\ckeditor\CHANGES.md" />
-    <Content Include="Scripts\ckeditor\ckeditor.pack" />
-    <Content Include="Scripts\ckeditor\LICENSE.md" />
-    <Content Include="Scripts\ckeditor\plugins\moono\dev\locations.json" />
-    <Content Include="Scripts\ckeditor\plugins\moono\readme.md" />
-    <Content Include="Scripts\ckeditor\plugins\scayt\LICENSE.md" />
-    <Content Include="Scripts\ckeditor\plugins\scayt\README.md" />
-    <Content Include="Scripts\ckeditor\plugins\wsc\LICENSE.md" />
-    <Content Include="Scripts\ckeditor\plugins\wsc\README.md" />
-    <Content Include="Scripts\ckeditor\README.md" />
-    <Content Include="Scripts\ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="Scripts\ckeditor\skins\moono\readme.md" />
-    <Content Include="Scripts\ckeditor\_samples\adobeair\run.bat" />
-    <Content Include="Scripts\ckeditor\_samples\adobeair\run.sh" />
-    <Content Include="Scripts\ckeditor\_samples\assets\output_for_flash.fla" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Resources\Classes\CertificateURL\NoImage.svg" />
     <Content Include="Resources\Classes\Link\NoImage.svg" />
@@ -2010,6 +1999,7 @@
     <Content Include="Resources\Static\Vector\Medal.svg" />
     <Content Include="Resources\Static\Vector\NoImage.svg" />
     <Content Include="Resources\Static\Vector\Twitter.svg" />
+    <Content Include="Resources\Static\Vector\Zarinpal.svg" />
     <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
