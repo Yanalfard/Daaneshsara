@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Purchase";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Styles/Pages/Purchase.min.css" rel="stylesheet" />
+
+<div role="none" class="space-nav"></div>
+
+<div class="column uk-container">
+    <div class="mat uk-margin-auto
+         uk-width-2-3-at-m uk-width-1-1-at-s
+         uk-padding column uk-box-shadow-large">
+        <!-- #region Content -->
+
+        <h1 class="uk-h3 uk-margin-remove-bottom">پرداخت</h1>
+
+        <p class="alert" dir="rtl">
+            لطفا در خرید خود دقت کنید، هزینه پرداختی به هیچ عنوان قابل استرداد نمی باشد.
+        </p>
+
+        <div class="column">
+            <label>مبلغ قابل پرداخت</label>
+            <div class="row uk-margin-auto-left price">
+                <span class="toman">تومان</span>
+                <label class="price">400,000</label>
+            </div>
+        </div>
+
+        <div class="purch column uk-margin-small-top">
+            <label>نحوه پرداخت</label>
+            <div class="row-reverse purchase">
+                <div class="wallet">
+                    <label>کسر از کیف پول</label>
+                    <div class="row uk-margin-auto-left">
+                        <span class="toman">تومان</span>
+                        <span class="price">400,000</span>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="pal">
+                    <div>
+                        <img src="~/Resources/Static/Vector/Zarinpal.svg" alt="لوگو زرین پال" />
+                        <span>زرین پال</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- #endregion -->
+
+        @* MEHDIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII *@
+        @*@Html.Partial("Playlist")*@
+    </div>
+</div>
+

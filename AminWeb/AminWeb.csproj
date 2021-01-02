@@ -147,6 +147,7 @@
     <Compile Include="Controllers\ManageEmailsController.cs" />
     <Compile Include="Controllers\PlayListController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\ShopCartController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1926,6 +1927,12 @@
     <Content Include="Content\Styles\Pages\Profile.min.css">
       <DependentUpon>Profile.css</DependentUpon>
     </Content>
+    <Content Include="Content\Styles\Pages\Purchase.css">
+      <DependentUpon>Purchase.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\Styles\Pages\Purchase.min.css">
+      <DependentUpon>Purchase.css</DependentUpon>
+    </Content>
     <Content Include="Content\Styles\Pages\VideoView.css">
       <DependentUpon>VideoView.scss</DependentUpon>
     </Content>
@@ -1970,6 +1977,7 @@
     <Content Include="Content\Styles\Areas\UserDashboard.scss" />
     <Content Include="Content\Styles\_loading.scss" />
     <Content Include="manifest.json" />
+    <Content Include="Content\Styles\Pages\Purchase.scss" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Resources\Classes\CertificateURL\NoImage.svg" />
     <Content Include="Resources\Classes\Link\NoImage.svg" />
@@ -1990,6 +1998,7 @@
     <Content Include="Resources\Static\Vector\Medal.svg" />
     <Content Include="Resources\Static\Vector\NoImage.svg" />
     <Content Include="Resources\Static\Vector\Twitter.svg" />
+    <Content Include="Resources\Static\Vector\Zarinpal.svg" />
     <Content Include="Scripts\ajaxfileupload.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2048,6 +2057,7 @@
     <Content Include="Views\Shared\_HeaderProfile.cshtml" />
     <Content Include="Views\Video\CheckUserSaveVideo.cshtml" />
     <Content Include="Views\Video\LikeCount.cshtml" />
+    <Content Include="Views\ShopCart\Purchase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

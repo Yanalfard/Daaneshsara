@@ -1,0 +1,149 @@
+﻿@import '../_colors.scss';
+@import '../_layout.scss';
+
+.alert {
+    border: 1px solid #fbcfac;
+    color: #faa05a;
+    background-color: #FFF6EE;
+    padding: 12px;
+    @include border-radius(12px,12px,12px,12px);
+}
+
+.price {
+    margin-top: 4px;
+
+    .toman {
+        font-size: 10px;
+        color: $success;
+        margin-top: auto;
+        margin-bottom: 8px;
+        margin-right: 6px;
+    }
+
+    .price {
+        font-size: 24px;
+        color: $success;
+    }
+}
+
+.purch {
+    margin-left: auto;
+
+    .purchase {
+        margin-top: 12px;
+
+        .wallet {
+            @include column;
+            @include border-radius(8px,8px,8px,8px);
+            @include trans(.2s);
+            @include shadow-more;
+            cursor: pointer;
+            width: 120px;
+            background: rgb(255,202,122);
+            background: -moz-linear-gradient(135deg, rgba(255,202,122,1) 0%, rgba(244,74,74,1) 100%);
+            background: -webkit-linear-gradient(135deg, rgba(255,202,122,1) 0%, rgba(244,74,74,1) 100%);
+            background: linear-gradient(135deg, rgba(255,202,122,1) 0%, rgba(244,74,74,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffca7a",endColorstr="#f44a4a",GradientType=1);
+            padding: 16px;
+
+            * {
+                color: white;
+            }
+
+            label {
+                font-size: 12px;
+                margin-bottom: 4px;
+            }
+
+            .toman {
+                font-size: 10px;
+                margin-top: auto;
+                margin-bottom: 5px;
+                margin-right: 4px;
+            }
+
+            .price {
+                font-size: 20px;
+            }
+        }
+
+        .wallet:hover {
+            @include subtle-glow(transparentize(#FA8962,.5));
+        }
+
+
+        .divider {
+            border-right: 1px solid #d9d9d9;
+            margin: 9px 16px;
+            height: 70px;
+        }
+
+        .pal {
+            cursor: pointer;
+            @include column;
+            @include border-radius(8px,8px,8px,8px);
+            @include trans(.2s);
+            background: #F6F6F6;
+            width: 120px;
+            padding: 16px;
+
+            * {
+                margin: auto;
+            }
+
+            div {
+                margin: auto;
+                @include column;
+            }
+        }
+
+        .pal:hover {
+            background: darken(#F6F6F6,4%);
+        }
+    }
+}
+
+/* portrait orientation */
+@media only screen and (max-width : 375px) and (orientation : portrait) {
+    .purch {
+        margin-left: 0;
+
+        .purchase {
+            margin-top: 12px;
+
+            .wallet {
+                width: 100px;
+                padding: 12px;
+                margin-left: auto;
+
+                label {
+                    font-size: 10px;
+                    margin-bottom: 4px;
+                }
+
+                .toman {
+                    font-size: 10px;
+                    margin-top: auto;
+                    margin-bottom: 5px;
+                    margin-right: 4px;
+                }
+
+                .price {
+                    font-size: 18px;
+                }
+            }
+
+            .divider {
+                margin: 0 8px;
+                display: none;
+                height: 60px;
+            }
+
+            .pal {
+                margin-right: auto;
+                width: 100px;
+                padding: 12px;
+            }
+        }
+    }
+}

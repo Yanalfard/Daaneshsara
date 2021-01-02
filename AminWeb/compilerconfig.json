@@ -26,5 +26,9 @@
   {
     "outputFile": "Content/Styles/Areas/Admin.css",
     "inputFile": "Content/Styles/Areas/Admin.scss"
+  },
+  {
+    "outputFile": "Content/Styles/Pages/Purchase.css",
+    "inputFile": "Content/Styles/Pages/Purchase.scss"
   }
 ]
