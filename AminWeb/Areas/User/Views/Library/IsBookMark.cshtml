@@ -1,0 +1,7 @@
+﻿@model IEnumerable<DataLayer.Models.TblVideo>
+
+
+@foreach (var item in Model)
+{
+    @Html.Partial("_VideoBlock", item)
+}

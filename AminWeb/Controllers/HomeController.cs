@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using DataLayer.Models;
+using DataLayer.MetaData;
 using DataLayer.Services;
 
 namespace AminWeb.Controllers
@@ -20,19 +21,21 @@ namespace AminWeb.Controllers
         
         public ActionResult About()
         {
-            return View();
+            return View(_db.Config.Get().FirstOrDefault());
         }
-
         public ActionResult Contact()
         {
             return View();
         }
-
-        public ActionResult Rules()
+        [HttpPost]
+        public ActionResult Contact()
         {
             return View();
         }
+        public ActionResult Rules()
+        {
+            return View(_db.Config.Get().FirstOrDefault());
 
-        
+        }
     }
 }
