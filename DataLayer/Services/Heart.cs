@@ -10,6 +10,7 @@ namespace DataLayer.Services
 
         private MainRepo<TblCatagory> _category;
         private MainRepo<TblChat> _chat;
+        private MainRepo<TblConfig> _config;
         private MainRepo<TblDoc> _docs;
         private MainRepo<TblPlaylist> _playlist;
         private MainRepo<TblRole> _role;
@@ -25,6 +26,7 @@ namespace DataLayer.Services
 
         public MainRepo<TblCatagory> Cat => _category ?? (_category = new MainRepo<TblCatagory>(_db));
         public MainRepo<TblChat> Chat => _chat ?? (_chat = new MainRepo<TblChat>(_db));
+        public MainRepo<TblConfig> Config => _config ?? (_config = new MainRepo<TblConfig>(_db));
 
         public MainRepo<TblDoc> Docs => _docs ?? (_docs = new MainRepo<TblDoc>(_db));
 

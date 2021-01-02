@@ -1,4 +1,4 @@
-﻿
+﻿@model DataLayer.Models.TblConfig
 @{
     ViewBag.Title = "Rules";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,6 +10,8 @@
          uk-width-2-3-at-m uk-width-1-1-at-s
          uk-padding column uk-box-shadow-large">
         <!-- #region Content -->
+        @Html.Raw(Model.Rules)
+
         <!-- #endregion -->
     </div>
 </div>
