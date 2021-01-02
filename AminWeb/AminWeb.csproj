@@ -3187,6 +3187,7 @@
     <Content Include="Views\Shared\_HeaderProfile.cshtml" />
     <Content Include="Views\Video\CheckUserSaveVideo.cshtml" />
     <Content Include="Views\Video\LikeCount.cshtml" />
+    <Content Include="Views\ShopCart\Purchase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

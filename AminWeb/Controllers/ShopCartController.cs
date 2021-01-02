@@ -13,5 +13,10 @@ namespace AminWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult PurchaseResult()
+        {
+            return View();
+        }
     }
 }
