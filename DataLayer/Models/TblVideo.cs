@@ -39,6 +39,7 @@ namespace DataLayer.Models
         public Nullable<int> PlaylistId { get; set; }
         public bool IsActive { get; set; }
         public int CatagoryId { get; set; }
+        public Nullable<int> RatingCount { get; set; }
     
         public virtual TblCatagory TblCatagory { get; set; }
         public virtual TblPlaylist TblPlaylist { get; set; }

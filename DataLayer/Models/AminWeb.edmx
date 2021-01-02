@@ -54,6 +54,7 @@
           <Property Name="ShenasnameSahebEmtiazUrl" Type="nvarchar" MaxLength="500" />
           <Property Name="KarteMeliSahebEmtiazUrl" Type="nvarchar" MaxLength="500" />
           <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsValid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TblLog">
           <Key>
@@ -159,6 +160,7 @@
           <Property Name="ViewCount" Type="int" Nullable="false" />
           <Property Name="IsHome" Type="bit" Nullable="false" />
           <Property Name="LikeCount" Type="int" Nullable="false" />
+          <Property Name="RatingCount" Type="int" />
           <Property Name="Link" Type="nvarchar" MaxLength="500" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
@@ -623,6 +625,7 @@
           <Property Name="KarteMeliSahebEmtiazUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblUser_TblDocs" FromRole="TblDoc" ToRole="TblUser" />
+          <Property Name="IsValid" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TblLog">
           <Key>
@@ -765,6 +768,7 @@
           <NavigationProperty Name="TblUser" Relationship="Self.FK_WhoUploadedVideo" FromRole="TblVideo" ToRole="TblUser" />
           <NavigationProperty Name="TblUserVideoRel" Relationship="Self.FK_TblUserVideoRel_TblVideo" FromRole="TblVideo" ToRole="TblUserVideoRel" />
           <NavigationProperty Name="TblVideoPlaylistKeyword" Relationship="Self.FK_TblVideoKeyword_TblVideo" FromRole="TblVideo" ToRole="TblVideoPlaylistKeyword" />
+          <Property Name="RatingCount" Type="Int32" />
         </EntityType>
         <EntityType Name="TblVideoPlaylistKeyword">
           <Key>
@@ -1215,6 +1219,7 @@
           <EntitySetMapping Name="TblDoc">
             <EntityTypeMapping TypeName="AminWebModel.TblDoc">
               <MappingFragment StoreEntitySet="TblDoc">
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="DocId" ColumnName="DocId" />
                 <ScalarProperty Name="TellSabet" ColumnName="TellSabet" />
                 <ScalarProperty Name="ParvaneAmuzeshgahUrl" ColumnName="ParvaneAmuzeshgahUrl" />
@@ -1326,6 +1331,7 @@
           <EntitySetMapping Name="TblVideo">
             <EntityTypeMapping TypeName="AminWebModel.TblVideo">
               <MappingFragment StoreEntitySet="TblVideo">
+                <ScalarProperty Name="RatingCount" ColumnName="RatingCount" />
                 <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
                 <ScalarProperty Name="VidioDemoUrl" ColumnName="VidioDemoUrl" />

@@ -27,6 +27,7 @@ namespace DataLayer.Models
         public string ShenasnameSahebEmtiazUrl { get; set; }
         public string KarteMeliSahebEmtiazUrl { get; set; }
         public string Address { get; set; }
+        public int IsValid { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblUser> TblUser { get; set; }

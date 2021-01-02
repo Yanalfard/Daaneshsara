@@ -148,10 +148,12 @@ namespace AminWeb.Controllers
             if (product.LikeCount == 0)
             {
                 product.LikeCount = ConverRating;
+                product.LikeCount = 1;
             }
             else
             {
                 product.LikeCount = (ConverRating + product.LikeCount) / 2;
+                product.LikeCount += 1;
             }
             _db.Report.Save();
             int LikeCount = product.LikeCount;
