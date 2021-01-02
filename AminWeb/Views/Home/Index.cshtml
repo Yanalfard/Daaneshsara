@@ -125,27 +125,28 @@
             if (name == "") {
                 return false;
             }
-            $("#overlay").fadeIn(300);
+            $("#loader").fadeIn(300);
             $.get('/SearchVideoByName/' + name, function (result) {
                 $('#listVideo').html(result);
-                $("#overlay").fadeOut(300);
+                $("#loader").fadeOut(300);
             });
-            $("#overlay").fadeOut(300);
+            $("#loader").fadeOut(300);
 
         }
         function selectVideoBySearch(id) {
-            $("#overlay").fadeIn(300);
+            $("#loader").fadeIn(300);
+
             $.get('/Video/SelectVideoBySearch/' + id, function (result) {
                 $('#listVideo').html(result);
-                $("#overlay").fadeOut(300);
+                $("#loader").fadeOut(300);
             });
         }
         if (selectByCategory(localStorage.getItem('searchcat')) !== true) {
-            $("#overlay").fadeIn(300);
+            $("#loader").fadeIn(300);
             // agar
             $.get('/Video/SelectVideos', function (result) {
                 $('#listVideo').html(result);
-                $("#overlay").fadeOut(300);
+                $("#loader").fadeOut(300);
             });
         }
     </script>

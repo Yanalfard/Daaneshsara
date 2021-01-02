@@ -73,7 +73,7 @@
             <div role="menu" class="column">
                 <!-- #region Category -->
 
-                @Html.Action("Index", "Category",new { area=""})
+                @Html.Action("Index", "Category", new { area = "" })
 
                 <!-- #endregion -->
             </div>
@@ -145,6 +145,15 @@
     </script>
 
     <script>
+
+        $(document).ready(function () {
+            $("#loader").fadeOut(300);
+        });
+
+    </script>
+
+
+    <script>
         function showLogin() {
             $.get('/Account/Login', function (result) {
                 reloadRech();
@@ -183,6 +192,7 @@
     </script>
 
     <script>
+
 
         // Tamam e Category haye server, yekbar load shavand.
         let categories = [];
@@ -224,7 +234,7 @@
 
                 if (name === '') return false;
 
-                $("#overlay").fadeIn(100);
+                $("#loader").fadeIn(100);
 
                 $.ajax({
                     url: "/Video/SelectVideosByCategory/",
@@ -232,9 +242,9 @@
                     type: "Get",
                 }).done(function (result) {
                     $('#listVideo').html(result);
-                    $("#overlay").fadeOut(300);
+                    $("#loader").fadeOut(300);
                 });
-                $("#overlay").fadeOut(300);
+                $("#loader").fadeOut(300);
 
                 UIkit.modal(document.getElementById('Modal-Category')).hide();
                 window.localStorage.setItem('searchcat', '');
@@ -252,6 +262,7 @@
         }
 
     </script>
+
 
 
     <!--#endregion-->

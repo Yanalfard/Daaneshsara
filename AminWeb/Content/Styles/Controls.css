@@ -824,6 +824,7 @@ select {
   color: #F94646; }
 
 #loader {
+  display: 0;
   height: 3px;
   left: 0;
   right: 0;
