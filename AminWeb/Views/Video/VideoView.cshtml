@@ -1,4 +1,6 @@
-﻿@model DataLayer.Models.TblVideo
+﻿@using DataLayer.Models;
+@model DataLayer.Models.TblVideo
+
 @{
     ViewBag.Title = ViewBag.Name;
     ViewBag.Content = "نام ویدیو آموزشی، آپلود کننده آن و تاریخ آپلود";
@@ -30,7 +32,7 @@
 </div>
 
 <div id="Modal-Report" uk-modal>
-    <div  class="uk-modal-dialog uk-modal-body column" id="myReport">
+    <div class="uk-modal-dialog uk-modal-body column" id="myReport">
         <h3 class="uk-margin-auto">این ویدیو چه مشکلی دارد؟</h3>
         <button class="uk-modal-close-default" name="close" type="button" uk-close></button>
         <ul>
@@ -62,7 +64,7 @@
     <div class="column container uk-margin-auto">
         <video class="video-playback uk-margin-auto-left uk-margin-auto-right white-area-margin" controls controlsList="nodownload">
             <source src="~/Resources/Video/VideoDemo/@Model.VidioDemoUrl" type="video/mp4">
-           
+
         </video>
         <div id="Info" class="mat uk-box-shadow-large uk-margin-medium-top uk-margin-medium-bottom">
             <div class="uk-padding">
@@ -137,7 +139,15 @@
             </div>
         </div>
 
-        @*@Html.Partial("_Playlist")*@
+        @if (ViewBag.Playlist != null)
+        {
+            List<TblPlaylist> list = ViewBag.Playlist as List<TblPlaylist>;
+
+            foreach (var item in list)
+            {
+                @Html.Partial("_Playlist", item);
+            }
+        }
 
     </div>
 </div>

@@ -27,7 +27,7 @@ namespace AminWeb
             online += 1;
             HttpContext.Current.Application["Online"] = online;
             Session["IpOnline"] = online;
-
+            Session["ViewVideoValid"] = 0;
             DateTime dtNow = DateTime.Now.Date;
             string ip = Request.UserHostAddress;
             //using (DataLayer.MyEshop_DBEntities db = new DataLayer.MyEshop_DBEntities())

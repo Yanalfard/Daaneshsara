@@ -19,12 +19,17 @@ namespace AminWeb.Controllers
             ViewBag.Name = name;
             TblVideo video = _db.Video.GetById(id);
             int IpOnline = Convert.ToInt32(Session["IpOnline"]);
+            int ViewVideoValid = Convert.ToInt32(Session["ViewVideoValid"]);
             //Session["ViewVideoValid"]=
-            if (IpOnline != 0)
+            if (ViewVideoValid == 0)
             {
                 video.ViewCount++;
                 _db.Video.Save();
                 Session["ViewVideoValid"] = 1;
+            }
+            if (video.PlaylistId != null)
+            {
+                ViewBag.Playlist = _db.Playlist.Get(i => i.PlaylistId == video.PlaylistId).ToList();
             }
             return View(video);
         }
