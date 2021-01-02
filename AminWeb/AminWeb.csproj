@@ -2058,6 +2058,7 @@
     <Content Include="Views\Video\CheckUserSaveVideo.cshtml" />
     <Content Include="Views\Video\LikeCount.cshtml" />
     <Content Include="Views\ShopCart\Purchase.cshtml" />
+    <Content Include="Views\ShopCart\PurchaseResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
