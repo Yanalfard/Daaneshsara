@@ -47,7 +47,15 @@ namespace AminWeb.Controllers
             vmVideo.PlaylistPrice = video.PlaylistId != null ? video.TblPlaylist.Price : 0;
             if (User.Identity.IsAuthenticated)
             {
-                List<TblLog> log = _db.Log.Get().Where(i => (i.UserId == SelectUser().UserId) && (i.PlayListId == video.PlaylistId || i.VideoId == video.VideoId)).ToList();
+                List<TblLog> log = new List<TblLog>();
+                if (video.PlaylistId != null)
+                {
+                    log = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == video.PlaylistId && (i.Status == 1|| i.Status == 2)).ToList();
+                }
+                else if(video.PlaylistId == null)
+                {
+                    log = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.VideoId == video.VideoId && (i.Status == 1 || i.Status == 2)).ToList();
+                }
                 if (log.Count != 0)
                 {
                     vmVideo.IsLog = true;

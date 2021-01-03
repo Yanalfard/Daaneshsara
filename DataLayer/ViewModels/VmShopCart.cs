@@ -10,7 +10,7 @@ namespace DataLayer.ViewModels
     {
         public int VideoId { get; set; }
         public Nullable<int> PlaylistId { get; set; }
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
         public int BalanceUser { get; set; }
         public bool IsValidBalance { get; set; }
         public string UserName { get; set; }

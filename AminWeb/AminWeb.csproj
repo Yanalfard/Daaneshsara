@@ -63,6 +63,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -141,6 +143,11 @@
     <Compile Include="Areas\User\Controllers\VideoController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="CaptchaResponseViewModel.cs" />
+    <Compile Include="Connected Services\ZarinPalTest\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1783,6 +1790,30 @@
     <Content Include="Areas\Admin\Scripts\popper.min.js" />
     <Content Include="Areas\Admin\Content\Styles\style-rtl.css" />
     <Content Include="Areas\Admin\Content\Styles\style.css" />
+    <Content Include="Connected Services\ZarinPalTest\AminWeb.ZarinPalTest.GetUnverifiedTransactionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPalTest\AminWeb.ZarinPalTest.PaymentRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPalTest\AminWeb.ZarinPalTest.PaymentRequestWithExtraResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPalTest\AminWeb.ZarinPalTest.PaymentVerificationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPalTest\AminWeb.ZarinPalTest.PaymentVerificationWithExtraResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ZarinPalTest\AminWeb.ZarinPalTest.RefreshAuthorityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ZarinPalTest\configuration91.svcinfo" />
+    <None Include="Connected Services\ZarinPalTest\configuration.svcinfo" />
+    <None Include="Connected Services\ZarinPalTest\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Content\Site.css" />
     <Content Include="Content\Styles\Areas\Admin.css">
       <DependentUpon>Admin.scss</DependentUpon>
@@ -1924,6 +1955,7 @@
     <Content Include="Areas\User\Views\Library\IsBookMark.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Admin\Views\Home\About.cshtml" />
+    <None Include="Connected Services\ZarinPalTest\PaymentGatewayImplementationService.wsdl" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>
@@ -3182,6 +3214,8 @@
     <Content Include="Views\Video\LikeCount.cshtml" />
     <Content Include="Views\ShopCart\Index.cshtml" />
     <Content Include="Views\ShopCart\PurchaseResult.cshtml" />
+    <Content Include="Views\ShopCart\VerifyBalance.cshtml" />
+    <Content Include="Views\ShopCart\Verify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
@@ -3205,6 +3239,12 @@
       <Project>{d9a802ae-3c57-40a6-8c9a-204910126d5e}</Project>
       <Name>DataLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ZarinPalTest\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
