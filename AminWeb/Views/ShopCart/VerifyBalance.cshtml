@@ -1,0 +1,38 @@
+﻿@model DataLayer.ViewModels.VmShopCart
+@{
+    ViewBag.Title = "VerifyBalance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<link href="~/Content/Styles/Pages/Purchase.min.css" rel="stylesheet" />
+
+<div role="none" class="space-nav"></div>
+
+<div class="column uk-container">
+    <div class="mat uk-margin-auto
+         uk-width-2-3-at-m uk-width-1-1-at-s
+         uk-padding column uk-box-shadow-large">
+
+        <!-- #region Content -->
+
+        <h1 class="uk-h3 uk-margin-remove-bottom">پرداخت موفق</h1>
+
+        <p class="alert-box alert-box-success" dir="rtl">
+           مبلغ @Model.Price تومان از کیف پول شما کسر شد
+        </p>
+
+        <div class="control-panel uk-margin-top">
+            <button class="btn btn-secondary uk-margin-small-right">پروفایل</button>
+            <button class="btn btn-primary">تلاش مجدد</button>
+            @*<button class="btn btn-primary">بازگشت</button>*@
+        </div>
+
+        <!-- #endregion -->
+
+    </div>
+</div>
+
+
+
