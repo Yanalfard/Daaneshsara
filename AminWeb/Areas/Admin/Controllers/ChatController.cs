@@ -18,30 +18,30 @@ namespace AminWeb.Areas.Admin.Controllers
             ViewBag.tellNo = tellNo;
             ViewBag.email = email;
             //TblChat chat = new TblChat();
-            //chat.RecieverId = 9;
-            //chat.SenderId = 8;
+            //chat.RecieverId = 6;
+            //chat.SenderId = 7;
             //chat.TimeSent = DateTime.Now;
-            //chat.Message = "salam chetory";
+            //chat.Message = "salam mehdi";
 
 
             //TblChat chat2 = new TblChat();
-            //chat2.RecieverId = 8;
-            //chat2.SenderId = 9;
+            //chat2.RecieverId = 7;
+            //chat2.SenderId = 6;
             //chat2.TimeSent = DateTime.Now;
-            //chat2.Message = "salam chetory";
+            //chat2.Message = "salam sadra";
 
             //TblChat chat3 = new TblChat();
-            //chat3.RecieverId = 9;
-            //chat3.SenderId = 8;
+            //chat3.RecieverId = 6;
+            //chat3.SenderId = 7;
             //chat3.TimeSent = DateTime.Now;
-            //chat3.Message = "salam chetory";
+            //chat3.Message = "khobi mehdi";
 
 
             //TblChat chat4 = new TblChat();
-            //chat4.RecieverId = 9;
-            //chat4.SenderId = 8;
+            //chat4.RecieverId = 7;
+            //chat4.SenderId =6;
             //chat4.TimeSent = DateTime.Now;
-            //chat4.Message = "salam chetory";
+            //chat4.Message = "khobi sadra";
 
 
             //_db.Chat.Add(chat);

@@ -16,58 +16,50 @@
             @Html.Action("Chats")
         </div>
     </div>
+    <div id="listMessage">
 
-    <div class="chat-room uk-margin-top uk-box-shadow-hover-large">
+    </div>
+
+    <!--<div class="chat-room uk-margin-top uk-box-shadow-hover-large">
         <ul class="uk-padding-remove" id="listMessage">
-            @*<li>
-                    @Html.Partial("Message")
-                </li>
-                <li>
-                    @Html.Partial("Message")
-                </li>
-                <li>
-                    @Html.Partial("Message")
-                </li>
-                <li>
-                    @Html.Partial("Message")
-                </li>
-                <li>
-                    @Html.Partial("Message")
-                </li>
-                <li>
-                    @Html.Partial("Message")
-                </li>
-                <li>
-                    @Html.Partial("Message")
-                </li>*@
         </ul>
     </div>
 
     <div class="row-reverse uk-margin-top">
 
         <div class="row uk-width-1-1">
-            <textarea type="text" name="Message" class="uk-width-1-1" placeholder="..."></textarea>
-            <button class="btn-pill-primary uk-margin-left uk-margin-auto-bottom">
-                @*<span uk-icon="icon:send;ratio:1.2"></span>*@
-                فرستادن
+            <textarea type="text" name="Message" id="messageTextAreaa" class="uk-width-1-1" placeholder="..."></textarea>
+            <button class="btn-pill-primary uk-margin-left uk-margin-auto-bottom" onclick="sendMessage()">-->
+    @*<span uk-icon="icon:send;ratio:1.2"></span>*@
+    <!--فرستادن
             </button>
         </div>
-    </div>
+    </div>-->
 </div>
 
 @section Scripts{
     <script>
+
         $('#mySelect').on('change', function () {
             var id = $(this).val();
             $.get('/User/Chat/ViewChat/' + id, function (result) {
                 $('#listMessage').html(result);
             });
         });
-                        //function viewMessage(id) {
-                        //    alert('5');
-                        //    $.get('/User/Chat/ViewChat/' + id, function (result) {
-                        //        $('#listMessage').html(result);
-                        //    });
-                        //}
+        function sendMessage(id) {
+            if ($('#messageTextAreaa').val() == "") {
+                UIkit.notification("متن خالیست");
+                return false;
+            }
+            var message = $('#messageTextAreaa').val();
+            $.ajax({
+                url: '/User/Chat/SendMessage',
+                data: { id: id, message: message },
+            }).done(function (result) {
+                $('#messageTextAreaa').val("");
+                $('#listMessage').html(result);
+            });
+        }
+
     </script>
 }

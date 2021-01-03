@@ -1,19 +1,47 @@
-﻿@model IEnumerable<DataLayer.Models.TblChat>
+﻿@model IEnumerable<DataLayer.ViewModels.VmChatUsers>
+
+
 
 @if (Model.Any())
 {
-    foreach (var item in Model)
-    {
-        <div class="message column">
-            <div class="row">
-                <span class="name uk-margin-auto-left" dir="ltr" uk-icon="chevron-left">@item.TblUser1.Name ارسال شده توسط</span>
-                @*اگر پیغام توسط مخاطب و نه کاربر فرستاده شده باشد کد پایین را قرار دهید*@
-                <span class="name uk-margin-auto-left" dir="ltr" uk-icon="chevron-right"> @item.TblUser.Name دریافت کننده پیام</span>
-                <span class="date"> @item.TimeSent.ToShamsi()</span>
-            </div>
-            <p class="text">
-                @item.Message
-            </p>
+
+    <div class="chat-room uk-margin-top uk-box-shadow-hover-large">
+        <ul class="uk-padding-remove">
+            @foreach (var item in Model)
+            {
+                <div class="message column">
+                    @if (item.SenderId != 0)
+                    {
+                        <div class="row">
+                            <span class="name uk-margin-auto-left" dir="ltr" uk-icon="chevron-left">@item.Name</span>
+                            <span class="date"> @item.TimeSent.ToShamsi()</span>
+                        </div>
+                        <p class="text">
+                            @item.Message
+                        </p>
+                    }
+                    else
+                    { <div class="row">
+                            <span class="name uk-margin-auto-left" dir="ltr" uk-icon="chevron-right">شما</span>
+                            <span class="date"> @item.TimeSent.ToShamsi()</span>
+                        </div>
+                        <p class="text">
+                            @item.Message
+                        </p>
+                    }
+                </div>
+            }
+        </ul>
+    </div>
+
+    <div class="row-reverse uk-margin-top">
+
+        <div class="row uk-width-1-1">
+            <textarea type="text" name="Message" id="messageTextAreaa" class="uk-width-1-1" placeholder="..."></textarea>
+            <button class="btn-pill-primary uk-margin-left uk-margin-auto-bottom" onclick="sendMessage(@ViewBag.SenderId)">
+                فرستادن
+            </button>
         </div>
-    }
+    </div>
+
 }
