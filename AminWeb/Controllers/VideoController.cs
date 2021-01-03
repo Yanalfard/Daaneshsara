@@ -1,5 +1,6 @@
 ﻿using DataLayer.Models;
 using DataLayer.Services;
+using DataLayer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,49 @@ namespace AminWeb.Controllers
             {
                 ViewBag.Playlist = _db.Playlist.Get(i => i.PlaylistId == video.PlaylistId).ToList();
             }
-            return View(video);
+            VmVideoView vmVideo = new VmVideoView();
+            vmVideo.VideoId = video.VideoId;
+            vmVideo.VideoUrl = video.VideoUrl;
+            vmVideo.VidioDemoUrl = video.VidioDemoUrl;
+            vmVideo.MainImage = video.MainImage;
+            vmVideo.Title = video.Title;
+            vmVideo.Description = video.Description;
+            vmVideo.DateSubmited = video.DateSubmited;
+            vmVideo.ViewCount = video.ViewCount;
+            vmVideo.IsHome = video.IsHome;
+            vmVideo.UserNameVideo = video.TblUser.Name;
+            vmVideo.PlaylistTitle = video.PlaylistId != null ? video.TblPlaylist.Title : "";
+            vmVideo.PlaylistPrice = video.PlaylistId != null ? video.TblPlaylist.Price : 0;
+            if (User.Identity.IsAuthenticated)
+            {
+                List<TblLog> log = _db.Log.Get().Where(i => (i.UserId == SelectUser().UserId) && (i.PlayListId == video.PlaylistId || i.VideoId == video.VideoId)).ToList();
+                if (log.Count != 0)
+                {
+                    vmVideo.IsLog = true;
+                    if (video.PlaylistId != null && log.FirstOrDefault().PlayListId != null)
+                    {
+                        vmVideo.IsPlaylist = true;
+                        vmVideo.IsVideo = false;
+                    }
+                    else
+                    {
+                        vmVideo.IsPlaylist = false;
+                        vmVideo.IsVideo = true;
+                    }
+                }
+            }
+
+            vmVideo.LikeCount = video.LikeCount;
+            vmVideo.Link = video.Link;
+            vmVideo.UserId = video.UserId;
+            vmVideo.Price = video.Price;
+            vmVideo.IsCharity = video.IsCharity;
+            vmVideo.PlaylistId = video.PlaylistId;
+            vmVideo.IsActive = video.IsActive;
+            vmVideo.CatagoryId = video.CatagoryId;
+            vmVideo.RatingCount = video.RatingCount;
+
+            return View(vmVideo);
         }
 
         public ActionResult ListVideos()

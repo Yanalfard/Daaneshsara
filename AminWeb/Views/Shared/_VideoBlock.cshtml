@@ -19,9 +19,6 @@
                         <img src="~/Resources/Static/Vector/Medal.svg" height="24" width="24" alt="Badge" />
                     </li>
                 }
-                @*<li uk-tooltip="title:حامی خیریه">
-                        <img src="~/Resources/Static/Vector/Heart.svg" height="24" width="24" alt="Badge" />
-                    </li>*@
             </ul>
             <img class="thumbnail" height="200" width="360" src="~/Resources/Video/Image/Thumb/@Model.MainImage" alt="Thumbnail" />
         </div>
@@ -40,7 +37,14 @@
             <hr />
             <div class="bottom row">
                 <h6 class="price">
-                    @Model.Price.ToString("#,0")
+                    @if (Model.PlaylistId != null)
+                    {
+                        @Model.TblPlaylist.Price.ToString("#,0")
+                    }
+                    else
+                    {
+                        @Model.Price.ToString("#,0")
+                    }
                 </h6>
                 <div class="row star-container uk-margin-auto-left" dir="rtl">
                     <div class="Stars" style="--rating: @(Model.LikeCount/20);" uk-tooltip="@(Model.LikeCount/20)" aria-label="Rating of this product is 2.3 out of 5."></div>

@@ -41,6 +41,7 @@
         <AssociationConnector Association="AminWebModel.FK_WhoUploadedVideo" ManuallyRouted="false" />
         <AssociationConnector Association="AminWebModel.FK_TblUserVideoRel_TblVideo" ManuallyRouted="false" />
         <AssociationConnector Association="AminWebModel.FK_TblVideoKeyword_TblVideo" ManuallyRouted="false" />
+        <AssociationConnector Association="AminWebModel.FK_TblLog_TblPlaylist" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -65,6 +65,9 @@
           <Property Name="Amount" Type="int" Nullable="false" />
           <Property Name="Status" Type="smallint" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="VideoId" Type="int" />
+          <Property Name="PlayListId" Type="int" />
+          <Property Name="IsVideo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TblPlaylist">
           <Key>
@@ -224,17 +227,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TblLog_TblUser">
-          <End Role="TblUser" Type="Self.TblUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_TblLog_TblPlaylist">
+          <End Role="TblPlaylist" Type="Self.TblPlaylist" Multiplicity="0..1" />
           <End Role="TblLog" Type="Self.TblLog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TblUser">
-              <PropertyRef Name="UserId" />
+            <Principal Role="TblPlaylist">
+              <PropertyRef Name="PlaylistId" />
             </Principal>
             <Dependent Role="TblLog">
-              <PropertyRef Name="UserId" />
+              <PropertyRef Name="PlayListId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -496,8 +497,8 @@
             <End Role="TblCatagory" EntitySet="TblCatagory" />
             <End Role="TblCatagory1" EntitySet="TblCatagory" />
           </AssociationSet>
-          <AssociationSet Name="FK_TblLog_TblUser" Association="Self.FK_TblLog_TblUser">
-            <End Role="TblUser" EntitySet="TblUser" />
+          <AssociationSet Name="FK_TblLog_TblPlaylist" Association="Self.FK_TblLog_TblPlaylist">
+            <End Role="TblPlaylist" EntitySet="TblPlaylist" />
             <End Role="TblLog" EntitySet="TblLog" />
           </AssociationSet>
           <AssociationSet Name="FK_TblPlaylist_TblCatagory" Association="Self.FK_TblPlaylist_TblCatagory">
@@ -637,6 +638,10 @@
           <Property Name="Status" Type="Int16" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblLog_TblUser" FromRole="TblLog" ToRole="TblUser" />
+          <Property Name="VideoId" Type="Int32" />
+          <Property Name="PlayListId" Type="Int32" />
+          <Property Name="IsVideo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="TblPlaylist" Relationship="AminWebModel.FK_TblLog_TblPlaylist" FromRole="TblLog" ToRole="TblPlaylist" />
         </EntityType>
         <EntityType Name="TblPlaylist">
           <Key>
@@ -660,6 +665,7 @@
           <NavigationProperty Name="TblUserPlaylistRel" Relationship="Self.FK_TblUserPackRel_TblPack" FromRole="TblPlaylist" ToRole="TblUserPlaylistRel" />
           <NavigationProperty Name="TblVideo" Relationship="Self.FK_TblVideo_TblPack" FromRole="TblPlaylist" ToRole="TblVideo" />
           <NavigationProperty Name="TblVideoPlaylistKeyword" Relationship="Self.FK_TblVideoPlaylistKeyword_TblPlaylist" FromRole="TblPlaylist" ToRole="TblVideoPlaylistKeyword" />
+          <NavigationProperty Name="TblLog" Relationship="AminWebModel.FK_TblLog_TblPlaylist" FromRole="TblPlaylist" ToRole="TblLog" />
         </EntityType>
         <EntityType Name="TblReport">
           <Key>
@@ -1167,7 +1173,23 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="FK_TblLog_TblPlaylist" Association="AminWebModel.FK_TblLog_TblPlaylist">
+            <End Role="TblPlaylist" EntitySet="TblPlaylist" />
+            <End Role="TblLog" EntitySet="TblLog" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_TblLog_TblPlaylist">
+          <End Type="AminWebModel.TblPlaylist" Role="TblPlaylist" Multiplicity="0..1" />
+          <End Type="AminWebModel.TblLog" Role="TblLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblPlaylist">
+              <PropertyRef Name="PlaylistId" />
+            </Principal>
+            <Dependent Role="TblLog">
+              <PropertyRef Name="PlayListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1233,6 +1255,9 @@
           <EntitySetMapping Name="TblLog">
             <EntityTypeMapping TypeName="AminWebModel.TblLog">
               <MappingFragment StoreEntitySet="TblLog">
+                <ScalarProperty Name="IsVideo" ColumnName="IsVideo" />
+                <ScalarProperty Name="PlayListId" ColumnName="PlayListId" />
+                <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="LogId" ColumnName="LogId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />

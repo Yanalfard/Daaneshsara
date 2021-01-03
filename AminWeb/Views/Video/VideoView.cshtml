@@ -1,5 +1,5 @@
 ﻿@using DataLayer.Models;
-@model DataLayer.Models.TblVideo
+@model DataLayer.ViewModels.VmVideoView
 
 @{
     ViewBag.Title = ViewBag.Name;
@@ -62,17 +62,41 @@
 
 <div class="column uk-container">
     <div class="column container uk-margin-auto">
-        <video class="video-playback uk-margin-auto-left uk-margin-auto-right white-area-margin" controls controlsList="nodownload">
-            <source src="~/Resources/Video/VideoDemo/@Model.VidioDemoUrl" type="video/mp4">
+        @if (Model.IsLog)
+        {
+            <video class="video-playback uk-margin-auto-left uk-margin-auto-right white-area-margin" controls controlsList="nodownload">
+                <source src="~/Resources/Video/VideoUrl/@Model.VideoUrl" type="video/mp4">
+            </video>
+        }
+        else
+        {
+            if (Model.VidioDemoUrl != null)
+            {
+                <video class="video-playback uk-margin-auto-left uk-margin-auto-right white-area-margin" controls controlsList="nodownload">
+                    <source src="~/Resources/Video/VideoDemo/@Model.VidioDemoUrl" type="video/mp4">
+                </video>
+            }
+            else
+            {
+                <img class="thumbnail" src="~/Resources/Video/Image/Thumb/@Model.MainImage" alt="Thumbnail" />
 
-        </video>
+            }
+
+        }
+
         <div id="Info" class="mat uk-box-shadow-large uk-margin-medium-top uk-margin-medium-bottom">
             <div class="uk-padding">
+                @if (Model.PlaylistId != null)
+                {
+                    <h3>
+                        کلاس: @Model.PlaylistTitle
+                    </h3>
+                }
                 <h3>
                     @Model.Title
                 </h3>
                 <a href="#" class="tutor">
-                    @Model.TblUser.Name
+                    @Model.UserNameVideo
                 </a>
                 <p class="uk-margin-remove-bottom">
                     @{
@@ -87,9 +111,7 @@
                             desc2 += word + ' ';
                         }
                     }
-
                     @desc
-
                     @if (!string.IsNullOrEmpty(desc2))
                     {
                         <details dir="rtl">
@@ -104,15 +126,35 @@
             <hr class="uk-margin-remove" />
             <div class="control-panel uk-padding">
                 <div class="control-panel-bottom row-reverse">
-                    <button class="btn-primary">
-                        ورود به کلاس
-                    </button>
-                    <div class="price row uk-margin-auto-top uk-margin-auto-bottom uk-margin-small-right">
-                        <span>
-                            تومان
-                        </span>
-                        @Model.Price.ToString("#,0")
-                    </div>
+                    @if (!Model.IsLog)
+                    {
+                        if (Model.PlaylistId != null)
+                        {
+                            <a href="/ShopCart/Index/@Model.VideoId" class="btn-primary">
+                                خرید ویدیوهای این کلاس
+                            </a>
+                            <div class="price row uk-margin-auto-top uk-margin-auto-bottom uk-margin-small-right">
+                                <span>
+                                    تومان
+                                </span>
+                                @Model.PlaylistPrice.ToString("#,0")
+                            </div>
+                        }
+                        else
+                        {
+                            <a  href="/ShopCart/Index/@Model.VideoId" class="btn-primary">
+                                خرید این ویدیو
+                            </a>
+                            <div class="price row uk-margin-auto-top uk-margin-auto-bottom uk-margin-small-right">
+                                <span>
+                                    تومان
+                                </span>
+                                @Model.Price.ToString("#,0")
+                            </div>
+                        }
+
+
+                    }
                 </div>
                 <div class="control-panel-top  row-reverse uk-margin-auto-right">
                     <ul class="action-panel row uk-padding-remove uk-margin-auto-bottom uk-margin-auto-top uk-margin-auto-right">

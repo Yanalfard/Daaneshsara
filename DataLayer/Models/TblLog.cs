@@ -19,7 +19,11 @@ namespace DataLayer.Models
         public int Amount { get; set; }
         public short Status { get; set; }
         public System.DateTime Date { get; set; }
+        public Nullable<int> VideoId { get; set; }
+        public Nullable<int> PlayListId { get; set; }
+        public bool IsVideo { get; set; }
     
         public virtual TblUser TblUser { get; set; }
+        public virtual TblPlaylist TblPlaylist { get; set; }
     }
 }

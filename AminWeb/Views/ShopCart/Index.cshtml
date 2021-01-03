@@ -1,4 +1,4 @@
-﻿
+﻿@model DataLayer.ViewModels.VmShopCart
 @{
     ViewBag.Title = "Purchase";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,20 +24,33 @@
             <label>مبلغ قابل پرداخت</label>
             <div class="row uk-margin-auto-left price">
                 <span class="toman">تومان</span>
-                <label class="price">400,000</label>
+                <label class="price">@Model.Price</label>
             </div>
         </div>
 
         <div class="purch column uk-margin-small-top">
             <label>نحوه پرداخت</label>
             <div class="row-reverse purchase">
-                <div class="wallet">
-                    <label>کسر از کیف پول</label>
-                    <div class="row uk-margin-auto-left">
-                        <span class="toman">تومان</span>
-                        <span class="price">400,000</span>
+                @if (Model.IsValidBalance)
+                {
+                    <div class="wallet">
+                        <label>کسر از کیف پول</label>
+                        <div class="row uk-margin-auto-left">
+                            <span class="toman">تومان</span>
+                            <a href="/ShopCart/VerifyBalance/@Model.VideoId" class="price">@Model.BalanceUser</a>
+                        </div>
                     </div>
-                </div>
+                }
+                else
+                {
+                    <div class="wallet uk-disabled">
+                        <label>پول کیف شما کمتر از مبلغ مورد نظر است</label>
+                        <div class="row uk-margin-auto-left">
+                            <span class="toman">تومان</span>
+                            <span class="price">@Model.BalanceUser</span>
+                        </div>
+                    </div>
+                }
                 <div class="divider"></div>
                 <div class="pal">
                     <div>
@@ -49,7 +62,6 @@
         </div>
 
         <!-- #endregion -->
-
         @* MEHDIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII *@
         @*@Html.Partial("Playlist")*@
     </div>

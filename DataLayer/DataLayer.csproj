@@ -150,6 +150,8 @@
     <Compile Include="ViewModels\VmForgetPassword.cs" />
     <Compile Include="ViewModels\VmLogin.cs" />
     <Compile Include="ViewModels\VmRegister.cs" />
+    <Compile Include="ViewModels\VmShopCart.cs" />
+    <Compile Include="ViewModels\VmVideoView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />
