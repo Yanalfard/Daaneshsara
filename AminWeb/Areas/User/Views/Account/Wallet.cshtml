@@ -3,41 +3,34 @@
     ViewBag.Title = "Wallet";
     ViewBag.Content = "کیف پول کاربر و اطلاعات تراکنش ها";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
-
 }
 
 <!-- #region Modals -->
 
 <div id="Modal-Charge" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
-        <h3>
-            ویرایش اطلاعات کاربری
-        </h3>
-        <div class="form-group">
-            <label for="Name">نام و نام خانوادگی</label>
-            <div class="input-group">
-                <input type="text" name="Name" />
-            </div>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
+        <div class="row-reverse uk-margin-bottom">
+            <h3 class="uk-margin-remove">
+                شارژ کیف پول
+            </h3>
+            <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
         </div>
+
+        <p>
+            مبلغ خود را وارد نمایید
+        </p>
+
         <div class="form-group">
-            <label for="Tel">شماره تلفن</label>
+            <label for="Charge" dir="rtl">مبلغ (ريال)</label>
             <div class="input-group">
-                <input type="tel" name="Tel" />
-            </div>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
-        </div>
-        <div class="form-group">
-            <label for="Email">ایمیل</label>
-            <div class="input-group">
-                <input type="email" name="Email" />
+                <input type="number" name="Charge" />
             </div>
             <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
         </div>
 
-        <div class="row-reverse uk-margin-top" type="button" uk-toggle="target: #Modal-Edit">
+        <div class="row-reverse uk-margin-top" type="button">
             <button class="btn-primary">
-                ویرایش
+                شارژ
             </button>
             <button class="btn-secondary uk-modal-close uk-margin-right">
                 بازگشت
@@ -49,40 +42,29 @@
 
 <div id="Modal-Request" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
-        <h3>
-            ویرایش اطلاعات کاربری
-        </h3>
-        <div class="form-group">
-            <label for="Name">نام و نام خانوادگی</label>
-            <div class="input-group">
-                <input type="text" name="Name" />
-            </div>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
-        </div>
-        <div class="form-group">
-            <label for="Tel">شماره تلفن</label>
-            <div class="input-group">
-                <input type="tel" name="Tel" />
-            </div>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
-        </div>
-        <div class="form-group">
-            <label for="Email">ایمیل</label>
-            <div class="input-group">
-                <input type="email" name="Email" />
-            </div>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
+        <div class="row-reverse uk-margin-bottom">
+            <h3 class="uk-margin-remove">
+                درخواست برداشت
+            </h3>
+            <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
         </div>
 
-        <div class="row-reverse uk-margin-top" type="button" uk-toggle="target: #Modal-Edit">
+        <p dir="rtl">
+            تنها مبالغی که از فروش ویدیو های خود به دست آورده اید را می توانید برداشت نمایید.
+        </p>
+
+        <p class="alert-box alert-box-success">
+            مبلغ قابل برداشت: <span>400,000</span>
+        </p>
+
+        <div class="row-reverse uk-margin-top" type="button">
             <button class="btn-primary">
-                ویرایش
+                برداشت
             </button>
             <button class="btn-secondary uk-modal-close uk-margin-right">
                 بازگشت
             </button>
         </div>
-
     </div>
 </div>
 
