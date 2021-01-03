@@ -33,10 +33,10 @@ namespace AminWeb.Controllers
                     list.VideoId = video.VideoId;
                     list.PlaylistId = video.PlaylistId;
                     list.Price = video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
-                    list.IsPlaylist = video.PlaylistId != null ? true : false;
+                    list.IsPlaylist = video.PlaylistId != null;
                     list.BalanceUser = SelectUser().Balance;
-                    list.IsValidBalance = list.Price < list.BalanceUser ? true : false;
-                    list.UserId = SelectUser().UserId;
+                    list.IsValidBalance = list.Price < SelectUser().Balance;
+                    //list.UserId = SelectUser().UserId;
                     list.UserName = SelectUser().Name;
                     Session["ShopCartVideo"] = list;
                     return View(list);
@@ -56,8 +56,11 @@ namespace AminWeb.Controllers
             {
                 if (Session["ShopCartVideo"] != null)
                 {
+
                     VmShopCart list = Session["ShopCartVideo"] as VmShopCart;
                     TblUser user = _db.User.GetById(list.UserId);
+                    TblVideo video = _db.Video.GetById(list.VideoId);
+
                     if (_db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == list.PlaylistId).Any())
                     {
                         return Redirect("/");
@@ -66,12 +69,13 @@ namespace AminWeb.Controllers
                     {
                         return Redirect("/");
                     }
-                    user.Balance -= list.Price;
+                    user.Balance -= video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
                     TblLog log = new TblLog();
-                    log.Amount = list.Price;
+                    //log.Amount = list.Price;
+                    log.Amount = video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
                     log.Date = DateTime.Now;
                     log.Status = 2;
-                    log.UserId = list.UserId;
+                    log.UserId = SelectUser().UserId;
                     if (list.IsPlaylist)
                     {
                         log.IsVideo = false;
@@ -98,11 +102,12 @@ namespace AminWeb.Controllers
         public ActionResult Payment()
         {
             VmShopCart list = Session["ShopCartVideo"] as VmShopCart;
+            TblVideo video = _db.Video.GetById(list.VideoId);
             TblLog log = new TblLog();
-            log.Amount = list.Price;
+            log.Amount = video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
             log.Date = DateTime.Now;
             log.Status = 0;
-            log.UserId = list.UserId;
+            log.UserId = SelectUser().UserId;
             if (list.IsPlaylist)
             {
                 log.IsVideo = false;
@@ -119,7 +124,7 @@ namespace AminWeb.Controllers
             ZarinPalTest.PaymentGatewayImplementationServicePortTypeClient zp = new ZarinPalTest.PaymentGatewayImplementationServicePortTypeClient();
             string Authority;
 
-            int Status = zp.PaymentRequest("5f648351-94a0-4b6d-ab96-3eef0d58a8b5", list.Price, "نیو خرید ", "info@newkharid.com", "09339634557", ConfigurationManager.AppSettings["MyDomain"] + "/ShopCart/Verify/" + log.LogId, out Authority);
+            int Status = zp.PaymentRequest("5f648351-94a0-4b6d-ab96-3eef0d58a8b5", log.Amount, "نیو خرید ", "info@newkharid.com", "09339634557", ConfigurationManager.AppSettings["MyDomain"] + "/ShopCart/Verify/" + log.LogId, out Authority);
             if (Status == 100)
             {
                 //Response.Redirect("https://www.zarinpal.com/pg/StartPay/" + Authority);
