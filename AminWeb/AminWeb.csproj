@@ -2013,6 +2013,7 @@
     <Content Include="Content\Styles\Areas\UserDashboard.scss" />
     <Content Include="Content\Styles\_loading.scss" />
     <Content Include="manifest.json" />
+    <Content Include="Content\Styles\Pages\Purchase.scss" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Resources\Classes\CertificateURL\NoImage.svg" />
     <Content Include="Resources\Classes\Link\NoImage.svg" />

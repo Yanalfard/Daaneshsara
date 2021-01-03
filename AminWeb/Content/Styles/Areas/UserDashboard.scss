@@ -175,8 +175,16 @@ $side-category-width: 200px;
             padding-top: 16px;
 
             .date {
-                color: lighten(#666666,20%)!important;
+                color: lighten(#666666,20%) !important;
             }
+        }
+
+        .message.you .text::before {
+            content: '•';
+            width: 8px;
+            height: 8px;
+            @include border-radius(4px,4px,4px,4px);
+            color: $primary;
         }
     }
 }

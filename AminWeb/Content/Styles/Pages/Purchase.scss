@@ -1,34 +1,6 @@
 ﻿@import '../_colors.scss';
 @import '../_layout.scss';
 
-.alert-box {
-    border-width: 1px;
-    border-style: solid;
-    border-color: #eee;
-    color: #eee;
-    background-color: transparentize(#eee,.8);
-    padding: 12px;
-    @include border-radius(12px,12px,12px,12px);
-}
-
-.alert-box.alert-box-warning {
-    color: #F8B784;
-    border-color: #F8B784;
-    background-color: #FFF6EE;
-}
-
-.alert-box.alert-box-success {
-    color: #64CA14;
-    border-color: #64CA14;
-    background-color: #E1FFEF;
-}
-
-.alert-box.alert-box-danger {
-    color: #F94646;
-    border-color: #F94646;
-    background-color: #FFE1E1;
-}
-
 .price {
     margin-top: 4px;
 
