@@ -34,20 +34,20 @@
                 @if (Model.IsValidBalance)
                 {
                     <div class="wallet">
-                        <label>کسر از کیف پول</label>
+                        <label>پرداخت از کیف پول</label>
                         <div class="row uk-margin-auto-left">
                             <span class="toman">تومان</span>
-                            <a href="/ShopCart/VerifyBalance/@Model.VideoId" class="price">@Model.BalanceUser</a>
+                            <a href="/ShopCart/VerifyBalance/@Model.VideoId" class="price">@Model.BalanceUser.ToString("#,0")</a>
                         </div>
                     </div>
                 }
                 else
                 {
                     <div class="wallet uk-disabled">
-                        <label>پول کیف شما کمتر از مبلغ مورد نظر است</label>
+                        <label>وجه کیف پول ناکافی</label>
                         <div class="row uk-margin-auto-left">
                             <span class="toman">تومان</span>
-                            <span class="price">@Model.BalanceUser</span>
+                            <span class="price">@Model.BalanceUser.ToString("#,0")</span>
                         </div>
                     </div>
                 }

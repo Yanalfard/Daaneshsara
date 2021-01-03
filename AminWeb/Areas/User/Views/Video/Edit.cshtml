@@ -1,19 +1,19 @@
 ﻿@model DataLayer.MetaData.MdVideo
 
 @{
-    ViewBag.Title = "ویرایش کردن ویدیو";
-    ViewBag.Content = "ویدیو هایی که شما آپلود کرده اید";
+    ViewBag.Title = "ویرایش ویدیو";
+    ViewBag.Content = "ویرایش ویدیو";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
 }
 
-<div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
+<div class="edit mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
     @using (Html.BeginForm("Edit", "Video", new AjaxOptions() { OnSuccess = "LoadingEnd('#editVideo')" }, FormMethod.Post, new { enctype = "multipart/form-data", @id = "editVideo" }))
     {
         @Html.HiddenFor(m => m.id)
         @Html.HiddenFor(m => m.MainImage)
         @Html.HiddenFor(m => m.VideoDemoUrl)
         @Html.HiddenFor(m => m.VideoUrl)
-        <h3>
+        <h3 class="uk-margin-remove-top">
             آپلود ویدیو جدید
         </h3>
         <div class="form-group">
@@ -31,7 +31,7 @@
             <div class="row-reverse text-center">
                 @if (Model.MainImage != null)
                 {
-                    <img src="~/Resources/Video/Image/@Model.MainImage" alt="" />
+                    <img src="~/Resources/Video/Image/@Model.MainImage" class="uk-margin-small-bottom" alt="" />
                 }
             </div>
             <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
@@ -51,7 +51,7 @@
             <div class="row-reverse text-center">
                 @if (Model.VideoDemoUrl != null)
                 {
-                    <video class="video-playback" controls controlsList="nodownload">
+                    <video class="uk-margin-small-bottom" controls controlsList="nodownload">
                         <source src="~/Resources/Video/VideoDemo/@Model.VideoDemoUrl" type="video/mp4">
                     </video>
                 }
@@ -74,7 +74,7 @@
             <div class="row-reverse text-center">
                 @if (Model.VideoUrl != null)
                 {
-                    <video class="video-playback" controls controlsList="nodownload">
+                    <video class="uk-margin-small-bottom" controls controlsList="nodownload">
                         <source src="~/Resources/Video/VideoUrl/@Model.VideoUrl" type="video/mp4">
                     </video>
                 }
@@ -113,7 +113,7 @@
 
         <div class="uk-margin-top uk-margin-bottom">
             <label dir="rtl">
-                @Html.EditorFor(m => m.IsCharity)
+                @Html.EditorFor(m => m.IsCharity, "", new { @class = "uk-checkbox" })
                 میخواهم درصدی از درامد این ویدیو به خیریه
                 <a href="#" class="blue">نام خیریه</a>
                 اهدا شود
@@ -144,8 +144,6 @@
                 ویرایش
             </button>
         </div>
-
-
     }
 
 </div>

@@ -189,5 +189,12 @@ $side-category-width: 200px;
     }
 }
 
-// (a , b) + (c , d) = (a+c , b+d)
+.edit {
+    img, video {
+        @include border-radius(8px,8px,8px,8px);
+        width: 100%;
+    }
+}
+
+// (a , b) + (c , d) = (a + c , b + d)
 // (a , b) * (c , d) = (ac + bd , ad - bc)

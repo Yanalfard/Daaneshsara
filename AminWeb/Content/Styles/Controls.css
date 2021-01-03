@@ -311,7 +311,7 @@ backdrop-filter: saturate(80%);
     width: 50px;
     margin-right: 24px; }
 
-a, details, summary, .anchor {
+a:not(.btn), a:visited, details, summary, .anchor {
   color: #505050;
   -moz-transition: all ease 0.3s;
   -o-transition: all ease 0.3s;
@@ -741,7 +741,8 @@ select {
     border-radius: 0;*/ }
 
 .btn-primary:hover, .btn-pill-primary:hover, .btn-primary:focus {
-  background: #fa6e6e; }
+  background: #fa6e6e;
+  color: white; }
 
 .btn-secondary {
   color: #868686;
