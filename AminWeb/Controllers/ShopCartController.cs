@@ -56,40 +56,47 @@ namespace AminWeb.Controllers
             {
                 if (Session["ShopCartVideo"] != null)
                 {
-
                     VmShopCart list = Session["ShopCartVideo"] as VmShopCart;
-                    TblUser user = _db.User.GetById(list.UserId);
+                    TblUser user = _db.User.GetById(SelectUser().UserId);
                     TblVideo video = _db.Video.GetById(list.VideoId);
+                    if (user != null && video != null)
+                    {
+                        if (_db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == list.PlaylistId).Any())
+                        {
+                            return Redirect("/");
+                        }
+                        else if (_db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.VideoId == list.VideoId).Any())
+                        {
+                            return Redirect("/");
+                        }
+                        int Price = video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
+                        if (user.Balance >= Price)
+                        {
+                            user.Balance -= Price;
+                            TblLog log = new TblLog();
+                            //log.Amount = list.Price;
+                            log.Amount = video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
+                            log.Date = DateTime.Now;
+                            log.Status = 2;
+                            log.UserId = SelectUser().UserId;
+                            if (list.IsPlaylist)
+                            {
+                                log.IsVideo = false;
+                                log.PlayListId = list.PlaylistId;
+                            }
+                            else
+                            {
+                                log.IsVideo = true;
+                                log.VideoId = list.VideoId;
+                            }
+                            _db.Log.Add(log);
+                            _db.User.Save();
+                            Session["ShopCartVideo"] = null;
+                            return View(list);
+                        }
 
-                    if (_db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == list.PlaylistId).Any())
-                    {
-                        return Redirect("/");
                     }
-                    else if (_db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.VideoId == list.VideoId).Any())
-                    {
-                        return Redirect("/");
-                    }
-                    user.Balance -= video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
-                    TblLog log = new TblLog();
-                    //log.Amount = list.Price;
-                    log.Amount = video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
-                    log.Date = DateTime.Now;
-                    log.Status = 2;
-                    log.UserId = SelectUser().UserId;
-                    if (list.IsPlaylist)
-                    {
-                        log.IsVideo = false;
-                        log.PlayListId = list.PlaylistId;
-                    }
-                    else
-                    {
-                        log.IsVideo = true;
-                        log.VideoId = list.VideoId;
-                    }
-                    _db.Log.Add(log);
-                    _db.User.Save();
-                    Session["ShopCartVideo"] = null;
-                    return View(list);
+
                 }
                 return Redirect("/");
             }
