@@ -26,7 +26,7 @@
     }
 }
 
-a, details, summary, .anchor {
+a:not(.btn), a:visited, details, summary, .anchor {
     color: $Text;
     @include trans(.3s);
 }
@@ -482,6 +482,7 @@ select {
 
 .btn-primary:hover, .btn-pill-primary:hover, .btn-primary:focus {
     background: lighten($primary,8%);
+    color: white;
 }
 
 .btn-secondary {
