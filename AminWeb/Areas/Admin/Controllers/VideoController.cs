@@ -87,7 +87,7 @@ namespace AminWeb.Areas.Admin.Controllers
             updateVideo.IsHome = !updateVideo.IsHome;
             _db.Video.Update(updateVideo);
             _db.Video.Save();
-            return PartialView("ListVideo", _db.Video.Get());
+            return PartialView("ListVideo", _db.Video.Get().OrderByDescending(i => i.VideoId));
 
         }
         public ActionResult ActiveDisableVideo(int id)
@@ -96,7 +96,7 @@ namespace AminWeb.Areas.Admin.Controllers
             updateVideo.IsActive = !updateVideo.IsActive;
             _db.Video.Update(updateVideo);
             _db.Video.Save();
-            return PartialView("ListVideo", _db.Video.Get());
+            return PartialView("ListVideo", _db.Video.Get().OrderByDescending(i => i.VideoId));
         }
         public ActionResult Delete(int id)
         {
@@ -135,6 +135,13 @@ namespace AminWeb.Areas.Admin.Controllers
             return Json(new { success = true, responseText = "ویدیو مورد نظر  حذف شد " }, JsonRequestBehavior.AllowGet);
         }
 
-
+        public ActionResult Report()
+        {
+            return View(_db.Report.Get());
+        }
+        public ActionResult ListReport()
+        {
+            return PartialView();
+        }
     }
 }

@@ -152,12 +152,6 @@ namespace AminWeb.Controllers
             selectVideoByCategory = _db.Video.Get(i => i.IsActive && i.Title.Contains(name)).OrderByDescending(i => i.DateSubmited).ToList();
             return PartialView("ListVideos", selectVideoByCategory);
         }
-
-
-
-
-
-
         TblUser SelectUser()
         {
             TblUser selectUser = _db.User.Get().FirstOrDefault(i => i.Email == User.Identity.Name);

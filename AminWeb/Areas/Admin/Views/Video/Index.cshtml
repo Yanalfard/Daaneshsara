@@ -114,17 +114,22 @@
     <script>
 
         function showHideInHomeVideo(id) {
+            $("#overlay").fadeIn(300);
             $.get("/Admin/Video/ShowHideInHomeVideo/" + id, function (result) {
                 $('#listVideo').html(result);
+                $("#overlay").fadeOut(300);
             });
         }
         function activeDisableVideo(id) {
+            $("#overlay").fadeIn(300);
             $.get("/Admin/Video/ActiveDisableVideo/" + id, function (result) {
                 $('#listVideo').html(result);
+                $("#overlay").fadeOut(300);
             });
         }
         function deleteVideo(id) {
             if (confirm('آیا از حذف ویدیو مورد نظر مظمئن هستین؟')) {
+                $("#overlay").fadeIn(300);
                 $.get("/Admin/Video/Delete/" + id, function (result) {
                     if (result.success) {
                         $('#video_' + id).addClass('text-danger');
@@ -132,6 +137,7 @@
                     } else {
                         alert(result.responseText);
                     }
+                    $("#overlay").fadeOut(300);
                 })
             }
         }
