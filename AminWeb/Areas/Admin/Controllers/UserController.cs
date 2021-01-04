@@ -283,7 +283,7 @@ namespace AminWeb.Areas.Admin.Controllers
                     list = list.Where(p => p.RoleId == 3).ToList();
                 }
             }
-            return PartialView(list);
+            return PartialView(list.OrderByDescending(i=>i.UserId));
         }
     }
 }

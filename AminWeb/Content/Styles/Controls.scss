@@ -468,7 +468,7 @@ select {
 }
 
 .btn-primary, .btn-pill-primary {
-    color: white;
+    color: white!important;
     background: $primary;
     border: none;
     @include trans(.2s);

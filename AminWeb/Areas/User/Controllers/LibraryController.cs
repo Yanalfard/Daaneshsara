@@ -22,6 +22,24 @@ namespace AminWeb.Areas.User.Controllers
         {
             return View();
         }
+        public ActionResult Purchased()
+        {
+            List<TblVideo> video = new List<TblVideo>();
+            List<TblLog> list = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && (i.Status == 1 || i.Status == 2)).ToList();
+            foreach (var item in list)
+            {
+                if (item.PlayListId != null)
+                {
+                    video.AddRange(_db.Video.Get().Where(i => i.PlaylistId == item.PlayListId).ToList());
+                }
+                else if(item.VideoId!=null && item.IsVideo)
+                {
+                    video.AddRange(_db.Video.Get().Where(i => i.VideoId == item.VideoId).ToList());
+                }
+
+            }
+            return PartialView(video);
+        }
 
         public ActionResult IsBookMark()
         {

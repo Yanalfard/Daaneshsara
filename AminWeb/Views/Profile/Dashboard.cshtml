@@ -5,11 +5,11 @@
     Layout = "~/Views/Profile/_ProfileLayout.cshtml";
     var first = Model.FirstOrDefault();
 }
-@Html.Partial("_HeaderProfile", @first.TblUser)
 
 @if (Model.Any())
 {
- 
+    @Html.Partial("_HeaderProfile", @first.TblUser)
+
     @Html.Action("ListPlayList", "PlayList", new { UserId = first.UserId })
 
     <br class="uk-margin-top" />
@@ -19,5 +19,37 @@
         {
             @Html.Partial("_VideoBlock", item)
         }
+    </div>
+}
+else
+{
+
+    <div class="user mat column uk-box-shadow-medium uk-margin-medium-bottom">
+        <div class="user-top row-reverse uk-padding-small uk-padding-remove-bottom">
+            <h3 class="uk-margin-remove"></h3>
+        </div>
+        <hr />
+        <div class="user-bottom">
+            <ul class="menu row-reverse">
+                <li>
+                    <a href="#" class="menu-item">
+                        <h4 class="title">خانه</h4>
+                        <div class="bar"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item">
+                        <h4 class="title">ویدیو ها</h4>
+                        <div class="bar"></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="menu-item">
+                        <h4 class="title">کلاس ها</h4>
+                        <div class="bar"></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 }

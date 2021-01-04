@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DataLayer.Models.TblChat>
+﻿@model IEnumerable<DataLayer.Models.TblUser>
 <select name="Contacts" class="uk-width-1-1" dir="rtl"  id="mySelect">
     <option value="0">انتخاب کنید</option>
 
@@ -6,7 +6,8 @@
     {
         foreach (var item in Model)
         {
-            <option  value="@item.RecieverId">@item.TblUser.Name</option>
+            <option  value="@item.UserId">@item.Name</option>
         }
+
     }
 </select>

@@ -722,7 +722,7 @@ select {
     min-width: 100px; } }
 
 .btn-primary, .btn-pill-primary {
-  color: white;
+  color: white !important;
   background: #F94646;
   border: none;
   -moz-transition: all ease 0.2s;

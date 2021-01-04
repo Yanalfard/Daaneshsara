@@ -6,10 +6,12 @@
         <tr id="video_@item.VideoId" class="list-item">
             <td>@(Model.ToList().IndexOf(item)+1)</td>
             <td>
-                @if (item.MainImage != null)
-                {
-                    <img style="max-width:100px;" class="thumbnail" src="~/Resources/Video/Image/Thumb/@item.MainImage" alt="@item.Title" />
-                }
+                <a href="/VideoView/@item.VideoId/@item.Title.Replace(" ","-")">
+                    @if (item.MainImage != null)
+                    {
+                        <img style="max-width:100px;" class="thumbnail" src="~/Resources/Video/Image/Thumb/@item.MainImage" alt="@item.Title" />
+                    }
+                </a>
             </td>
             <td>
                 @item.Title

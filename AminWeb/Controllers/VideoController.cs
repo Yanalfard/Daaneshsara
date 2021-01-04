@@ -25,6 +25,14 @@ namespace AminWeb.Controllers
             if (ViewVideoValid == 0)
             {
                 video.ViewCount++;
+                if (video.PlaylistId != null)
+                {
+                    TblPlaylist playlist = _db.Playlist.GetById(video.PlaylistId);
+                    if (playlist != null)
+                    {
+                        playlist.ViewCount++;
+                    }
+                }
                 _db.Video.Save();
                 Session["ViewVideoValid"] = 1;
             }
@@ -47,12 +55,17 @@ namespace AminWeb.Controllers
             vmVideo.PlaylistPrice = video.PlaylistId != null ? video.TblPlaylist.Price : 0;
             if (User.Identity.IsAuthenticated)
             {
+                if (video.UserId == SelectUser().UserId || User.IsInRole("admin"))
+                {
+                    vmVideo.IsLog = true;
+                }
                 List<TblLog> log = new List<TblLog>();
+
                 if (video.PlaylistId != null)
                 {
-                    log = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == video.PlaylistId && (i.Status == 1|| i.Status == 2)).ToList();
+                    log = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == video.PlaylistId && (i.Status == 1 || i.Status == 2)).ToList();
                 }
-                else if(video.PlaylistId == null)
+                else if (video.PlaylistId == null)
                 {
                     log = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.VideoId == video.VideoId && (i.Status == 1 || i.Status == 2)).ToList();
                 }
@@ -87,8 +100,8 @@ namespace AminWeb.Controllers
 
         public ActionResult ListVideos()
         {
-            List<TblVideo> selectAllVideos = _db.Video.Get().Where(i => i.IsHome && i.IsActive).Take(20).ToList();
-            return PartialView(selectAllVideos);
+            List<TblVideo> selectAllVideos = _db.Video.Get().Where(i => i.IsHome && i.IsActive).ToList();
+            return PartialView(selectAllVideos.OrderByDescending(i => i.DateSubmited).Take(20));
         }
         public ActionResult SelectVideos()
         {
@@ -210,18 +223,23 @@ namespace AminWeb.Controllers
         {
             int ConverRating = Convert.ToInt32(Raiting) * 20;
             TblVideo product = _db.Video.GetById(id);
-            if (product.LikeCount == 0)
+            int ViewVideoValid = Convert.ToInt32(Session["ViewVideoRaiting"]);
+            if (ViewVideoValid == 0)
             {
-                product.LikeCount = ConverRating;
-                product.RatingCount = 1;
+                Session["ViewVideoRaiting"] = 1;
+                if (product.LikeCount == 0)
+                {
+                    product.LikeCount = ConverRating;
+                    product.RatingCount = 1;
+                }
+                else
+                {
+                    var number = product.LikeCount * product.RatingCount;
+                    product.RatingCount++;
+                    product.LikeCount = (int)((number + ConverRating) / product.RatingCount);
+                }
+                _db.Report.Save();
             }
-            else
-            {
-                var number = product.LikeCount * product.RatingCount;
-                product.RatingCount++;
-                product.LikeCount = (int)((number + ConverRating) / product.RatingCount);
-            }
-            _db.Report.Save();
             int LikeCount = product.LikeCount;
             ViewBag.LikeCount = product.LikeCount / 20;
             return PartialView("LikeCount", LikeCount);

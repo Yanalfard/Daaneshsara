@@ -20,34 +20,24 @@
 
     </div>
 
-    <!--<div class="chat-room uk-margin-top uk-box-shadow-hover-large">
-        <ul class="uk-padding-remove" id="listMessage">
-        </ul>
-    </div>
-
-    <div class="row-reverse uk-margin-top">
-
-        <div class="row uk-width-1-1">
-            <textarea type="text" name="Message" id="messageTextAreaa" class="uk-width-1-1" placeholder="..."></textarea>
-            <button class="btn-pill-primary uk-margin-left uk-margin-auto-bottom" onclick="sendMessage()">-->
-    @*<span uk-icon="icon:send;ratio:1.2"></span>*@
-    <!--فرستادن
-            </button>
-        </div>
-    </div>-->
 </div>
 
 @section Scripts{
     <script>
 
         $('#mySelect').on('change', function () {
+            $("#overlay").fadeIn(300);
             var id = $(this).val();
             $.get('/User/Chat/ViewChat/' + id, function (result) {
                 $('#listMessage').html(result);
+                $("#overlay").fadeOut(300);
             });
+            $("#overlay").fadeOut(300);
         });
         function sendMessage(id) {
+            $("#overlay").fadeIn(300);
             if ($('#messageTextAreaa').val() == "") {
+                $("#overlay").fadeOut(300);
                 UIkit.notification("متن خالیست");
                 return false;
             }
@@ -58,7 +48,10 @@
             }).done(function (result) {
                 $('#messageTextAreaa').val("");
                 $('#listMessage').html(result);
+                $("#overlay").fadeOut(300);
             });
+            $("#overlay").fadeOut(300);
+
         }
 
     </script>

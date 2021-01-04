@@ -89,11 +89,37 @@ namespace AminWeb.Areas.User.Controllers
         }
         public ActionResult Chats()
         {
-            return PartialView(GetAllChats());
+            List<TblUser> user = new List<TblUser>();
+            List<TblLog> list = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && (i.Status == 1 || i.Status == 2)).ToList();
+            foreach (var item in list)
+            {
+                if (item.PlayListId != null)
+                {
+                    user.AddRange(_db.Video.Get().Where(i => i.PlaylistId == item.PlayListId).Select(i => i.TblUser).ToList());
+                }
+                else if (item.VideoId != null && item.IsVideo)
+                {
+                    user.AddRange(_db.Video.Get().Where(i => i.VideoId == item.VideoId).Select(i => i.TblUser).ToList());
+                }
+            }
+            List<TblVideo> video = _db.Video.Get().Where(i => i.UserId == SelectUser().UserId).ToList();
+            foreach (var item in video)
+            {
+                if (item.PlaylistId != null)
+                {
+                    user.AddRange(_db.Log.Get().Where(i => i.PlayListId == item.PlaylistId).Select(i => i.TblUser).ToList());
+                }
+                else if (item.PlaylistId == null)
+                {
+                    user.AddRange(_db.Log.Get().Where(i => i.VideoId == item.VideoId).Select(i => i.TblUser).ToList());
+                }
+            }
+            return PartialView(user.Distinct());
         }
         public ActionResult ViewChat(int id)
         {
             List<VmChatUsers> list = new List<VmChatUsers>();
+            ViewBag.SenderId = id;
             foreach (var item in GetAChat(id))
             {
                 VmChatUsers vmChat = new VmChatUsers();
@@ -110,17 +136,18 @@ namespace AminWeb.Areas.User.Controllers
             }
             return PartialView(list);
         }
-        public ActionResult SendMessage(int id,string message)
+        public ActionResult SendMessage(int id, string message)
         {
             _db.Chat.Add(new TblChat()
             {
-                SenderId= SelectUser().UserId,
-                RecieverId=id,
-                Message=message,
-                TimeSent=DateTime.Now,
+                SenderId = SelectUser().UserId,
+                RecieverId = id,
+                Message = message,
+                TimeSent = DateTime.Now,
             });
             _db.Chat.Save();
             List<VmChatUsers> list = new List<VmChatUsers>();
+            ViewBag.SenderId = id;
             foreach (var item in GetAChat(id))
             {
                 VmChatUsers vmChat = new VmChatUsers();

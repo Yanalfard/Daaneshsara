@@ -1,5 +1,6 @@
 ﻿using DataLayer.Models;
 using DataLayer.Services;
+using DataLayer.ViewModels;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
@@ -122,7 +123,28 @@ namespace AminWeb.Areas.Admin.Controllers
 
         public ActionResult ViewChat(int user1, int user2)
         {
-            return View(GetAChat(user1, user2));
+            //return View(GetAChat(user1, user2));
+
+
+            List<VmChatUsers> list = new List<VmChatUsers>();
+            //ViewBag.SenderId = id;
+            foreach (var item in GetAChat(user1, user2))
+            {
+                VmChatUsers vmChat = new VmChatUsers();
+                vmChat.ChatId = item.ChatId;
+                vmChat.TimeSent = item.TimeSent;
+                vmChat.Message = item.Message;
+                vmChat.Name = item.TblUser1.Name;
+                vmChat.SenderId = item.SenderId;
+                vmChat.RecieverId = item.RecieverId;
+                //if (id == item.SenderId)
+                //{
+                //    ViewBag.SenderId = item.SenderId;
+                //    vmChat.SenderId = item.SenderId;
+                //}
+                list.Add(vmChat);
+            }
+            return PartialView(list);
         }
 
 

@@ -1,12 +1,4 @@
 ﻿@model DataLayer.Models.TblTicket
-<div class="modal-header">
-    <h6 class="modal-title" id="modalCenterTitle">
-        نمایش تیکت کاربر
-    </h6>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
 <form>
     <div class="modal-body">
         <div class="form-row">
@@ -24,11 +16,11 @@
 
     </div>
     <div class="space-half"></div>
-    @if (Model.AttachmentUrl.Any())
+    @if (Model.AttachmentUrl!=null)
     {
         <div class="modal-footer justify-content-end">
 
-            <a id="BtnProjectCreate" href="~/Resources/@Model.AttachmentUrl" class="btn btn-success btn-sm text-white"><i class="fas fa-plus-circle"></i>نمایش فایل</a>
+            <a id="BtnProjectCreate" href="~/Resources/Ticket/@Model.AttachmentUrl" class="btn btn-success btn-sm text-white"><i class="fas fa-plus-circle"></i>نمایش فایل</a>
         </div>
     }
 </form>

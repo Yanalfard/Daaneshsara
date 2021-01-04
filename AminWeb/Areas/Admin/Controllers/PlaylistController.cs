@@ -71,7 +71,7 @@ namespace AminWeb.Areas.Admin.Controllers
             {
                 list = list.Where(p => p.TblUser.RoleId == roleId).ToList();
             }
-            return PartialView(list.OrderByDescending(i => i.DateSubmited));
+            return PartialView(list.OrderByDescending(i => i.PlaylistId));
         }
         public ActionResult ShowHideInHomePlaylist(int id)
         {

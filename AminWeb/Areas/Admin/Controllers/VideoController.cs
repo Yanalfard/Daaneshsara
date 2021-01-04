@@ -12,7 +12,7 @@ namespace AminWeb.Areas.Admin.Controllers
     {
         private Heart _db = new Heart();
         // GET: Admin/Video
-        public ActionResult Index(string Title = "", int Price = 0, string Catagory = "", string UserName = "", int isActive = -1, int IsHome = -1, int roleId = -1)
+        public ActionResult Index(string Title = "", int Price = 0, string Catagory = "", string UserName = "", int isActive = -1, int IsHome = -1, int roleId = -1, int PlaylistId = 0, int UserId = 0)
         {
             ViewBag.Name = Title;
             ViewBag.Price = Price;
@@ -23,7 +23,7 @@ namespace AminWeb.Areas.Admin.Controllers
             ViewBag.IsHome = IsHome;
             return View();
         }
-        public ActionResult ListVideo(string Title = "", int Price = 0, string Catagory = "", string UserName = "", int isActive = -1, int IsHome = -1, int roleId = -1)
+        public ActionResult ListVideo(string Title = "", int Price = 0, string Catagory = "", string UserName = "", int isActive = -1, int IsHome = -1, int roleId = -1, int PlaylistId = 0,int UserId=0)
         {
             List<TblVideo> list = new List<TblVideo>();
             list.AddRange(_db.Video.Get());
@@ -34,6 +34,14 @@ namespace AminWeb.Areas.Admin.Controllers
             if (Price != 0)
             {
                 list = list.Where(p => p.Price == Price).ToList();
+            }
+            if (PlaylistId != 0)
+            {
+                list = list.Where(p => p.PlaylistId == PlaylistId).ToList();
+            }
+            if (UserId != 0)
+            {
+                list = list.Where(p => p.UserId == UserId).ToList();
             }
             if (Catagory != "")
             {
@@ -69,7 +77,7 @@ namespace AminWeb.Areas.Admin.Controllers
             {
                 list = list.Where(p => p.TblUser.RoleId == roleId).ToList();
             }
-            return PartialView(list.OrderByDescending(i => i.DateSubmited));
+            return PartialView(list.OrderByDescending(i => i.VideoId));
         }
 
 
@@ -126,6 +134,7 @@ namespace AminWeb.Areas.Admin.Controllers
             _db.Video.Save();
             return Json(new { success = true, responseText = "ویدیو مورد نظر  حذف شد " }, JsonRequestBehavior.AllowGet);
         }
+
 
     }
 }

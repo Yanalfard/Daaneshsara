@@ -1808,6 +1808,8 @@
     <Content Include="Connected Services\ZarinPalTest\AminWeb.ZarinPalTest.RefreshAuthorityResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Areas\User\Views\Library\Purchased.cshtml" />
+    <Content Include="Areas\Admin\Views\User\UserList.cshtml" />
     <None Include="Connected Services\ZarinPalTest\configuration91.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\configuration.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\Reference.svcmap">

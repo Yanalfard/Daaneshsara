@@ -39,6 +39,10 @@ namespace AminWeb.Controllers
                     //list.UserId = SelectUser().UserId;
                     list.UserName = SelectUser().Name;
                     Session["ShopCartVideo"] = list;
+                    if (video.PlaylistId != null)
+                    {
+                        ViewBag.Playlist = _db.Playlist.Get(i => i.PlaylistId == video.PlaylistId).ToList();
+                    }
                     return View(list);
                 }
                 return Redirect("/");

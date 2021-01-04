@@ -2,8 +2,6 @@
 
 
 
-@if (Model.Any())
-{
 
     <div class="chat-room uk-margin-top uk-box-shadow-hover-large">
         <ul class="uk-padding-remove">
@@ -13,8 +11,7 @@
                 {
                     <li class="message you column">
                         <div class="row">
-                            <!-- MEHDIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII  -->
-                            <a href="~/Dashboard/6/mehdi" class="name uk-margin-auto-left" dir="ltr" uk-icon="chevron-left">@item.Name</a>
+                            <a href="/Dashboard/@item.SenderId/@item.Name" class="name uk-margin-auto-left" dir="ltr" uk-icon="chevron-left">@item.Name</a>
                             <span class="date"> @item.TimeSent.ToShamsi()</span>
                         </div>
                         <p class="text">
@@ -48,4 +45,3 @@
         </div>
     </div>
 
-}
