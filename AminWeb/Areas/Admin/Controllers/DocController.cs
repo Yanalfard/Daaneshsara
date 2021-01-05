@@ -13,52 +13,97 @@ namespace AminWeb.Areas.Admin.Controllers
         // GET: Admin/Doc
         private Heart _db = new Heart();
         // GET: Admin/Ticket
-        public ActionResult Index(string name = "", string tellNo = "", string email = "", string title = "")
+        public ActionResult Index(string tellNo = "")
         {
-            ViewBag.name = name;
             ViewBag.tellNo = tellNo;
-            ViewBag.email = email;
-            ViewBag.titl = title;
             return View();
         }
-        public ActionResult ListDoc(string name = "", string tellNo = "", string email = "", string title = "")
+        public ActionResult ListDoc(string tellNo = "")
         {
-            List<TblTicket> list = new List<TblTicket>();
-            list.AddRange(_db.Ticket.Get());
-            if (name != "")
-            {
-                list = list.Where(p => p.TblUser.Name.Contains(name)).ToList();
-            }
+            List<TblDoc> list = new List<TblDoc>();
+            list.AddRange(_db.Docs.Get());
             if (tellNo != "")
             {
-                list = list.Where(p => p.TblUser.TellNo.Contains(tellNo)).ToList();
+                list = list.Where(p => p.TellSabet.Contains(tellNo)).ToList();
             }
-            if (email != "")
-            {
-                list = list.Where(p => p.TblUser.Email.Contains(email)).ToList();
-            }
-            if (title != "")
-            {
-                list = list.Where(p => p.Title.Contains(title)).ToList();
-            }
-            return PartialView(list.OrderByDescending(i => i.DateSent));
+            return PartialView(list.OrderByDescending(i => i.DocId));
         }
-        public ActionResult ViewTicket(int id)
+        public ActionResult ViewDoc(int id)
         {
-            return PartialView(_db.Ticket.GetById(id));
+            TblUser user = _db.User.Get().Where(i => i.DocsId == id).SingleOrDefault();
+            if (user != null)
+            {
+                ViewBag.UserName = user.Name;
+                ViewBag.Tell = user.TellNo;
+            }
+            return View(_db.Docs.GetById(id));
         }
+
+        public ActionResult DocDone(int id, int isValid, string errorMessage)
+        {
+            TblDoc selectedBydoc = _db.Docs.GetById(id);
+            TblUser user = _db.User.Get().Where(i => i.DocsId == id).SingleOrDefault();
+            if (isValid == 2)
+            {
+                selectedBydoc.IsValid = isValid;
+                selectedBydoc.ErrorMessage = errorMessage;
+                if (user != null)
+                {
+                    user.RoleId = 0;
+                }
+            }
+            else if (isValid == 1)
+            {
+                selectedBydoc.IsValid = isValid;
+                selectedBydoc.ErrorMessage = errorMessage;
+                if (user != null)
+                {
+                    user.RoleId = 2;
+                }
+            }
+            _db.Docs.Save();
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Delete(int id)
         {
-            TblTicket selectUserById = _db.Ticket.GetById(id);
-            bool delete = _db.Ticket.Delete(selectUserById);
+            TblDoc selectedDocById = _db.Docs.GetById(id);
+            bool delete = _db.Docs.Delete(selectedDocById);
             if (delete)
             {
-                string fullPathLogo = Request.MapPath("/Resources/Ticket/" + selectUserById.AttachmentUrl);
-                if (System.IO.File.Exists(fullPathLogo))
+                if (selectedDocById.KarteMeliSahebEmtiazUrl != null)
                 {
-                    System.IO.File.Delete(fullPathLogo);
+                    string KarteMeli = Request.MapPath("/Resources/Ticket/" + selectedDocById.KarteMeliSahebEmtiazUrl);
+                    if (System.IO.File.Exists(KarteMeli))
+                    {
+                        System.IO.File.Delete(KarteMeli);
+                    }
                 }
-                _db.User.Save();
+                if (selectedDocById.MojavezTasisUrl != null)
+                {
+                    string Mojavez = Request.MapPath("/Resources/Ticket/" + selectedDocById.MojavezTasisUrl);
+                    if (System.IO.File.Exists(Mojavez))
+                    {
+                        System.IO.File.Delete(Mojavez);
+                    }
+                }
+                if (selectedDocById.ParvaneAmuzeshgahUrl != null)
+                {
+                    string Parvane = Request.MapPath("/Resources/Ticket/" + selectedDocById.ParvaneAmuzeshgahUrl);
+                    if (System.IO.File.Exists(Parvane))
+                    {
+                        System.IO.File.Delete(Parvane);
+                    }
+                }
+                if (selectedDocById.ShenasnameSahebEmtiazUrl != null)
+                {
+                    string Shenasname = Request.MapPath("/Resources/Ticket/" + selectedDocById.ShenasnameSahebEmtiazUrl);
+                    if (System.IO.File.Exists(Shenasname))
+                    {
+                        System.IO.File.Delete(Shenasname);
+                    }
+                }
+                _db.Docs.Save();
                 return Json(new { success = true, responseText = " حذف شد" }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { success = false, responseText = "خطا در حذف   لطفا بررسی فرمایید" }, JsonRequestBehavior.AllowGet);

@@ -1,0 +1,81 @@
+﻿@model DataLayer.Models.TblDoc
+@{
+    ViewBag.Title = "مشاهده مدارک";
+}
+
+<div class="card border-0 shadow p-1">
+
+    <div class="card-body flex-div">
+        <div>
+            تلفن
+            @Model.TellSabet
+        </div>
+        <div>
+            نام کاربری
+            @ViewBag.UserName
+        </div>
+        <div>
+            شماره تلفن
+            @ViewBag.Tell
+        </div>
+        <div>
+            آدرس
+            @Model.Address
+        </div>
+        <div>
+            @if (Model.IsValid == 1)
+            {
+                <p>تائید شده</p>
+            }
+            else if (Model.IsValid == 2)
+            {
+                <p>رد شده</p>
+            }
+            else if (Model.IsValid == 0)
+            {
+                <p>منتظر نظر شما </p>
+            }
+        </div>
+        <div>
+            @if (Model.KarteMeliSahebEmtiazUrl != null)
+            {
+                <a href="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl">
+                    <img class="thumbnail" src="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl" alt="@Model.TellSabet" />
+                </a>
+            }
+        </div>
+        <div>
+            @if (Model.MojavezTasisUrl != null)
+            {
+                <a href="~/Resources/Doc/@Model.MojavezTasisUrl">
+                    <img class="thumbnail" src="~/Resources/Doc/@Model.MojavezTasisUrl" alt="@Model.TellSabet" />
+                </a>
+            }
+        </div>
+        <div>
+            @if (Model.ParvaneAmuzeshgahUrl != null)
+            {
+                <a href="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl">
+                    <img class="thumbnail" src="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl" alt="@Model.TellSabet" />
+                </a>
+            }
+        </div>
+        <div>
+            @if (Model.ShenasnameSahebEmtiazUrl != null)
+            {
+                <a href="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl">
+                    <img class="thumbnail" src="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl" alt="@Model.TellSabet" />
+                </a>
+            }
+        </div>
+        <div>
+            <form action="/Admin/Doc/DocDone/@Model.DocId">
+                <input type="text" name="" value="" placeholder="پیام شما" />
+                <input type="radio" name="isValid" value="1" />تائید مدارک
+                <input type="radio" name="isValid" value="2" />رد مدارک
+                <input type="submit" value="ثبت" />
+            </form>
+        </div>
+    </div>
+
+</div>

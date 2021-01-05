@@ -1,0 +1,22 @@
+﻿@model IEnumerable<DataLayer.Models.TblDoc>
+
+@if (Model.Any())
+{
+    foreach (var item in Model)
+    {
+        <tr id="doc_@item.DocId" class="list-item">
+            <td>@(Model.ToList().IndexOf(item)+1)</td>
+            <td>@item.TellSabet</td>
+            <td>
+                <a href="/Admin/Doc/ViewDoc/@item.DocId" class="fa fa-eye" title="مشاهده مدارک" data-toggle="tooltip" data-placement="top">
+                </a>
+            </td>
+            <td>
+                <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
+                    <a onclick="deleteDoc(@item.DocId)" data-toggle="modal" data-target="#modalSave"><i class="btn fas fa-trash mr-2 text-danger"></i></a>
+                </span>
+            </td>
+        </tr>
+    }
+}
+

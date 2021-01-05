@@ -131,6 +131,7 @@
     <Compile Include="Areas\Admin\Controllers\ChatController.cs" />
     <Compile Include="Areas\Admin\Controllers\DocController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OlderController.cs" />
     <Compile Include="Areas\Admin\Controllers\PlaylistController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
@@ -1817,6 +1818,9 @@
     <Content Include="Areas\User\Views\Doc\Upload.cshtml" />
     <Content Include="Areas\User\Views\Doc\InformationUpload.cshtml" />
     <Content Include="Areas\Admin\Views\Doc\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Doc\ViewDoc.cshtml" />
+    <Content Include="Areas\Admin\Views\Doc\ListDoc.cshtml" />
+    <Content Include="Areas\Admin\Views\Older\Prices.cshtml" />
     <None Include="Connected Services\ZarinPalTest\configuration91.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\configuration.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\Reference.svcmap">

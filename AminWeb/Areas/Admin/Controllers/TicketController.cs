@@ -57,7 +57,7 @@ namespace AminWeb.Areas.Admin.Controllers
                 {
                     System.IO.File.Delete(fullPathLogo);
                 }
-                _db.User.Save();
+                _db.Ticket.Save();
                 return Json(new { success = true, responseText = " حذف شد" }, JsonRequestBehavior.AllowGet);
             }
             return Json(new { success = false, responseText = "خطا در حذف   لطفا بررسی فرمایید" }, JsonRequestBehavior.AllowGet);

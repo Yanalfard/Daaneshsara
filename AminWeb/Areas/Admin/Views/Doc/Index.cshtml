@@ -4,3 +4,94 @@
 }
 
 
+
+<div class="card flex-div border-0 shadow">
+    <div class="card-header bg-white">
+        <div class="row justify-content-end">
+            <div class="col-md-10 col-12">
+                <form class="card-form row" action="/Admin/Doc/Index" method="post">
+                    <div class="form-input col-md-8">
+                        <div class="form-inline">
+                            <div class="form-group mx-sm-1 mb-2">
+                                <input class="form-control form-control-sm" name="tellNo" type="text" value="@ViewBag.tellNo" placeholder="شماره تماس">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-toolbar col-md-3">
+                        <input type="submit" value="جستجو" class="btn btn-primary btn-sm" />
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div id="card-table" class="p-0 card-body flex-div">
+        <div class="table-responsive flex">
+            <table class="table fixed pr-3 text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">کد</th>
+
+                        <th scope="col">شماره تلفن جهت تماس</th>
+                        <th scope="col">مشاهده</th>
+                        <th scope="col">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody id="listDoc" class="list-wrapper">
+                    @Html.Action("ListDoc", "Doc")
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer bg-white">
+        <nav aria-label="Page navigation example">
+            <div id="pagination-container"></div>
+        </nav>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body" id="myModalBody">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+@section Scripts{
+
+
+    <script src="~/Areas/Admin/Content/bootstrap/js/jquery.validate.min.js"></script>
+    <script src="~/Areas/Admin/Content/bootstrap/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Areas/Admin/Content/bootstrap/js/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        function deleteDoc(id) {
+            if (confirm('آیا از حذف فایل مورد نظر مظمئن هستین؟')) {
+                $.ajax({
+                    url: "/Admin/Doc/Delete",
+                    data: { id: id },
+                }).done(function (result) {
+                    if (result.success) {
+                        $('#doc_' + id).addClass('text-danger');
+                        $("#doc_" + id).hide('slow');
+                    } else {
+                        alert(result.responseText);
+                    }
+                });
+            }
+        }
+        function success() {
+            $("#myModal").modal('hide');
+        }
+    </script>
+}

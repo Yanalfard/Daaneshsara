@@ -16,12 +16,10 @@ namespace DataLayer.MetaData
         public Nullable<short> DarsadeSud { get; set; }
         public Nullable<int> SaqfeBardasht { get; set; }
         [Display(Name = " درباره ما ")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string AboutUsBody { get; set; }
         [Display(Name = " تماس با ما ")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [DataType(DataType.MultilineText)]
         [AllowHtml]
         public string Rules { get; set; }

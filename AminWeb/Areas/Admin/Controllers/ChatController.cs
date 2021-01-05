@@ -57,10 +57,12 @@ namespace AminWeb.Areas.Admin.Controllers
 
         public List<TblChat> GetAChat(int user1, int user2)
         {
-            List<TblChat> stp1 = _db.Chat.Get(i => i.SenderId == user1 && i.RecieverId == user2).ToList();
-            List<TblChat> stp2 = _db.Chat.Get(i => i.SenderId == user2 && i.RecieverId == user1).ToList();
-            stp1.AddRange(stp2);
-            stp1.DistinctBy(i => i.ChatId);
+            List<TblChat> stp1 = _db.Chat.Get(i => (i.SenderId == user1 && i.RecieverId == user2) || (i.SenderId == user2 && i.RecieverId == user1)).ToList();
+
+            //List<TblChat> stp1 = _db.Chat.Get(i => i.SenderId == user1 && i.RecieverId == user2).ToList();
+            //List<TblChat> stp2 = _db.Chat.Get(i => i.SenderId == user2 && i.RecieverId == user1).ToList();
+            //stp1.AddRange(stp2);
+            //stp1.DistinctBy(i => i.ChatId);
             return stp1;
         }
         public bool GetDeleteChat(int user1, int user2)
