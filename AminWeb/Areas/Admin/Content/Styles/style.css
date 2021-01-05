@@ -6,6 +6,100 @@
     font-style: normal;
 }
 
+.row {
+    display: flex;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.col {
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.rowr {
+    display: flex;
+    -ms-flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+
+.colr {
+    display: flex;
+    -ms-flex-direction: column-reverse;
+    -webkit-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+}
+
+.list-none {
+    list-style: none !important;
+}
+
+.comment {
+    background: #f5f5f5;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+    .comment > div {
+        display: flex;
+        -ms-flex-direction: row;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+    }
+
+        .comment > div > a {
+            margin-left: auto;
+            font-size: 16px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .comment > div > span {
+            margin-right: auto;
+        }
+
+.chat {
+    display: flex !important;
+    -ms-flex-direction: row !important;
+    -webkit-flex-direction: row !important;
+    flex-direction: row !important;
+    min-width: 256px;
+    position: fixed;
+    left: 26px;
+    bottom: 24px;
+}
+
+    .chat > input {
+        width: 50vw;
+    }
+
+    .chat > button {
+        margin-left: 16px;
+    }
+
+@media only screen and (max-width : 992px) {
+    .chat {
+        left: 26px;
+        right: 24px;
+        bottom: 24px;
+    }
+
+        .chat > input {
+            width: 100%;
+        }
+}
+
 .l-flex-wrap {
     -ms-flex-wrap: wrap;
     -webkit-flex-wrap: wrap;
@@ -1576,7 +1670,7 @@ ul {
 
 .modal {
     z-index: 11000 !important;
-    width:2000px !important;
+    width: 2000px !important;
 }
 
 .modal-backdrop {

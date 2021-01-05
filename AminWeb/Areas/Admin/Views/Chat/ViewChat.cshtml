@@ -1,23 +1,38 @@
-﻿@model IEnumerable<DataLayer.ViewModels.VmChatUsers>
+﻿
+@model IEnumerable<DataLayer.ViewModels.VmChatUsers>
 
 
+@{Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml"; }
 
 
-<div class="chat-room uk-margin-top uk-box-shadow-hover-large">
-    <ul class="uk-padding-remove">
-        @foreach (var item in Model)
-        {
+<div class="card border-0 shadow p-1">
 
-            <li class="message you column">
-                <div class="row">
-                    <a href="/Dashboard/@item.SenderId/@item.Name" class="name uk-margin-auto-left" dir="ltr" uk-icon="chevron-left">@item.Name</a>
-                    <span class="date"> @item.TimeSent.ToShamsi()</span>
-                </div>
-                <p class="text">
-                    @item.Message
-                </p>
-            </li>
+    <div class="card-body flex-div">
+        <ul class="list-none mb-4">
+            @foreach (var item in Model)
+            {
+                <li class="comment">
+                    <div>
+                        <a href="/Dashboard/@item.SenderId/@item.Name" dir="ltr">@item.Name</a>
+                        <span>@item.TimeSent.ToShamsi()</span>
+                    </div>
+                    <p>
+                        @item.Message
+                    </p>
+                </li>
+            }
+        </ul>
+    </div>
 
-        }
-    </ul>
+    <form class="chat card card-body shadow p-3" action="/Admin/Chat/Index" method="post">
+        <button class="btn btn-primary" type="submit">فرستادن</button>
+        <input class="form-control" type="text" placeholder="...">
+    </form>
+
 </div>
+
+<!-- Button trigger modal -->
+@section Scripts{
+
+
+}
