@@ -1,93 +1,19 @@
-﻿@model DataLayer.MetaData.MdDoc
-@{
+﻿@{
     ViewBag.Title = "تکمیل اطلاعات";
 }
 
 <div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
-    @using (Html.BeginForm("Create", "Video", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        <h3>
-            آپلود مدارک 
-        </h3>
-        <div class="form-group">
-            <label for="TellSabet">شماره تلفن </label>
-            <div class="input-group">
-                @Html.EditorFor(m => m.TellSabet)
-            </div>
-            <span role="alert" class="alert">
-                @Html.ValidationMessageFor(model => model.TellSabet, "", new { @class = "uk-text-danger" })
-            </span>
-        </div>
-        <div class="form-group">
-            <label for="Address">آدرس</label>
-            @Html.EditorFor(m => m.Address)
-            <span role="alert" class="alert">
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "uk-text-danger" })
-            </span>
-        </div>
 
-        <div class="form-group">
-            <label for="MainImage">کارت ملی</label>
-            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
-                <span uk-icon="icon: cloud-upload"></span>
-                <span class="uk-text-middle">کارت ملی خود را اینجا بیاندازید و یا</span>
-                <div uk-form-custom>
-                    <input type="file" name="KarteMeliSahebEmtiazUrl">
-                    <span class="blue">کلیک کنید</span>
-                </div>
-            </div>
-            <span role="alert" class="alert">
-                @Html.ValidationMessageFor(model => model.KarteMeliSahebEmtiazUrl, "", new { @class = "uk-text-danger" })
-            </span>
-        </div>
-        <div class="form-group">
-            <label for="Video">شناسنامه</label>
-            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
-                <span uk-icon="icon: cloud-upload"></span>
-                <span class="uk-text-middle">شناسنامه خود را اینجا بیاندازید و یا</span>
-                <div uk-form-custom>
-                    <input type="file" name="VideoUrl">
-                    <span class="blue">کلیک کنید</span>
-                </div>
-            </div>
-            <span role="alert" class="alert">
-                @Html.ValidationMessageFor(model => model.ShenasnameSahebEmtiazUrl, "", new { @class = "uk-text-danger" })
-            </span>
-        </div>
-        <div class="form-group">
-            <label for="VideoDemo">مجوز تاسیس </label>
-            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
-                <span uk-icon="icon: cloud-upload"></span>
-                <span class="uk-text-middle"> مجوز تاسیس خود را اینجا بیاندازید و یا</span>
-                <div uk-form-custom>
-                    <input type="file" name="VideoDemoUrl">
-                    <span class="blue">کلیک کنید</span>
-                </div>
-            </div>
-            <span role="alert" class="alert">
-                @Html.ValidationMessageFor(model => model.MojavezTasisUrl, "", new { @class = "uk-text-danger" })
-            </span>
-        </div>
-        <div class="form-group">
-            <label for="Video">پروانه آموزشی </label>
-            <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
-                <span uk-icon="icon: cloud-upload"></span>
-                <span class="uk-text-middle">پروانه آموزشی  خود را اینجا بیاندازید و یا</span>
-                <div uk-form-custom>
-                    <input type="file" name="VideoUrl">
-                    <span class="blue">کلیک کنید</span>
-                </div>
-            </div>
-            <span role="alert" class="alert">
-                @Html.ValidationMessageFor(model => model.ParvaneAmuzeshgahUrl, "", new { @class = "uk-text-danger" })
-            </span>
-        </div>
+    <h3>
+        تکمیل اطلاعات
+    </h3>
 
+    <div class="row-reverse uk-margin-medium-top">
+        <a href="/User/Doc/Upload" class="btn-primary">
+            آپلود مدارک
+        </a>
+    </div>
 
-        <div class="row-reverse uk-margin-medium-top">
-            <button class="btn-primary">
-                آپلود
-            </button>
-        </div>
-    }
 </div>
+
+@Html.Action("InformationUpload")

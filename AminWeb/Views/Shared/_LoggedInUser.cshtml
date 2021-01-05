@@ -5,31 +5,52 @@
     </a>
     <div uk-drop="offset: 0" id="navDrop">
         <div class="drop-body uk-padding-small column">
-            <ul class="uk-margin-remove uk-padding-remove">
-                <li>
-                    <a href="/User/Account/UserData">
-                        <span>پروفایل</span>
-                        <span uk-icon="icon:user"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/User/Video/YourVideos">
-                        <span>آپلود</span>
-                        <span uk-icon="icon:cloud-upload"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/LogOff">
-                        <span>خروج</span>
-                        <span uk-icon="icon:sign-out"></span>
-                    </a>
-                </li>
-            </ul>
-            <hr class="uk-grid-margin-small" />
+            @if (User.IsInRole("user")|| User.IsInRole("institution") || User.IsInRole("tutor"))
+            {
+                <ul class="uk-margin-remove uk-padding-remove">
+                    <li>
+                        <a href="/User/Account/UserData">
+                            <span>پروفایل</span>
+                            <span uk-icon="icon:user"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/User/Video/YourVideos">
+                            <span>آپلود</span>
+                            <span uk-icon="icon:cloud-upload"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/LogOff">
+                            <span>خروج</span>
+                            <span uk-icon="icon:sign-out"></span>
+                        </a>
+                    </li>
+                </ul>
+                @*<hr class="uk-grid-margin-small" />
             <a href="/User/Account/Wallet" class="success">
                 <span>130,000</span>
                 <span uk-icon="icon:money"></span>
-            </a>
+            </a>*@
+            }
+            @if (User.IsInRole("admin"))
+            {
+                <ul class="uk-margin-remove uk-padding-remove">
+                    <li>
+                        <a href="/Admin/Home">
+                            <span>پروفایل</span>
+                            <span uk-icon="icon:user"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/LogOff">
+                            <span>خروج</span>
+                            <span uk-icon="icon:sign-out"></span>
+                        </a>
+                    </li>
+                </ul>
+            }
+
         </div>
     </div>
 

@@ -135,13 +135,41 @@ namespace AminWeb.Areas.Admin.Controllers
             return Json(new { success = true, responseText = "ویدیو مورد نظر  حذف شد " }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Report()
+        public ActionResult Report(string name = "", string text = "")
         {
+            ViewBag.name = name;
+            ViewBag.text = text;
             return View(_db.Report.Get());
         }
-        public ActionResult ListReport()
+        public ActionResult ListReport(string name = "", string text = "")
         {
-            return PartialView();
+            List<TblReport> list = new List<TblReport>();
+            list.AddRange(_db.Report.Get());
+            if (name != "")
+            {
+                list = list.Where(p => p.TblVideo.Title.Contains(name)).ToList();
+            }
+            if (text != "")
+            {
+                list = list.Where(p => p.Text.Contains(text)).ToList();
+            }
+            return PartialView(list.OrderByDescending(i => i.DateSent));
+        }
+  
+        public ActionResult ViewVideoReport(int id)
+        {
+            return PartialView(_db.Report.GetById(id));
+        }
+        public ActionResult DeleteVideoReport(int id)
+        {
+            TblReport selectUserById = _db.Report.GetById(id);
+            bool delete = _db.Report.Delete(selectUserById);
+            if (delete)
+            {
+                _db.Report.Save();
+                return Json(new { success = true, responseText = " حذف شد" }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false, responseText = "خطا در حذف   لطفا بررسی فرمایید" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

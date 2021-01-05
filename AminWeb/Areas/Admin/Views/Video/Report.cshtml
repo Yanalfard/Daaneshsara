@@ -1,26 +1,20 @@
 ﻿
 @{
-    ViewBag.Title = "تیکت ها";
+    ViewBag.Title = "تخلفات ویدیوها ";
 }
 
 <div class="card flex-div border-0 shadow">
     <div class="card-header bg-white">
         <div class="row justify-content-end">
             <div class="col-md-10 col-12">
-                <form class="card-form row" action="/Admin/Ticket/Index" method="post">
+                <form class="card-form row" action="/Admin/Video/Report" method="post">
                     <div class="form-input col-md-8">
                         <div class="form-inline">
                             <div class="form-group mx-sm-1 mb-2">
-                                <input class="form-control form-control-sm" name="title" type="text" value="@ViewBag.titl" placeholder="موضوع">
+                                <input class="form-control form-control-sm" name="name" type="text" value="@ViewBag.name" placeholder="نام ویدیو">
                             </div>
                             <div class="form-group mx-sm-1 mb-2">
-                                <input class="form-control form-control-sm" name="name" type="text" value="@ViewBag.name" placeholder="نام">
-                            </div>
-                            <div class="form-group mx-sm-1 mb-2">
-                                <input class="form-control form-control-sm" name="tellNo" type="text" value="@ViewBag.tellNo" placeholder="شماره تماس">
-                            </div>
-                            <div class="form-group mx-sm-1 mb-2">
-                                <input class="form-control form-control-sm" name="email" type="text" value="@ViewBag.email" placeholder="ایمیل">
+                                <input class="form-control form-control-sm" name="text" type="text" value="@ViewBag.text" placeholder="متن">
                             </div>
                         </div>
                     </div>
@@ -38,11 +32,9 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">کد</th>
-                        <th scope="col">موضوع</th>
-                        <th scope="col">نام</th>
-                        <th scope="col">شماره تماس</th>
-                        <th scope="col">ایمیل</th>
-                        <th scope="col">تاریخ ارسال </th>
+                        <th scope="col">ویدیو</th>
+                        <th scope="col">نام ویدیو</th>
+                        <th scope="col">تاریخ</th>
                         <th scope="col">مشاهده</th>
                         <th scope="col">عملیات</th>
                     </tr>
@@ -69,19 +61,19 @@
     <script src="~/Areas/Admin/Content/bootstrap/js/jquery.unobtrusive-ajax.min.js"></script>
 
     <script>
-        function viewTicket(id) {
-            $.get("/Admin/Ticket/ViewTicket/" + id, function (result) {
+        function viewVideoReport(id) {
+            $.get("/Admin/Video/ViewVideoReport/" + id, function (result) {
                 $('#myModal').modal('show');
                 $('#myModalBody').html(result);
             });
         }
 
-        function deleteTicket(id) {
+        function deleteVideoReport(id) {
             if (confirm('آیا از حذف تیکت مورد نظر مظمئن هستین؟')) {
-                $.get("/Admin/Ticket/Delete/" + id, function (result) {
+                $.get("/Admin/Video/DeleteVideoReport/" + id, function (result) {
                     if (result.success) {
-                        $('#ticket_' + id).addClass('text-danger');
-                        $("#ticket_" + id).hide('slow');
+                        $('#reportVideo_' + id).addClass('text-danger');
+                        $("#reportVideo_" + id).hide('slow');
                     } else {
                         alert(result.responseText);
                     }

@@ -19,6 +19,7 @@ namespace DataLayer.Models
         public int Value { get; set; }
         public bool IsDone { get; set; }
         public string Description { get; set; }
+        public string CardInfo { get; set; }
     
         public virtual TblUser TblUser { get; set; }
     }

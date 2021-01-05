@@ -55,6 +55,7 @@
           <Property Name="KarteMeliSahebEmtiazUrl" Type="nvarchar" MaxLength="500" />
           <Property Name="Address" Type="nvarchar" MaxLength="500" />
           <Property Name="IsValid" Type="int" Nullable="false" />
+          <Property Name="ErrorMessage" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="TblLog">
           <Key>
@@ -190,6 +191,7 @@
           <Property Name="Value" Type="int" Nullable="false" />
           <Property Name="IsDone" Type="bit" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="CardInfo" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <Association Name="FK_Reciever">
           <End Role="TblUser" Type="Self.TblUser" Multiplicity="1" />
@@ -627,6 +629,7 @@
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblUser_TblDocs" FromRole="TblDoc" ToRole="TblUser" />
           <Property Name="IsValid" Type="Int32" Nullable="false" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TblLog">
           <Key>
@@ -797,6 +800,7 @@
           <Property Name="IsDone" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblUser" Relationship="Self.FK_TblWithdraw_TblUser" FromRole="TblWithdraw" ToRole="TblUser" />
+          <Property Name="CardInfo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_TblCatagory_TblCatagory">
           <End Role="TblCatagory" Type="Self.TblCatagory" Multiplicity="0..1" />
@@ -1241,6 +1245,7 @@
           <EntitySetMapping Name="TblDoc">
             <EntityTypeMapping TypeName="AminWebModel.TblDoc">
               <MappingFragment StoreEntitySet="TblDoc">
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="DocId" ColumnName="DocId" />
                 <ScalarProperty Name="TellSabet" ColumnName="TellSabet" />
@@ -1390,6 +1395,7 @@
           <EntitySetMapping Name="TblWithdraw">
             <EntityTypeMapping TypeName="AminWebModel.TblWithdraw">
               <MappingFragment StoreEntitySet="TblWithdraw">
+                <ScalarProperty Name="CardInfo" ColumnName="CardInfo" />
                 <ScalarProperty Name="WithdrawId" ColumnName="WithdrawId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Value" ColumnName="Value" />

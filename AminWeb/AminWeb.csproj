@@ -129,6 +129,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CatagoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChatController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DocController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PlaylistController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketController.cs" />
@@ -1812,6 +1813,10 @@
     <Content Include="Areas\Admin\Views\User\UserList.cshtml" />
     <Content Include="Areas\Admin\Views\Video\Report.cshtml" />
     <Content Include="Areas\Admin\Views\Video\ListReport.cshtml" />
+    <Content Include="Areas\Admin\Views\Video\ViewVideoReport.cshtml" />
+    <Content Include="Areas\User\Views\Doc\Upload.cshtml" />
+    <Content Include="Areas\User\Views\Doc\InformationUpload.cshtml" />
+    <Content Include="Areas\Admin\Views\Doc\Index.cshtml" />
     <None Include="Connected Services\ZarinPalTest\configuration91.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\configuration.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\Reference.svcmap">
@@ -3225,6 +3230,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Views\Home\" />
+    <Folder Include="Resources\Doc\" />
     <Folder Include="Resources\Dynamic\" />
     <Folder Include="Resources\Ticket\" />
     <Folder Include="Resources\UploadEditor\" />

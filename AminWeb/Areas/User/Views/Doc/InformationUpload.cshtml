@@ -1,0 +1,82 @@
+﻿@model DataLayer.Models.TblDoc
+
+@if (Model != null)
+{
+    <div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
+        <table class="uk-table">
+            <thead>
+                <tr>
+                    <th>شماره تلفن</th>
+                    <th>آدرس</th>
+                    <th>کارت ملی</th>
+                    <th>شناسنامه</th>
+                    <th>مجوز تاسیس</th>
+                    <th>پروانه آموزشی</th>
+                    <th>وضعیت </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.TellSabet</td>
+                    <td>@Model.Address</td>
+                    <td>
+                        @if (Model.KarteMeliSahebEmtiazUrl != null)
+                        {
+                            <a href="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl">
+                                <img style="max-width:100px;" class="thumbnail" src="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl" alt="@Model.TellSabet" />
+                            </a>
+                        }
+                    </td>
+                    <td>
+                        @if (Model.ShenasnameSahebEmtiazUrl != null)
+                        {
+                            <a href="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl">
+                                <img style="max-width:100px;" class="thumbnail" src="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl" alt="@Model.TellSabet" />
+                            </a>
+                        }
+                    </td>
+                    <td>
+                        @if (Model.MojavezTasisUrl != null)
+                        {
+                            <a href="~/Resources/Doc/@Model.MojavezTasisUrl">
+                                <img style="max-width:100px;" class="thumbnail" src="~/Resources/Doc/@Model.MojavezTasisUrl" alt="@Model.TellSabet" />
+                            </a>
+                        }
+                    </td>
+                    <td>
+                        @if (Model.ParvaneAmuzeshgahUrl != null)
+                        {
+                            <a href="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl">
+                                <img style="max-width:100px;" class="thumbnail" src="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl" alt="@Model.TellSabet" />
+                            </a>
+                        }
+                    </td>
+                    <td>
+                        @if (Model.IsValid == 0)
+                        {
+                            <span>در حال بررسی</span>
+                        }
+                        else if (Model.IsValid == 1)
+                        {
+                            <span>تائید شد</span>
+                            <div>
+                                @Model.ErrorMessage
+                            </div>
+                        }
+                        else if (Model.IsValid == 2)
+                        {
+                            <span>رد شد</span>
+                            <div>
+                                @Model.ErrorMessage
+                            </div>
+                        }
+
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+}
