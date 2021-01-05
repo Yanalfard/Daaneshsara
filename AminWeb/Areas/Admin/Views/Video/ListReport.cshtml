@@ -4,23 +4,25 @@
     foreach (var item in Model)
     {
         <tr id="ticket_@item.ReportId" class="list-item">
-            @*<td>@(Model.ToList().IndexOf(item)+1)</td>
+            <td>@(Model.ToList().IndexOf(item)+1)</td>
             <td>
-                @item.
+                <a href="/VideoView/@item.VideoId/@item.TblVideo.Title.Replace(" ","-")">
+                    @if (item.TblVideo.MainImage != null)
+                    {
+                        <img style="max-width:100px;" class="thumbnail" src="~/Resources/Video/Image/Thumb/@item.TblVideo.MainImage" alt="@item.TblVideo.Title" />
+                    }
+                </a>
             </td>
-            <td>@item.TblUser.Name</td>
-            <td>@item.TblUser.TellNo</td>
-            <td>@item.TblUser.Email</td>
             <td>@item.DateSent.ToShamsi()</td>
             <td>
-                <a href="#" onclick="viewTicket(@item.TicketId)" class="fa fa-eye" title="مشاهده تیکت  " data-toggle="tooltip" data-placement="top">
+                <a href="#" onclick="viewTicket(@item.ReportId)" class="fa fa-eye" title="مشاهده تیکت  " data-toggle="tooltip" data-placement="top">
                 </a>
             </td>
             <td>
                 <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
-                    <a onclick="deleteTicket(@item.TicketId)" data-toggle="modal" data-target="#modalSave"><i class="btn fas fa-trash mr-2 text-danger"></i></a>
+                    <a onclick="deleteTicket(@item.ReportId)" data-toggle="modal" data-target="#modalSave"><i class="btn fas fa-trash mr-2 text-danger"></i></a>
                 </span>
-            </td>*@
+            </td>
         </tr>
     }
 }
