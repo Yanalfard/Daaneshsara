@@ -328,3 +328,31 @@ backdrop-filter: saturate(80%);
     -webkit-border-radius: 0;
     border-radius: 0;*/
   width: 100%; }
+
+.docs .docs-grid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr)); }
+  .docs .docs-grid h5 {
+    white-space: nowrap !important; }
+  .docs .docs-grid img {
+    -moz-border-radius: 12px 12px 12px 12px;
+    -webkit-border-radius: 12px 12px 12px 12px;
+    border-radius: 12px 12px 12px 12px;
+    /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center; }
+
+@media only screen and (max-width: 420px) {
+  .docs .docs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr; }
+    .docs .docs-grid h5 {
+      white-space: nowrap !important;
+      margin-bottom: 8px; } }
