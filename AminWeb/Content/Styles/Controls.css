@@ -891,13 +891,19 @@ select {
   color: #F8B784;
   border-color: #F8B784;
   background-color: #FFF6EE; }
+  .alert-box.alert-box-warning * {
+    color: #F8B784 !important; }
 
 .alert-box.alert-box-success {
   color: #64CA14;
   border-color: #64CA14;
   background-color: #E1FFEF; }
+  .alert-box.alert-box-success * {
+    color: #64CA14 !important; }
 
 .alert-box.alert-box-danger {
   color: #F94646;
   border-color: #F94646;
   background-color: #FFE1E1; }
+  .alert-box.alert-box-danger * {
+    color: #F94646 !important; }

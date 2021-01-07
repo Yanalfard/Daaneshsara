@@ -196,5 +196,36 @@ $side-category-width: 200px;
     }
 }
 
+.docs {
+    .docs-grid {
+        @include grid-gap(64px,12px);
+
+        h5 {
+            white-space: nowrap !important;
+        }
+
+        img {
+            @include border-radius(12px,12px,12px,12px);
+            -o-object-fit: cover;
+            object-fit: cover;
+            -o-object-position: center;
+            object-position: center;
+        }
+    }
+
+    @media only screen and (max-width : 420px) {
+        .docs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+
+            h5 {
+                white-space: nowrap !important;
+                margin-bottom: 8px;
+            }
+        }
+    }
+}
+
 // (a , b) + (c , d) = (a + c , b + d)
 // (a , b) * (c , d) = (ac + bd , ad - bc)

@@ -2,81 +2,96 @@
 
 @if (Model != null)
 {
-    <div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
-        <table class="uk-table">
-            <thead>
-                <tr>
-                    <th>شماره تلفن</th>
-                    <th>آدرس</th>
-                    <th>کارت ملی</th>
-                    <th>شناسنامه</th>
-                    <th>مجوز تاسیس</th>
-                    <th>پروانه آموزشی</th>
-                    <th>وضعیت </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@Model.TellSabet</td>
-                    <td>@Model.Address</td>
-                    <td>
-                        @if (Model.KarteMeliSahebEmtiazUrl != null)
-                        {
-                            <a href="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl">
-                                <img style="max-width:100px;" class="thumbnail" src="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl" alt="@Model.TellSabet" />
-                            </a>
-                        }
-                    </td>
-                    <td>
-                        @if (Model.ShenasnameSahebEmtiazUrl != null)
-                        {
-                            <a href="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl">
-                                <img style="max-width:100px;" class="thumbnail" src="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl" alt="@Model.TellSabet" />
-                            </a>
-                        }
-                    </td>
-                    <td>
-                        @if (Model.MojavezTasisUrl != null)
-                        {
-                            <a href="~/Resources/Doc/@Model.MojavezTasisUrl">
-                                <img style="max-width:100px;" class="thumbnail" src="~/Resources/Doc/@Model.MojavezTasisUrl" alt="@Model.TellSabet" />
-                            </a>
-                        }
-                    </td>
-                    <td>
-                        @if (Model.ParvaneAmuzeshgahUrl != null)
-                        {
-                            <a href="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl">
-                                <img style="max-width:100px;" class="thumbnail" src="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl" alt="@Model.TellSabet" />
-                            </a>
-                        }
-                    </td>
-                    <td>
-                        @if (Model.IsValid == 0)
-                        {
-                            <span>در حال بررسی</span>
-                        }
-                        else if (Model.IsValid == 1)
-                        {
-                            <span>تائید شد</span>
-                            <div>
-                                @Model.ErrorMessage
-                            </div>
-                        }
-                        else if (Model.IsValid == 2)
-                        {
-                            <span>رد شد</span>
-                            <div>
-                                @Model.ErrorMessage
-                            </div>
-                        }
+    <div class="docs mat uk-padding uk-box-shadow-small uk-margin-bottom">
+        <h3>
+            مدارک شما
+        </h3>
 
-                    </td>
-                </tr>
-            </tbody>
+        <dl class="column">
+            <dt>وضعیت</dt>
+            <dd>
+                @if (Model.IsValid == 0)
+                {
+                    <h4 class="warning uk-margin-remove-bottom">در حال بررسی</h4>
+                }
+                else if (Model.IsValid == 1)
+                {
+                    <h4 class="success uk-margin-remove-bottom">تائید شد</h4>
+                    <div>
+                        @Model.ErrorMessage
+                    </div>
+                }
+                else if (Model.IsValid == 2)
+                {
+                    <div class="alert-box alert-box-danger uk-margin-small-top uk-margin-remove-bottom">
+                        <h4 class="uk-margin-small-bottom">رد شد</h4>
+                        <span>
+                            @Model.ErrorMessage
+                        </span>
+                    </div>
+                }
+            </dd>
+        </dl>
 
-        </table>
+        <hr />
+
+        <div class="row-reverse">
+            <div class="column uk-margin-left">
+                <strong class="uk-margin-small-bottom">شماره تلفن ثابت</strong>
+                <span>@Model.TellSabet</span>
+            </div>
+            <div class="column">
+                <strong class="uk-margin-small-bottom">آدرس</strong>
+                <span>@Model.Address</span>
+            </div>
+        </div>
+
+        <div class="docs-grid uk-margin-medium-top" uk-lightbox="animation: slide">
+            @if (Model.KarteMeliSahebEmtiazUrl != null)
+            {
+                <div>
+                    <h5>
+                        کارت ملی
+                    </h5>
+                    <a class="uk-inline" href="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl" data-caption="کارت ملی">
+                        <img src="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl" alt="">
+                    </a>
+                </div>
+            }
+            @if (Model.ShenasnameSahebEmtiazUrl != null)
+            {
+                <div>
+                    <h5>
+                        شناسنامه
+                    </h5>
+                    <a class="uk-inline" href="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl" data-caption="شناسنامه">
+                        <img src="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl" alt="">
+                    </a>
+                </div>
+            }
+            @if (Model.MojavezTasisUrl != null)
+            {
+                <div>
+                    <h5>
+                        مجوز تاسیس
+                    </h5>
+                    <a class="uk-inline" href="~/Resources/Doc/@Model.MojavezTasisUrl" data-caption="مجوز تاسیس">
+                        <img src="~/Resources/Doc/@Model.MojavezTasisUrl" alt="">
+                    </a>
+                </div>
+            }
+            @if (Model.ParvaneAmuzeshgahUrl != null)
+            {
+                <div>
+                    <h5>
+                        پروانه آموزشی
+                    </h5>
+                    <a class="uk-inline" href="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl" data-caption="پروانه آموزشی">
+                        <img src="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl" alt="">
+                    </a>
+                </div>
+            }
+        </div>
 
     </div>
-
 }

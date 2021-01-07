@@ -6,76 +6,85 @@
 <div class="card border-0 shadow p-1">
 
     <div class="card-body flex-div">
-        <div>
-            تلفن
+        <div class="column mb-2">
+            <strong>تلفن</strong>
             @Model.TellSabet
         </div>
-        <div>
-            نام کاربری
+        <div class="column mb-2">
+            <strong>
+                نام کاربری
+            </strong>
             @ViewBag.UserName
         </div>
-        <div>
-            شماره تلفن
+        <div class="column mb-2">
+            <strong>
+                شماره تلفن
+            </strong>
             @ViewBag.Tell
         </div>
-        <div>
-            آدرس
-            @Model.Address
+        <div class="column mb-2">
+            <strong>
+                آدرس
+            </strong>
+            <address>
+                @Model.Address
+            </address>
         </div>
         <div>
             @if (Model.IsValid == 1)
             {
-                <p>تائید شده</p>
+                <h4 class="blockquote alert alert-success text-success">تائید شده</h4>
             }
             else if (Model.IsValid == 2)
             {
-                <p>رد شده</p>
+                <h4 class="blockquote alert alert-danger text-danger">رد شده</h4>
             }
             else if (Model.IsValid == 0)
             {
-                <p>منتظر نظر شما </p>
+                <h4 class="blockquote alert alert-box-warning text-warning">منتظر نظر شما </h4>
             }
         </div>
-        <div>
-            @if (Model.KarteMeliSahebEmtiazUrl != null)
-            {
-                <a href="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl">
-                    <img class="thumbnail" src="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl" alt="@Model.TellSabet" />
-                </a>
-            }
-        </div>
-        <div>
-            @if (Model.MojavezTasisUrl != null)
-            {
-                <a href="~/Resources/Doc/@Model.MojavezTasisUrl">
-                    <img class="thumbnail" src="~/Resources/Doc/@Model.MojavezTasisUrl" alt="@Model.TellSabet" />
-                </a>
-            }
-        </div>
-        <div>
-            @if (Model.ParvaneAmuzeshgahUrl != null)
-            {
-                <a href="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl">
-                    <img class="thumbnail" src="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl" alt="@Model.TellSabet" />
-                </a>
-            }
-        </div>
-        <div>
+
+        <div class="grid-auto-250px">
             @if (Model.ShenasnameSahebEmtiazUrl != null)
             {
-                <a href="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl">
-                    <img class="thumbnail" src="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl" alt="@Model.TellSabet" />
+                <a class="column" href="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl">
+                    <label>شناسنامه</label>
+                    <img class="image" src="~/Resources/Doc/@Model.ShenasnameSahebEmtiazUrl" alt="@Model.TellSabet" />
                 </a>
             }
+            @if (Model.KarteMeliSahebEmtiazUrl != null)
+            {
+                <a class="column" href="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl">
+                    <label>کارت ملی</label>
+                    <img class="image" src="~/Resources/Doc/@Model.KarteMeliSahebEmtiazUrl" alt="@Model.TellSabet" />
+                </a>
+            }
+            @if (Model.MojavezTasisUrl != null)
+            {
+                <a class="column" href="~/Resources/Doc/@Model.MojavezTasisUrl">
+                    <label>مجوز تاسیس</label>
+                    <img class="image" src="~/Resources/Doc/@Model.MojavezTasisUrl" alt="@Model.TellSabet" />
+                </a>
+            }
+            @if (Model.ParvaneAmuzeshgahUrl != null)
+            {
+                <a class="column" href="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl">
+                    <label>پروانه آموزش</label>
+                    <img class="image" src="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl" alt="@Model.TellSabet" />
+                </a>
+            }
+
         </div>
-        <div>
-            <form action="/Admin/Doc/DocDone/@Model.DocId">
-                <input type="text" name="errorMessage" value="" placeholder="پیام شما" />
-                <input type="radio" name="isValid" value="1" />تائید مدارک
-                <input type="radio" name="isValid" value="2" />رد مدارک
-                <input type="submit" value="ثبت" />
-            </form>
-        </div>
+
+        <form class="column mt-3" action="/Admin/Doc/DocDone/@Model.DocId">
+            <label for="reason">ذیل دلیل در صورت رد مدرک</label>
+            <input type="text" class="form-control form-control-sm" name="reason" value="" placeholder="پیام شما" />
+            <div class="row ml-auto mt-3 mr-0">
+                <input type="submit" class="btn btn-primary btn-sm " value="تایید" />
+                <input type="submit" class="btn btn-danger btn-sm mr-3" value="رد مدرک" />
+            </div>
+        </form>
     </div>
 
 </div>
