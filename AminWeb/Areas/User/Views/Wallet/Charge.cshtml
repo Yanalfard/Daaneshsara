@@ -1,0 +1,30 @@
+﻿@model DataLayer.ViewModels.VmChargeBalance
+
+@using (Ajax.BeginForm("Charge", "Wallet", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal('ModalUser')", OnSuccess = "LoadingEnd('#chargePric')", UpdateTargetId = "chargePric" }, htmlAttributes: new { @id = "chargePric" }))
+{
+    <div class="row-reverse uk-margin-bottom">
+        <h3 class="uk-margin-remove">
+            شارژ کیف پول
+        </h3>
+        <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
+    </div>
+
+    <div class="form-group">
+        <label for="Charge" dir="rtl">مبلغ (ريال)</label>
+        <div class="input-group">
+            @Html.EditorFor(m => m.ChargeBalance)
+        </div>
+        <span role="alert" class="alert">
+            @Html.ValidationMessageFor(model => model.ChargeBalance, "", new { @class = "uk-text-danger" })
+        </span>
+    </div>
+
+    <div class="row-reverse uk-margin-top" type="button">
+        <button class="btn-primary"  onclick="LoadingRun('#chargePric')">
+            شارژ
+        </button>
+        <button class="btn-secondary uk-modal-close uk-margin-right">
+            بازگشت
+        </button>
+    </div>
+}

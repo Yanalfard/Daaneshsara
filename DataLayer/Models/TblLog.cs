@@ -22,8 +22,11 @@ namespace DataLayer.Models
         public Nullable<int> VideoId { get; set; }
         public Nullable<int> PlayListId { get; set; }
         public bool IsVideo { get; set; }
+        public Nullable<int> SellerId { get; set; }
+        public Nullable<int> SellerAmount { get; set; }
     
-        public virtual TblUser TblUser { get; set; }
         public virtual TblPlaylist TblPlaylist { get; set; }
+        public virtual TblUser TblUser { get; set; }
+        public virtual TblVideo TblVideo { get; set; }
     }
 }

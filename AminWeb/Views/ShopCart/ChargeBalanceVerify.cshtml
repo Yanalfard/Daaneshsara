@@ -1,0 +1,37 @@
+﻿
+
+@{
+    ViewBag.Title = "شارژ حساب ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/Styles/Pages/Purchase.min.css" rel="stylesheet" />
+
+<div role="none" class="space-nav"></div>
+
+<div class="column uk-container">
+    <div class="mat uk-margin-auto
+         uk-width-2-3-at-m uk-width-1-1-at-s
+         uk-padding column uk-box-shadow-large">
+
+        <!-- #region Content -->
+
+        @if (ViewBag.IsSuccess == true)
+        {
+            <h1 class="uk-h3 uk-margin-remove-bottom">پرداخت موفق</h1>
+            <p class="alert-box alert-box-success" dir="rtl">
+               شارژ حساب شما انجام شد و به کیف پول شما اضافه شد
+            </p>
+        }
+        else
+        {
+            <h1 class="uk-h3 uk-margin-remove-bottom">پرداخت موفق</h1>
+            <p class="alert-box alert-box-danger" dir="rtl">
+                خطا در پرداخت. کد رهگیری:@ViewBag.Error
+            </p>
+        }
+        <!-- #endregion -->
+
+    </div>
+</div>
+

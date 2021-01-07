@@ -1,6 +1,7 @@
 ﻿
+
 @{
-    ViewBag.Title = "Wallet";
+    ViewBag.Title = "کیف پول";
     ViewBag.Content = "کیف پول کاربر و اطلاعات تراکنش ها";
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
 }
@@ -8,7 +9,7 @@
 <!-- #region Modals -->
 
 <div id="Modal-Charge" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
+    <form action="/ShopCart/ChargeBalance" class="uk-modal-dialog uk-modal-body">
         <div class="row-reverse uk-margin-bottom">
             <h3 class="uk-margin-remove">
                 شارژ کیف پول
@@ -16,16 +17,13 @@
             <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
         </div>
 
-        <p>
-            مبلغ خود را وارد نمایید
-        </p>
-
         <div class="form-group">
             <label for="Charge" dir="rtl">مبلغ (ريال)</label>
             <div class="input-group">
-                <input type="number" name="Charge" />
+                <input type="text" id="name" name="Charge" required
+                       minlength="4" maxlength="20" >
             </div>
-            <span role="alert" class="alert">لطفا این فیلد را وارد نمایید</span>
+            <span role="alert" class="alert">@*لطفا این فیلد را وارد نمایید*@</span>
         </div>
 
         <div class="row-reverse uk-margin-top" type="button">
@@ -37,7 +35,7 @@
             </button>
         </div>
 
-    </div>
+    </form>
 </div>
 
 <div id="Modal-Request" uk-modal>
@@ -81,8 +79,8 @@
             <span role="heading">
                 تومان
             </span>
-            <span role="definition">
-                36,000
+            <span role="definition" id="balance">
+                
             </span>
         </h4>
     </div>
@@ -122,30 +120,20 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td class="success">15,000</td>
-                <td>1399/08/08</td>
-                <td>شارژ</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td class="success">16,000</td>
-                <td>1399/08/06</td>
-                <td>شارژ</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td class="alert">-12,000</td>
-                <td>1399/07/03</td>
-                <td>خرید ویدیو</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td class="warning">-5,000</td>
-                <td>1398/05/07</td>
-                <td>تسویه</td>
-            </tr>
+            @Html.Action("Transaction")
         </tbody>
     </table>
 </div>
+
+
+<script>
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    loadBalance();
+    function loadBalance() {
+        $.get('/User/Wallet/Balance', function (result) {
+            $('#balance').html(numberWithCommas(result));
+        });
+    }
+</script>

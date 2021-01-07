@@ -20,6 +20,7 @@ namespace DataLayer.Models
         public bool IsDone { get; set; }
         public string Description { get; set; }
         public string CardInfo { get; set; }
+        public System.DateTime Date { get; set; }
     
         public virtual TblUser TblUser { get; set; }
     }

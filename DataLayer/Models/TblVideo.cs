@@ -17,6 +17,7 @@ namespace DataLayer.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TblVideo()
         {
+            this.TblLog = new HashSet<TblLog>();
             this.TblReport = new HashSet<TblReport>();
             this.TblUserVideoRel = new HashSet<TblUserVideoRel>();
             this.TblVideoPlaylistKeyword = new HashSet<TblVideoPlaylistKeyword>();
@@ -32,6 +33,7 @@ namespace DataLayer.Models
         public int ViewCount { get; set; }
         public bool IsHome { get; set; }
         public int LikeCount { get; set; }
+        public Nullable<int> RatingCount { get; set; }
         public string Link { get; set; }
         public int UserId { get; set; }
         public int Price { get; set; }
@@ -39,9 +41,10 @@ namespace DataLayer.Models
         public Nullable<int> PlaylistId { get; set; }
         public bool IsActive { get; set; }
         public int CatagoryId { get; set; }
-        public Nullable<int> RatingCount { get; set; }
     
         public virtual TblCatagory TblCatagory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblLog> TblLog { get; set; }
         public virtual TblPlaylist TblPlaylist { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblReport> TblReport { get; set; }

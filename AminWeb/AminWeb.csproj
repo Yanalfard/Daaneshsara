@@ -143,6 +143,7 @@
     <Compile Include="Areas\User\Controllers\HomeController.cs" />
     <Compile Include="Areas\User\Controllers\LibraryController.cs" />
     <Compile Include="Areas\User\Controllers\VideoController.cs" />
+    <Compile Include="Areas\User\Controllers\WalletController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="CaptchaResponseViewModel.cs" />
     <Compile Include="Connected Services\ZarinPalTest\Reference.cs">
@@ -1821,6 +1822,9 @@
     <Content Include="Areas\Admin\Views\Doc\ViewDoc.cshtml" />
     <Content Include="Areas\Admin\Views\Doc\ListDoc.cshtml" />
     <Content Include="Areas\Admin\Views\Older\Prices.cshtml" />
+    <Content Include="Areas\User\Views\Wallet\Index.cshtml" />
+    <Content Include="Areas\User\Views\Wallet\Transaction.cshtml" />
+    <Content Include="Areas\User\Views\Wallet\Charge.cshtml" />
     <None Include="Connected Services\ZarinPalTest\configuration91.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\configuration.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\Reference.svcmap">
@@ -2010,7 +2014,6 @@
     <Content Include="Areas\User\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\User\Views\Account\UserData.cshtml" />
     <Content Include="Areas\User\Views\Account\ChangePassword.cshtml" />
-    <Content Include="Areas\User\Views\Account\Wallet.cshtml" />
     <Content Include="Areas\User\Views\Library\Index.cshtml" />
     <Content Include="Areas\User\Views\Chat\Index.cshtml" />
     <Content Include="Areas\User\Views\Video\YourVideos.cshtml" />
@@ -3229,6 +3232,7 @@
     <Content Include="Views\ShopCart\PurchaseResult.cshtml" />
     <Content Include="Views\ShopCart\VerifyBalance.cshtml" />
     <Content Include="Views\ShopCart\Verify.cshtml" />
+    <Content Include="Views\ShopCart\ChargeBalanceVerify.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
