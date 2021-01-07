@@ -102,18 +102,23 @@ namespace AminWeb.Areas.User.Controllers
                     user.AddRange(_db.Video.Get().Where(i => i.VideoId == item.VideoId).Select(i => i.TblUser).ToList());
                 }
             }
-            List<TblVideo> video = _db.Video.Get().Where(i => i.UserId == SelectUser().UserId).ToList();
-            foreach (var item in video)
+            List<TblLog> list2 = _db.Log.Get().Where(i => i.SellerId == SelectUser().UserId && (i.Status == 1 || i.Status == 2)).ToList();
+            foreach (var item in list2)
             {
-                if (item.PlaylistId != null)
-                {
-                    user.AddRange(_db.Log.Get().Where(i => i.PlayListId == item.PlaylistId).Select(i => i.TblUser).ToList());
-                }
-                else if (item.PlaylistId == null)
-                {
-                    user.AddRange(_db.Log.Get().Where(i => i.VideoId == item.VideoId).Select(i => i.TblUser).ToList());
-                }
+                user.AddRange(_db.User.Get().Where(i => i.UserId == item.UserId).ToList());
             }
+            //List<TblVideo> video = _db.Video.Get().Where(i => i.UserId == SelectUser().UserId).ToList();
+            //foreach (var item in video)
+            //{
+            //    if (item.PlaylistId != null)
+            //    {
+            //        user.AddRange(_db.Log.Get().Where(i => i.PlayListId == item.PlaylistId).Select(i => i.TblUser).ToList());
+            //    }
+            //    else if (item.PlaylistId == null)
+            //    {
+            //        user.AddRange(_db.Log.Get().Where(i => i.VideoId == item.VideoId).Select(i => i.TblUser).ToList());
+            //    }
+            //}
             return PartialView(user.Distinct());
         }
         public ActionResult ViewChat(int id)
