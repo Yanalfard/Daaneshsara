@@ -20,7 +20,7 @@
         <div class="form-group">
             <label for="Charge" dir="rtl">مبلغ (ريال)</label>
             <div class="input-group">
-                <input type="text" id="name" name="Charge" required
+                <input type="number" id="Charge" name="Charge" required
                        minlength="4" maxlength="20">
             </div>
             <span role="alert" class="alert">@*لطفا این فیلد را وارد نمایید*@</span>
@@ -39,7 +39,7 @@
 </div>
 
 <div id="Modal-Request" uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
+    <form id="Withdraw" class="uk-modal-dialog uk-modal-body">
         <div class="row-reverse uk-margin-bottom">
             <h3 class="uk-margin-remove">
                 درخواست برداشت
@@ -52,14 +52,14 @@
         </p>
 
         <p class="alert-box alert-box-success">
-            مبلغ قابل برداشت: <span>400,000</span> ريال 
+            مبلغ قابل برداشت: <span class="balance"></span> ريال
         </p>
 
         <div class="form-group">
             <label for="card" dir="rtl">شماره کارت</label>
             <div class="input-group">
-                <input type="text" id="card" name="card" required
-                       minlength="4" maxlength="16">
+                <input type="number" id="cardWithdraw" name="cardWithdraw" required
+                       minlength="15" maxlength="20">
             </div>
             <span role="alert" class="alert">@*لطفا این فیلد را وارد نمایید*@</span>
         </div>
@@ -67,7 +67,7 @@
         <div class="form-group">
             <label for="Charge" dir="rtl">مبلغ (ريال)</label>
             <div class="input-group">
-                <input type="text" id="name" name="Charge" required
+                <input type="number" id="priceWithdraw" name="priceWithdraw" required
                        minlength="4" maxlength="20">
             </div>
             <span role="alert" class="alert">@*لطفا این فیلد را وارد نمایید*@</span>
@@ -81,7 +81,7 @@
                 بازگشت
             </button>
         </div>
-    </div>
+    </form>
 </div>
 
 <!-- #endregion -->
@@ -97,7 +97,7 @@
             <span role="heading">
                 تومان
             </span>
-            <span role="definition" id="balance">
+            <span role="definition" class="balance">
 
             </span>
         </h4>
@@ -137,21 +137,53 @@
                 </th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="listTransaction">
             @Html.Action("Transaction")
         </tbody>
     </table>
 </div>
 
+@section Scripts{
 
-<script>
-    function numberWithCommas(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-    loadBalance();
-    function loadBalance() {
-        $.get('/User/Wallet/Balance', function (result) {
-            $('#balance').html(numberWithCommas(result));
+    <script>
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        loadBalance();
+        function loadBalance() {
+            $.get('/User/Wallet/Balance', function (result) {
+                $('.balance').html(numberWithCommas(result));
+            });
+        }
+        function listTransaction() {
+            $.get('/User/Wallet/Transaction', function (result) {
+                $('#listTransaction').html(result);
+            });
+        }
+
+
+        $('#Withdraw').submit(function (e) {
+            e.preventDefault();
+            var price = $('.balance').html().replaceAll(",", "");
+            var priceWithdraw = $('#priceWithdraw').val();
+            var cardWithdraw = $('#cardWithdraw').val();
+            if (Number(priceWithdraw) <= Number(price)) {
+                $("#overlay").fadeIn(300);
+                $.ajax({
+                    url: "/User/Wallet/Withdraw",
+                    data: { cardWithdraw: cardWithdraw, priceWithdraw: priceWithdraw },
+                    type: "Get",
+                }).done(function (result) {
+                    UIkit.modal(document.getElementById('Modal-Request')).hide();
+                    $("#overlay").fadeOut(300);
+                    UIkit.notification(result);
+                    listTransaction();
+                });
+            }
+            else {
+                UIkit.notification('مبلغ مورد نظر بیشتر از کیف پول شماست');
+            }
+
         });
-    }
-</script>
+    </script>
+}

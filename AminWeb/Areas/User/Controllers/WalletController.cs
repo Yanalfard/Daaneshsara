@@ -33,7 +33,7 @@ namespace AminWeb.Areas.User.Controllers
             //kharid video Type=2 
             var selectedLog = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && (i.Status == 1 || i.Status == 2));
             //bardasht Type=3 
-            var selectedWithdraw = _db.Withdraw.Get().Where(i => i.UserId == SelectUser().UserId && i.IsDone);
+            var selectedWithdraw = _db.Withdraw.Get().Where(i => i.UserId == SelectUser().UserId);
             //forosh video or Playlist Type=4
             var selectSeller = _db.Log.Get().Where(i => i.SellerId == SelectUser().UserId && (i.Status == 1 || i.Status == 2));
             List<VmWallet> list = new List<VmWallet>();
@@ -64,7 +64,7 @@ namespace AminWeb.Areas.User.Controllers
 
             foreach (var sell in selectedWithdraw)
             {
-                list.Add(new VmWallet() { Date = sell.Date, Fund = sell.Value, Type = 3 });
+                list.Add(new VmWallet() { Date = sell.Date, Fund = sell.Value, IsDoneWithdraw = sell.IsDone, Type = 3 });
             }
 
 
@@ -85,13 +85,30 @@ namespace AminWeb.Areas.User.Controllers
                 }
                 list.Add(new VmWallet() { Date = sell.Date, Fund = Convert.ToInt32(sell.SellerAmount), Type = 4, IsVideo = sell.IsVideo, VideoOrPlaylistId = videoid, VideoOrPlaylistName = videoName });
             }
-            list.OrderBy(i => i.Date);
+            list.OrderByDescending(i => i.Date);
             return list;
         }
 
         public ActionResult Transaction()
         {
             return PartialView(GetTransAction());
+        }
+
+        public string Withdraw(string cardWithdraw, string priceWithdraw)
+        {
+            TblWithdraw withdraw = new TblWithdraw();
+            if (SelectUser().Balance < Convert.ToInt32(priceWithdraw))
+            {
+                return "مبلغ مورد نظر بیشتر از کیف پول شماست";
+            }
+            withdraw.CardInfo = cardWithdraw.ToString();
+            withdraw.IsDone = false;
+            withdraw.Value = Convert.ToInt32(priceWithdraw);
+            withdraw.Date = DateTime.Now;
+            withdraw.UserId = SelectUser().UserId;
+            _db.Withdraw.Add(withdraw);
+            _db.Withdraw.Save();
+            return "درخواست شما ثبت شد و بعد از بررسی به کارت شما واریز خواهد شد";
         }
 
     }
