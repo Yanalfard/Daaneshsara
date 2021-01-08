@@ -97,7 +97,43 @@ namespace AminWeb.Areas.User.Controllers
                 TblUser user = _db.User.GetById(SelectUser().UserId);
                 if (user.DocsId != null)
                 {
-                    _db.Docs.DeleteById(user.DocsId);
+                    TblDoc selectedDocById = _db.Docs.GetById(user.DocsId);
+                    bool delete = _db.Docs.Delete(selectedDocById);
+                    if (delete)
+                    {
+                        if (selectedDocById.KarteMeliSahebEmtiazUrl != null)
+                        {
+                            string KarteMeli = Request.MapPath("/Resources/Doc/" + selectedDocById.KarteMeliSahebEmtiazUrl);
+                            if (System.IO.File.Exists(KarteMeli))
+                            {
+                                System.IO.File.Delete(KarteMeli);
+                            }
+                        }
+                        if (selectedDocById.MojavezTasisUrl != null)
+                        {
+                            string Mojavez = Request.MapPath("/Resources/Doc/" + selectedDocById.MojavezTasisUrl);
+                            if (System.IO.File.Exists(Mojavez))
+                            {
+                                System.IO.File.Delete(Mojavez);
+                            }
+                        }
+                        if (selectedDocById.ParvaneAmuzeshgahUrl != null)
+                        {
+                            string Parvane = Request.MapPath("/Resources/Doc/" + selectedDocById.ParvaneAmuzeshgahUrl);
+                            if (System.IO.File.Exists(Parvane))
+                            {
+                                System.IO.File.Delete(Parvane);
+                            }
+                        }
+                        if (selectedDocById.ShenasnameSahebEmtiazUrl != null)
+                        {
+                            string Shenasname = Request.MapPath("/Resources/Doc/" + selectedDocById.ShenasnameSahebEmtiazUrl);
+                            if (System.IO.File.Exists(Shenasname))
+                            {
+                                System.IO.File.Delete(Shenasname);
+                            }
+                        }
+                    }
                 }
                 user.DocsId = doc.DocId;
                 _db.User.Save();

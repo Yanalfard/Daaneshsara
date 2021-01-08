@@ -73,7 +73,7 @@ namespace AminWeb.Areas.Admin.Controllers
             {
                 if (selectedDocById.KarteMeliSahebEmtiazUrl != null)
                 {
-                    string KarteMeli = Request.MapPath("/Resources/Ticket/" + selectedDocById.KarteMeliSahebEmtiazUrl);
+                    string KarteMeli = Request.MapPath("/Resources/Doc/" + selectedDocById.KarteMeliSahebEmtiazUrl);
                     if (System.IO.File.Exists(KarteMeli))
                     {
                         System.IO.File.Delete(KarteMeli);
@@ -81,7 +81,7 @@ namespace AminWeb.Areas.Admin.Controllers
                 }
                 if (selectedDocById.MojavezTasisUrl != null)
                 {
-                    string Mojavez = Request.MapPath("/Resources/Ticket/" + selectedDocById.MojavezTasisUrl);
+                    string Mojavez = Request.MapPath("/Resources/Doc/" + selectedDocById.MojavezTasisUrl);
                     if (System.IO.File.Exists(Mojavez))
                     {
                         System.IO.File.Delete(Mojavez);
@@ -89,7 +89,7 @@ namespace AminWeb.Areas.Admin.Controllers
                 }
                 if (selectedDocById.ParvaneAmuzeshgahUrl != null)
                 {
-                    string Parvane = Request.MapPath("/Resources/Ticket/" + selectedDocById.ParvaneAmuzeshgahUrl);
+                    string Parvane = Request.MapPath("/Resources/Doc/" + selectedDocById.ParvaneAmuzeshgahUrl);
                     if (System.IO.File.Exists(Parvane))
                     {
                         System.IO.File.Delete(Parvane);
@@ -97,7 +97,7 @@ namespace AminWeb.Areas.Admin.Controllers
                 }
                 if (selectedDocById.ShenasnameSahebEmtiazUrl != null)
                 {
-                    string Shenasname = Request.MapPath("/Resources/Ticket/" + selectedDocById.ShenasnameSahebEmtiazUrl);
+                    string Shenasname = Request.MapPath("/Resources/Doc/" + selectedDocById.ShenasnameSahebEmtiazUrl);
                     if (System.IO.File.Exists(Shenasname))
                     {
                         System.IO.File.Delete(Shenasname);
