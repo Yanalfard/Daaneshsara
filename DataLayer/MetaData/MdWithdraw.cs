@@ -17,6 +17,7 @@ namespace DataLayer.MetaData
         [Display(Name = "قیمت")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int Value { get; set; }
+        public int Balance { get; set; }
 
         [Display(Name = "انجام شده؟")]
         public bool IsDone { get; set; }
@@ -25,12 +26,9 @@ namespace DataLayer.MetaData
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
         public string Description { get; set; }
-
+        public string UserName { get; set; }
+        public string CardInfo { get; set; }
+        public System.DateTime Date { get; set; }
     }
 
-    [MetadataType(typeof(MdWithdraw))]
-    public class TblWithdraw
-    {
-
-    }
 }

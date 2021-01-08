@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DataLayer.ViewModels.VmLog>
+@{
+    ViewBag.Title = "شارژ حساب";
+}
+
+
+<div class="card flex-div border-0 shadow">
+    <div id="card-table" class="p-0 card-body flex-div">
+        <div class="table-responsive flex">
+            <table class="table fixed pr-3 text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">کد</th>
+                        <th scope="col">کاربر</th>
+                        <th scope="col">ایمیل</th>
+                        <th scope="col">تلفن</th>
+                        <th scope="col"> مقداری واریزی </th>
+                        <th scope="col">موجودی کیف پول  </th>
+                        <th scope="col">تاریخ</th>
+                    </tr>
+                </thead>
+                <tbody id="listTicket" class="list-wrapper">
+                    @if (Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr id="Charging_@item.LogId" class="list-item">
+                                <td>@(Model.ToList().IndexOf(item)+1)</td>
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td>@item.Email</td>
+                                <td>@item.Tell</td>
+                                <td>@item.Amount</td>
+                                <td>@item.Balance</td>
+                                <td>@item.Date.ToShamsi()</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer bg-white">
+        <nav aria-label="Page navigation example">
+            <div id="pagination-container"></div>
+        </nav>
+    </div>
+</div>

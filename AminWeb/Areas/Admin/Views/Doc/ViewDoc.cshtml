@@ -80,13 +80,49 @@
         </div>
 
         <form class="column mt-3" action="/Admin/Doc/DocDone/@Model.DocId">
-            <label for="reason">ذیل دلیل در صورت رد مدرک</label>
-            <input type="text" class="form-control form-control-sm" name="reason" value="" placeholder="پیام شما" />
+            <label for="errorMessage">ذیل دلیل در صورت رد مدرک</label>
+            <input type="hidden" id="isValid" name="isValid" value="" />
+            @*<input type="hidden" id="id" name="isValid" value="@Model.DocId" />*@
+            <input type="text" class="form-control form-control-sm" id="errorMessage" name="errorMessage" value="" placeholder="پیام شما" />
             <div class="row ml-auto mt-3 mr-0">
-                <input type="submit" class="btn btn-primary btn-sm " value="تایید" />
-                <input type="submit" class="btn btn-danger btn-sm mr-3" value="رد مدرک" />
+                <input type="submit" name="" class="btn btn-primary btn-sm btnSubmit1" value="تایید" />
+                <input type="submit" class="btn btn-danger btn-sm mr-3 btnSubmit2" value="رد مدرک" />
             </div>
         </form>
     </div>
 
 </div>
+
+
+@section Scripts{
+
+    <script>
+        $('.btnSubmit1').click(function () {
+            $('#isValid').val("1");
+        });
+        $('.btnSubmit2').click(function () {
+            $('#isValid').val("2");
+
+        });
+        //$('#docDone').submit(function (e) {
+        //    e.preventDefault();
+        //    var errorMessage = $('#errorMessage').val();
+        //    var isValid = $('#isValid').val();
+        //    var id = $('#id').val();
+
+        //    $("#overlay").fadeIn(300);
+        //    $.ajax({
+        //        url: "/Admin/Doc/DocDone",
+        //        data: { id: id, isValid: isValid, errorMessage: errorMessage },
+        //        type: "Get",
+        //    }).done(function (result) {
+        //        UIkit.modal(document.getElementById('Modal-Request')).hide();
+        //        $("#overlay").fadeOut(300);
+        //        UIkit.notification(result);
+        //        listTransaction();
+        //    });
+
+
+        //});
+    </script>
+}

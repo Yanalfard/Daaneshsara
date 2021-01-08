@@ -149,7 +149,9 @@
     <Compile Include="ViewModels\VmChatUsers.cs" />
     <Compile Include="ViewModels\VmEditInfo.cs" />
     <Compile Include="ViewModels\VmForgetPassword.cs" />
+    <Compile Include="ViewModels\VmLog.cs" />
     <Compile Include="ViewModels\VmLogin.cs" />
+    <Compile Include="ViewModels\VmOrderVideos.cs" />
     <Compile Include="ViewModels\VmRegister.cs" />
     <Compile Include="ViewModels\VmShopCart.cs" />
     <Compile Include="ViewModels\VmVideoView.cs" />

@@ -1,0 +1,53 @@
+﻿@model DataLayer.MetaData.MdWithdraw
+@{
+    ViewBag.Title = "مشاهده اطلاعات جهت واریز";
+}
+
+
+<div class="card border-0 shadow p-1">
+    <div class="card-body flex-div">
+        <div class="column mb-2">
+            <strong>شماره کارت</strong>
+            @Model.CardInfo
+        </div>
+        <div class="column mb-2">
+            <strong>تاریخ درخواست </strong>
+            @Model.Date
+        </div>
+        <div class="column mb-2">
+            <strong>
+                نام کاربری
+            </strong>
+            @Model.UserName
+        </div>
+        <div class="column mb-2">
+            <strong>
+                موجودی کیف پول
+            </strong>
+            @Model.Balance
+        </div>
+        <div class="column mb-2">
+            <strong>
+                مقدار درخواستی
+            </strong>
+            @Model.Value
+        </div>
+        <div>
+            @if (Model.IsDone)
+            {
+                <h4 class="blockquote alert alert-success text-success">تائید شده</h4>
+            }
+            else
+            {
+                <h4 class="blockquote alert alert-box-warning text-warning">منتظر نظر شما </h4>
+            }
+        </div>
+        <div class="column mt-3" action="/Admin/Doc/DocDone/@Model.id">
+            <div class="row ml-auto mt-3 mr-0">
+                <a href="/Admin/Order/DoneWithdraw/@Model.id" class="btn btn-primary btn-sm">واریز شد</a>
+                <a href="/Admin/Order/DeleteWithdraw/@Model.id" class="btn btn-danger btn-sm mr-3">حذف درخواست </a>
+            </div>
+        </div>
+    </div>
+
+</div>

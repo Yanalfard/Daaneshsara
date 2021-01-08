@@ -1,0 +1,80 @@
+﻿@model IEnumerable<DataLayer.ViewModels.VmOrderVideos>
+
+@if (Model.Any())
+{
+    <div style="font-size:30px;text-align:center;display:block" class="text-center text-success">
+        <span>
+            کل سود شما: @Model.Sum(i => i.AmountAdmin).ToString("#,0")
+        </span>
+    </div>
+    <table class="table fixed pr-3 text-center">
+
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">کد</th>
+                <th scope="col">نام </th>
+                <th scope="col">تاریخ</th>
+                <th scope="col"> دانشجو</th>
+                <th scope="col">مربی</th>
+                <th scope="col">قیمت </th>
+                <th scope="col">سهم مربی</th>
+                <th scope="col">سهم شما</th>
+                <th scope="col">پرداخت از طریق </th>
+            </tr>
+        </thead>
+        <tbody id="listSail" class="list-wrapper">
+
+            @foreach (var item in Model)
+            {
+                <tr id="ticket_@item.LogId" class="list-item">
+                    <td>@(Model.ToList().IndexOf(item)+1)</td>
+                    <td>
+                        <a href="/VideoView/@item.VideoId/@item.VideoOrPlaylistName.Replace(" ","-")">
+                            @if (item.PlayListId == null && item.IsVideo)
+                            {
+                                <span>
+                                    ویدیو: @item.VideoOrPlaylistName
+                                </span>
+                            }
+                            else if (item.PlayListId != null)
+                            {
+                                <span>
+                                    کلاس: @item.VideoOrPlaylistName
+                                </span>
+                            }
+                        </a>
+                    </td>
+                    <td>@item.Date.ToShamsi()</td>
+                    <td>
+                        <a class="tutor" uk-icon="tutor" href="/Dashboard/@item.UserId/@item.UserName">
+                            @item.UserName
+                        </a>
+                    </td>
+                    <td>
+                        <a class="tutor" uk-icon="tutor" href="/Dashboard/@item.SellerId/@item.SellerName">
+                            @item.SellerName
+                        </a>
+                    </td>
+                    <td>@item.Amount.ToString("#,0")</td>
+                    <td>@Convert.ToInt32(item.SellerAmount).ToString("#,0")</td>
+                    <td>@item.AmountAdmin.ToString("#,0")</td>
+                    <td>
+                        @if (item.Status == 1)
+                        {
+                            <span>
+                                درگاه
+                            </span>
+                        }
+                        else if (item.Status == 2)
+                        {
+                            <span>
+                                شارژ
+                            </span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

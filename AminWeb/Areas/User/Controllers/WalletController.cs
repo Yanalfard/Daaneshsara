@@ -96,15 +96,27 @@ namespace AminWeb.Areas.User.Controllers
 
         public string Withdraw(string cardWithdraw, string priceWithdraw)
         {
-            TblWithdraw withdraw = new TblWithdraw();
             if (SelectUser().Balance < Convert.ToInt32(priceWithdraw))
             {
                 return "مبلغ مورد نظر بیشتر از کیف پول شماست";
             }
+            TblConfig config = _db.Config.Get().FirstOrDefault();
+            if (config.SaqfeBardasht < Convert.ToInt32(priceWithdraw))
+            {
+                return "مبلغ مورد نظر بیشتر از سقف برداشتی است. لطفا با مدیریت در تماس باشید  ";
+            }
+            TblWithdraw check = _db.Withdraw.Get().FirstOrDefault(i => i.UserId == SelectUser().UserId && i.IsDone == false);
+            DateTime date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            if (check.Date == date)
+            {
+                return "شما یک درخواست در حال بررسی دارین لطفا بعدا نسبت به درخواست مراجعه نمایید";
+
+            }
+            TblWithdraw withdraw = new TblWithdraw();
             withdraw.CardInfo = cardWithdraw.ToString();
             withdraw.IsDone = false;
             withdraw.Value = Convert.ToInt32(priceWithdraw);
-            withdraw.Date = DateTime.Now;
+            withdraw.Date = date;
             withdraw.UserId = SelectUser().UserId;
             _db.Withdraw.Add(withdraw);
             _db.Withdraw.Save();

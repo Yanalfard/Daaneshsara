@@ -157,7 +157,7 @@ namespace AminWeb.Controllers
             ZarinPalTest.PaymentGatewayImplementationServicePortTypeClient zp = new ZarinPalTest.PaymentGatewayImplementationServicePortTypeClient();
             string Authority;
 
-            int Status = zp.PaymentRequest("5f648351-94a0-4b6d-ab96-3eef0d58a8b5", log.Amount, "نیو خرید ", "info@newkharid.com", "09339634557", ConfigurationManager.AppSettings["MyDomain"] + "/ShopCart/Verify/" + log.LogId, out Authority);
+            int Status = zp.PaymentRequest("5f648351-94a0-4b6d-ab96-3eef0d58a8b5", log.Amount, "دانشسرا ", "info@newkharid.com", "09339634557", ConfigurationManager.AppSettings["MyDomain"] + "/ShopCart/Verify/" + log.LogId, out Authority);
             if (Status == 100)
             {
                 //Response.Redirect("https://www.zarinpal.com/pg/StartPay/" + Authority);
@@ -254,7 +254,7 @@ namespace AminWeb.Controllers
             System.Net.ServicePointManager.Expect100Continue = false;
             ZarinPalTest.PaymentGatewayImplementationServicePortTypeClient zp = new ZarinPalTest.PaymentGatewayImplementationServicePortTypeClient();
             string Authority;
-            int Status = zp.PaymentRequest("5f648351-94a0-4b6d-ab96-3eef0d58a8b5", log.Amount, "نیو خرید", "info@newkharid.com", "09339634557", ConfigurationManager.AppSettings["MyDomain"] + "/ShopCart/ChargeBalanceVerify/" + log.LogId, out Authority);
+            int Status = zp.PaymentRequest("5f648351-94a0-4b6d-ab96-3eef0d58a8b5", log.Amount, "دانشسرا", "info@newkharid.com", "09339634557", ConfigurationManager.AppSettings["MyDomain"] + "/ShopCart/ChargeBalanceVerify/" + log.LogId, out Authority);
             if (Status == 100)
             {
                 //Response.Redirect("https://www.zarinpal.com/pg/StartPay/" + Authority);

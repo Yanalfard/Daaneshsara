@@ -1,0 +1,82 @@
+﻿@model IEnumerable<DataLayer.ViewModels.VmWallet>
+
+@{
+    ViewBag.Title = "گردش مالی";
+}
+
+<table dir="rtl" class="table-simple table">
+    <thead>
+        <tr>
+            <th>
+                ردیف
+            </th>
+            <th>
+                وجه
+            </th>
+            <th>
+                تاریخ
+            </th>
+            <th>
+                نوع تراکنش
+            </th>
+        </tr>
+    </thead>
+    <tbody >
+        @foreach (var item in Model)
+        {
+            switch (item.Type)
+            {
+
+                case 1:
+
+                    <tr>
+                        <td>@(Model.ToList().IndexOf(item )+1)</td>
+                        <td class="success">@item.Fund.ToString("#,0")</td>
+                        <td>@item.Date.ToShamsi()</td>
+                        <td>
+                            شارژ
+                        </td>
+                    </tr>
+
+                    break;
+                case 2:
+                    <tr>
+                        <td>@(Model.ToList().IndexOf(item )+1)</td>
+                        <td class="alert">@((item.Fund*(-1)).ToString("#,0"))</td>
+                        <td>@item.Date.ToShamsi()</td>
+                        <td>
+                            <a href="/VideoView/@item.VideoOrPlaylistId/@item.VideoOrPlaylistName.Replace(" ","-")">
+                                خرید @((item.IsVideo) ? "ویدیو" : "کلاس")
+                            </a>
+                        </td>
+                    </tr>
+                    break;
+                case 3:
+                    <tr>
+                        <td>@(Model.ToList().IndexOf(item )+1)</td>
+                        <td class="warning">@((item.Fund*(-1)).ToString("#,0"))</td>
+                        <td>@item.Date.ToShamsi()</td>
+                        <td>
+                            <span>
+                                تسویه @((item.IsDoneWithdraw) ? "(واریز شد)" : "(در حال بررسی)")
+                            </span>
+                        </td>
+                    </tr>
+                    break;
+                case 4:
+                    <tr>
+                        <td>@(Model.ToList().IndexOf(item )+1)</td>
+                        <td class="success">@item.Fund.ToString("#,0")</td>
+                        <td>@item.Date.ToShamsi()</td>
+                        <td>
+                            <a href="/VideoView/@item.VideoOrPlaylistId/@item.VideoOrPlaylistName.Replace(" ","-")">
+                                فروش @((item.IsVideo) ? "ویدیو" : "کلاس")
+                            </a>
+                        </td>
+                    </tr>
+                    break;
+                default: break;
+            }
+        }
+    </tbody>
+</table>

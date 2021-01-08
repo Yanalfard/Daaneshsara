@@ -25,9 +25,9 @@
                 <!--یا-->
             </td>
             <td>
-                @if (item.RoleId == 2)
+                @if (item.DocsId != null)
                 {
-                    <a href="" class="fa fa-eye" title="مشاهده مدارک" data-toggle="tooltip" data-placement="top">
+                    <a href="/Admin/Doc/ViewDoc/@item.DocsId" class="fa fa-eye" title="مشاهده مدارک" data-toggle="tooltip" data-placement="top">
                     </a>
                 }
             </td>
@@ -35,7 +35,7 @@
                 <a href="/Admin/Video/Index?UserId=@item.UserId" class="badge-success badge-pill">مشاهده</a>
             </td>
             <td>
-                <a href="" class="fa fa-eye" title="مشاهده گردش های مالی" data-toggle="tooltip" data-placement="top">
+                <a href="/Admin/Order/Turnover/@item.UserId" class="fa fa-eye" title="مشاهده گردش های مالی" data-toggle="tooltip" data-placement="top">
                 </a>
             </td>
             <td>

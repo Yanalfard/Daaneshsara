@@ -131,7 +131,7 @@
     <Compile Include="Areas\Admin\Controllers\ChatController.cs" />
     <Compile Include="Areas\Admin\Controllers\DocController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\OlderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\PlaylistController.cs" />
     <Compile Include="Areas\Admin\Controllers\TicketController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
@@ -1821,10 +1821,16 @@
     <Content Include="Areas\Admin\Views\Doc\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Doc\ViewDoc.cshtml" />
     <Content Include="Areas\Admin\Views\Doc\ListDoc.cshtml" />
-    <Content Include="Areas\Admin\Views\Older\Prices.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Prices.cshtml" />
     <Content Include="Areas\User\Views\Wallet\Index.cshtml" />
     <Content Include="Areas\User\Views\Wallet\Transaction.cshtml" />
     <Content Include="Areas\User\Views\Wallet\Charge.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Sail.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\ListSail.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Turnover.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Withdraw.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\viewWithdraw.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Charging.cshtml" />
     <None Include="Connected Services\ZarinPalTest\configuration91.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\configuration.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\Reference.svcmap">

@@ -1,0 +1,49 @@
+﻿
+
+@{
+    ViewBag.Title = "فروش ها";
+}
+
+<div class="card flex-div border-0 shadow">
+    <div class="card-header bg-white">
+        <div class="row justify-content-end">
+            <div class="col-md-10 col-12">
+                <form class="card-form row" action="/Admin/Order/Sail" method="post">
+                    <div class="form-input col-md-10">
+                        <div class="form-inline">
+                            <div class="form-group mx-sm-1 mb-2">
+                                <input class="form-control form-control-sm" name="nameVideo" type="text" value="@ViewBag.nameVideo" placeholder="نام ویدیو">
+                            </div>
+                            <div class="form-group mx-sm-1 mb-2">
+                                <input class="form-control form-control-sm" name="namePlaylist" type="text" value="@ViewBag.namePlaylist" placeholder="نام کلاس">
+                            </div>
+                            <div class="form-group mx-sm-1 mb-2">
+                                <input class="form-control form-control-sm" name="user" type="text" value="@ViewBag.user" placeholder="دانشجو ">
+                            </div>
+                            <div class="form-group mx-sm-1 mb-2">
+                                <input class="form-control form-control-sm" name="seller" type="text" value="@ViewBag.seller" placeholder="مربی">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-toolbar col-md-12">
+                        <input type="submit" value="جستجو" class="btn btn-primary btn-sm " />
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <div id="card-table" class="p-0 card-body flex-div">
+        <div class="table-responsive flex">
+        
+                    @Html.Action("ListSail", "Order")
+           
+        </div>
+    </div>
+    <div class="card-footer bg-white">
+        <nav aria-label="Page navigation example">
+            <div id="pagination-container"></div>
+        </nav>
+    </div>
+</div>
+
