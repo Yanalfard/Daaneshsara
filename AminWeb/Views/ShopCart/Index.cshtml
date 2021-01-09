@@ -25,7 +25,7 @@
             <label>مبلغ قابل پرداخت</label>
             <div class="row uk-margin-auto-left price">
                 <span class="toman">تومان</span>
-                <label class="price">@Model.Price</label>
+                <label class="price">@Model.Price.ToString("#,0")</label>
             </div>
         </div>
 
@@ -34,31 +34,32 @@
             <div class="row-reverse purchase">
                 @if (Model.IsValidBalance)
                 {
-                    <div class="wallet">
-                        <label>پرداخت از کیف پول</label>
-                        <div class="row uk-margin-auto-left">
+                    <a href="/ShopCart/VerifyBalance" class="wallet" style="cursor:pointer">
+                        <label  style="cursor:pointer">پرداخت از کیف پول</label>
+                        <div class="row uk-margin-auto-left"  style="cursor:pointer">
                             <span class="toman">تومان</span>
-                            <a href="/ShopCart/VerifyBalance" class="price">@Model.BalanceUser</a>
+                            <span  class="price">@Model.BalanceUser.ToString("#,0")</span>
                         </div>
-                    </div>
+                    </a>
                 }
                 else
                 {
-                    <div class="wallet uk-disabled">
-                        <label>وجه کیف پول ناکافی</label>
-                        <div class="row uk-margin-auto-left">
+                    <div class="wallet" uk-toggle="target: #Modal-Charge">
+                        <label class="uk-text-center">وجه کیف پول ناکافی</label>
+                        <label class="uk-text-center">شارژ حساب</label>
+                        <div class="row uk-margin-auto-left ">
                             <span class="toman">تومان</span>
                             <span class="price">@Model.BalanceUser.ToString("#,0")</span>
                         </div>
                     </div>
                 }
-                <div class="divider"></div>
+                @*<div class="divider"></div>
                 <a class="pal" href="/ShopCart/Payment">
                     <div>
                         <img src="~/Resources/Static/Vector/Zarinpal.svg" alt="لوگو زرین پال" />
                         <span>زرین پال</span>
                     </div>
-                </a>
+                </a>*@
             </div>
         </div>
 
@@ -83,4 +84,3 @@
 
     </div>
 </div>
-

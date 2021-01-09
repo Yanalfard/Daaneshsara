@@ -94,8 +94,12 @@ namespace AminWeb.Areas.User.Controllers
             return PartialView(GetTransAction());
         }
 
-        public string Withdraw(string cardWithdraw, string priceWithdraw)
+        public string Withdraw(string cardWithdraw, string priceWithdraw, string fullName)
         {
+            if (Convert.ToInt32(priceWithdraw) < 300000)
+            {
+                return "مبلغ کمتر از 300000 هزار تومان مجاز نیست";
+            }
             if (SelectUser().Balance < Convert.ToInt32(priceWithdraw))
             {
                 return "مبلغ مورد نظر بیشتر از کیف پول شماست";
@@ -106,17 +110,18 @@ namespace AminWeb.Areas.User.Controllers
                 return "مبلغ مورد نظر بیشتر از سقف برداشتی است. لطفا با مدیریت در تماس باشید  ";
             }
             TblWithdraw check = _db.Withdraw.Get().FirstOrDefault(i => i.UserId == SelectUser().UserId && i.IsDone == false);
-            DateTime date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            if (check.Date == date)
+            //DateTime date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
+            if (check != null && check.Date.AddDays(1) > DateTime.Now)
             {
                 return "شما یک درخواست در حال بررسی دارین لطفا بعدا نسبت به درخواست مراجعه نمایید";
 
             }
             TblWithdraw withdraw = new TblWithdraw();
             withdraw.CardInfo = cardWithdraw.ToString();
+            withdraw.Description = fullName;
             withdraw.IsDone = false;
             withdraw.Value = Convert.ToInt32(priceWithdraw);
-            withdraw.Date = date;
+            withdraw.Date = DateTime.Now;
             withdraw.UserId = SelectUser().UserId;
             _db.Withdraw.Add(withdraw);
             _db.Withdraw.Save();

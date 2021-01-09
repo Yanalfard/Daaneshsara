@@ -7,12 +7,16 @@
 <div class="card border-0 shadow p-1">
     <div class="card-body flex-div">
         <div class="column mb-2">
+            <strong>نام کامل صاحب حساب </strong>
+            @Model.Description
+        </div>
+        <div class="column mb-2">
             <strong>شماره کارت</strong>
             @Model.CardInfo
         </div>
         <div class="column mb-2">
             <strong>تاریخ درخواست </strong>
-            @Model.Date
+            @Model.Date.ToShamsi()
         </div>
         <div class="column mb-2">
             <strong>

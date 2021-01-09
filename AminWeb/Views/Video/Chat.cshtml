@@ -1,0 +1,52 @@
+﻿
+@model IEnumerable<DataLayer.ViewModels.VmChatUsers>
+
+
+    <div id="Info" class="mat uk-box-shadow-large uk-margin-medium-top uk-margin-medium-bottom">
+        <div class="uk-padding">
+
+            <ul class="uk-padding-remove">
+                @foreach (var item in Model)
+                {
+                    if (item.SenderId != 0)
+                    {
+                        <li class="message you column">
+                            <div class="row">
+                                <a href="/Dashboard/@item.SenderId/@item.Name" class="name uk-margin-auto-left" dir="ltr" uk-icon="chevron-left">@item.Name</a>
+                                <span class="date"> @item.TimeSent.ToShamsi()</span>
+                            </div>
+                            <p class="text">
+                                @item.Message
+                            </p>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="message column">
+                            <div class="row">
+                                <span class="name uk-margin-auto-left" dir="ltr" uk-icon="chevron-right">شما</span>
+                                <span class="date"> @item.TimeSent.ToShamsi()</span>
+                            </div>
+                            <p class="text">
+                                @item.Message
+                            </p>
+                        </li>
+                    }
+                }
+            </ul>
+
+            <div class="row-reverse uk-margin-top">
+
+                <div class="row uk-width-1-1">
+                    <textarea type="text" name="Message" id="messageTextAreaaVideo" class="uk-width-1-1" placeholder="..."></textarea>
+                    <button class="btn-pill-primary uk-margin-left uk-margin-auto-bottom" onclick="sendMessage(@ViewBag.SenderId)">
+                        فرستادن
+                    </button>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>

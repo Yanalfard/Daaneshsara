@@ -65,11 +65,11 @@ namespace AminWeb.Controllers
                     TblVideo video = _db.Video.GetById(list.VideoId);
                     if (user != null && video != null)
                     {
-                        if (_db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == list.PlaylistId).Any())
+                        if (_db.Log.Get().Where(i => i.UserId == SelectUser().UserId && (i.PlayListId == list.PlaylistId && i.PlayListId != null)).Any())
                         {
                             return Redirect("/");
                         }
-                        else if (_db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.VideoId == list.VideoId).Any())
+                        else if (_db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.VideoId == list.VideoId && i.VideoId != null).Any())
                         {
                             return Redirect("/");
                         }

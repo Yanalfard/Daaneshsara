@@ -15,6 +15,7 @@ namespace DataLayer.MetaData
         [Display(Name = "تلفن ثابت")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(11, ErrorMessage = "طول بیش از 11 کاراکتر مجاز نیست")]
+        //[RegularExpression("[0]{1}[9]{1}[0-9]{9}", ErrorMessage = "شماره تلفن وارد شده معتبر نمی باشد")]
         public string TellSabet { get; set; }
 
         [Display(Name = "پروانه آموزشی")]

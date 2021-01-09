@@ -223,17 +223,40 @@ namespace AminWeb.Controllers
             }
             return PartialView("ForgetPassword", user);
         }
-        public ActionResult RecoverPassword()
+        [Route("RecoveryPassword/{id}")]
+        public ActionResult RecoveryPassword(string id)
         {
             return View();
         }
-
-        public ActionResult ChangePassword()
+        [HttpPost]
+        [Route("RecoveryPassword/{id}")]
+        public ActionResult RecoveryPassword(string id, VmRecoveryPassword recovery)
         {
-            return View();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var user = _db.User.Get(i => i.Auth == id).FirstOrDefault();
+                    if (user == null)
+                    {
+                        ModelState.AddModelError("Password", "حساب کاربری شما یافت نشد");
+                    }
+                    else
+                    {
+                        user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(recovery.Password, "MD5");
+                        user.Auth = Guid.NewGuid().ToString();
+                        _db.User.Save();
+                        return Redirect("/?ReturnUrl=RecoveryPassword");
+                    }
+                }
+                return View(recovery);
+            }
+            catch
+            {
+                return RedirectToAction("/ErrorPage/NotFound");
+            }
         }
 
-       
 
     }
 }

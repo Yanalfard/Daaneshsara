@@ -112,6 +112,34 @@
     <div role="none" class="space-bottom-nav uk-margin-xlarge-bottom"></div>
 
 
+    <div id="Modal-Charge" uk-modal>
+        <form action="/ShopCart/ChargeBalance" class="uk-modal-dialog uk-modal-body">
+            <div class="row-reverse uk-margin-bottom">
+                <h3 class="uk-margin-remove">
+                    شارژ کیف پول
+                </h3>
+                <button class="uk-modal-close uk-margin-auto-right" type="button" uk-icon="close"></button>
+            </div>
+
+            <div class="form-group">
+                <label for="Charge" dir="rtl">مبلغ (ريال)</label>
+                <div class="input-group">
+                    <input pattern="[0-9]{5,15}" id="Charge" name="Charge" required title="مبلغ کمتر از 10000 هزار تومان امکان پذیر نیست">
+                </div>
+                <span role="alert" class="alert">@*لطفا این فیلد را وارد نمایید*@</span>
+            </div>
+
+            <div class="row-reverse uk-margin-top" type="button">
+                <button class="btn-primary">
+                    شارژ
+                </button>
+                <button class="btn-secondary uk-modal-close uk-margin-right">
+                    بازگشت
+                </button>
+            </div>
+
+        </form>
+    </div>
     <!-- #Loadin -->
     <div id="overlay">
         <div class="cv-spinner">
@@ -260,7 +288,7 @@
                 return true;
             }
         }
-
+       
     </script>
 
 

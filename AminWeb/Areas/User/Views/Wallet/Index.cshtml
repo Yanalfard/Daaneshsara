@@ -8,7 +8,7 @@
 
 <!-- #region Modals -->
 
-<div id="Modal-Charge" uk-modal>
+<!--<div id="Modal-Charge" uk-modal>
     <form action="/ShopCart/ChargeBalance" class="uk-modal-dialog uk-modal-body">
         <div class="row-reverse uk-margin-bottom">
             <h3 class="uk-margin-remove">
@@ -20,10 +20,9 @@
         <div class="form-group">
             <label for="Charge" dir="rtl">مبلغ (ريال)</label>
             <div class="input-group">
-                <input type="number" id="Charge" name="Charge" required
-                       minlength="4" maxlength="20">
+                <input pattern="[0-9]{5,15}" id="Charge" name="Charge" required title="مبلغ کمتر از 10000 هزار تومان امکان پذیر نیست">
             </div>
-            <span role="alert" class="alert">@*لطفا این فیلد را وارد نمایید*@</span>
+            <span role="alert" class="alert">-->@*لطفا این فیلد را وارد نمایید*@<!--</span>
         </div>
 
         <div class="row-reverse uk-margin-top" type="button">
@@ -36,7 +35,7 @@
         </div>
 
     </form>
-</div>
+</div>-->
 
 <div id="Modal-Request" uk-modal>
     <form id="Withdraw" class="uk-modal-dialog uk-modal-body">
@@ -56,10 +55,16 @@
         </p>
 
         <div class="form-group">
+            <label for="card" dir="rtl">نام کامل صاحب کارت </label>
+            <div class="input-group">
+                <input type="text" id="fullName" name="fullName" required />
+            </div>
+            <span role="alert" class="alert">@*لطفا این فیلد را وارد نمایید*@</span>
+        </div>
+        <div class="form-group">
             <label for="card" dir="rtl">شماره کارت</label>
             <div class="input-group">
-                <input type="number" id="cardWithdraw" name="cardWithdraw" required
-                       minlength="15" maxlength="20">
+                <input pattern="[0-9]{10,20}" id="cardWithdraw" name="cardWithdraw" required title="شماره کارت را وارد کنید">
             </div>
             <span role="alert" class="alert">@*لطفا این فیلد را وارد نمایید*@</span>
         </div>
@@ -67,8 +72,7 @@
         <div class="form-group">
             <label for="Charge" dir="rtl">مبلغ (ريال)</label>
             <div class="input-group">
-                <input type="number" id="priceWithdraw" name="priceWithdraw" required
-                       minlength="4" maxlength="20">
+                <input pattern="[0-9]{6,20}" id="priceWithdraw" name="priceWithdraw" required title="مبلغ کمتر از 300000 هزار تومان امکان پذیر نیست">
             </div>
             <span role="alert" class="alert">@*لطفا این فیلد را وارد نمایید*@</span>
         </div>
@@ -166,12 +170,13 @@
             e.preventDefault();
             var price = $('.balance').html().replaceAll(",", "");
             var priceWithdraw = $('#priceWithdraw').val();
+            var fullName = $('#fullName').val();
             var cardWithdraw = $('#cardWithdraw').val();
             if (Number(priceWithdraw) <= Number(price)) {
                 $("#overlay").fadeIn(300);
                 $.ajax({
                     url: "/User/Wallet/Withdraw",
-                    data: { cardWithdraw: cardWithdraw, priceWithdraw: priceWithdraw },
+                    data: { cardWithdraw: cardWithdraw, priceWithdraw: priceWithdraw, fullName: fullName },
                     type: "Get",
                 }).done(function (result) {
                     UIkit.modal(document.getElementById('Modal-Request')).hide();

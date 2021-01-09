@@ -38,4 +38,20 @@ namespace DataLayer.ViewModels
         [MaxLength(30, ErrorMessage = "تعداد کاراکتر بیستر است")]
         public string Password { get; set; }
     }
+    public class VmRecoveryPassword
+    {
+        [Display(Name = "کلمه عبور جدید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [DataType(DataType.Password)]
+        [MinLength(4, ErrorMessage = "تعداد کاراکتر کم است")]
+        [MaxLength(30, ErrorMessage = "تعداد کاراکتر بیستر است")]
+        public string Password { get; set; }
+        [Display(Name = "تکرار کلمه عبور جدید")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [DataType(DataType.Password)]
+        [MinLength(4, ErrorMessage = "تعداد کاراکتر کم است")]
+        [MaxLength(30, ErrorMessage = "تعداد کاراکتر بیستر است")]
+        [Compare("Password", ErrorMessage = "کلمه های عبور مغایرت دارند")]
+        public string RePassword { get; set; }
+    }
 }

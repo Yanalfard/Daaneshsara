@@ -89,7 +89,7 @@ namespace AminWeb.Areas.User.Controllers
                 user.TellNo = user.TellNo.Trim().ToLower().Replace(" ", "");
                 if (_db.User.Get().Any(i => i.TellNo == user.TellNo && i.UserId != user.UserId))
                 {
-                    ModelState.AddModelError("TelNo", "شماره موبایل تکراریست");
+                    ModelState.AddModelError("TellNo", "شماره موبایل تکراریست");
                 }
                 else if (_db.User.Get().Any(i => i.Email == user.Email && i.UserId != user.UserId))
                 {

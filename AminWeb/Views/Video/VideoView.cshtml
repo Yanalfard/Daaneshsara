@@ -130,25 +130,34 @@
                         if (Model.PlaylistId != null)
                         {
                             <a href="/ShopCart/Index/@Model.VideoId" class="btn btn-primary">
-                                خرید ویدیوهای این کلاس
+                                حضور در این کلاس
                             </a>
                             <div class="price row uk-margin-auto-top uk-margin-auto-bottom uk-margin-small-right">
+
                                 <span>
                                     تومان
                                 </span>
                                 @Model.PlaylistPrice.ToString("#,0")
+
+                                <span>
+                                    :شهریه
+                                </span>
                             </div>
                         }
                         else
                         {
                             <a href="/ShopCart/Index/@Model.VideoId" class="btn btn-primary">
-                                خرید این ویدیو
+                                شرکت در این ویدیو
                             </a>
                             <div class="price row uk-margin-auto-top uk-margin-auto-bottom uk-margin-small-right">
+
                                 <span>
                                     تومان
                                 </span>
                                 @Model.Price.ToString("#,0")
+                                <span>
+                                    :شهریه
+                                </span>
                             </div>
                         }
 
@@ -190,6 +199,28 @@
             }
         }
 
+
+
+
+
+
+
+
+        <div id="listMessageVideo">
+            @if (User.Identity.IsAuthenticated && Model.IsLog)
+            {
+                if (!User.IsInRole("admin"))
+                {
+                    @Html.Action("Chat", new { UserId = Model.UserId })
+                }
+
+            }
+        </div>
+
+
+
+
+
     </div>
 </div>
 
@@ -229,5 +260,25 @@
             UIkit.modal(document.getElementById('Modal-Report')).hide();
             $("#overlay").fadeOut(300);
         });
+    }
+
+
+    function sendMessage(id) {
+        $("#overlay").fadeIn(300);
+        if ($('#messageTextAreaaVideo').val() == "") {
+            $("#overlay").fadeOut(300);
+            UIkit.notification("متن خالیست");
+            return false;
+        }
+        var message = $('#messageTextAreaaVideo').val();
+        $.ajax({
+            url: '/Video/SendMessage',
+            data: { id: id, message: message },
+        }).done(function (result) {
+            $('#messageTextAreaaVideo').val("");
+            $('#listMessageVideo').html(result);
+            $("#overlay").fadeOut(300);
+        });
+        $("#overlay").fadeOut(300);
     }
 </script>

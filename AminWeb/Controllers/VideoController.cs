@@ -241,5 +241,65 @@ namespace AminWeb.Controllers
             return PartialView("LikeCount", LikeCount);
         }
 
+
+        #region Chat
+
+        
+        public List<TblChat> GetAChat(int user2)
+        {
+            int user1 = SelectUser().UserId;
+            List<TblChat> stp1 = _db.Chat.Get(i => (i.SenderId == user1 && i.RecieverId == user2) || (i.SenderId == user2 && i.RecieverId == user1)).ToList();
+            return stp1;
+        }
+        public ActionResult Chat(int UserId)
+        {
+            List<VmChatUsers> list = new List<VmChatUsers>();
+            ViewBag.SenderId = UserId;
+            foreach (var item in GetAChat(UserId))
+            {
+                VmChatUsers vmChat = new VmChatUsers();
+                vmChat.ChatId = item.ChatId;
+                vmChat.TimeSent = item.TimeSent;
+                vmChat.Message = item.Message;
+                vmChat.Name = item.TblUser1.Name;
+                if (UserId == item.SenderId)
+                {
+                    ViewBag.SenderId = item.SenderId;
+                    vmChat.SenderId = item.SenderId;
+                }
+                list.Add(vmChat);
+            }
+            return PartialView(list);
+        }
+
+        public ActionResult SendMessage(int id, string message)
+        {
+            _db.Chat.Add(new TblChat()
+            {
+                SenderId = SelectUser().UserId,
+                RecieverId = id,
+                Message = message,
+                TimeSent = DateTime.Now,
+            });
+            _db.Chat.Save();
+            List<VmChatUsers> list = new List<VmChatUsers>();
+            ViewBag.SenderId = id;
+            foreach (var item in GetAChat(id))
+            {
+                VmChatUsers vmChat = new VmChatUsers();
+                vmChat.ChatId = item.ChatId;
+                vmChat.TimeSent = item.TimeSent;
+                vmChat.Message = item.Message;
+                vmChat.Name = item.TblUser1.Name;
+                if (id == item.SenderId)
+                {
+                    ViewBag.SenderId = item.SenderId;
+                    vmChat.SenderId = item.SenderId;
+                }
+                list.Add(vmChat);
+            }
+            return PartialView("Chat", list);
+        }
+        #endregion
     }
 }

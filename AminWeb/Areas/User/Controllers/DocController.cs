@@ -81,7 +81,7 @@ namespace AminWeb.Areas.User.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("ParvaneAmuzeshgahUrl", "عکس پروانه آموزشگاه  نامعتبر است");
+                        ModelState.AddModelError("ParvaneAmuzeshgahUrl", "عکس دیگر مدارک  نامعتبر است");
                         return View(upload);
                     }
                 }

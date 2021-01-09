@@ -55,7 +55,7 @@
             </div>
             @Html.ValidationMessageFor(model => model.CatagoryId, "", new { @class = "uk-text-danger" })
         </div>
-        <div class="uk-margin-top uk-margin-bottom">
+        @*<div class="uk-margin-top uk-margin-bottom">
             <label dir="rtl">
                 @Html.EditorFor(m => m.IsCharity)
                 میخواهم درصدی از درامد ویدیو های این کلاس به خیریه
@@ -63,7 +63,7 @@
                 اهدا شود
             </label>
             @Html.ValidationMessageFor(model => model.IsCharity, "", new { @class = "uk-text-danger" })
-        </div>
+        </div>*@
         <div class="form-group">
             <label for="Certificate">عکس کلاس</label>
             <div class="row-reverse">
@@ -83,7 +83,7 @@
             @Html.ValidationMessageFor(model => model.Link, "", new { @class = "uk-text-danger" })
         </div>
         <div class="form-group">
-            <label for="Certificate">در صورت ارایه مدرک، آن را آپلود کنید</label>
+            <label for="Certificate">در صورت داشتن مدرک در زمینه مربوطه آن را آپلود کنید</label>
             <div class="row-reverse text-center">
                 @if (Model.CertificateURL.Any())
                 {

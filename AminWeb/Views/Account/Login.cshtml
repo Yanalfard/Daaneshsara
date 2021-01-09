@@ -16,6 +16,12 @@
             <div class="uk-text-danger uk-margin-bottom">
                 <p class="uk-text-danger">حساب کاربری شما فعال شد می توانید وارد حساب خود شوید</p>
             </div>
+        } 
+        @if (Request.QueryString["ReturnUrl"] == "RecoveryPassword")
+        {
+            <div class="uk-text-danger uk-margin-bottom">
+                <p class="uk-text-danger">رمز شما تغیر یافت می توانید وارد حساب خود شوید</p>
+            </div>
         }
         else if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
         {

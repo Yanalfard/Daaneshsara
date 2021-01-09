@@ -72,7 +72,7 @@
             @if (Model.ParvaneAmuzeshgahUrl != null)
             {
                 <a class="column" href="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl">
-                    <label>پروانه آموزش</label>
+                    <label>دیگر مدارک</label>
                     <img class="image" src="~/Resources/Doc/@Model.ParvaneAmuzeshgahUrl" alt="@Model.TellSabet" />
                 </a>
             }
@@ -85,8 +85,8 @@
             @*<input type="hidden" id="id" name="isValid" value="@Model.DocId" />*@
             <input type="text" class="form-control form-control-sm" id="errorMessage" name="errorMessage" value="" placeholder="پیام شما" />
             <div class="row ml-auto mt-3 mr-0">
-                <input type="submit" name="" class="btn btn-primary btn-sm btnSubmit1" value="تایید" />
-                <input type="submit" class="btn btn-danger btn-sm mr-3 btnSubmit2" value="رد مدرک" />
+                <input type="submit" name="" class="btn btn-primary btn-sm btnSubmit1" value="تایید و ارسال" />
+                <input type="submit" class="btn btn-danger btn-sm mr-3 btnSubmit2" value="رد مدرک و ارسال" />
             </div>
         </form>
     </div>
