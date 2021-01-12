@@ -2055,6 +2055,7 @@
     <Content Include="Resources\Static\Vector\Logo.svg" />
     <Content Include="Resources\Static\Vector\Medal.svg" />
     <Content Include="Resources\Static\Vector\NoImage.svg" />
+    <Content Include="Resources\Static\Vector\Playlist.svg" />
     <Content Include="Resources\Static\Vector\Twitter.svg" />
     <Content Include="Resources\Static\Vector\Zarinpal.svg" />
     <Content Include="Scripts\ajaxfileupload.js" />

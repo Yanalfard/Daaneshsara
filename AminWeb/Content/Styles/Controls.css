@@ -673,7 +673,8 @@ textarea {
     -webkit-border-radius: 0;
     border-radius: 0;*/
   resize: vertical;
-  min-height: 48px; }
+  min-height: 48px;
+  height: 48px; }
 
 input.uk-checkbox {
   padding: 10px;
@@ -907,3 +908,57 @@ select {
   background-color: #FFE1E1; }
   .alert-box.alert-box-danger * {
     color: #F94646 !important; }
+
+.chat {
+  /*ScrollBar*/
+  /* width */
+  /* Track */
+  /* Handle */ }
+  .chat .contacts {
+    width: 64%;
+    margin-left: auto; }
+  .chat ::-webkit-scrollbar {
+    width: 12px; }
+  .chat ::-webkit-scrollbar-track {
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    border-radius: 6px 6px 6px 6px;
+    /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/ }
+  .chat ::-webkit-scrollbar-thumb {
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    border-radius: 6px 6px 6px 6px;
+    /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/ }
+  .chat-room {
+    max-height: 70vh;
+    overflow-y: scroll !important;
+    direction: rtl;
+    background: #fff;
+    -moz-border-radius: 8px 8px 8px 8px;
+    -webkit-border-radius: 8px 8px 8px 8px;
+    border-radius: 8px 8px 8px 8px;
+    /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/
+    border: 1px solid #D4D4D4; }
+    .chat-room .message {
+      margin: 0 12px;
+      border-top: 1px solid #eee;
+      padding-top: 16px; }
+      .chat-room .message .date {
+        color: #999999 !important; }
+    .chat-room .message.you .text::before {
+      content: '•';
+      width: 8px;
+      height: 8px;
+      -moz-border-radius: 4px 4px 4px 4px;
+      -webkit-border-radius: 4px 4px 4px 4px;
+      border-radius: 4px 4px 4px 4px;
+      /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/
+      color: #F94646; }

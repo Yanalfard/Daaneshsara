@@ -143,52 +143,6 @@ $side-category-width: 200px;
     font-weight: 900;
 }
 
-
-.chat {
-    .contacts {
-        width: 64%;
-        margin-left: auto;
-    }
-    /*ScrollBar*/
-    /* width */
-    ::-webkit-scrollbar {
-        width: 12px;
-    }
-    /* Track */
-    ::-webkit-scrollbar-track {
-        @include border-radius(6px,6px,6px,6px);
-    }
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        @include border-radius(6px,6px,6px,6px);
-    }
-
-    &-room {
-        max-height: 70vh;
-        overflow-y: scroll !important;
-        direction: rtl;
-        @include mat;
-
-        .message {
-            margin: 0 12px;
-            border-top: 1px solid #eee;
-            padding-top: 16px;
-
-            .date {
-                color: lighten(#666666,20%) !important;
-            }
-        }
-
-        .message.you .text::before {
-            content: '•';
-            width: 8px;
-            height: 8px;
-            @include border-radius(4px,4px,4px,4px);
-            color: $primary;
-        }
-    }
-}
-
 .edit {
     img, video {
         @include border-radius(8px,8px,8px,8px);

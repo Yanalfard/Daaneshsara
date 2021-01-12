@@ -426,6 +426,7 @@ textarea {
     @include border-radius(10px,10px,10px,10px);
     resize: vertical;
     min-height: 48px;
+    height: 48px;
 }
 
 input.uk-checkbox {
@@ -468,7 +469,7 @@ select {
 }
 
 .btn-primary, .btn-pill-primary {
-    color: white!important;
+    color: white !important;
     background: $primary;
     border: none;
     @include trans(.2s);
@@ -648,7 +649,7 @@ select {
     background-color: #FFF6EE;
 
     * {
-        color: #F8B784!important;
+        color: #F8B784 !important;
     }
 }
 
@@ -658,7 +659,7 @@ select {
     background-color: #E1FFEF;
 
     * {
-        color: #64CA14!important;
+        color: #64CA14 !important;
     }
 }
 
@@ -668,6 +669,51 @@ select {
     background-color: #FFE1E1;
 
     * {
-        color: #F94646!important;
+        color: #F94646 !important;
+    }
+}
+
+.chat {
+    .contacts {
+        width: 64%;
+        margin-left: auto;
+    }
+    /*ScrollBar*/
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        @include border-radius(6px,6px,6px,6px);
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        @include border-radius(6px,6px,6px,6px);
+    }
+
+    &-room {
+        max-height: 70vh;
+        overflow-y: scroll !important;
+        direction: rtl;
+        @include mat;
+
+        .message {
+            margin: 0 12px;
+            border-top: 1px solid #eee;
+            padding-top: 16px;
+
+            .date {
+                color: lighten(#666666,20%) !important;
+            }
+        }
+
+        .message.you .text::before {
+            content: '•';
+            width: 8px;
+            height: 8px;
+            @include border-radius(4px,4px,4px,4px);
+            color: $primary;
+        }
     }
 }

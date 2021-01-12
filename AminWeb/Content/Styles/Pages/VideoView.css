@@ -192,22 +192,39 @@ backdrop-filter: saturate(80%);
   .container {
     width: 92%; } }
 
-.price {
-  color: #66e828;
-  font-size: 24px; }
-  .price span {
-    margin-top: 10px;
-    margin-right: 2px;
-    font-size: 14px; }
+.btn-primary.btn-orange {
+  -moz-border-radius: 8px 8px 8px 8px;
+  -webkit-border-radius: 8px 8px 8px 8px;
+  border-radius: 8px 8px 8px 8px;
+  /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/
+  -moz-transition: all ease 0.2s;
+  -o-transition: all ease 0.2s;
+  -webkit-transition: all ease 0.2s;
+  transition: all ease 0.2s;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 0 1vw;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0 1vw;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0 1vw;
+  cursor: pointer;
+  background: #ffca7a;
+  background: -moz-linear-gradient(135deg, #ffca7a 0%, #f44a4a 100%);
+  background: -webkit-linear-gradient(135deg, #ffca7a 0%, #f44a4a 100%);
+  background: linear-gradient(135deg, #ffca7a 0%, #f44a4a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffca7a",endColorstr="#f44a4a",GradientType=1); }
+
+.btn-orange:hover {
+  opacity: .8; }
 
 .control-panel {
   display: flex;
-  flex-direction: row-reverse; }
+  flex-direction: row; }
   .control-panel-top {
-    margin-right: auto !important; }
+    margin-right: auto; }
     .control-panel-top .star-container {
       background: #F5F5F5;
       padding: 10px;
+      margin: auto 0;
       -moz-border-radius: 8px 8px 8px 8px;
       -webkit-border-radius: 8px 8px 8px 8px;
       border-radius: 8px 8px 8px 8px;
@@ -221,6 +238,27 @@ backdrop-filter: saturate(80%);
         margin: auto 4px;
         font-size: 15px;
         color: #FFCC00; }
+  .control-panel .btn {
+    min-width: unset;
+    display: flex;
+    flex-direction: row-reverse;
+    -ms-align-content: center;
+    -webkit-align-content: center;
+    align-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    position: relative; }
+    .control-panel .btn span {
+      margin: auto 4px; }
+    .control-panel .btn .price {
+      color: #fff;
+      font-size: 18px;
+      margin-top: 4px;
+      margin-right: 4px; }
+    .control-panel .btn .toman {
+      color: #fff;
+      font-size: 10px;
+      margin: 12px 0 0 0; }
   .control-panel .icon-button {
     color: #AFAFAF; }
   .control-panel .icon-button:hover {
@@ -230,13 +268,16 @@ backdrop-filter: saturate(80%);
 
 @media only screen and (max-width: 950px) {
   .control-panel {
-    display: flex;
-    flex-direction: column-reverse; }
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr; }
     .control-panel-top {
       margin-right: auto !important; }
     .control-panel-bottom {
-      margin-top: 16px; }
+      margin-top: 16px;
+      display: flex;
+      flex-direction: row-reverse;
+      grid-gap: 12px; }
       .control-panel-bottom .btn-primary {
-        margin-left: auto !important; }
-      .control-panel-bottom .price {
-        margin-right: auto !important; } }
+        margin: 0;
+        width: 100%; } }

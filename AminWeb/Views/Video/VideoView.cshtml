@@ -83,7 +83,7 @@
 
         }
 
-        <div id="Info" class="mat uk-box-shadow-large uk-margin-medium-top uk-margin-medium-bottom">
+        <div id="Info" class="mat uk-box-shadow-large uk-margin-medium-top uk-margin-bottom">
             <div class="uk-padding">
                 @if (Model.PlaylistId != null)
                 {
@@ -124,55 +124,7 @@
             </div>
             <hr class="uk-margin-remove" />
             <div class="control-panel uk-padding">
-                <div class="control-panel-bottom row-reverse">
-                    @if (!Model.IsLog)
-                    {
-                        if (Model.PlaylistId != null)
-                        {
-                            #region video and class
-
-                            <a href="/ShopCart/Index/@Model.VideoId" class="btn btn-primary">
-                                حضور در این کلاس
-                            </a>
-                            <div class="price row uk-margin-auto-top uk-margin-auto-bottom uk-margin-small-right">
-
-                                <span>
-                                    تومان
-                                </span>
-                                @Model.PlaylistPrice.ToString("#,0")
-
-                                <span>
-                                    :شهریه
-                                </span>
-                            </div>
-                            #endregion
-
-                        }
-                        else
-                        {
-                            #region fagat video
-
-                            <a href="/ShopCart/Index/@Model.VideoId" class="btn btn-primary">
-                                شرکت در این ویدیو
-                            </a>
-                            <div class="price row uk-margin-auto-top uk-margin-auto-bottom uk-margin-small-right">
-
-                                <span>
-                                    تومان
-                                </span>
-                                @Model.Price.ToString("#,0")
-                                <span>
-                                    :شهریه
-                                </span>
-                            </div>
-                            #endregion
-
-                        }
-
-
-                    }
-                </div>
-                <div class="control-panel-top  row-reverse uk-margin-auto-right">
+                <div class="control-panel-top row-reverse">
                     <ul class="action-panel row uk-padding-remove uk-margin-auto-bottom uk-margin-auto-top uk-margin-auto-right">
 
                         <li><a href="#Modal-Report" uk-toggle class="icon-button" uk-tooltip="گزارش تخلف" uk-icon="report"></a></li>
@@ -194,6 +146,55 @@
                         @Html.Action("LikeCount", new { LikeCount = Model.LikeCount })
                     </div>
                 </div>
+                <div class="control-panel-bottom row-reverse">
+                    @if (!Model.IsLog)
+                    {
+                        if (Model.PlaylistId != null)
+                        {
+                            #region video and class
+
+                            <a href="/ShopCart/Index/@Model.VideoId" uk-tooltip="شرکت در این کلاس" class="btn btn-primary btn-orange">
+                                <span uk-icon="class"></span>
+                                <span class="price">
+                                    @Model.PlaylistPrice.ToString("#,0")
+                                </span>
+                                <span class="toman">
+                                    تومان
+                                </span>
+                            </a>
+
+                            <a href="/ShopCart/Index/@Model.VideoId" uk-tooltip="تماشا این ویدیو" class="btn btn-primary uk-margin-small-right">
+                                <span uk-icon="video"></span>
+                                <span class="price">
+                                    @Model.Price.ToString("#,0")
+                                </span>
+                                <span class="toman">
+                                    تومان
+                                </span>
+                            </a>
+
+                            #endregion
+
+                        }
+                        else
+                        {
+                            #region fagat video
+
+                            <a href="/ShopCart/Index/@Model.VideoId" class="btn btn-primary">
+                                خرید ویدیو
+
+                                <span class="price">
+                                    @Model.Price.ToString("#,0")
+                                </span>
+
+                            </a>
+
+                            #endregion
+                        }
+
+
+                    }
+                </div>
             </div>
         </div>
 
@@ -207,13 +208,6 @@
             }
         }
 
-
-
-
-
-
-
-
         <div id="listMessageVideo">
             @if (User.Identity.IsAuthenticated && Model.IsLog)
             {
@@ -225,15 +219,10 @@
             }
         </div>
 
-
-
-
-
     </div>
 </div>
 
 <script src="~/Scripts/UIScripts/CopyToClipboard.js"></script>
-
 
 <script>
 
