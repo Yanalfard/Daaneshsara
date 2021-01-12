@@ -96,6 +96,7 @@
                 </h3>
                 <a href="/Dashboard/@Model.UserId/@Model.UserNameVideo" class="tutor">
                     @Model.UserNameVideo
+                    <span uk-icon="tutor"></span>
                 </a>
                 <p class="uk-margin-remove-bottom">
                     @{
@@ -153,7 +154,7 @@
                         {
                             #region video and class
 
-                            <a href="/ShopCart/Index/@Model.VideoId" uk-tooltip="شرکت در این کلاس" class="btn btn-primary btn-orange">
+                            <a href="/ShopCart/@Model.VideoId/2" uk-tooltip="شرکت در این کلاس" class="btn btn-primary btn-orange">
                                 <span uk-icon="class"></span>
                                 <span class="price">
                                     @Model.PlaylistPrice.ToString("#,0")
@@ -163,7 +164,7 @@
                                 </span>
                             </a>
 
-                            <a href="/ShopCart/Index/@Model.VideoId" uk-tooltip="تماشا این ویدیو" class="btn btn-primary uk-margin-small-right">
+                            <a href="/ShopCart/@Model.VideoId/1" uk-tooltip="تماشا این ویدیو" class="btn btn-primary uk-margin-small-right">
                                 <span uk-icon="video"></span>
                                 <span class="price">
                                     @Model.Price.ToString("#,0")
@@ -180,7 +181,7 @@
                         {
                             #region fagat video
 
-                            <a href="/ShopCart/Index/@Model.VideoId" class="btn btn-primary">
+                            <a href="/ShopCart/@Model.VideoId/1" class="btn btn-primary">
                                 خرید ویدیو
 
                                 <span class="price">
@@ -204,7 +205,7 @@
 
             foreach (var item in list)
             {
-                @Html.Partial("_Playlist", item);
+                @Html.Partial("_PlaylistPriceVideo", item);
             }
         }
 

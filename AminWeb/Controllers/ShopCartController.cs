@@ -22,7 +22,8 @@ namespace AminWeb.Controllers
             return selectUser;
         }
         [Authorize(Roles = "user,institution,tutor")]
-        public ActionResult Index(int id)
+        [Route("ShopCart/{id}/{isPlaylis}")]
+        public ActionResult Index(int id, int isPlaylis)
         {
             try
             {
@@ -32,17 +33,24 @@ namespace AminWeb.Controllers
                     VmShopCart list = new VmShopCart();
                     list.VideoId = video.VideoId;
                     list.PlaylistId = video.PlaylistId;
-                    list.Price = video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
-                    list.IsPlaylist = video.PlaylistId != null;
                     list.BalanceUser = SelectUser().Balance;
                     list.IsValidBalance = list.Price < SelectUser().Balance;
-                    //list.UserId = SelectUser().UserId;
                     list.UserName = SelectUser().Name;
-                    Session["ShopCartVideo"] = list;
+                    if (isPlaylis == 1)
+                    {
+                        list.Price = video.Price;
+                        list.IsPlaylist = false;
+                    }
+                    else if (isPlaylis == 2)
+                    {
+                        list.Price = video.TblPlaylist.Price;
+                        list.IsPlaylist = true;
+                    }
                     if (video.PlaylistId != null)
                     {
                         ViewBag.Playlist = _db.Playlist.Get(i => i.PlaylistId == video.PlaylistId).ToList();
                     }
+                    Session["ShopCartVideo"] = list;
                     return View(list);
                 }
                 return Redirect("/");
@@ -73,13 +81,27 @@ namespace AminWeb.Controllers
                         {
                             return Redirect("/");
                         }
-                        int Price = video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
+                        int Price;
+                        if (list.IsPlaylist == true)
+                        {
+                            Price = video.TblPlaylist.Price;
+                        }
+                        else
+                        {
+                            Price = video.Price;
+                        }
                         if (user.Balance >= Price)
                         {
                             user.Balance -= Price;
                             TblLog log = new TblLog();
-                            //log.Amount = list.Price;
-                            log.Amount = video.PlaylistId != null ? video.TblPlaylist.Price : video.Price;
+                            if (list.IsPlaylist == true)
+                            {
+                                log.Amount = video.TblPlaylist.Price;
+                            }
+                            else
+                            {
+                                log.Amount = video.Price;
+                            }
                             log.Date = DateTime.Now;
                             log.Status = 2;
                             log.UserId = SelectUser().UserId;

@@ -60,12 +60,13 @@ namespace AminWeb.Controllers
                     vmVideo.IsLog = true;
                 }
                 List<TblLog> log = new List<TblLog>();
-
-                if (video.PlaylistId != null)
+                List<TblLog> log1 = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == video.PlaylistId && (i.Status == 1 || i.Status == 2)).ToList();
+                List<TblLog> log2 = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.VideoId == video.VideoId && (i.Status == 1 || i.Status == 2)).ToList();
+                if (log1.Count != 0)
                 {
                     log = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == video.PlaylistId && (i.Status == 1 || i.Status == 2)).ToList();
                 }
-                else if (video.PlaylistId == null)
+                if (log2.Count != 0)
                 {
                     log = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.VideoId == video.VideoId && (i.Status == 1 || i.Status == 2)).ToList();
                 }
@@ -106,7 +107,7 @@ namespace AminWeb.Controllers
         public ActionResult SelectVideos()
         {
             List<TblVideo> selectAllVideos = new List<TblVideo>();
-            selectAllVideos.AddRange( _db.Video.Get(i => i.IsHome && i.IsActive && !i.PlaylistId.HasValue).ToList());
+            selectAllVideos.AddRange(_db.Video.Get(i => i.IsHome && i.IsActive && !i.PlaylistId.HasValue).ToList());
             _db.Playlist.Get(i => i.IsHome && i.IsActive).ToList().ForEach(j => selectAllVideos.AddRange(j.TblVideo.ToList()));
             return PartialView("ListVideos", selectAllVideos.OrderByDescending(i => i.DateSubmited));
         }
@@ -244,7 +245,7 @@ namespace AminWeb.Controllers
 
         #region Chat
 
-        
+
         public List<TblChat> GetAChat(int user2)
         {
             int user1 = SelectUser().UserId;
