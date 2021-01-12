@@ -129,6 +129,8 @@
                     {
                         if (Model.PlaylistId != null)
                         {
+                            #region video and class
+
                             <a href="/ShopCart/Index/@Model.VideoId" class="btn btn-primary">
                                 حضور در این کلاس
                             </a>
@@ -143,9 +145,13 @@
                                     :شهریه
                                 </span>
                             </div>
+                            #endregion
+
                         }
                         else
                         {
+                            #region fagat video
+
                             <a href="/ShopCart/Index/@Model.VideoId" class="btn btn-primary">
                                 شرکت در این ویدیو
                             </a>
@@ -159,6 +165,8 @@
                                     :شهریه
                                 </span>
                             </div>
+                            #endregion
+
                         }
 
 

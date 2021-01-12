@@ -101,14 +101,14 @@ namespace AminWeb.Controllers
         public ActionResult ListVideos()
         {
             List<TblVideo> selectAllVideos = _db.Video.Get().Where(i => i.IsHome && i.IsActive).ToList();
-            return PartialView(selectAllVideos.OrderByDescending(i => i.DateSubmited).Take(20));
+            return PartialView(selectAllVideos.OrderByDescending(i => i.DateSubmited));
         }
         public ActionResult SelectVideos()
         {
             List<TblVideo> selectAllVideos = new List<TblVideo>();
             selectAllVideos.AddRange( _db.Video.Get(i => i.IsHome && i.IsActive && !i.PlaylistId.HasValue).ToList());
             _db.Playlist.Get(i => i.IsHome && i.IsActive).ToList().ForEach(j => selectAllVideos.AddRange(j.TblVideo.ToList()));
-            return PartialView("ListVideos", selectAllVideos.OrderByDescending(i => i.DateSubmited).Take(20));
+            return PartialView("ListVideos", selectAllVideos.OrderByDescending(i => i.DateSubmited));
         }
         public ActionResult SelectVideosByCategory(string name)
         {
@@ -129,15 +129,15 @@ namespace AminWeb.Controllers
             List<TblVideo> selectVideoByCategory = new List<TblVideo>();
             if (id == 1)
             {
-                selectVideoByCategory = _db.Video.Get(i => i.IsActive).OrderByDescending(i => i.DateSubmited).Take(15).ToList();
+                selectVideoByCategory = _db.Video.Get(i => i.IsActive).OrderByDescending(i => i.DateSubmited).ToList();
             }
             else if (id == 2)
             {
-                selectVideoByCategory = _db.Video.Get(i => i.IsActive).OrderByDescending(i => i.ViewCount).Take(15).ToList();
+                selectVideoByCategory = _db.Video.Get(i => i.IsActive).OrderByDescending(i => i.ViewCount).ToList();
             }
             else if (id == 3)
             {
-                selectVideoByCategory = _db.Video.Get(i => i.IsActive).OrderByDescending(i => i.LikeCount).Take(15).ToList();
+                selectVideoByCategory = _db.Video.Get(i => i.IsActive).OrderByDescending(i => i.LikeCount).ToList();
             }
             return PartialView("ListVideos", selectVideoByCategory);
         }
