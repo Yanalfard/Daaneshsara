@@ -25,6 +25,9 @@
     }
 }
 
+.btn-primary .uk-icon, .btn-orange .uk-icon {
+    min-width: 16px !important;
+}
 
 .btn-primary.btn-orange {
     @include border-radius(8px,8px,8px,8px);
@@ -130,6 +133,26 @@
             .btn-primary {
                 margin: 0;
                 width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-device-width: 450px) {
+    .control-panel-bottom {
+        grid-gap: 6px;
+
+        * + .btn-primary, .btn-primary.btn-orange {
+            padding-left: 12px;
+            padding-right: 12px;
+
+            span {
+                font-size: 13px !important;
+            }
+
+            .toman {
+                font-size: 7px !important;
+                margin-top: 8px;
             }
         }
     }

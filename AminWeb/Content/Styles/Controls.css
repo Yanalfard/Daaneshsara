@@ -321,7 +321,11 @@ backdrop-filter: saturate(80%);
     margin-right: 24px; }
 
 .top-nav.top-nav-trans {
-  background-color: rgba(248, 248, 248, 0.76); }
+  background-color: rgba(248, 248, 248, 0.76);
+  -moz-box-shadow: rgba(0, 0, 0, 0.12) 0 -6px 16px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.12) 0 -6px 16px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 -6px 16px;
+  backdrop-filter: blur(4px); }
 
 a:not(.btn), a:visited, details, summary, .anchor {
   color: #505050;
@@ -346,10 +350,11 @@ a:hover, summary:hover, .active {
   left: 0;
   bottom: 0;
   width: 100vw;
-  background: #fff;
+  background-color: rgba(248, 248, 248, 0.8);
   -moz-box-shadow: rgba(0, 0, 0, 0.12) 0 -6px 16px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.12) 0 -6px 16px;
   box-shadow: rgba(0, 0, 0, 0.12) 0 -6px 16px;
+  backdrop-filter: blur(4px);
   -moz-border-radius: 16px 16px 0 0;
   -webkit-border-radius: 16px 16px 0 0;
   border-radius: 16px 16px 0 0;
@@ -366,19 +371,36 @@ a:hover, summary:hover, .active {
 @media only screen and (max-device-width: 764px) {
   .uk-container {
     padding: 0px !important; }
-  .top-nav > nav {
-    margin-left: 10px; }
-    .top-nav > nav a {
-      margin: auto 0;
-      margin-right: 16px;
-      font-size: 14px; }
-    .top-nav > nav #loggedInUser {
-      margin-top: 0 !important; }
-  .top-nav > .logo {
-    width: 32px;
-    margin-right: 10px; }
+  .top-nav {
+    padding: 7.5px 0 7.5px 0; }
+    .top-nav > nav {
+      margin-left: 12px; }
+      .top-nav > nav a {
+        margin: auto 0;
+        margin-right: 16px;
+        font-size: 14px; }
+      .top-nav > nav #loggedInUser {
+        margin-top: 0 !important; }
+    .top-nav > .logo {
+      width: 32px;
+      margin-right: 12px; }
   .bottom-nav {
-    display: block; } }
+    display: block;
+    padding: 12px 0 6px 0;
+    -moz-border-radius: 12px 12px 0 0;
+    -webkit-border-radius: 12px 12px 0 0;
+    border-radius: 12px 12px 0 0;
+    /* -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;*/ }
+    .bottom-nav ul li {
+      margin: auto; }
+      .bottom-nav ul li a .uk-icon {
+        width: 18px;
+        height: 18px;
+        margin-bottom: 2px; }
+      .bottom-nav ul li a span:not(.uk-icon) {
+        font-size: 12px; } }
 
 @media only screen and (max-device-width: 360px) {
   .top-nav > nav a {
@@ -387,9 +409,7 @@ a:hover, summary:hover, .active {
     font-size: 12px; }
   .top-nav > .logo {
     width: 28px;
-    margin-right: 10px; }
-  .bottom-nav {
-    display: block; } }
+    margin-right: 10px; } }
 
 .drop-body {
   background: #fff;

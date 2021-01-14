@@ -37,6 +37,8 @@
 
 .top-nav.top-nav-trans {
     background-color: transparentize(#F8F8F8,.24);
+    @include shadow-medium;
+    backdrop-filter: blur(4px);
 }
 
 a:not(.btn), a:visited, details, summary, .anchor {
@@ -63,8 +65,9 @@ a:hover, summary:hover, .active {
     left: 0;
     bottom: 0;
     width: 100vw;
-    background: #fff;
+    background-color: transparentize(#F8F8F8,.2);
     @include shadow-medium;
+    backdrop-filter: blur(4px);
     @include border-radius(16px,16px,0,0);
 
     ul {
@@ -89,9 +92,10 @@ $container-padding-phone: 0px;
     }
 
     .top-nav {
+        padding: 7.5px 0 7.5px 0;
 
         > nav {
-            margin-left: 10px;
+            margin-left: 12px;
 
             a {
                 margin: auto 0;
@@ -106,13 +110,32 @@ $container-padding-phone: 0px;
 
         > .logo {
             width: 32px;
-            margin-right: 10px;
+            margin-right: 12px;
         }
     }
 
-
     .bottom-nav {
         display: block;
+        padding: 12px 0 6px 0;
+        @include border-radius(12px,12px,0,0);
+
+        ul {
+            li {
+                margin: auto;
+
+                a {
+                    .uk-icon {
+                        width: 18px;
+                        height: 18px;
+                        margin-bottom: 2px;
+                    }
+
+                    span:not(.uk-icon) {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -131,11 +154,6 @@ $container-padding-phone: 0px;
             width: 28px;
             margin-right: 10px;
         }
-    }
-
-
-    .bottom-nav {
-        display: block;
     }
 }
 

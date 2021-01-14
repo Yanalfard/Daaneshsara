@@ -1979,6 +1979,8 @@
     <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Admin\Views\Home\About.cshtml" />
     <None Include="Connected Services\ZarinPalTest\PaymentGatewayImplementationService.wsdl" />
+    <Content Include="Content\Fonts\IRANYekan.ttf" />
+    <Content Include="Content\Fonts\TIMESR.ttf" />
     <None Include="Content\Styles\Pages\Profile.scss" />
     <Content Include="Content\Styles\Pages\Profile.css">
       <DependentUpon>Profile.scss</DependentUpon>
