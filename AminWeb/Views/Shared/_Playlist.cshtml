@@ -1,66 +1,50 @@
 ﻿@model DataLayer.Models.TblPlaylist
 
-@if(Model != null)
+@if (Model != null)
 {
-<div class="mat column uk-box-shadow-large uk-padding">
-    <header class="row-reverse">
-        <h5>
-            @Model.Title
-        </h5>
-        <span class="uk-badge uk-margin-small-right">
-            @Model.TblVideo.Count()
-        </span>
-        <a role="button" href="#" uk-icon="info" class="uk-margin-auto-right" type="button"></a>
-        <div uk-drop="offset:0">
-            <div class="drop-body uk-form-width-medium uk-padding">
-                <dl>
-                    <dt>
-                        نام کلاس
-                    </dt>
-                    <dd>
-                       @Model.Title
-                    </dd>
-                    <dt>
-                        آپلود کننده
-                    </dt>
-                    <dd>
-                        <a href="#">@Model.TblUser.Name</a>
-                    </dd>
-                    <dt>
-                        میانگین امتیاز ها
-                    </dt>
-                    <dd>
-                        <span uk-icon="star">
-                            @(Model.TblVideo.Sum(m=>m.LikeCount/20))
-                        </span>
-                    </dd>
-                    <dt>
-                        تعداد ویدیو های کلاس
-                    </dt>
-                    <dd>
-                        @Model.TblVideo.Count()
-                    </dd>
-                </dl>
+    <div class="mat column uk-box-shadow-large uk-padding">
+        <header class="row-reverse">
+            <h5>
+                @Model.Title
+            </h5>
+            <span class="uk-badge uk-margin-small-right">
+                @Model.TblVideo.Count()
+            </span>
+            <a role="button" href="#" uk-icon="info" class="uk-margin-auto-right" type="button"></a>
+            <div uk-drop="offset:0">
+                <div class="drop-body uk-form-width-medium uk-padding">
+                    <dl class="playlist-data">
+                        <dt>نام کلاس</dt>
+                        <dd>@Model.Title</dd>
+                        <dt>آپلود کننده</dt>
+                        <dd class="user"><a href="/Dashboard/@Model.TblUser.UserId/@Model.TblUser.Name">@Model.TblUser.Name</a></dd>
+                        <dt>میانگین امتیاز ها</dt>
+                        <dd class="star"><span uk-icon="star">@(Model.TblVideo.Sum(m=>m.LikeCount/20))</span></dd>
+                        <dt>تعداد ویدیو های کلاس</dt>
+                        <dd>@Model.TblVideo.Count()</dd>
+                        <dt>شهریه</dt>
+                        <dd class="price">@Model.Price</dd>
+                    </dl>
+                </div>
             </div>
-        </div>
-    </header>
-    <div uk-slider>
-        <div class="playlist uk-position-relative uk-visible-toggle" tabindex="-1">
-            <ul class="uk-slider-items uk-padding-small uk-child-width-1-1 uk-child-width-1-2-at-s uk-child-width-1-3-at-m">
-                @foreach (var item in Model.TblVideo)
-                {
-                    <li>
-                        <div>
-                            @Html.Partial("_VideoBlock",item)
-                        </div>
-                    </li>
-                }
-            </ul>
-            <a class="handle uk-position-center-left uk-position-small uk-hidden-hover" uk-slidenav-previous uk-slider-item="previous"></a>
-            <a class="handle uk-position-center-right uk-position-small uk-hidden-hover" uk-slidenav-next uk-slider-item="next"></a>
-        </div>
+        </header>
+        <div uk-slider>
+            <div class="playlist uk-position-relative uk-visible-toggle" tabindex="-1">
+                <ul class="uk-slider-items uk-padding-small uk-child-width-1-1 uk-child-width-1-2-at-s uk-child-width-1-3-at-m">
+                    @foreach (var item in Model.TblVideo)
+                    {
+                        <li>
+                            <div>
+                                @Html.Partial("_VideoBlock", item)
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <a class="handle uk-position-center-left uk-position-small uk-hidden-hover" uk-slidenav-previous uk-slider-item="previous"></a>
+                <a class="handle uk-position-center-right uk-position-small uk-hidden-hover" uk-slidenav-next uk-slider-item="next"></a>
+            </div>
 
-        <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-light"></ul>
+            <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin uk-light"></ul>
+        </div>
     </div>
-</div>
 }

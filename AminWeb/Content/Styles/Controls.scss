@@ -4,19 +4,28 @@
 @import '_loading.scss';
 
 .top-nav {
-    padding: 15px 0 0 0;
+    padding: 7.5px 0 7.5px 0;
     position: fixed;
     width: 100vw;
     z-index: 1000;
     backdrop-filter: blur(4px);
+    @include trans(.3s);
+    transition-property: background-color;
 
     > nav {
         margin-left: 20px;
 
-        a {
-            margin: auto 0;
-            margin-right: 16px;
-            white-space: nowrap;
+        > div:not(#loggedInUser) {
+            a {
+                margin: auto 0;
+                margin-right: 16px;
+                white-space: nowrap;
+            }
+        }
+
+        #loggedInUser {
+            @include column;
+            margin-top: 10px !important;
         }
     }
 
@@ -24,6 +33,10 @@
         width: 50px;
         margin-right: 24px;
     }
+}
+
+.top-nav.top-nav-trans {
+    background-color: transparentize(#F8F8F8,.24);
 }
 
 a:not(.btn), a:visited, details, summary, .anchor {
@@ -85,10 +98,37 @@ $container-padding-phone: 0px;
                 margin-right: 16px;
                 font-size: 14px;
             }
+
+            #loggedInUser {
+                margin-top: 0 !important;
+            }
         }
 
         > .logo {
             width: 32px;
+            margin-right: 10px;
+        }
+    }
+
+
+    .bottom-nav {
+        display: block;
+    }
+}
+
+@media only screen and (max-device-width: 360px) {
+    .top-nav {
+
+        > nav {
+            a {
+                margin: auto 0;
+                margin-right: 12px;
+                font-size: 12px;
+            }
+        }
+
+        > .logo {
+            width: 28px;
             margin-right: 10px;
         }
     }
@@ -550,6 +590,43 @@ select {
             @include shadow-mild;
             @include border-radius(50%,50%,50%,50%);
         }
+    }
+}
+
+.playlist-data {
+
+    dt {
+        color: #959595;
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+
+    dd {
+        margin-bottom: 10px;
+    }
+
+    .user:after {
+        content: "•";
+        color: $primary;
+        margin-left: 4px;
+        vertical-align: central;
+    }
+
+    .star {
+        color: #ffc300 !important;
+        font-size: 16px;
+        margin-left: auto;
+
+        svg {
+            margin-left: 4px;
+            margin-bottom: 4px;
+        }
+    }
+
+    .price {
+        color: #73da42;
+        font-size: 18px !important;
+        font-weight: lighter;
     }
 }
 

@@ -45,7 +45,7 @@
         <span class="fill"></span>
     </div>
 
-    <header role="navigation" class="top-nav row">
+    <header id="topNav" role="navigation" class="top-nav row">
         <nav class="uk-flex-auto row flex-1">
             <div id="loggedInUser" class="column">
                 @Html.Partial("_LoggedInUser")
@@ -288,10 +288,21 @@
                 return true;
             }
         }
-       
+
     </script>
 
+    <script>
+        const navBar = document.getElementById('topNav');
 
+        window.addEventListener('scroll', () => {
+
+            if (window.scrollY === 0)
+                navBar.classList.remove('top-nav-trans')
+            else
+                navBar.classList.add('top-nav-trans')
+
+        })
+    </script>
 
     <!--#endregion-->
     @RenderSection("Scripts", false)

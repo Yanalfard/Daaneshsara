@@ -13,33 +13,17 @@
             <a role="button" href="#" uk-icon="info" class="uk-margin-auto-right" type="button"></a>
             <div uk-drop="offset:0">
                 <div class="drop-body uk-form-width-medium uk-padding">
-                    <dl>
-                        <dt>
-                            نام کلاس
-                        </dt>
-                        <dd>
-                            @Model.Title
-                        </dd>
-                        <dt>
-                            آپلود کننده
-                        </dt>
-                        <dd>
-                            <a href="#">@Model.TblUser.Name</a>
-                        </dd>
-                        <dt>
-                            میانگین امتیاز ها
-                        </dt>
-                        <dd>
-                            <span uk-icon="star">
-                                @(Model.TblVideo.Sum(m=>m.LikeCount/20))
-                            </span>
-                        </dd>
-                        <dt>
-                            تعداد ویدیو های کلاس
-                        </dt>
-                        <dd>
-                            @Model.TblVideo.Count()
-                        </dd>
+                    <dl class="playlist-data">
+                        <dt>نام کلاس</dt>
+                        <dd>@Model.Title</dd>
+                        <dt>آپلود کننده</dt>
+                        <dd class="user"><a href="/Dashboard/@Model.TblUser.UserId/@Model.TblUser.Name">@Model.TblUser.Name</a></dd>
+                        <dt>میانگین امتیاز ها</dt>
+                        <dd class="star"><span uk-icon="star">@(Model.TblVideo.Sum(m=>m.LikeCount/20))</span></dd>
+                        <dt>تعداد ویدیو های کلاس</dt>
+                        <dd>@Model.TblVideo.Count()</dd>
+                        <dt>شهریه</dt>
+                        <dd class="price">@Model.Price</dd>
                     </dl>
                 </div>
             </div>

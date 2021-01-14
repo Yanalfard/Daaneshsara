@@ -24,13 +24,14 @@ html {
     }
     /* Track */
     ::-webkit-scrollbar-track {
-        background: darken($Background,6%);
+        background: transparent;
+        margin: 4px 0;
     }
     /* Handle */
     ::-webkit-scrollbar-thumb {
         background: darken($Background,16%);
-        @include border-radius(16px,16px,16px,16px);
-        @include shadow-mild;
+        border-right: solid 4px #EDEDED;
+        @include border-radius(6px,8px,8px,6px)
     }
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
@@ -142,5 +143,5 @@ img {
 }
 
 .grecaptcha-badge {
-    display: none!important;
+    display: none !important;
 }
