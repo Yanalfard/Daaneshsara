@@ -12,7 +12,7 @@ namespace AminWeb
         {
             MailMessage mail = new MailMessage();
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-            mail.From = new MailAddress("mehdisahandi@gmail.com", "NFIX");
+            mail.From = new MailAddress("daaneshsara@gmail.com", "daaneshsara");
             mail.To.Add(To);
             mail.Subject = Subject;
             mail.Body = Body;
@@ -23,7 +23,7 @@ namespace AminWeb
             // mail.Attachments.Add(attachment);
 
             SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("mehdisahandi@gmail.com", "Mehdi1370");
+            SmtpServer.Credentials = new System.Net.NetworkCredential("daaneshsara@gmail.com", "daaneshsara.ir");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
 

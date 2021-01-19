@@ -60,8 +60,8 @@ namespace AminWeb.Controllers
                     vmVideo.IsLog = true;
                 }
                 List<TblLog> log = new List<TblLog>();
-                List<TblLog> log1 = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == video.PlaylistId && (i.Status == 1 || i.Status == 2)).ToList();
-                List<TblLog> log2 = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.VideoId == video.VideoId && (i.Status == 1 || i.Status == 2)).ToList();
+                List<TblLog> log1 = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == video.PlaylistId && i.PlayListId != null && (i.Status == 1 || i.Status == 2)).ToList();
+                List<TblLog> log2 = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.VideoId == video.VideoId && i.VideoId != null && (i.Status == 1 || i.Status == 2)).ToList();
                 if (log1.Count != 0)
                 {
                     log = _db.Log.Get().Where(i => i.UserId == SelectUser().UserId && i.PlayListId == video.PlaylistId && (i.Status == 1 || i.Status == 2)).ToList();

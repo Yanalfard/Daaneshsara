@@ -156,16 +156,16 @@
     <!-- Uncomment for PWA -->
     @*<script src="~/app.js"></script>*@
 
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfeB-IZAAAAANpiuFCp-HURWmy1NGqmj-p4owkF&&hl=fa"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lc-wi4aAAAAAHvRxAurQCtbaWsckjNOsNjHxcWJ&&hl=fa"></script>
 
     <script>
         grecaptcha.ready(function () {
-            grecaptcha.execute('6LfeB-IZAAAAANpiuFCp-HURWmy1NGqmj-p4owkF', { action: 'contact_us' }).then(function (token) {
+            grecaptcha.execute('6Lc-wi4aAAAAAHvRxAurQCtbaWsckjNOsNjHxcWJ', { action: 'contact_us' }).then(function (token) {
                 $('.GoogleCapcha').val(token);
             });
         });
         function reloadRech() {
-            grecaptcha.execute('6LfeB-IZAAAAANpiuFCp-HURWmy1NGqmj-p4owkF', { action: 'contact_us' }).then(function (token) {
+            grecaptcha.execute('6Lc-wi4aAAAAAHvRxAurQCtbaWsckjNOsNjHxcWJ', { action: 'contact_us' }).then(function (token) {
                 //document.getElementById("GoogleCapcha").value = token;
                 $('.GoogleCapcha').val(token);
             });

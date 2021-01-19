@@ -790,6 +790,11 @@ select {
   background: #fa6e6e;
   color: white; }
 
+.btn-primary:disabled, .btn-primary[disabled] {
+  cursor: not-allowed;
+  background: #fa6e6e;
+  color: white; }
+
 .btn-secondary {
   color: #868686;
   background: #EFEFEF;

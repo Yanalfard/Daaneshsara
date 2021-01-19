@@ -164,7 +164,7 @@
                                 </span>
                             </a>
 
-                            <a href="/ShopCart/@Model.VideoId/1" uk-tooltip="تماشا این ویدیو" class="btn btn-primary uk-margin-small-right">
+                            <a href="/ShopCart/@Model.VideoId/1" uk-tooltip="تماشای این ویدیو" class="btn btn-primary uk-margin-small-right">
                                 <span uk-icon="video"></span>
                                 <span class="price">
                                     @Model.Price.ToString("#,0")
@@ -181,13 +181,14 @@
                         {
                             #region fagat video
 
-                            <a href="/ShopCart/@Model.VideoId/1" class="btn btn-primary">
-                                خرید ویدیو
-
+                            <a href="/ShopCart/@Model.VideoId/1" uk-tooltip="تماشای این ویدیو" class="btn btn-primary uk-margin-small-right">
+                                <span uk-icon="video"></span>
                                 <span class="price">
                                     @Model.Price.ToString("#,0")
                                 </span>
-
+                                <span class="toman">
+                                    تومان
+                                </span>
                             </a>
 
                             #endregion

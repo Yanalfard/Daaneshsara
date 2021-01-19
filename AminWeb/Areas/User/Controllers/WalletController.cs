@@ -96,18 +96,14 @@ namespace AminWeb.Areas.User.Controllers
 
         public string Withdraw(string cardWithdraw, string priceWithdraw, string fullName)
         {
-            if (Convert.ToInt32(priceWithdraw) < 300000)
-            {
-                return "مبلغ کمتر از 300000 هزار تومان مجاز نیست";
-            }
             if (SelectUser().Balance < Convert.ToInt32(priceWithdraw))
             {
                 return "مبلغ مورد نظر بیشتر از کیف پول شماست";
             }
             TblConfig config = _db.Config.Get().FirstOrDefault();
-            if (config.SaqfeBardasht < Convert.ToInt32(priceWithdraw))
+            if (config.SaqfeBardasht > Convert.ToInt32(priceWithdraw))
             {
-                return "مبلغ مورد نظر بیشتر از سقف برداشتی است. لطفا با مدیریت در تماس باشید  ";
+                return $"حداقل مبلغ قابل برداشت {config.SaqfeBardasht} هزار تومان است";
             }
             TblWithdraw check = _db.Withdraw.Get().FirstOrDefault(i => i.UserId == SelectUser().UserId && i.IsDone == false);
             //DateTime date = Convert.ToDateTime(DateTime.Now.ToShortDateString());

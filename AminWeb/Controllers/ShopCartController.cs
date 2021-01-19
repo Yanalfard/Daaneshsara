@@ -34,7 +34,6 @@ namespace AminWeb.Controllers
                     list.VideoId = video.VideoId;
                     list.PlaylistId = video.PlaylistId;
                     list.BalanceUser = SelectUser().Balance;
-                    list.IsValidBalance = list.Price < SelectUser().Balance;
                     list.UserName = SelectUser().Name;
                     if (isPlaylis == 1)
                     {
@@ -50,6 +49,8 @@ namespace AminWeb.Controllers
                     {
                         ViewBag.Playlist = _db.Playlist.Get(i => i.PlaylistId == video.PlaylistId).ToList();
                     }
+                    list.IsValidBalance = list.Price < SelectUser().Balance;
+
                     Session["ShopCartVideo"] = list;
                     return View(list);
                 }
@@ -179,7 +180,7 @@ namespace AminWeb.Controllers
             ZarinPalTest.PaymentGatewayImplementationServicePortTypeClient zp = new ZarinPalTest.PaymentGatewayImplementationServicePortTypeClient();
             string Authority;
 
-            int Status = zp.PaymentRequest("5f648351-94a0-4b6d-ab96-3eef0d58a8b5", log.Amount, "دانشسرا ", "info@newkharid.com", "09339634557", ConfigurationManager.AppSettings["MyDomain"] + "/ShopCart/Verify/" + log.LogId, out Authority);
+            int Status = zp.PaymentRequest("5f648351-94a0-4b6d-ab96-3eef0d58a8b5", log.Amount, "دانشسرا ", "daaneshsara@gmail.com", "09011531454", ConfigurationManager.AppSettings["MyDomain"] + "/ShopCart/Verify?id=" + log.LogId, out Authority);
             if (Status == 100)
             {
                 //Response.Redirect("https://www.zarinpal.com/pg/StartPay/" + Authority);
@@ -276,7 +277,7 @@ namespace AminWeb.Controllers
             System.Net.ServicePointManager.Expect100Continue = false;
             ZarinPalTest.PaymentGatewayImplementationServicePortTypeClient zp = new ZarinPalTest.PaymentGatewayImplementationServicePortTypeClient();
             string Authority;
-            int Status = zp.PaymentRequest("5f648351-94a0-4b6d-ab96-3eef0d58a8b5", log.Amount, "دانشسرا", "info@newkharid.com", "09339634557", ConfigurationManager.AppSettings["MyDomain"] + "/ShopCart/ChargeBalanceVerify/" + log.LogId, out Authority);
+            int Status = zp.PaymentRequest("5f648351-94a0-4b6d-ab96-3eef0d58a8b5", log.Amount, "دانشسرا", "daaneshsara@gmail.com", "09011531454", ConfigurationManager.AppSettings["MyDomain"] + "/ShopCart/ChargeBalanceVerify?id=" + log.LogId, out Authority);
             if (Status == 100)
             {
                 //Response.Redirect("https://www.zarinpal.com/pg/StartPay/" + Authority);

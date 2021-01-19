@@ -54,10 +54,10 @@
                 @Html.ValidationSummary(true, "", new { @class = "uk-text-danger" })
             </span>
         </div>
-        <label dir="rtl" class="uk-margin-small-top"><input class="uk-checkbox" type="checkbox"> با <a href="/Home/Rules" class="blue">قوانین و مقررات سایت</a> موافق هستم</label>
+        <label dir="rtl" class="uk-margin-small-top uk-text-danger"><input class="uk-checkbox" onchange="document.getElementById('btnRegister').toggleAttribute('disabled')" type="checkbox"> با قوانین و مقررات سایت موافق هستم</label>
 
         <div class="column center uk-margin-large-top">
-            <button class="btn-primary uk-margin-bottom" onclick="LoadingRun('#RegisterForm')">
+            <button id="btnRegister" disabled class="btn-primary uk-margin-bottom" onclick="LoadingRun('#RegisterForm')">
                 ثبت نام
             </button>
 
@@ -66,5 +66,4 @@
             </a>
         </div>
     </div>
-
 }

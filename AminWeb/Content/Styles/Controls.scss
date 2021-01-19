@@ -544,6 +544,12 @@ select {
     color: white;
 }
 
+.btn-primary:disabled, .btn-primary[disabled] {
+    cursor: not-allowed;
+    background: lighten($primary,8%);
+    color: white;
+}
+
 .btn-secondary {
     color: #868686;
     background: #EFEFEF;
