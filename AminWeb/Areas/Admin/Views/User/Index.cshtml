@@ -61,6 +61,7 @@
                         <th scope="col">ایمیل</th>
                         <th scope="col">کیف پول</th>
                         <th scope="col">فعال</th>
+                        <th scope="col">نوع کاربر</th>
                         <th scope="col">مدارک</th>
                         <th scope="col">مشاهده ویدیوها</th>
                         <th scope="col">عملکرد</th>
@@ -104,11 +105,25 @@
     <script src="~/Areas/Admin/Content/bootstrap/js/jquery.unobtrusive-ajax.min.js"></script>
 
     <script>
+        
+      
 
         function activeDisableUser(id) {
+            $("#overlay").fadeIn(300);
             $.get("/Admin/User/ActiveDisableUser/" + id, function (result) {
                 $('#listUser').html(result);
+                $("#overlay").fadeOut(300);
             });
+            $("#overlay").fadeOut(300);
+        }
+
+        function changeUser(id) {
+            $("#overlay").fadeIn(300);
+            $.get("/Admin/User/ChangeUser/" + id, function (result) {
+                $('#listUser').html(result);
+                $("#overlay").fadeOut(300);
+            });
+            $("#overlay").fadeOut(300);
         }
         function changePassword(id) {
             $.get("/Admin/User/ChangePassword/" + id,

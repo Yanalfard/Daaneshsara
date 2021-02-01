@@ -51,6 +51,9 @@ namespace DataLayer.MetaData
         [Display(Name = "نقش")]
         [Required(ErrorMessage = "لطفا {0} را انتخاب کنید")]
         public int RoleId { get; set; }
+
+
+        public bool IsFeeFree { get; set; }
     }
 
 

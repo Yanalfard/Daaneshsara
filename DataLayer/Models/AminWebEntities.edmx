@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AminWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AminWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -132,6 +132,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="64" Nullable="false" />
           <Property Name="DocsId" Type="int" />
           <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="IsFeeFree" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TblUserPlaylistRel">
           <Key>
@@ -572,8 +573,7 @@
             <End Role="TblVideo" EntitySet="TblVideo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AminWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -734,6 +734,7 @@
           <NavigationProperty Name="TblUserVideoRel" Relationship="Self.FK_TblUserVideoRel_TblUser" FromRole="TblUser" ToRole="TblUserVideoRel" />
           <NavigationProperty Name="TblWithdraw" Relationship="Self.FK_TblWithdraw_TblUser" FromRole="TblUser" ToRole="TblWithdraw" />
           <NavigationProperty Name="TblVideo" Relationship="Self.FK_WhoUploadedVideo" FromRole="TblUser" ToRole="TblVideo" />
+          <Property Name="IsFeeFree" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TblUserPlaylistRel">
           <Key>
@@ -1320,6 +1321,7 @@
           <EntitySetMapping Name="TblUser">
             <EntityTypeMapping TypeName="AminWebModel.TblUser">
               <MappingFragment StoreEntitySet="TblUser">
+                <ScalarProperty Name="IsFeeFree" ColumnName="IsFeeFree" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="TellNo" ColumnName="TellNo" />
