@@ -38,6 +38,7 @@ namespace DataLayer.Models
         public string Password { get; set; }
         public Nullable<int> DocsId { get; set; }
         public int RoleId { get; set; }
+        public bool IsFeeFree { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblChat> TblChat { get; set; }

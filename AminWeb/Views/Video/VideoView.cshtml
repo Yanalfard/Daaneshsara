@@ -62,7 +62,7 @@
 
 <div class="column uk-container">
     <div class="column container uk-margin-auto">
-        @if (Model.IsLog)
+        @if (Model.IsLog || Model.Price == 0)
         {
             <video class="video-playback uk-margin-auto-left uk-margin-auto-right white-area-margin" controls controlsList="nodownload">
                 <source src="~/Resources/Video/VideoUrl/@Model.VideoUrl" type="video/mp4">
@@ -164,23 +164,44 @@
                                 </span>
                             </a>
 
-                            <a href="/ShopCart/@Model.VideoId/1" uk-tooltip="تماشای این ویدیو" class="btn btn-primary uk-margin-small-right">
-                                <span uk-icon="video"></span>
-                                <span class="price">
-                                    @Model.Price.ToString("#,0")
-                                </span>
-                                <span class="toman">
-                                    تومان
-                                </span>
-                            </a>
+                            if (Model.Price == 0)
+                            {
+                                <a uk-tooltip="رایگان" class="btn btn-primary uk-margin-small-right">
+                                    <span uk-icon="video"></span>
+                                    <span class="price">
+                                        رایگان
+                                    </span>
+                                </a>
+                            }
+                            else if (Model.Price > 0)
+                            {
+                                <a href="/ShopCart/@Model.VideoId/1" uk-tooltip="تماشای این ویدیو" class="btn btn-primary uk-margin-small-right">
+                                    <span uk-icon="video"></span>
+                                    <span class="price">
+                                        @Model.Price.ToString("#,0")
+                                    </span>
+                                    <span class="toman">
+                                        تومان
+                                    </span>
+                                </a>
+                            }
+
+
 
                             #endregion
 
                         }
-                        else
+                        else if (Model.Price == 0)
                         {
-                            #region fagat video
-
+                            <a uk-tooltip="رایگان" class="btn btn-primary uk-margin-small-right">
+                                <span uk-icon="video"></span>
+                                <span class="price">
+                                    رایگان
+                                </span>
+                            </a>
+                        }
+                        else if (Model.Price > 0)
+                        {
                             <a href="/ShopCart/@Model.VideoId/1" uk-tooltip="تماشای این ویدیو" class="btn btn-primary uk-margin-small-right">
                                 <span uk-icon="video"></span>
                                 <span class="price">
@@ -190,8 +211,6 @@
                                     تومان
                                 </span>
                             </a>
-
-                            #endregion
                         }
 
 

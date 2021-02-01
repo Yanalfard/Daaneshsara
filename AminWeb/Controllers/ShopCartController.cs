@@ -123,7 +123,14 @@ namespace AminWeb.Controllers
                             {
                                 TblUser userSeller = _db.User.GetById(video.UserId);
                                 double balancePrice = log.Amount - ((double)(log.Amount * darsad) / 100);
-                                userSeller.Balance = userSeller.Balance + Convert.ToInt32(Math.Floor(balancePrice));
+                                if (userSeller.IsFeeFree)
+                                {
+                                    userSeller.Balance = userSeller.Balance + log.Amount;
+                                }
+                                else
+                                {
+                                    userSeller.Balance = userSeller.Balance + Convert.ToInt32(Math.Floor(balancePrice));
+                                }
                                 log.SellerAmount = Convert.ToInt32(Math.Floor(balancePrice));
                             }
                             else
@@ -229,7 +236,14 @@ namespace AminWeb.Controllers
                             {
                                 TblUser userSeller = _db.User.GetById(video.UserId);
                                 double balancePrice = log.Amount - ((double)(log.Amount * darsad) / 100);
-                                userSeller.Balance = userSeller.Balance + Convert.ToInt32(Math.Floor(balancePrice));
+                                if (userSeller.IsFeeFree)
+                                {
+                                    userSeller.Balance = userSeller.Balance + log.Amount;
+                                }
+                                else
+                                {
+                                    userSeller.Balance = userSeller.Balance + Convert.ToInt32(Math.Floor(balancePrice));
+                                }
                             }
                             _db.Log.Save();
                             // Response.Write("Success!! RefId: " + RefID);
@@ -338,7 +352,6 @@ namespace AminWeb.Controllers
             {
                 return RedirectToAction("/ErrorPage/NotFound");
             }
-
         }
     }
 }

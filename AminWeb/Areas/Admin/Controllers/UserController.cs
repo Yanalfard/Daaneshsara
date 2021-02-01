@@ -66,6 +66,7 @@ namespace AminWeb.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.IsActive = new SelectList(new[] { new { Value = "true", Text = "فعال" }, new { Value = "false", Text = "غیرفعال" }, }, "Value", "Text");
+            ViewBag.IsFeeFree = new SelectList(new[] { new { Value = "true", Text = "ویژه" }, new { Value = "false", Text = "عادی" }, }, "Value", "Text");
             // ViewBag.IsActive = new SelectList(new[] { new { Value = "1", Text = "فعال" }, new { Value = "0", Text = "غیرفعال" }, }, "Value", "Text");
             ViewBag.RoleName = new SelectList(new[]
             { new { Value = "0", Text = "کارآموز" },
@@ -102,12 +103,14 @@ namespace AminWeb.Areas.Admin.Controllers
                         addUser.Name = user.Name;
                         addUser.RoleId = user.RoleId;
                         addUser.TellNo = user.TellNo;
+                        addUser.IsFeeFree = user.IsFeeFree;
                         addUser.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(user.Password, "SHA256");
                         _db.User.Add(addUser);
                         _db.User.Save();
                         return RedirectToAction("Index");
                     }
                 }
+                ViewBag.IsFeeFree = new SelectList(new[] { new { Value = "true", Text = "ویژه" }, new { Value = "false", Text = "عادی" }, }, "Value", "Text", user.IsFeeFree);
                 ViewBag.IsActive = new SelectList(new[] { new { Value = "true", Text = "فعال" }, new { Value = "false", Text = "غیرفعال" }, }, "Value", "Text", user.IsActive);
                 ViewBag.RoleName = new SelectList(new[]
                 { new { Value = "0", Text = "کارآموز" },
@@ -127,6 +130,14 @@ namespace AminWeb.Areas.Admin.Controllers
         {
             TblUser updateUser = _db.User.GetById(id);
             updateUser.IsActive = !updateUser.IsActive;
+            _db.User.Update(updateUser);
+            _db.User.Save();
+            return PartialView("ListUser", _db.User.Get());
+        }
+        public ActionResult ChangeUser(int id)
+        {
+            TblUser updateUser = _db.User.GetById(id);
+            updateUser.IsFeeFree = !updateUser.IsFeeFree;
             _db.User.Update(updateUser);
             _db.User.Save();
             return PartialView("ListUser", _db.User.Get());
@@ -173,6 +184,7 @@ namespace AminWeb.Areas.Admin.Controllers
                 Balance = selectUserById.Balance,
                 Auth = selectUserById.Auth,
                 IsActive = selectUserById.IsActive,
+                IsFeeFree = selectUserById.IsFeeFree,
                 Email = selectUserById.Email,
                 Name = selectUserById.Name,
                 RoleId = selectUserById.RoleId,

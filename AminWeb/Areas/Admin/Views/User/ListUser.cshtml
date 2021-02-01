@@ -22,7 +22,16 @@
                 {
                     <a href="#" onclick="activeDisableUser(@item.UserId)" class="badge-danger badge-pill">خیر</a>
                 }
-                <!--یا-->
+            </td>
+            <td>
+                @if (item.IsFeeFree)
+                {
+                    <a href="#" onclick="changeUser(@item.UserId)" class="badge-success badge-pill">ویژه</a>
+                }
+                else
+                {
+                    <a href="#" onclick="changeUser(@item.UserId)" class="badge-danger badge-pill">عادی</a>
+                }
             </td>
             <td>
                 @if (item.DocsId != null)

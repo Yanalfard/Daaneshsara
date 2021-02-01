@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using System.Web.Mvc;
+//using System.Web.Mvc;
 
 namespace DataLayer.MetaData
 {
@@ -17,11 +17,11 @@ namespace DataLayer.MetaData
         public Nullable<int> SaqfeBardasht { get; set; }
         [Display(Name = " درباره ما ")]
         [DataType(DataType.MultilineText)]
-        [AllowHtml]
+        //[AllowHtml]
         public string AboutUsBody { get; set; }
         [Display(Name = " تماس با ما ")]
         [DataType(DataType.MultilineText)]
-        [AllowHtml]
+        //[AllowHtml]
         public string Rules { get; set; }
     }
 }

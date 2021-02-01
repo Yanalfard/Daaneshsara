@@ -173,7 +173,6 @@
     <Compile Include="Utilities\SendEmail.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="676709.jpg" />
     <Content Include="app.js" />
     <Content Include="Areas\Admin\Content\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Areas\Admin\Content\bootstrap\css\bootstrap-grid.min.css" />
