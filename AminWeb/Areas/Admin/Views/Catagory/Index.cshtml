@@ -38,8 +38,12 @@
 
 
     <script>
-        function create() {
-            $.get("/Admin/Catagory/Create",
+        function doneModalCreateCat() {
+            $("#myModal").modal('hide');
+            window.location.reload();
+        }
+        function create(id) {
+            $.get("/Admin/Catagory/Create/" + id,
                 function (result) {
                     $("#myModal").modal('show');
                     $("#myModalBody").html(result);
@@ -92,8 +96,8 @@
                 })
             }
         }
-        //activeDisablePlaylist
-        //deletePlaylist
+                    //activeDisablePlaylist
+                    //deletePlaylist
 
     </script>
 }

@@ -6,8 +6,9 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col">کد</th>
-                    <th scope="col">نام گروه</th>
-                    <th scope="col">مشاهده زیرمجموعه</th>
+                    <th scope="col">سر گروه</th>
+                    <th scope="col">زیر گروه</th>
+                    <th scope="col">مشاهده کلاس ها</th>
                     <th scope="col">عملیات</th>
                 </tr>
             </thead>
@@ -22,15 +23,42 @@
                                 @item.Name
                             </td>
                             <td>
-                                <a href="#" onclick="subCategory(@item.CatagoryId)" title="مشاهده زیر مجموعه  " data-toggle="tooltip" data-placement="top">
+                                @if (item.TblCatagory1.Any())
+                                {
+                                    <ul style="list-style:none">
+                                        @foreach (var subGroup in item.TblCatagory1)
+                                        {
+                                            <li id="cat_@(subGroup.CatagoryId)">
+                                                @subGroup.Name
+                                                <a class="text-warning" onclick="edit(@subGroup.CatagoryId)">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a class="text-danger" onclick="deleteCat(@subGroup.CatagoryId)">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                                <a href="#" onclick="subCategory(@subGroup.CatagoryId)" title="مشاهده کلاس ها  " data-toggle="tooltip" data-placement="top">
+                                                    <span class="fa fa-eye text-info">
+
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                            </td>
+                            <td>
+                                <a href="#" onclick="subCategory(@item.CatagoryId)" title="مشاهدهکلاس ها  " data-toggle="tooltip" data-placement="top">
                                     <span class="fa fa-eye text-info">
 
                                     </span>
                                 </a>
                             </td>
                             <td>
+                                <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ایجاد ">
+                                    <a onclick="create(@item.CatagoryId)"><i class="btn fas fa-plus mr-2 text-primary"></i></a>
+                                </span>
                                 <span data-placement="top" data-toggle="tooltip" title="" data-original-title="ویرایش">
-                                    <a onclick="edit(@item.CatagoryId)" ><i class="btn fas fa-edit mr-2 text-primary"></i></a>
+                                    <a onclick="edit(@item.CatagoryId)"><i class="btn fas fa-edit mr-2 text-primary"></i></a>
                                 </span>
                                 <span data-placement="top" data-toggle="tooltip" title="" data-original-title="حذف">
                                     <a onclick="deleteCat(@item.CatagoryId)" data-toggle="modal" data-target="#modalSave"><i class="btn fas fa-trash mr-2 text-danger"></i></a>

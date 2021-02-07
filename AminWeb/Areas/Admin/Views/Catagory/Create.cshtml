@@ -8,11 +8,12 @@
     htmlAttributes: new { @id = "createCatagory" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ParentId)
     <div class="form-horizontal">
         <div class="form-group">
             <label for="name">نام گروه</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control"} })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>

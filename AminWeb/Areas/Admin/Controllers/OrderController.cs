@@ -33,7 +33,7 @@ namespace AminWeb.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Prices(TblConfig config)
         {
-            TblConfig tblConfig = _db.Config.GetById(1);
+            TblConfig tblConfig = _db.Config.Get().Single();
             tblConfig.DarsadeSud = config.DarsadeSud;
             tblConfig.SaqfeBardasht = config.SaqfeBardasht;
             _db.Config.Save();

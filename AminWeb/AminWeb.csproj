@@ -1830,6 +1830,7 @@
     <Content Include="Areas\Admin\Views\Order\Withdraw.cshtml" />
     <Content Include="Areas\Admin\Views\Order\viewWithdraw.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Charging.cshtml" />
+    <Content Include="Areas\User\Views\Classes\ShowCategory.cshtml" />
     <None Include="Connected Services\ZarinPalTest\configuration91.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\configuration.svcinfo" />
     <None Include="Connected Services\ZarinPalTest\Reference.svcmap">

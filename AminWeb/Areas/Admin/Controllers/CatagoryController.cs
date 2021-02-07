@@ -42,9 +42,12 @@ namespace AminWeb.Areas.Admin.Controllers
             List<TblPlaylist> list = _db.Playlist.Get().Where(i => i.CatagoryId == id).ToList();
             return PartialView(list);
         }
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            return PartialView();
+            return PartialView(new MdCategory()
+            {
+                ParentId = id
+            });
         }
         [HttpPost]
         public ActionResult Create(MdCategory catagory)
@@ -60,10 +63,11 @@ namespace AminWeb.Areas.Admin.Controllers
                     TblCatagory addCat = new TblCatagory()
                     {
                         Name = catagory.Name,
+                        ParentId = catagory.ParentId,
                     };
                     _db.Cat.Add(addCat);
                     _db.Cat.Save();
-                    return JavaScript("doneModal()");
+                    return JavaScript("doneModalCreateCat()");
                 }
             }
             return PartialView("Create", catagory);
@@ -110,14 +114,11 @@ namespace AminWeb.Areas.Admin.Controllers
                 }
                 else
                 {
-                    TblCatagory updateCat = new TblCatagory()
-                    {
-                        CatagoryId=catagory.CatagoryId,
-                        Name = catagory.Name,
-                    };
+                    TblCatagory updateCat = _db.Cat.GetById(catagory.CatagoryId);
+                    updateCat.Name = catagory.Name;
                     _db.Cat.Update(updateCat);
                     _db.Cat.Save();
-                    return JavaScript("doneModal()");
+                    return JavaScript("doneModalCreateCat()");
                 }
             }
             return PartialView("Create", catagory);

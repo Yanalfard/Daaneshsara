@@ -37,7 +37,7 @@ namespace AminWeb.Areas.User.Controllers
         }
         public ActionResult Create()
         {
-            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name");
+            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(i=>i.ParentId==null), "CatagoryId", "Name");
             return View();
         }
         [HttpPost]
@@ -218,6 +218,17 @@ namespace AminWeb.Areas.User.Controllers
             _db.Playlist.Save();
             return Json(new { success = true, responseText = "کلاس مورد نظر  حذف شد " }, JsonRequestBehavior.AllowGet);
 
+        }
+
+
+        public ActionResult ShowCategory(int? id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+            List<TblCatagory> playlists = _db.Cat.Get().Where(i => i.ParentId == id).ToList();
+            return PartialView(playlists);
         }
     }
 }

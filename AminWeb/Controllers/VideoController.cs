@@ -108,7 +108,7 @@ namespace AminWeb.Controllers
         {
             List<TblVideo> selectAllVideos = new List<TblVideo>();
             selectAllVideos.AddRange(_db.Video.Get(i => i.IsHome && i.IsActive && !i.PlaylistId.HasValue).ToList());
-            _db.Playlist.Get(i => i.IsHome && i.IsActive).ToList().ForEach(j => selectAllVideos.AddRange(j.TblVideo.ToList()));
+            _db.Playlist.Get(i => i.IsHome && i.IsActive).ToList().ForEach(j => selectAllVideos.AddRange(j.TblVideo.Where(i=>i.IsActive && i.IsHome).ToList()));
             return PartialView("ListVideos", selectAllVideos.OrderByDescending(i => i.DateSubmited));
         }
         public ActionResult SelectVideosByCategory(string name)

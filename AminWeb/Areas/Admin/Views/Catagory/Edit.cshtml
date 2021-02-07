@@ -1,4 +1,5 @@
-﻿@model DataLayer.Models.TblCatagory
+﻿@model DataLayer.MetaData.MdCategory
+
 @using (Ajax.BeginForm("Edit", "Catagory", new AjaxOptions()
 {
     HttpMethod = "POST",
@@ -19,7 +20,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="ثبت " onclick="LoadingRun('#editCatagory')" class="btn btn-success" />
+                <input type="submit" value="ویرایش " onclick="LoadingRun('#editCatagory')" class="btn btn-success" />
             </div>
         </div>
     </div>

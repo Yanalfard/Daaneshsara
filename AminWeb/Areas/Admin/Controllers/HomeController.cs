@@ -36,7 +36,7 @@ namespace AminWeb.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Contact(MdConfig config)
         {
-            TblConfig tblConfig = _db.Config.GetById(1);
+            TblConfig tblConfig = _db.Config.Get().Single();
             tblConfig.Rules = config.Rules;
             _db.Config.Save();
             return View(config);
@@ -59,7 +59,7 @@ namespace AminWeb.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult About(MdConfig config)
         {
-            TblConfig tblConfig = _db.Config.GetById(1);
+            TblConfig tblConfig = _db.Config.Get().Single();
             tblConfig.AboutUsBody = config.AboutUsBody;
             _db.Config.Save();
             return View(config);
