@@ -9,6 +9,8 @@
 <div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
     @using (Html.BeginForm("Create", "Video", new AjaxOptions() { OnSuccess = "LoadingEnd('#createVideo')" }, FormMethod.Post, new { enctype = "multipart/form-data", @id = "createVideo" }))
     {
+        @Html.HiddenFor(m => m.CatagoryId)
+
         <h3>
             آپلود ویدیو جدید
         </h3>
@@ -87,19 +89,21 @@
         </div>
 
         @*<div class="uk-margin-top uk-margin-bottom">
-            <label dir="rtl">
-                @Html.EditorFor(m => m.IsCharity)
-                میخواهم درصدی از درامد این ویدیو به خیریه
-                <a href="#" class="blue">نام خیریه</a>
-                اهدا شود
-            </label>
-        </div>*@
+                <label dir="rtl">
+                    @Html.EditorFor(m => m.IsCharity)
+                    میخواهم درصدی از درامد این ویدیو به خیریه
+                    <a href="#" class="blue">نام خیریه</a>
+                    اهدا شود
+                </label>
+            </div>*@
         <div class="form-group">
             <label for="Playlist">دسته </label>
             <div class="row-reverse">
-                @Html.DropDownListFor(model => model.CatagoryId, (IEnumerable<SelectListItem>)ViewBag.CatagoryId, "دسته بندی ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showPlaylist", dir = "rtl", onchange = "showPlaylist()" })
+                @Html.DropDownList("Catagory", null, "دسته ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showPlaylist", dir = "rtl", onchange = "showPlaylist()" })
             </div>
             @Html.ValidationMessageFor(model => model.CatagoryId, "", new { @class = "uk-text-danger" })
+        </div>
+        <div class="form-group" id="catListVideo">
         </div>
         <div class="form-group" id="playlist">
         </div>
@@ -127,13 +131,20 @@
             var id = $(".showPlaylist option:selected").val();
             if (id != "") {
                 $("#overlay").fadeIn(300);
+                $("#CatagoryId").val(id);
                 $.get('/User/Video/ShowPlaylist/' + id, function (result) {
                     $('#playlist').html(result);
                     $("#overlay").fadeOut(300);
                 });
+                $.get('/User/Classes/ShowCategory/' + id, function (result) {
+                    $('#catListVideo').html(result);
+                });
+                $("#overlay").fadeOut(300);
+
             }
             else {
                 $('#playlist').html("");
+                $("#CatagoryId").val("");
             }
         });
     });

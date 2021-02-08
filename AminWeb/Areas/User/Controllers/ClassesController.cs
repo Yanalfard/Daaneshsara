@@ -37,7 +37,7 @@ namespace AminWeb.Areas.User.Controllers
         }
         public ActionResult Create()
         {
-            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(i=>i.ParentId==null), "CatagoryId", "Name");
+            ViewBag.Catagory = new SelectList(_db.Cat.Get(i => i.ParentId == null), "CatagoryId", "Name");
             return View();
         }
         [HttpPost]
@@ -86,7 +86,7 @@ namespace AminWeb.Areas.User.Controllers
                     ModelState.AddModelError("Title", "نام کلاس تکراریست");
                 }
             }
-            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", playList.CatagoryId);
+            ViewBag.Catagory = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", playList.CatagoryId);
 
             return View(playList);
         }
@@ -111,7 +111,21 @@ namespace AminWeb.Areas.User.Controllers
             playList.ViewCount = selectPlayList.ViewCount;
             playList.DateSubmited = selectPlayList.DateSubmited;
             playList.CatagoryId = selectPlayList.CatagoryId;
-            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", selectPlayList.CatagoryId);
+            TblCatagory selectCatagory = _db.Cat.GetById(selectPlayList.CatagoryId);
+            int catagory = 0;
+            if (selectCatagory != null)
+            {
+                if (selectCatagory.ParentId == null)
+                {
+                    catagory = selectCatagory.CatagoryId;
+                }
+                else
+                {
+                    ViewBag.CatagoryChildId= selectCatagory.CatagoryId;
+                    catagory = Convert.ToInt32(selectCatagory.ParentId);
+                }
+            }
+            ViewBag.Catagory = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", catagory);
             return View(playList);
         }
         [HttpPost]
@@ -122,7 +136,6 @@ namespace AminWeb.Areas.User.Controllers
             {
                 if (!_db.Playlist.Get().Any(i => i.UserId == SelectUser().UserId && i.Title == playList.Title.Trim() && i.PlaylistId != playList.PlaylistId))
                 {
-
                     TblPlaylist UpdatePlaylist = _db.Playlist.GetById(playList.PlaylistId);
                     if (Link != null && Link.IsImage())
                     {

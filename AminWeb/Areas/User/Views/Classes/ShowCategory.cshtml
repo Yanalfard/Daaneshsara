@@ -6,7 +6,7 @@
 {
     <label for="Playlist">زیر دسته</label>
     <div class="row-reverse">
-        <select name="PlaylistId" id="PlaylistId" class="uk-width-2-3 uk-margin-small-left " dir="rtl">
+        <select id="catagoryChildId" class="uk-width-2-3 uk-margin-small-left showUnderCategory" dir="rtl">
             <option value="">دسته بندی نشده</option>
             @foreach (var item in Model)
             {
@@ -17,3 +17,19 @@
     </div>
 }
 
+
+<script>
+    $(document).ready(function () {
+        $('#catagoryChildId').val($('#CatagoryId').val());
+        $(".showUnderCategory").change(function () {
+            var id = $(".showUnderCategory option:selected").val();
+            if (id != "") {
+                $("#CatagoryId").val(id);
+            }
+            else {
+                var id = $(".showCategory option:selected").val();
+                $("#CatagoryId").val(id);
+            }
+        });
+    });
+</script>

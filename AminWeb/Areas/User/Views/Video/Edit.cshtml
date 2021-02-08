@@ -13,6 +13,8 @@
         @Html.HiddenFor(m => m.MainImage)
         @Html.HiddenFor(m => m.VideoDemoUrl)
         @Html.HiddenFor(m => m.VideoUrl)
+        @Html.HiddenFor(m => m.CatagoryId)
+        @Html.HiddenFor(m => m.PlaylistId)
         <h3 class="uk-margin-remove-top">
             آپلود ویدیو جدید
         </h3>
@@ -112,20 +114,22 @@
         </div>
 
         @*<div class="uk-margin-top uk-margin-bottom">
-            <label dir="rtl">
-                @Html.EditorFor(m => m.IsCharity, "", new { @class = "uk-checkbox" })
-                میخواهم درصدی از درامد این ویدیو به خیریه
-                <a href="#" class="blue">نام خیریه</a>
-                اهدا شود
-            </label>
-        </div>*@
+                <label dir="rtl">
+                    @Html.EditorFor(m => m.IsCharity, "", new { @class = "uk-checkbox" })
+                    میخواهم درصدی از درامد این ویدیو به خیریه
+                    <a href="#" class="blue">نام خیریه</a>
+                    اهدا شود
+                </label>
+            </div>*@
 
         <div class="form-group">
-            <label for="Playlist">کلاس</label>
+            <label for="Playlist">دسته</label>
             <div class="row-reverse">
-                @Html.DropDownList("CatagoryId", null, htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showPlaylist", dir = "rtl" })
+                @Html.DropDownList("Catagory", null, htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showPlaylist", dir = "rtl" })
             </div>
             @Html.ValidationMessageFor(model => model.CatagoryId, "", new { @class = "uk-text-danger" })
+        </div>
+        <div class="form-group" id="catListVideoEdit">
         </div>
         <div class="form-group" id="playlistEdit">
             @*@Html.Action("ShowPlaylist", "Video", new { id=Model.CatagoryId })*@
@@ -153,9 +157,20 @@
     $(document).ready(function () {
         $.get('/User/Video/ShowPlaylist/' + @Model.CatagoryId, function (result) {
             $('#playlistEdit').html(result);
-        }).then(i => {
-        $('#PlaylistId').val(@Model.PlaylistId);
         });
+
+        @* alert($('#PlaylistId').val());*@
+        //////
+        var id = $(".showPlaylist option:selected").val();
+        if (id != "") {
+            $.get('/User/Classes/ShowCategory/' + id, function (result) {
+                $('#catListVideoEdit').html(result);
+            });
+        }
+        else {
+            $('#catListEdit').html("");
+            $("#CatagoryId").val("");
+        }
         @*$.get('/User/Video/ShowPlaylist/' + @Model.CatagoryId, function (result) {
             $('#playlistEdit').html(result);
             $('#PlaylistId').val(@Model.PlaylistId);
@@ -168,6 +183,10 @@
                     $('#playlistEdit').html(result);
                     $("#overlay").fadeOut(300);
                 });
+                $.get('/User/Classes/ShowCategory/' + id, function (result) {
+                    $('#catListVideoEdit').html(result);
+                });
+                $("#overlay").fadeOut(300);
             }
             else {
                 $('#playlistEdit').html("");

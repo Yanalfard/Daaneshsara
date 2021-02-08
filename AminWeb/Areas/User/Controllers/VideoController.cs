@@ -31,15 +31,16 @@ namespace AminWeb.Areas.User.Controllers
         }
         public ActionResult Create()
         {
-            //ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId), "PlaylistId", "Title");
-            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name");
+            ViewBag.Catagory = new SelectList(_db.Cat.Get(i => i.ParentId == null), "CatagoryId", "Name");
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(MdVideo video, HttpPostedFileBase MainImage, HttpPostedFileBase VideoDemoUrl, HttpPostedFileBase VideoUrl)
         {
-            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", video.CatagoryId);
+            ViewBag.Catagory = new SelectList(_db.Cat.Get(i => i.ParentId == null), "CatagoryId", "Name", video.CatagoryId);
+
             if (ModelState.IsValid)
             {
                 //ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId), "PlaylistId", "Title", video.PlaylistId);
@@ -172,15 +173,27 @@ namespace AminWeb.Areas.User.Controllers
             editVideo.VideoDemoUrl = selectVideoById.VidioDemoUrl;
             List<TblVideoPlaylistKeyword> selectKeywords = _db.VideoPlaylistKeyword.Get().Where(i => i.VideoId == id).ToList();
             editVideo.Keywords = string.Join("،", selectKeywords.Select(t => t.Name));
-            //  ViewBag.PlaylistId = new SelectList(_db.Playlist.Get().Where(i => i.UserId == SelectUser().UserId), "PlaylistId", "Title", editVideo.PlaylistId);
-            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", editVideo.CatagoryId);
+            TblCatagory selectCatagory = _db.Cat.GetById(selectVideoById.CatagoryId);
+            int catagory = 0;
+            if (selectCatagory != null)
+            {
+                if (selectCatagory.ParentId == null)
+                {
+                    catagory = selectCatagory.CatagoryId;
+                }
+                else
+                {
+                    catagory = Convert.ToInt32(selectCatagory.ParentId);
+                }
+            }
+            ViewBag.Catagory = new SelectList(_db.Cat.Get(i => i.ParentId == null), "CatagoryId", "Name", catagory);
             return View(editVideo);
         }
 
         [HttpPost]
         public ActionResult Edit(MdVideo video, HttpPostedFileBase MainImage, HttpPostedFileBase VideoDemoUrl, HttpPostedFileBase VideoUrl)
         {
-            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", video.CatagoryId);
+            ViewBag.Catagory = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", video.CatagoryId);
             if (ModelState.IsValid)
             {
                 if (MainImage != null && MainImage.ContentLength > 10485760)

@@ -10,7 +10,6 @@ namespace DataLayer.MetaData
 {
     public class MdPlaylist
     {
-        [Key]
         public int PlaylistId { get; set; }
 
         [Display(Name = "نام کلاس")]
@@ -28,13 +27,12 @@ namespace DataLayer.MetaData
 
         [Display(Name = "تعداد بازدید")]
         public int ViewCount { get; set; }
+        public int CatagoryChildsId { get; set; }
 
         [Display(Name = "در خانه نشان داده شود؟")]
         public bool IsHome { get; set; }
 
         [Display(Name = "لینک")]
-        [MaxLength(500, ErrorMessage = "طول بیش از 500 کاراکتر مجاز نیست")]
-        [DataType(DataType.Url)]
         public string Link { get; set; }
 
         [ForeignKey("UserId")]
@@ -49,8 +47,7 @@ namespace DataLayer.MetaData
 
         public bool IsActive { get; set; }
 
-        [Display(Name = "مدرک",Description = "مدرک در انتهای دیدن تمام ویدیو های موجود در لیست به دانشجو داده میشود")]
-        [MaxLength(256, ErrorMessage = "طول بیش از 256 کاراکتر مجاز نیست")]
+        [Display(Name = "مدرک")]
         public string CertificateURL { get; set; }
         [Display(Name = "عضو")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

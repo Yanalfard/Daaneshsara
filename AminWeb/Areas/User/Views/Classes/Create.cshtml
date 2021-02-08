@@ -10,6 +10,7 @@
     @using (Html.BeginForm("Create", "Classes", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.CatagoryId)
         <h3 class="uk-margin-remove-top">
             کلاس جدید
         </h3>
@@ -42,7 +43,9 @@
         <div class="form-group">
             <label for="Playlist">دسته</label>
             <div class="row-reverse">
-                @Html.DropDownListFor(model => model.CatagoryId, (IEnumerable<SelectListItem>)ViewBag.CatagoryId, "دسته ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showCategory", dir = "rtl" })
+                @Html.DropDownList("Catagory", null, "دسته ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showCategory", dir = "rtl" })
+
+                @*@Html.DropDownListFor(model => model.CatagoryId, (IEnumerable<SelectListItem>)ViewBag.CatagoryId, "دسته ", htmlAttributes: new { @class = "uk-width-2-3 uk-margin-small-left showCategory", dir = "rtl" })*@
             </div>
             @Html.ValidationMessageFor(model => model.CatagoryId, "", new { @class = "uk-text-danger" })
         </div>
@@ -95,9 +98,21 @@
 
 <script>
     $(document).ready(function () {
+        var id = $(".showCategory option:selected").val();
+        if (id != "") {
+            $("#CatagoryId").val(id);
+            $.get('/User/Classes/ShowCategory/' + id, function (result) {
+                $('#catList').html(result);
+            });
+        }
+        else {
+            $('#catList').html("");
+            $("#CatagoryId").val("");
+        }
         $(".showCategory").change(function () {
             var id = $(".showCategory option:selected").val();
             if (id != "") {
+                $("#CatagoryId").val(id);
                 $("#overlay").fadeIn(300);
                 $.get('/User/Classes/ShowCategory/' + id, function (result) {
                     $('#catList').html(result);
@@ -106,6 +121,7 @@
             }
             else {
                 $('#catList').html("");
+                $("#CatagoryId").val("");
             }
         });
     });
