@@ -203,14 +203,15 @@ $video-block-width: 280px;
             position: absolute;
 
             > li {
-                padding: 6px;
-                margin-right: 8px;
-                background: #fff;
-                @include border-radius(12px,12px,12px,12px);
+                padding: 4px;
+                margin-right: 6px;
+                background: transparentize(#a5a5a5,.72);
+                backdrop-filter: blur(4px);
+                @include border-radius(11px,11px,11px,11px);
 
                 > img {
-                    height: 24px;
-                    width: 24px;
+                    height: 22px;
+                    width: 22px;
                 }
             }
         }
@@ -816,5 +817,36 @@ select {
             @include border-radius(4px,4px,4px,4px);
             color: $primary;
         }
+    }
+}
+
+.credits {
+    display: flex;
+    position: relative;
+    width: 100%;
+    margin-top: 64px;
+
+    p {
+        margin: 0;
+        width: 100%;
+        color: #b5b5b5;
+        font-size: 12px;
+        text-align: center;
+
+        a {
+            color: #afafaf;
+            font-weight: 600;
+            @include trans(.2s);
+        }
+
+        a:hover {
+            color: $primary;
+        }
+    }
+}
+
+@media only screen and (max-width : 764px) {
+    .credits {
+        margin-bottom: 96px;
     }
 }
