@@ -25,11 +25,19 @@
             var id = $(".showUnderCategory option:selected").val();
             if (id != "") {
                 $("#CatagoryId").val(id);
+                $.get('/User/Video/ShowPlaylist/' + id, function (result) {
+                    $('#playlist').html(result);
+                    $("#overlay").fadeOut(300);
+                });
             }
             else {
                 var id = $(".showCategory option:selected").val();
                 $("#CatagoryId").val(id);
+                $('#playlist').html("");
             }
         });
+
+
+       
     });
 </script>
