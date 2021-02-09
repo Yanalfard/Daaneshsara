@@ -23,8 +23,7 @@
 
 <script>
     $(document).ready(function () {
-        $('#playlistChildId').val($('#PlaylistId').val());
-        alert($('#PlaylistId').val());
+        $('.showUnderPlaylist').val($('#PlaylistId').val());
         $(".showUnderPlaylist").change(function () {
             var id = $(".showUnderPlaylist option:selected").val();
             if (id != "") {
