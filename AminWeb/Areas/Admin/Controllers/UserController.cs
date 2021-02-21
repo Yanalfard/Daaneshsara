@@ -158,6 +158,7 @@ namespace AminWeb.Areas.Admin.Controllers
                 TblUser updateUser = _db.User.GetById(pass.Id);
                 updateUser.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(pass.Password, "SHA256");
                 _db.User.Update(updateUser);
+                _db.User.Save();
                 return JavaScript("$('#myModal').modal('hide');doneEdit();");
                 // return PartialView("ListUser", _db.User.Get());
             }
