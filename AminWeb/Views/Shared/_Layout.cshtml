@@ -241,35 +241,66 @@
             }
         }
 
-        if (localStorage.getItem('cats') === null || localStorage.getItem('cats') === undefined || localStorage.getItem('cats') === '') {
+        if (sessionStorage.getItem('cats') === null || sessionStorage.getItem('cats') === undefined || sessionStorage.getItem('cats') === '') {
             fetch(window.location.origin + '/Category/ListCategory').then(i => {
                 i.json().then((a) => {
                     categories = a.responseText;
-                    localStorage.setItem('cats', JSON.stringify(categories));
+                    sessionStorage.setItem('cats', JSON.stringify(categories));
                     for (var list of lists) {
                         categories.forEach(i =>
-                            list.innerHTML += `<li><a href="javascript:selectByCategory('${i}')">${i}</a></li>`);
+                            list.innerHTML +=
+                            `<li>
+                                               <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
+                                                  ${i}
+                                               </a>
+                                               <ul class="sub"></ul>
+                                            </li>`
+                        );
                     }
                 });
             });
         }
         else {
-            categories = JSON.parse(localStorage.getItem('cats'));
+            categories = JSON.parse(sessionStorage.getItem('cats'));
             for (var list of lists) {
-                categories.forEach(i =>
-                    list.innerHTML += `<li><a href="javascript:selectByCategory('${i}')">${i}</a></li>`);
+                categories.forEach(i => {
+                    list.innerHTML +=
+                        `<li>
+                                               <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
+                                                  ${i}
+                                               </a>
+                                               <ul class="sub"></ul>
+                                            </li>`
+                })
             }
         }
 
+        function openSubCategories(categoryName) {
+            fetch(window.location.origin + '/SubCategory/' + categoryName)
+                .then(j => {
+                    j.json()
+                        .then((i) => {
+                            const sender = document.getElementById(categoryName);
+                            const ul = sender.parentElement.querySelector('.sub')
+
+                            ul.innerHTML = '';
+
+                            i.responseText.forEach(sub => {
+                                ul.innerHTML +=
+                                    `<li><a href="javascript:selectByCategory('${sub}')">${sub}</a></li>`
+                            })
+
+                        });
+                })
+        }
+
         function selectByCategory(name) {
-            console.table(window.location);
             if (window.location.pathname == '/Home/Index' || window.location.pathname == '/') {
                 // در ایندکس است
 
                 if (name === '') return false;
 
                 $("#loader").fadeIn(100);
-
                 $.ajax({
                     url: "/Video/SelectVideosByCategory/",
                     data: { name: name },
@@ -281,14 +312,14 @@
                 $("#loader").fadeOut(300);
 
                 UIkit.modal(document.getElementById('Modal-Category')).hide();
-                window.localStorage.setItem('searchcat', '');
+                window.sessionStorage.setItem('searchcat', '');
                 return false;
 
             }
             else {
                 // از پیج دیگر می آید
                 UIkit.modal(document.getElementById('Modal-Category')).hide();
-                localStorage.setItem('searchcat', name);
+                sessionStorage.setItem('searchcat', name);
                 window.location = window.location.origin;
 
                 return true;

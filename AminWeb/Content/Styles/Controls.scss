@@ -671,8 +671,28 @@ select {
 }
 
 .listCategory {
+
+    > li {
+        margin-bottom: 4px;
+    }
+
     b {
         color: $primary;
+    }
+
+    .sub {
+        margin-right: 16px;
+        margin-bottom: 4px;
+
+        a {
+            font-size: 14px;
+            color: #777;
+            @include trans(.2s);
+        }
+
+        a:hover {
+            color: $primary;
+        }
     }
 }
 

@@ -19,8 +19,20 @@ namespace AminWeb.Controllers
         }
         public ActionResult ListCategory()
         {
-            var list = _db.Cat.Get().Select(i => i.Name).ToList();
+            var list = _db.Cat.Get(i => i.ParentId == null).Select(i => i.Name).ToList();
             return Json(new { success = true, responseText = list }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("SubCategory/{categoryName}")]
+        public ActionResult SubCategory(string categoryName)
+        {
+            TblCatagory selectedCatagory = _db.Cat.Get().Where(i => i.Name == categoryName).SingleOrDefault();
+            if (selectedCatagory != null)
+            {
+                var list = _db.Cat.Get(i => i.ParentId == selectedCatagory.CatagoryId).Select(i => i.Name).ToList();
+                return Json(new { success = true, responseText = list }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = true, responseText = "" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

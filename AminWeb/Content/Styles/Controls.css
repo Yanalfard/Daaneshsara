@@ -900,8 +900,24 @@ select {
   .uk-notification-message > div {
     margin-right: 24px; }
 
+.listCategory > li {
+  margin-bottom: 4px; }
+
 .listCategory b {
   color: #F94646; }
+
+.listCategory .sub {
+  margin-right: 16px;
+  margin-bottom: 4px; }
+  .listCategory .sub a {
+    font-size: 14px;
+    color: #777;
+    -moz-transition: all ease 0.2s;
+    -o-transition: all ease 0.2s;
+    -webkit-transition: all ease 0.2s;
+    transition: all ease 0.2s; }
+  .listCategory .sub a:hover {
+    color: #F94646; }
 
 #loader {
   display: 0;
