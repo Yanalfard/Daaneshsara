@@ -1670,7 +1670,7 @@ ul {
 
 .modal {
     z-index: 11000 !important;
-    width: 2000px !important;
+    width: 100vw !important;
 }
 
 .modal-backdrop {
