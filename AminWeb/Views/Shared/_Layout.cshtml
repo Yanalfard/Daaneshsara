@@ -277,11 +277,10 @@
         }
 
         function openSubCategories(categoryName) {
-            $("#overlay").fadeIn(300);
             const sender = document.getElementById(categoryName);
             const ul = sender.parentElement.querySelector('.sub');
-
             if (sender === openedCategory) return;
+            $("#overlay").fadeIn(300);
 
             fetch(window.location.origin + '/SubCategory/' + categoryName)
                 .then(j => {
