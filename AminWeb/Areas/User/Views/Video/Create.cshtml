@@ -110,8 +110,11 @@
         <div class="form-group">
             <label for="Keywords">کلمات کلیدی</label>
             <div class="input-group">
-                @Html.EditorFor(m => m.Keywords, new { htmlAttributes = new { placeholder = "کلمات کلیدی را با ، جدا کنید" } })
+                @Html.EditorFor(m => m.Keywords, new { htmlAttributes = new { placeholder = "لطفا کلمات را با ،  از هم جدا کنید" } })
             </div>
+            <span role="alert" class="alert">
+                برای ایجاد قابلیت جستوجو در دانشسرا و موتورهای جستجو کلمات کلیدی را وارد کنید
+            </span>
             <span role="alert" class="alert">
                 @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "uk-text-danger", placholder = "لطفا با ، کلمات را از هم جدا کنید" })
             </span>
