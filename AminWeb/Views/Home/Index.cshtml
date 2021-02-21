@@ -144,7 +144,6 @@
         }
       //  if (selectByCategory(localStorage.getItem('searchcat')) !== true) {
             $("#loader").fadeIn(300);
-
             $.get('/Video/SelectVideos', function (result) {
                 $('#listVideo').html(result);
                 $("#loader").fadeOut(300);

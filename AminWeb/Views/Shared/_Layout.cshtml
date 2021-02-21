@@ -227,6 +227,7 @@
 
     <script>
 
+        let openedCategory;
 
         // Tamam e Category haye server, yekbar load shavand.
         let categories = [];
@@ -250,11 +251,11 @@
                         categories.forEach(i =>
                             list.innerHTML +=
                             `<li>
-                                               <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
-                                                  ${i}
-                                               </a>
-                                               <ul class="sub"></ul>
-                                            </li>`
+                                                       <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
+                                                          ${i}
+                                                       </a>
+                                                       <ul class="sub"></ul>
+                                                    </li>`
                         );
                     }
                 });
@@ -266,22 +267,32 @@
                 categories.forEach(i => {
                     list.innerHTML +=
                         `<li>
-                                               <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
-                                                  ${i}
-                                               </a>
-                                               <ul class="sub"></ul>
-                                            </li>`
+                                                   <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
+                                                      ${i}
+                                                   </a>
+                                                   <ul class="sub"></ul>
+                                                </li>`
                 })
             }
         }
 
         function openSubCategories(categoryName) {
+            $("#overlay").fadeIn(300);
+            const sender = document.getElementById(categoryName);
+            const ul = sender.parentElement.querySelector('.sub');
+
+            if (sender === openedCategory) return;
+
             fetch(window.location.origin + '/SubCategory/' + categoryName)
                 .then(j => {
+
                     j.json()
                         .then((i) => {
-                            const sender = document.getElementById(categoryName);
-                            const ul = sender.parentElement.querySelector('.sub')
+
+                            if (openedCategory)
+                                openedCategory.parentElement.querySelector('.sub').innerHTML = '';
+
+                            openedCategory = sender;
 
                             ul.innerHTML = '';
 
@@ -289,7 +300,7 @@
                                 ul.innerHTML +=
                                     `<li><a href="javascript:selectByCategory('${sub}')">${sub}</a></li>`
                             })
-
+                            $("#overlay").fadeOut(300);
                         });
                 })
         }
