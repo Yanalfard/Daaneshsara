@@ -79,14 +79,14 @@ a:hover, summary:hover, .active {
 
 $container-padding-phone: 0px;
 
-@media only screen and (max-width: 764px) {
+@media only screen and (max-width: 724px) {
 
     .bottom-nav {
         display: block;
     }
 }
 
-@media only screen and (max-device-width: 764px) {
+@media only screen and (max-device-width: 724px) {
     .uk-container {
         padding: $container-padding-phone !important;
     }
@@ -295,6 +295,32 @@ $side-category-width: 280px;
     padding: 16px;
     @include mat();
     @include shadow-mild;
+
+    .listCategory {
+        direction: rtl;
+        max-height: calc(100vh - 240px);
+        overflow-y: auto;
+    }
+    /*ScrollBar*/
+    /* width */
+    ::-webkit-scrollbar {
+        width: 12px;
+        @include border-radius(6px,8px,8px,6px)
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        margin: 0 !important;
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: darken($Background,16%);
+        border-right: 0 !important;
+        @include border-radius(6px,8px,8px,6px)
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: darken($Background,24%);
+    }
 }
 
 .side-category-placeholder {
@@ -865,7 +891,7 @@ select {
     }
 }
 
-@media only screen and (max-width : 764px) {
+@media only screen and (max-width : 724px) {
     .credits {
         margin-bottom: 96px;
     }

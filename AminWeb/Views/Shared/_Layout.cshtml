@@ -69,7 +69,7 @@
     @RenderBody()
 
     <div id="Modal-Category" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body mat  uk-width-4-6-at-s uk-width-1-2-at-m uk-padding uk-margin-auto uk-box-shadow-large ">
+        <div class="uk-modal-dialog uk-modal-body mat uk-width-4-6-at-s uk-width-1-2-at-m uk-padding uk-margin-auto uk-box-shadow-large ">
             <div role="menu" class="column">
                 <!-- #region Category -->
 
@@ -179,6 +179,70 @@
     <script src="https://www.google.com/recaptcha/api.js?render=6Lc-wi4aAAAAAHvRxAurQCtbaWsckjNOsNjHxcWJ&&hl=fa"></script>
 
     <script>
+        const swapAttrib = 'swap';
+        const swapThreshold = 724;
+
+        function Swap(element) {
+
+            const raw = (element.getAttribute(swapAttrib)).split(';');
+
+            const swapTarget = document.getElementById(raw[0]);
+            const reverse = raw[1];
+
+            if (!swapTarget) {
+                throw 'Target Element was not found! Check the id and swap attribute';
+                return;
+            }
+
+            let mid = swapTarget.cloneNode();
+            element.replaceWith(mid);
+            swapTarget.replaceWith(element);
+
+        }
+
+        let swappables = [];
+        let lastWindowWidth = window.innerWidth;
+
+        window.addEventListener("load", () => {
+
+            // Init Swappables
+            swappables = document.querySelectorAll(`[${swapAttrib}]`);
+
+            // Init Swappable Position if less than
+            if (window.innerWidth <= swapThreshold) swappables.forEach(i => Swap(i));
+
+            // Swap the reversed ones first
+            swappables.forEach(element => {
+
+                const raw = (element.getAttribute(swapAttrib)).split(';');
+
+                const swapTarget = document.getElementById(raw[0]);
+                const reverse = raw[1];
+
+                if (reverse) {
+                    Swap(element);
+                }
+            })
+
+            // Handle Swapping on window Resize
+            window.addEventListener('resize', () => {
+
+                // Width Greater than Threshold (Desktop)
+                if (window.innerWidth >= swapThreshold && swapThreshold > lastWindowWidth)
+                    swappables.forEach(i => Swap(i));
+
+                // Width Less than Threshold (Mobile)
+                else if (window.innerWidth <= swapThreshold && swapThreshold < lastWindowWidth)
+                    swappables.forEach(i => Swap(i));
+
+                lastWindowWidth = window.innerWidth;
+
+            })
+        })
+
+    </script>
+
+    <script>
         grecaptcha.ready(function () {
             grecaptcha.execute('6Lc-wi4aAAAAAHvRxAurQCtbaWsckjNOsNjHxcWJ', { action: 'contact_us' }).then(function (token) {
                 $('.GoogleCapcha').val(token);
@@ -199,7 +263,6 @@
         })
 
     </script>
-
 
     <script>
         function showLogin() {
@@ -265,11 +328,11 @@
                         categories.forEach(i =>
                             list.innerHTML +=
                             `<li>
-                                                               <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
-                                                                  ${i}
-                                                               </a>
-                                                               <ul class="sub"></ul>
-                                                            </li>`
+                                                                <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
+                                                                   ${i}
+                                                                </a>
+                                                                <ul class="sub"></ul>
+                                                             </li>`
                         );
                     }
                 });
@@ -298,7 +361,6 @@
 
             fetch(window.location.origin + '/SubCategory/' + categoryName)
                 .then(j => {
-
                     j.json()
                         .then((i) => {
 
