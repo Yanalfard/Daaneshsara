@@ -89,32 +89,55 @@
 
     <nav class="bottom-nav">
         <ul class="row uk-padding-remove uk-margin-remove">
-            <li>
-                <a href="/User/Account/UserData" class="column">
-                    <span uk-icon="user" class="uk-margin-auto"></span>
-                    <span>پروفایل</span>
-                </a>
-            </li>
-            <li>
-                @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("user") || User.IsInRole("institution") || User.IsInRole("tutor"))
                 {
-                    if (User.IsInRole("user") || User.IsInRole("institution") || User.IsInRole("tutor"))
-                    {
+                    <li>
+                        <a href="/User/Account/UserData" class="column">
+                            <span uk-icon="user" class="uk-margin-auto"></span>
+                            <span>پروفایل</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="/User/Chat/Index" class="column">
                             <span uk-icon="chat" class="uk-margin-auto"></span>
                             <span>گفت و گو</span>
                         </a>
-                    }
-                    if (User.IsInRole("admin"))
-                    {
+                    </li>
+                }
+                if (User.IsInRole("admin"))
+                {
+                    <li>
+                        <a href="/Admin/Home" class="column">
+                            <span uk-icon="user" class="uk-margin-auto"></span>
+                            <span>پروفایل</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="/Admin/Chat" class="column">
                             <span uk-icon="chat" class="uk-margin-auto"></span>
                             <span>گفت و گو</span>
                         </a>
-                    }
+                    </li>
                 }
+            }
+            else
+            {
+                <li>
+                    <a onclick="showLogin()" class="column">
+                        <span uk-icon="user" class="uk-margin-auto"></span>
+                        <span>پروفایل</span>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="showLogin()" class="column">
+                        <span uk-icon="chat" class="uk-margin-auto"></span>
+                        <span>گفت و گو</span>
+                    </a>
+                </li>
+            }
 
-            </li>
             <li>
                 <a href="#Modal-Category" uk-toggle class="column">
                     <span uk-icon="menu" class="uk-margin-auto"></span>
@@ -328,11 +351,11 @@
                         categories.forEach(i =>
                             list.innerHTML +=
                             `<li>
-                                                                <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
-                                                                   ${i}
-                                                                </a>
-                                                                <ul class="sub"></ul>
-                                                             </li>`
+                                                                                <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
+                                                                                   ${i}
+                                                                                </a>
+                                                                                <ul class="sub"></ul>
+                                                                             </li>`
                         );
                     }
                 });
@@ -344,11 +367,11 @@
                 categories.forEach(i => {
                     list.innerHTML +=
                         `<li>
-                                                           <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
-                                                              ${i}
-                                                           </a>
-                                                           <ul class="sub"></ul>
-                                                        </li>`
+                                                                           <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
+                                                                              ${i}
+                                                                           </a>
+                                                                           <ul class="sub"></ul>
+                                                                        </li>`
                 })
             }
         }
