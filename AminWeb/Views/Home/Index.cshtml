@@ -56,20 +56,7 @@
         <div role="none" class="remove-at-mobile uk-margin-small-left">
             <div role="none" class="side-category-placeholder"></div>
             <aside role="menu" class="side-category column" uk-sticky="offset: 80">
-
-                @Html.Action("Index", "Category")
-
-                @*
-                    <details dir="rtl">
-                        <summary>دسته بندی</summary>
-                        <div class="column uk-margin-small-right">
-                            <a href="#">آیتم</a>
-                            <a href="#">آیتم</a>
-                        </div>
-                    </details>
-                *@
-
-
+                <div id="ModalCategoryPlaceholder"></div>
             </aside>
         </div>
         <div class="video-grid flex-1" id="listVideo">
@@ -142,12 +129,12 @@
                 $("#loader").fadeOut(300);
             });
         }
-      //  if (selectByCategory(localStorage.getItem('searchcat')) !== true) {
-            $("#loader").fadeIn(300);
-            $.get('/Video/SelectVideos', function (result) {
-                $('#listVideo').html(result);
-                $("#loader").fadeOut(300);
-            });
-       // }
+        //  if (selectByCategory(localStorage.getItem('searchcat')) !== true) {
+        $("#loader").fadeIn(300);
+        $.get('/Video/SelectVideos', function (result) {
+            $('#listVideo').html(result);
+            $("#loader").fadeOut(300);
+        });
+           // }
     </script>
 }

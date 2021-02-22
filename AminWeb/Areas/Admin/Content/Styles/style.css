@@ -309,7 +309,7 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    overflow: auto;
+    overflow-y: auto!important;
     border-right: 1px solid #e6ecf5;
     height: calc(100vh - 65px);
 }

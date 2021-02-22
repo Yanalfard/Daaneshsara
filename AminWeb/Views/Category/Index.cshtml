@@ -2,16 +2,17 @@
 
 <!-- #region category -->
 
-<h4>
-    دسته بندی ها
-</h4>
-<div class="search-box row uk-margin-small-bottom">
-    <button uk-icon="search"></button>
-    <label for="CategorySearch" class="collapsed">جستجو دسته بندی</label>
-    <input dir="rtl" oninput="catSearch(this.value)" type="text" placeholder="جستجو..." name="CategorySearch" />
+<div swap="ModalCategoryPlaceholder;true">
+    <h4>
+        دسته بندی ها
+    </h4>
+    <div class="search-box row uk-margin-small-bottom">
+        <button uk-icon="search"></button>
+        <label for="CategorySearch" class="collapsed">جستجو دسته بندی</label>
+        <input dir="rtl" oninput="catSearch(this.value)" type="text" placeholder="جستجو..." name="CategorySearch" />
+    </div>
+    <div dir="rtl">
+        <ul class="listCategory"></ul>
+    </div>
 </div>
-<div dir="rtl">
-    <ul class="listCategory"></ul>
-</div>
-
 <!-- #endregion -->
