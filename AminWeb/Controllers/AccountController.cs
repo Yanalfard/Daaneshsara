@@ -78,6 +78,7 @@ namespace AminWeb.Controllers
                 var isCaptchaValid = await IsCaptchaValid(GoogleCapcha);
                 if (isCaptchaValid)
                 {
+                    user.Email = user.Email.Trim().ToLower().Replace(" ", "");
                     string hashPass = FormsAuthentication.HashPasswordForStoringInConfigFile(user.Password, "SHA256");
                     TblUser checkUser = _db.User.Get().FirstOrDefault(i => i.Email == user.Email && i.Password == hashPass);
                     if (checkUser != null)
