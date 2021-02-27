@@ -1,11 +1,11 @@
-{
+﻿{
   "dir": "rtl",
   "lang": "fa",
-  "name": "Amoozesh",
-  "short_name": "Amoozesh",
+  "name": "دانشسرا",
+  "short_name": "دانشسرا",
   "display": "standalone",
-  "start_url": "/Home/Index",
-  "background_color": "#F94646",
+  "start_url": "/",
+  "background_color": "#FFFFFF",
   "theme_color": "#F94646",
   "orientation": "portrait-primary",
   "scope": "/",
