@@ -7,7 +7,7 @@
 }
 
 <div class="mat uk-padding uk-box-shadow-small uk-margin-xlarge-bottom">
-    @using (Html.BeginForm("Create", "Video", new AjaxOptions() { OnSuccess = "LoadingEnd('#createVideo')" }, FormMethod.Post, new { enctype = "multipart/form-data", @id = "createVideo" }))
+    @using (Html.BeginForm("Create", "Video", new AjaxOptions() { OnFailure = "faild2()", OnSuccess = "LoadingEnd('#createVideo')" }, FormMethod.Post, new { enctype = "multipart/form-data", @id = "createVideo" }))
     {
         @Html.HiddenFor(m => m.CatagoryId)
 
@@ -129,12 +129,24 @@
 
 
 <script>
+    loadCatagory();
+    function loadCatagory() {
+        var id = $("#Catagory").val();
+        $.get('/User/Video/ShowPlaylist/' + id, function (result) {
+            $('#playlist').html(result);
+            $("#overlay").fadeOut(300);
+        });
+        $.get('/User/Classes/ShowCategory/' + id, function (result) {
+            $('#catListVideo').html(result);
+        });
+        $("#overlay").fadeOut(300);
+    }
     $(document).ready(function () {
         $(".showPlaylist").change(function () {
             var id = $(".showPlaylist option:selected").val();
             if (id != "") {
                 $("#overlay").fadeIn(300);
-                $("#CatagoryId").val(id);
+                $("#Catagory").val(id);
                 $.get('/User/Video/ShowPlaylist/' + id, function (result) {
                     $('#playlist').html(result);
                     $("#overlay").fadeOut(300);

@@ -179,6 +179,7 @@
             var id = $(".showPlaylist option:selected").val();
             if (id != "") {
                 $("#overlay").fadeIn(300);
+                $("#CatagoryId").val("");
                 $.get('/User/Video/ShowPlaylist/' + id, function (result) {
                     $('#playlistEdit').html(result);
                     $("#overlay").fadeOut(300);

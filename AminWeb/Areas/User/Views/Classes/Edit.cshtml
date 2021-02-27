@@ -125,7 +125,6 @@
             $.get('/User/Classes/ShowCategory/' + id, function (result) {
                 $('#catListEdit').html(result);
             });
-           
         }
         else {
             $('#catListEdit').html("");
@@ -134,7 +133,8 @@
         $(".showCategory").change(function () {
             var id = $(".showCategory option:selected").val();
             if (id != "") {
-                $("#CatagoryId").val(id);
+                $("#Catagory").val(id);
+                $("#CatagoryId").val("");
                 $("#overlay").fadeIn(300);
                 $.get('/User/Classes/ShowCategory/' + id, function (result) {
                     $('#catListEdit').html(result);

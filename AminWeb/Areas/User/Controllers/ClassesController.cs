@@ -86,8 +86,7 @@ namespace AminWeb.Areas.User.Controllers
                     ModelState.AddModelError("Title", "نام کلاس تکراریست");
                 }
             }
-            ViewBag.Catagory = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", playList.CatagoryId);
-
+            ViewBag.Catagory = new SelectList(_db.Cat.Get(i => i.ParentId == null), "CatagoryId", "Name", playList.CatagoryId);
             return View(playList);
         }
         public ActionResult Edit(int id)
@@ -125,7 +124,8 @@ namespace AminWeb.Areas.User.Controllers
                     catagory = Convert.ToInt32(selectCatagory.ParentId);
                 }
             }
-            ViewBag.Catagory = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", catagory);
+            ViewBag.Catagory = new SelectList(_db.Cat.Get(i => i.ParentId == null), "CatagoryId", "Name", catagory);
+
             return View(playList);
         }
         [HttpPost]
@@ -186,7 +186,7 @@ namespace AminWeb.Areas.User.Controllers
                     ModelState.AddModelError("Title", "نام کلاس تکراریست");
                 }
             }
-            ViewBag.CatagoryId = new SelectList(_db.Cat.Get(), "CatagoryId", "Name", playList.CatagoryId);
+            ViewBag.Catagory = new SelectList(_db.Cat.Get(i => i.ParentId == null), "CatagoryId", "Name", playList.CatagoryId);
             return View(playList);
         }
         [HttpPost]

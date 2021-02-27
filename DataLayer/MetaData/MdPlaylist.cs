@@ -49,9 +49,10 @@ namespace DataLayer.MetaData
 
         [Display(Name = "مدرک")]
         public string CertificateURL { get; set; }
-        [Display(Name = "عضو")]
+        [Display(Name = "زیر دسته")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public int CatagoryId { get; set; }
+        public int Catagory { get; set; }
     }
 
 }

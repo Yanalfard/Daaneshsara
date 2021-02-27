@@ -112,7 +112,7 @@
         $(".showCategory").change(function () {
             var id = $(".showCategory option:selected").val();
             if (id != "") {
-                $("#CatagoryId").val(id);
+                $("#Catagory").val(id);
                 $("#overlay").fadeIn(300);
                 $.get('/User/Classes/ShowCategory/' + id, function (result) {
                     $('#catList').html(result);
