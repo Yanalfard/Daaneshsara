@@ -327,6 +327,23 @@
 
     <script>
 
+        //// If subcats are empty, get them from the server
+        //if (!(sessionStorage.getItem("subcats"))) {
+        //    fetch(window.location.origin + '/Category/ListCategory').then(i => {
+        //        i.json().then((a) => {
+        //            categories = a.responseText;
+        //            sessionStorage.setItem('subcats', JSON.stringify(categories));
+        //        });
+        //    }); 
+        //}
+        //else {
+        //    const cats = JSON.parse(sessionStorage.getItem("subcats"));
+        //    for (var cat of cats) {
+
+        //    }
+        //}
+
+
         let openedCategory;
 
         // Tamam e Category haye server, yekbar load shavand.
@@ -351,11 +368,11 @@
                         categories.forEach(i =>
                             list.innerHTML +=
                             `<li>
-                                                                                <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
-                                                                                   ${i}
-                                                                                </a>
-                                                                                <ul class="sub"></ul>
-                                                                             </li>`
+                               <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
+                                  ${i}
+                               </a>
+                               <ul class="sub"></ul>
+                            </li>`
                         );
                     }
                 });
@@ -367,11 +384,11 @@
                 categories.forEach(i => {
                     list.innerHTML +=
                         `<li>
-                                                                           <a id="${i}" href="javascript:openSubCategories('${i}');selectByCategory('${i}')">
-                                                                              ${i}
-                                                                           </a>
-                                                                           <ul class="sub"></ul>
-                                                                        </li>`
+                           <a id="${i}" href="javascript:openSubCategories('${i}');">
+                              ${i}
+                           </a>
+                           <ul class="sub"></ul>
+                        </li>`
                 })
             }
         }
@@ -380,7 +397,7 @@
             const sender = document.getElementById(categoryName);
             const ul = sender.parentElement.querySelector('.sub');
             if (sender === openedCategory) return;
-            $("#overlay").fadeIn(300);
+            //$("#overlay").fadeIn(300);
 
             fetch(window.location.origin + '/SubCategory/' + categoryName)
                 .then(j => {
@@ -398,7 +415,7 @@
                                 ul.innerHTML +=
                                     `<li><a href="javascript:selectByCategory('${sub}')">${sub}</a></li>`
                             })
-                            $("#overlay").fadeOut(300);
+                            //$("#overlay").fadeOut(300);
                         });
                 })
         }

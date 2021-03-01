@@ -79,7 +79,7 @@
             catdrop.hide();
             return;
         }
-        fetch(window.location.origin + '/SelectVideoName/' + val).then(i => {
+        fetch('/SelectVideoName/' + val).then(i => {
             i.json().then((a) => {
                 videoNames = a.responseText;
 

@@ -34,5 +34,14 @@ namespace AminWeb.Controllers
             }
             return Json(new { success = true, responseText = "" }, JsonRequestBehavior.AllowGet);
         }
+
+        [Route("SearchSubCategory/{categoryName}")]
+        public ActionResult SearchSubCategory(string categoryName)
+        {
+            var cats = _db.Cat.Get(cat => cat.Name.Contains(categoryName) && cat.ParentId == null);
+            var list = cats.Select(i => i.Name).ToList();
+            return Json(new { success = true, responseText = list }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
