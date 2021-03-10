@@ -17,6 +17,7 @@
     <meta name="apple-mobile-web-app-status-bar" content="#F94646" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#F94646" />
     <meta name="theme-color" content="#F94646" />
+    <link href="~/favicon.ico" rel="icon" />
     <link rel="manifest" href="~/manifest.json" />
 
     <!--UIKit-->
@@ -111,7 +112,7 @@
                     <li>
                         <a href="/Admin/Home" class="column">
                             <span uk-icon="user" class="uk-margin-auto"></span>
-                            <span>پروفایل</span>
+                            <span>پنل مدیریت</span>
                         </a>
                     </li>
                     <li>
@@ -394,6 +395,7 @@
         }
 
         function openSubCategories(categoryName) {
+            $("#loader").fadeIn(300);
             const sender = document.getElementById(categoryName);
             const ul = sender.parentElement.querySelector('.sub');
             if (sender === openedCategory) return;
@@ -403,6 +405,8 @@
                 .then(j => {
                     j.json()
                         .then((i) => {
+
+                            $("#loader").fadeOut(300);
 
                             if (openedCategory)
                                 openedCategory.parentElement.querySelector('.sub').innerHTML = '';
@@ -418,6 +422,7 @@
                             //$("#overlay").fadeOut(300);
                         });
                 })
+                .catch(() => { $("#loader").fadeOut(300); })
         }
 
         function selectByCategory(name) {
