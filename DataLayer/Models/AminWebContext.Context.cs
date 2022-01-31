@@ -13,10 +13,10 @@ namespace DataLayer.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AminWebEntities : DbContext
+    public partial class daaneshsaraEntities : DbContext
     {
-        public AminWebEntities()
-            : base("name=AminWebEntities")
+        public daaneshsaraEntities()
+            : base("name=daaneshsaraEntities")
         {
         }
     

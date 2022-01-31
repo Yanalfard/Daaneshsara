@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3117b157028149c5aa31c03533081ce8" Name="Diagram1">
+        <EntityTypeShape EntityType="daaneshs_testModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblCatagory" Width="1.5" PointX="6" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblChat" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblConfig" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblDoc" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblLog" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblPlaylist" Width="1.5" PointX="8.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblReport" Width="1.5" PointX="15.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblRole" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblTicket" Width="1.5" PointX="5.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblUser" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblUserPlaylistRel" Width="1.5" PointX="10.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblUserVideoRel" Width="1.5" PointX="15.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblVideo" Width="1.5" PointX="13.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblVideoPlaylistKeyword" Width="1.5" PointX="15.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="daaneshs_testModel.TblWithdraw" Width="1.5" PointX="5.25" PointY="26" IsExpanded="true" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblCatagory_TblCatagory" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblPlaylist_TblCatagory" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblVideo_TblCatagory" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_Reciever" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_Sender" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblUser_TblDocs" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblLog_TblPlaylist" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblLog_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblLog_TblVideo" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblPlaylist_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblUserPackRel_TblPack" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblVideo_TblPack" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblVideoPlaylistKeyword_TblPlaylist" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblReport_TblVideo" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblUser_TblRole" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblTicket_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblUserPackRel_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblUserVideoRel_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblWithdraw_TblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_WhoUploadedVideo" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblUserVideoRel_TblVideo" ManuallyRouted="false" />
+        <AssociationConnector Association="daaneshs_testModel.FK_TblVideoKeyword_TblVideo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

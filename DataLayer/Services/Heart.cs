@@ -6,7 +6,7 @@ namespace DataLayer.Services
 {
     public class Heart : IDisposable
     {
-        private readonly AminWebEntities _db = new AminWebEntities();
+        private readonly daaneshsaraEntities _db = new daaneshsaraEntities();
 
         private MainRepo<TblCatagory> _category;
         private MainRepo<TblChat> _chat;

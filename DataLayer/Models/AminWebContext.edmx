@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AminWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="daaneshs_testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -467,7 +467,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AminWebModelStoreContainer">
+        <EntityContainer Name="daaneshs_testModelStoreContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblCatagory" EntityType="Self.TblCatagory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblChat" EntityType="Self.TblChat" Schema="dbo" store:Type="Tables" />
@@ -573,10 +573,11 @@
             <End Role="TblVideo" EntitySet="TblVideo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="AminWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="daaneshs_testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -723,6 +724,7 @@
           <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DocsId" Type="Int32" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="IsFeeFree" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TblChat" Relationship="Self.FK_Reciever" FromRole="TblUser" ToRole="TblChat" />
           <NavigationProperty Name="TblChat1" Relationship="Self.FK_Sender" FromRole="TblUser" ToRole="TblChat" />
           <NavigationProperty Name="TblDoc" Relationship="Self.FK_TblUser_TblDocs" FromRole="TblUser" ToRole="TblDoc" />
@@ -734,7 +736,6 @@
           <NavigationProperty Name="TblUserVideoRel" Relationship="Self.FK_TblUserVideoRel_TblUser" FromRole="TblUser" ToRole="TblUserVideoRel" />
           <NavigationProperty Name="TblWithdraw" Relationship="Self.FK_TblWithdraw_TblUser" FromRole="TblUser" ToRole="TblWithdraw" />
           <NavigationProperty Name="TblVideo" Relationship="Self.FK_WhoUploadedVideo" FromRole="TblUser" ToRole="TblVideo" />
-          <Property Name="IsFeeFree" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TblUserPlaylistRel">
           <Key>
@@ -1083,7 +1084,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="AminWebEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="daaneshsaraEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TblCatagory" EntityType="Self.TblCatagory" />
           <EntitySet Name="TblChat" EntityType="Self.TblChat" />
@@ -1194,9 +1195,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AminWebModelStoreContainer" CdmEntityContainer="AminWebEntities">
+        <EntityContainerMapping StorageEntityContainer="daaneshs_testModelStoreContainer" CdmEntityContainer="daaneshsaraEntities">
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="AminWebModel.sysdiagrams">
+            <EntityTypeMapping TypeName="daaneshs_testModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1207,7 +1208,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblCatagory">
-            <EntityTypeMapping TypeName="AminWebModel.TblCatagory">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblCatagory">
               <MappingFragment StoreEntitySet="TblCatagory">
                 <ScalarProperty Name="CatagoryId" ColumnName="CatagoryId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1216,7 +1217,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblChat">
-            <EntityTypeMapping TypeName="AminWebModel.TblChat">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblChat">
               <MappingFragment StoreEntitySet="TblChat">
                 <ScalarProperty Name="ChatId" ColumnName="ChatId" />
                 <ScalarProperty Name="SenderId" ColumnName="SenderId" />
@@ -1227,7 +1228,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblConfig">
-            <EntityTypeMapping TypeName="AminWebModel.TblConfig">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblConfig">
               <MappingFragment StoreEntitySet="TblConfig">
                 <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
                 <ScalarProperty Name="DarsadeSud" ColumnName="DarsadeSud" />
@@ -1238,7 +1239,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblDoc">
-            <EntityTypeMapping TypeName="AminWebModel.TblDoc">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblDoc">
               <MappingFragment StoreEntitySet="TblDoc">
                 <ScalarProperty Name="DocId" ColumnName="DocId" />
                 <ScalarProperty Name="TellSabet" ColumnName="TellSabet" />
@@ -1253,7 +1254,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblLog">
-            <EntityTypeMapping TypeName="AminWebModel.TblLog">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblLog">
               <MappingFragment StoreEntitySet="TblLog">
                 <ScalarProperty Name="LogId" ColumnName="LogId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -1269,7 +1270,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblPlaylist">
-            <EntityTypeMapping TypeName="AminWebModel.TblPlaylist">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblPlaylist">
               <MappingFragment StoreEntitySet="TblPlaylist">
                 <ScalarProperty Name="PlaylistId" ColumnName="PlaylistId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1288,7 +1289,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblReport">
-            <EntityTypeMapping TypeName="AminWebModel.TblReport">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblReport">
               <MappingFragment StoreEntitySet="TblReport">
                 <ScalarProperty Name="ReportId" ColumnName="ReportId" />
                 <ScalarProperty Name="VideoId" ColumnName="VideoId" />
@@ -1298,7 +1299,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblRole">
-            <EntityTypeMapping TypeName="AminWebModel.TblRole">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblRole">
               <MappingFragment StoreEntitySet="TblRole">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1307,7 +1308,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblTicket">
-            <EntityTypeMapping TypeName="AminWebModel.TblTicket">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblTicket">
               <MappingFragment StoreEntitySet="TblTicket">
                 <ScalarProperty Name="TicketId" ColumnName="TicketId" />
                 <ScalarProperty Name="SenderId" ColumnName="SenderId" />
@@ -1319,9 +1320,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblUser">
-            <EntityTypeMapping TypeName="AminWebModel.TblUser">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblUser">
               <MappingFragment StoreEntitySet="TblUser">
-                <ScalarProperty Name="IsFeeFree" ColumnName="IsFeeFree" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="TellNo" ColumnName="TellNo" />
@@ -1332,11 +1332,12 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="DocsId" ColumnName="DocsId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="IsFeeFree" ColumnName="IsFeeFree" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblUserPlaylistRel">
-            <EntityTypeMapping TypeName="AminWebModel.TblUserPlaylistRel">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblUserPlaylistRel">
               <MappingFragment StoreEntitySet="TblUserPlaylistRel">
                 <ScalarProperty Name="UserPlaylistRelId" ColumnName="UserPlaylistRelId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -1346,7 +1347,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblUserVideoRel">
-            <EntityTypeMapping TypeName="AminWebModel.TblUserVideoRel">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblUserVideoRel">
               <MappingFragment StoreEntitySet="TblUserVideoRel">
                 <ScalarProperty Name="UserVideoRelId" ColumnName="UserVideoRelId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -1357,7 +1358,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblVideo">
-            <EntityTypeMapping TypeName="AminWebModel.TblVideo">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblVideo">
               <MappingFragment StoreEntitySet="TblVideo">
                 <ScalarProperty Name="VideoId" ColumnName="VideoId" />
                 <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
@@ -1381,7 +1382,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblVideoPlaylistKeyword">
-            <EntityTypeMapping TypeName="AminWebModel.TblVideoPlaylistKeyword">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblVideoPlaylistKeyword">
               <MappingFragment StoreEntitySet="TblVideoPlaylistKeyword">
                 <ScalarProperty Name="VideoPlaylistKeywordId" ColumnName="VideoPlaylistKeywordId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1391,7 +1392,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TblWithdraw">
-            <EntityTypeMapping TypeName="AminWebModel.TblWithdraw">
+            <EntityTypeMapping TypeName="daaneshs_testModel.TblWithdraw">
               <MappingFragment StoreEntitySet="TblWithdraw">
                 <ScalarProperty Name="WithdrawId" ColumnName="WithdrawId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

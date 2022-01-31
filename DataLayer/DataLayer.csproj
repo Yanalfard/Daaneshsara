@@ -76,68 +76,68 @@
     <Compile Include="MetaData\MdVideo.cs" />
     <Compile Include="MetaData\MdVideoPlaylistKeyword.cs" />
     <Compile Include="MetaData\MdWithdraw.cs" />
-    <Compile Include="Models\AminWebEntities.Context.cs">
+    <Compile Include="Models\AminWebContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AminWebEntities.Context.tt</DependentUpon>
+      <DependentUpon>AminWebContext.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AminWebEntities.cs">
+    <Compile Include="Models\AminWebContext.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AminWebEntities.Designer.cs">
+    <Compile Include="Models\AminWebContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AminWebEntities.edmx</DependentUpon>
+      <DependentUpon>AminWebContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblCatagory.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblChat.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblConfig.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblDoc.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblLog.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblPlaylist.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblReport.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblRole.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblTicket.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblUser.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblUserPlaylistRel.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblUserVideoRel.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblVideo.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblVideoPlaylistKeyword.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TblWithdraw.cs">
-      <DependentUpon>AminWebEntities.tt</DependentUpon>
+      <DependentUpon>AminWebContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IMainRepo.cs" />
@@ -162,12 +162,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="Models\AminWebEntities.edmx">
+    <EntityDeploy Include="Models\AminWebContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AminWebEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>AminWebContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\AminWebEntities.edmx.diagram">
-      <DependentUpon>AminWebEntities.edmx</DependentUpon>
+    <None Include="Models\AminWebContext.edmx.diagram">
+      <DependentUpon>AminWebContext.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -175,15 +175,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\AminWebEntities.Context.tt">
+    <Content Include="Models\AminWebContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AminWebEntities.edmx</DependentUpon>
-      <LastGenOutput>AminWebEntities.Context.cs</LastGenOutput>
+      <DependentUpon>AminWebContext.edmx</DependentUpon>
+      <LastGenOutput>AminWebContext.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\AminWebEntities.tt">
+    <Content Include="Models\AminWebContext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AminWebEntities.edmx</DependentUpon>
-      <LastGenOutput>AminWebEntities.cs</LastGenOutput>
+      <DependentUpon>AminWebContext.edmx</DependentUpon>
+      <LastGenOutput>AminWebContext.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

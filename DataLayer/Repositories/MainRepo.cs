@@ -10,10 +10,10 @@ namespace DataLayer.Repositories
 {
     public class MainRepo<TEntity> : IMainRepo<TEntity> where TEntity : class
     {
-        private AminWebEntities _db;
+        private daaneshsaraEntities _db;
         private DbSet<TEntity> _dbSet;
 
-        public MainRepo(AminWebEntities db)
+        public MainRepo(daaneshsaraEntities db)
         {
             _db = db;
             _dbSet = _db.Set<TEntity>();
