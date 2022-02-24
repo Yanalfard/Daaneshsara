@@ -23,14 +23,25 @@
                 @Html.ValidationMessageFor(model => model.Title, "", new { @class = "uk-text-danger" })
             </span>
         </div>
-
+        <style>
+            .centerImage {
+                width: 60%;
+                margin: auto;
+                display: block;
+                max-height:300px;
+            }
+        </style>
         <div class="form-group">
             <label for="MainImage">عکس</label>
+            <div class="row-reverse text-center">
+
+                <img src="" id="imgAvatar" class="uk-margin-small-bottom centerImage" alt="" />
+            </div>
             <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
                 <span uk-icon="icon: cloud-upload"></span>
                 <span class="uk-text-middle">عکس خود را اینجا بیاندازید و یا</span>
                 <div uk-form-custom>
-                    <input type="file" name="MainImage">
+                    <input type="file" name="MainImage" id="MainImage">
                     <span class="blue">کلیک کنید</span>
                 </div>
             </div>
@@ -40,11 +51,17 @@
         </div>
         <div class="form-group">
             <label for="VideoDemo">دموی ویدیو</label>
+            <div class="row-reverse text-center">
+
+                <video class="uk-margin-small-bottom centerImage" id="videoDemo" style="display:none" controls controlsList="nodownload">
+                    <source type="video/mp4">
+                </video>
+            </div>
             <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
                 <span uk-icon="icon: cloud-upload"></span>
                 <span class="uk-text-middle"> دموی ویدیو خود را اینجا بیاندازید و یا</span>
                 <div uk-form-custom>
-                    <input type="file" name="VideoDemoUrl">
+                    <input type="file" name="VideoDemoUrl" id="VideoDemoUrl">
                     <span class="blue">کلیک کنید</span>
                 </div>
             </div>
@@ -56,11 +73,17 @@
 
         <div class="form-group">
             <label for="Video">ویدیو</label>
+            <div class="row-reverse text-center">
+
+                <video class="uk-margin-small-bottom centerImage" id="video" style="display:none" controls controlsList="nodownload">
+                    <source type="video/mp4">
+                </video>
+            </div>
             <div class="js-upload mat uk-placeholder uk-margin-remove-top uk-margin-remove-bottom uk-text-center" dir="rtl">
                 <span uk-icon="icon: cloud-upload"></span>
                 <span class="uk-text-middle">ویدیو خود را اینجا بیاندازید و یا</span>
                 <div uk-form-custom>
-                    <input type="file" name="VideoUrl">
+                    <input type="file" name="VideoUrl" id="VideoUrl">
                     <span class="blue">کلیک کنید</span>
                 </div>
             </div>
@@ -129,6 +152,69 @@
 
 
 <script>
+
+    function uploadFile() {
+        UIkit.notification('فایل مورد نظر اضافه شد');
+
+    }
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imgAvatar').attr('src', e.target.result);
+                uploadFile();
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#MainImage").change(function () {
+        readURL(this);
+    });
+    
+    function readURLDemo(input) {
+        $("#videoDemo").css("display", "block");
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#videoDemo').attr('src', e.target.result);
+                uploadFile();
+
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#VideoDemoUrl").change(function () {
+        readURLDemo(this);
+    });
+
+
+    function readURLVideo(input) {
+        $("#video").css("display", "block");
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#video').attr('src', e.target.result);
+                uploadFile();
+
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#VideoUrl").change(function () {
+        readURLVideo(this);
+    });
+
+
     loadCatagory();
     function loadCatagory() {
         var id = $("#Catagory").val();

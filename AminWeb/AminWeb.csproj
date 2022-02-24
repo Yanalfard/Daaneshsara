@@ -2042,6 +2042,7 @@
     <Content Include="Resources\Classes\CertificateURL\NoImage.svg" />
     <Content Include="Resources\Classes\Link\NoImage.svg" />
     <Content Include="Resources\Classes\NoImage.svg" />
+    <Content Include="Resources\Static\icon.png" />
     <Content Include="Resources\Static\Raster\Mobile\icon_128.png" />
     <Content Include="Resources\Static\Raster\Mobile\icon_144.png" />
     <Content Include="Resources\Static\Raster\Mobile\icon_152.png" />

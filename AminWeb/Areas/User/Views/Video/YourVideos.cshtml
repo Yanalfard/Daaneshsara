@@ -5,6 +5,23 @@
     Layout = "~/Areas/User/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .imgClasses {
+        background-color: red;
+        width:25px;
+        height:25px;
+    }
+
+
+    .imgClasses {
+        background: url('/Resources/Static/icon.png') no-repeat;
+    }
+
+        .imgClasses:hover {
+            background: url('/Resources/Static/icon2.png') no-repeat;
+        }
+</style>
+
 <div class="mat uk-padding-small uk-box-shadow-small row-reverse">
     <h3 class="uk-margin-auto-left uk-margin-remove">
         ویدیو های شما
@@ -12,8 +29,10 @@
     <div class="row uk-margin-auto-right">
         <a href="/User/Video/Create" class="center" uk-icon="icon:addVideo;ratio:1.2" uk-tooltip="آپلود ویدیو">
         </a>
-        <a onclick="showClasses()" class="center uk-margin-left" uk-icon="icon:class;ratio:1.2" uk-tooltip="کلاس ها">
+        @*<a onclick="showClasses()" class="center uk-margin-left" uk-icon="icon:class;ratio:1.2" uk-tooltip="کلاس ها">*@
 
+        <a onclick="showClasses()" class="center uk-margin-left imgClasses" uk-icon="" uk-tooltip="کلاس ها">
+            @*<img src="~/Resources/Static/icon.png" style="width:25px;" />*@
         </a>
     </div>
 </div>

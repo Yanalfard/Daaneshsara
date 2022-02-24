@@ -83,8 +83,8 @@
 
     <div class="credits">
         <p>
-            طراحی و توسعه توسط شرکت
-            <a href="https://arvintavco.com">آروین تاو</a>
+            تمامی حقوق مادی و معنوی این قالب متعلق به   <a href="/">دانشسرا </a> می باشد .
+
         </p>
     </div>
 
@@ -323,6 +323,12 @@
             $("#overlay").fadeOut();
             UIkit.modal(document.getElementById(form)).hide();
             window.location.href = "/";
+        }
+        function doneModalRegister(form) {
+            $("#overlay").fadeOut();
+            UIkit.notification('لینک فعال سازی حساب به ایمیل شما ارسال شد')
+            UIkit.modal(document.getElementById(form)).hide();
+            //window.location.href = "/";
         }
     </script>
 

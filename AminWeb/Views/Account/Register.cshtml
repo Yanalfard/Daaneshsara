@@ -1,5 +1,5 @@
 ﻿@model DataLayer.ViewModels.VmRegister
-@using (Ajax.BeginForm("Register", "Account", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModal('Modal-Show')", OnSuccess = "LoadingEnd('#RegisterForm')", UpdateTargetId = "RegisterForm" }, htmlAttributes: new { @id = "RegisterForm" }))
+@using (Ajax.BeginForm("Register", "Account", new AjaxOptions() { HttpMethod = "POST", OnFailure = "doneModalRegister('Modal-Show')", OnSuccess = "LoadingEnd('#RegisterForm')", UpdateTargetId = "RegisterForm" }, htmlAttributes: new { @id = "RegisterForm" }))
 {
     @Html.AntiForgeryToken()
 <div class="form column" role="form">
